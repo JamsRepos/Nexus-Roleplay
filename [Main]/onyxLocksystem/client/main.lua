@@ -486,6 +486,9 @@ function hasKeys(plate)
     if exports['core']:HasKey(vehPlate) then
         return true
     end
+    if DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+        return true
+    end
     return false
 end
 
