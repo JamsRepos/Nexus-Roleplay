@@ -445,7 +445,7 @@ Citizen.CreateThread(function()
     elseif WarMenu.Button('Police', cops) then
     elseif WarMenu.Button("Mechanic ", mechanic) then
     elseif WarMenu.Button('EMS', ems) then  
-    elseif WarMenu.Button('Player Count', #players..'/64') then
+    elseif WarMenu.Button('Player Count', #players..'/40') then
       WarMenu.OpenMenu('player_list2')  
     end
     if qCount > 0 then

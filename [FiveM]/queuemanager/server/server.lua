@@ -39,13 +39,13 @@ end
 -- easy localization
 Config.Language = {
     joining = "Joining...",
-    connecting = "Connecting...",
+    connecting = "Connecting...\nIf you are stuck on this stage, you need to restart FiveM and ensure Steam is running in the background.\nIf you already have Steam running, please restart the client.",
     err = "Error: Couldn't retrieve any of your id's, try restarting.",
     _err = "There was an error",
     pos = "You are currently %d/%d in queue, \nYou can donate now for queue priority at https://discord.gg/ZaYvv4K \nCan't see the dots moving? Reconnecting will sort that out for you",
     connectingerr = "Error adding you to connecting list",
     banned = "You are banned, you may appeal at https://discord.gg/ZaYvv4K | Reason: %s",
-    steam = "Error: Steam must be running",
+    steam = "Error: Please ensure you have Steam running in the background. We use this to authenticate you to our server. If you already have Steam running, please restart the client.",
     prio = "You must be whitelisted to join this server"
 }
 -----------------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ local debug = true
 local whitelisted = false
 local displayQueue = false
 local initHostName = false
-local maxPlayers = 64
+local maxPlayers = 40
 
 local tostring = tostring
 local tonumber = tonumber
@@ -299,7 +299,7 @@ end
 
 Citizen.CreateThread(function()
     local function playerConnect(name, setKickReason, deferrals)
-        maxPlayers = GetConvarInt("sv_maxclients", 64)
+        maxPlayers = GetConvarInt("sv_maxclients", maxPlayers)
         debug = GetConvar("sv_debugqueue", "true") == "true" and true or false
 		whitelisted = GetConvar("sv_whitelisted", "true") == "true" and true or false
         displayQueue = GetConvar("sv_displayqueue", "true") == "true" and true or false
