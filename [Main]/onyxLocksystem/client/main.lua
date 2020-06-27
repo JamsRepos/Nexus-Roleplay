@@ -40,19 +40,22 @@ function toggleLock(vehicle)
         if lockStatus == 1 then
             SetVehicleDoorsLocked(veh, 2)
             SetVehicleDoorsLockedForAllPlayers(veh, true)
-            exports['NRP-notify']:DoHudText('inform', 'Vehicle Locked')
+            TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "lock", 0.1)
+            exports['NRP-notify']:DoHudText('error', 'Vehicle Locked')
             playLockAnim()
             hasToggledLock()
         elseif lockStatus == 2 then
             SetVehicleDoorsLocked(veh, 1)
             SetVehicleDoorsLockedForAllPlayers(veh, false)
-            exports['NRP-notify']:DoHudText('inform', 'Vehicle Unlocked')
+            TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "lock", 0.1)
+            exports['NRP-notify']:DoHudText('success', 'Vehicle Unlocked')
             playLockAnim(veh)
             hasToggledLock()
         else
             SetVehicleDoorsLocked(veh, 2)
             SetVehicleDoorsLockedForAllPlayers(veh, true)
-            exports['NRP-notify']:DoHudText('inform', 'Vehicle Locked')
+            TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "lock", 0.1)
+            exports['NRP-notify']:DoHudText('error', 'Vehicle Locked')
             playLockAnim()
             hasToggledLock()
         end
@@ -74,18 +77,18 @@ RegisterNetEvent('onyx:pickDoor')
 AddEventHandler('onyx:pickDoor', function()
     -- TODO: Lockpicking vehicle doors to gain access
 end)
---[[
+
 -- Locking vehicles
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         local pos = GetEntityCoords(GetPlayerPed(-1))
-        if IsControlJustReleased(0, 303) then
+        if IsControlJustReleased(0, 47) then
             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
                 local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
                 toggleLock(veh)
             else
-                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 3.0, 0, 70)
+                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
                 if DoesEntityExist(veh) then
                     toggleLock(veh)
                 end
@@ -101,7 +104,7 @@ Citizen.CreateThread(function()
         -- end
     end
 end)
---]]
+
 local isSearching = false
 local isHotwiring = false
 
@@ -211,7 +214,7 @@ Citizen.CreateThread(function()
                         end
                     end
                 else
-                    SetVehicleEngineOn(veh, true, true, false)
+                    --SetVehicleEngineOn(veh, true, true, false)
                 end
             end
         end

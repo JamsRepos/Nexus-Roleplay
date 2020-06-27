@@ -42,7 +42,16 @@ Citizen.CreateThread(function()
    if WarMenu.Button('Engine', Enginestatus()) then
     toggleEngine()
    elseif WarMenu.Button('Door Locks', Lockstatus()) then
-   	TriggerEvent('garage:togglelocks')
+    local pos = GetEntityCoords(GetPlayerPed(-1))
+    if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+        local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+        exports["onyxLocksystem"]:toggleLock(veh)
+    else
+        local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
+        if DoesEntityExist(veh) then
+          exports["onyxLocksystem"]:toggleLock(veh)
+        end
+    end
    elseif WarMenu.Button('Underglow', Underglowstatus()) then
     toggleUnderglow()
    elseif WarMenu.Button('Windows', windowstatus()) then
@@ -182,9 +191,6 @@ Citizen.CreateThread(function()
   elseif IsDisabledControlPressed(1, 36) and IsDisabledControlJustPressed(1, 38) and IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then 
    toggleEngine()
   end
-  if IsControlJustPressed(0, 47) then 
-   TriggerEvent('garage:togglelocks')
-  end 
   if IsControlJustPressed(0, 288) then 
     if exports['core']:GetItemQuantity(104) >= 1 then
      TriggerEvent('phone:toggle') 

@@ -20,7 +20,7 @@ RegisterCommand('gps', function(source, args, rawCommand)
   TriggerEvent('chatMessage', '^5Street Name: ^3'..GetStreetNameFromHashKey(var1))
  end
 end)
-
+--[[
 -- Vehicle Locking
 AddEventHandler('garage:togglelocks', function()
  local coords = GetEntityCoords(GetPlayerPed(-1))
@@ -84,7 +84,7 @@ AddEventHandler('garage:togglelocks', function()
     print(GetVehicleDoorLockStatus(vehicle))
     exports['NRP-notify']:DoHudText('success', 'Vehicle Unlocked')
    end
-  elseif DecorGetInt(GetPlayerPed(-1), "Job") == 15 and GetVehicleNumberPlateText(vehicle) == "CARDEALE" then --[[ CAR LOCK FOR CARDEALER]]
+  elseif DecorGetInt(GetPlayerPed(-1), "Job") == 15 and GetVehicleNumberPlateText(vehicle) == "CARDEALE" then -- CAR LOCK FOR CARDEALER
     if GetVehicleDoorLockStatus(vehicle) == 1 then 
      SetVehicleDoorsLocked(vehicle, 2)
      TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "lock", 0.1)
@@ -139,6 +139,7 @@ Citizen.CreateThread(function()
   end
  end
 end)
+--]]
 
 -- Peds
 Citizen.CreateThread(function()
