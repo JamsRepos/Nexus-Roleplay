@@ -1,0 +1,75 @@
+﻿<html>
+ <head>
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <script>
+	var canvasHeight = $(document).height()-100;
+	var canvasWidth = $(document).width()-15;
+	var canvas = document.createElement('canvas');
+	canvas.width = canvasWidth;
+	canvas.height = canvasHeight;
+	document.body.appendChild(canvas);
+	var context = canvas.getContext('2d');
+	var timing = 0;
+	context.save();
+	// Stroke Positions
+	strokePositionX = 0;
+	strokePositionY = canvasHeight / 2;
+
+	function drawHeartMonitorStroke() {
+		context.restore();
+		context.beginPath();
+		context.moveTo(strokePositionX, strokePositionY);
+		strokePositionX = strokePositionX + 1;
+
+		if ((strokePositionX >= canvasWidth * 20 / 100 && strokePositionX < canvasWidth * 24 / 100)
+		|| (strokePositionX >= canvasWidth * 70 / 100 && strokePositionX < canvasWidth * 74 / 100)) {
+			strokePositionY = strokePositionY - canvasHeight / 200;
+		}
+
+		else if ((strokePositionX >= canvasWidth * 24 / 100 && strokePositionX < canvasWidth * 32 / 100)
+		|| (strokePositionX >= canvasWidth * 74 / 100 && strokePositionX < canvasWidth * 82 / 100)) {
+			strokePositionY = strokePositionY + canvasHeight / 200;
+		}
+
+		else if ((strokePositionX >= canvasWidth * 32 / 100 && strokePositionX < canvasWidth * 36 / 100)
+		|| (strokePositionX >= canvasWidth * 82 / 100 && strokePositionX < canvasWidth * 86 / 100)) {
+			strokePositionY = strokePositionY - canvasHeight / 200;
+		}
+
+		else if ((strokePositionX >= canvasWidth * 36 / 100 && strokePositionX < canvasWidth * 60 / 100)
+		|| (strokePositionX >= canvasWidth * 86 / 100 && strokePositionX <= canvasWidth)) {
+			strokePositionY = canvasHeight / 2;
+		}
+
+		else if (strokePositionX > canvasWidth) {
+			strokePositionX = 0;
+			context.moveTo(strokePositionX, strokePositionY);
+		}
+
+		context.lineTo(strokePositionX, strokePositionY);
+		context.lineWidth = 1;
+		context.strokeStyle = '#47FF47';
+		context.stroke();
+		context.closePath();
+	}
+
+	window.addEventListener('message', function (event) {
+		var item = event.data;
+
+		if (item.dead === true) {
+		 if (item.enable === true) {
+		 	$("canvas").fadeIn(200);
+		 	timing = setInterval(drawHeartMonitorStroke, 1);
+		 }
+		}
+		if (item.dead === false) {
+			$("canvas").fadeOut(200);
+			context.clearRect(0, 0,canvasWidth, canvasHeight);
+			clearInterval(timing);
+		}
+	})
+  </script>
+ </body>
+</html>

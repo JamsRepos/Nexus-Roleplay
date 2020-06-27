@@ -1,0 +1,372 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<style>
+			* {
+				box-sizing: border-box;
+			}
+		
+			body {
+				font-family: "Poppins", sans-serif;
+				color: #f0e002;
+			}
+		
+			.window {
+				height: 75vh;
+				width: 70vw;
+				position: fixed;
+				left: 15vw;
+				top: 12.5vh;
+				background: #000000;
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+				display: none;
+				
+			}
+			
+			.right, .left {
+				display: inline-block;
+				height: 75vh;
+				width: 35vw;
+				float: left;
+			}
+			
+			.right {
+				overflow: auto;
+			}
+			
+			.left {
+				padding: 15px;
+				position: relative;
+			}
+
+			h3 {
+				text-align: center;
+				font-size: 15px;
+				font-weight: normal;
+				color: #d9dd02;
+			}
+			
+			h2 {
+				text-align: center;
+				color: #d9dd02;
+			}
+			
+			.update {
+				background: black;
+				margin: 15px;
+				padding: 15px;
+			}
+			
+			.update p:first-child {
+				margin-top: 0;
+				font-weight: bold;
+			}
+			
+			.date {
+				float: right;
+			}
+			
+			.new, .submit {
+				background: #000000;
+				color: #d9dd02;
+			}
+			
+			.select {
+				background: #000000;
+				color: #d9dd02;
+			}
+			
+			.delete, .cancel {
+				background: #000000;
+				color: #d9dd02;
+			}
+			
+			.window button {
+				border: none;
+				padding: 15px;
+				font-weight: bold;
+				font-family: "Poppins", sans-serif;
+				width: calc(33.3% - 15px);
+				position: absolute;
+				bottom: 15px;
+				transition: all 0.25s ease;
+			}
+			
+			.window button:hover {
+				cursor: pointer;
+				transition: all 0.25s ease;
+				box-shadow: 0 5px 15px rgb(1, 10, 66);
+			}
+			
+			.window .buttons button:nth-child(2) {
+				left: calc(33.3% + 15px);
+			}
+			
+			.window .buttons button:last-child {
+				right: 0;
+			}
+			
+			.characters {
+				height: calc(75vh - 95px);
+				position: absolute;
+				width: calc(35vw - 15px);
+				left: 15px;
+				top: 15px;
+				background: #000000;
+				padding: 15px;
+			}
+			
+			.update:not(:nth-child(2)) {
+				margin-top: 0;
+			}
+			
+			.register {
+				position: fixed;
+				height: 75vh;
+				width: 35vw;
+				left: 32.5vw;
+				top: 12.5vh;
+				background: #000000;
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+				padding: 15px;
+				display: none;
+			}
+			
+			.register button {
+				border: none;
+				padding: 15px;
+				font-weight: bold;
+				font-family: "Poppins", sans-serif;
+				width: calc(50% - 22.5px);
+				position: absolute;
+				bottom: 15px;
+				transition: all 0.25s ease;
+			}
+			
+			.register .buttons button:nth-child(2) {
+				right: 15px;
+			}
+			
+			.register button:hover {
+				cursor: pointer;
+				transition: all 0.25s ease;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+			}
+			
+			input, select, textarea {
+				width: 100%;
+				background: #000000;
+				padding: 15px;
+				border: 0;
+				color: #d9dd02;
+				font-family: "Poppins", sans-serif;
+			}
+			
+			input, select {
+				margin-bottom: 15px;
+			}
+			
+			textarea {
+				resize: none;
+				height: calc(75vh - 421px);
+			}
+			
+			.character {
+				background: #000000;
+				padding: 15px;
+				color: #ffd900;
+				cursor: pointer;
+				transition: all 0.25s ease;
+			}
+
+			.note {
+				background: #eff4f7;
+				padding: 6px;
+				color: #ffd900;
+				cursor: pointer;
+				transition: all 0.25s ease;
+			}
+			
+			.character:hover {
+				transition: all 0.25s ease;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+			}
+			
+			.characters {
+				overflow: auto;
+			}
+			
+			.characters .character:not(:first-child) {
+				margin-top: 15px;
+			}
+			
+			.character p:first-child {
+				margin-top: 0;
+				font-weight: bold;
+			}
+			
+			.character p:last-child {
+				margin-bottom: 0;
+			}
+			
+			.separator {
+				font-weight: bold;
+			}
+			
+			.white {
+				background: #04003b;
+			}
+
+		</style>
+</head>
+<body>
+<div class="window">
+<div class="left">
+<div class="characters">
+		<div class="note"><h3><b>ANNOUNCEMENT</b></br>We currently have our whitelisted server applications open!</br> Visit our website for more information on how to apply.</h3></div>
+</div>
+<div class="buttons">
+<button class="select">Select</button>
+<button class="new">New</button>
+<button class="delete">Delete</button>
+</div>
+</div>
+<div class="right">
+<h2>Command List</h2>
+<div class="update">
+	<ul style="list-style-type:square">
+	Hello! Welcome to Nexus Roleplay please take your time to read the Rules in Discord and the Command List Below...</br></br>
+	<li>ALL JOB TUTORIALS WITHIN DISCORD UNDER JOB TUTORIALS TAB</li>
+	<li>Z  = PLayerMenu - your inventory documents etc</li>
+	<li>F1 = Phone</li>
+	<li>T  = Chat</li>
+	<li>X  = Hands Up</li>
+	<li>G  = Lock/Unlock Car</li>
+	<li>M  = Cruise Control</li>
+	<li>F7 or ` = show emotes also more with /ep, /e</li>
+	<li>F5   = vstancer - change the camber etc on your car will reset once you put in garage, it does change car handling..</li>
+	<li>CTRL = player stance modifer press once to crouch then lie down or hold to dolphin dive while running(SPACE = stand up)</li>
+	<li>/cancel or /ce = will cancel animations etc</li>
+	<li>/me ---</li>
+	<li>/do ---</li>
+	<li>/cash = shows cash in hand</li>
+	<li>/bank = shows bank</li>
+	<li>/dm   = shows dirty money</li>
+	<li>/dance 1-50 = dance emotes</li>
+	<li>/id = shows id</li>
+	<li>/dl = shows driving licence</li>
+	<li>/gl   = shows gun licence</li>
+	<li>/fakeid   = shows fake id menu</li>
+	<li>/mask   = add/removes mask</li>
+	<li>/glasses   = add/removes glasses</li>
+	<li>/helmet   = add/removes helmet/hat</li>
+	<li>/dance 1-50 = dance emotes</li>
+	<li>/clothes = puts clothes back on</li>
+	<li>/swimsuit = gets in swimsuit</li>
+	<li>/emotes = shows and emotelist you to you use /e then emote name</li>
+	<li>/plant = to grow a weed seed</li>
+	<li>/rc  =  gets remote control car out when you have one stand close and pick up with E</li>
+	<li>/roll  = rolls a dice</li>
+	<li>/radio = when you have an portable dab radio on you</li>
+	<li>/k = puts you in a surrender animation</li>
+	<li>/trunk = gets you in trunk</li>
+	<li>/hostageped = takes npc hostage</li>
+	<li>/hostage = takes player hostage if his holding his hands up</li>
+	<li>K = rob a player with his hands up</li>
+	<li>/bed = gets in hospital bed</li>
+	<li>/rep = drug reputation system</li>
+	<li>/stats = gym stat system</li>
+   </ul>
+  </div>
+</div>
+</div>		
+<div class="register">
+<form>
+<input id="firstname" type="text" placeholder="First Name" required pattern="[A-Za-z]{3,32}">
+<input id="lastname" type="text" placeholder="Last Name" required pattern="[A-Za-z]{3,32}">
+<input id="dob" type="text" placeholder="DD/MM/YYYY" required pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
+<select id="gender">
+<option value="Male" selected>Male</option>
+<option value="Female">Female</option>
+</select>
+<div class="buttons">
+<button class="submit" type="submit">Create</button>
+<button class="cancel">Exit</button>
+</div>
+</form>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+			// jquery
+		</script>
+<script type="text/javascript">
+			let current = 0;
+			
+			$(function( ) {
+				window.addEventListener("message", function(event) {
+					if(event.data.type == "enableui") {
+						event.data.enable ? $("body").show( ) : $("body").hide( );
+						
+						if(event.data.enable) {
+							$(".characters").html(event.data.characters);
+							$(".window").show( );
+						} else {
+							$(".window").hide( );
+						}   
+					}
+				});
+				
+				$(".new").click(function( ) {
+					$(".register").show( ); 
+					$(".window").hide( );
+					$.post("http://core/refreshload");
+				});
+				
+				$(".select").click(function( ) {
+					if (current > 0) {
+						$.post("http://core/selectcharacter", JSON.stringify({id: current}));
+					} 
+					
+					current = 0;
+				});
+				
+				$(".delete").click(function( ) {
+					if (current > 0) {
+						$.post("http://core/deletecharacter", JSON.stringify({id: current}));
+					}
+					
+					current = 0;
+				});
+				
+				$("input, textarea").bind("cut copy paste", function(event) {
+					event.preventDefault( ); 
+				});
+
+				$("form").submit(function(event) {
+					event.preventDefault( );
+					
+					$(".window").css("display", "none");
+					$(".register").css("display", "none");
+					
+					$.post("http://core/create", JSON.stringify({
+						firstname: $("#firstname").val( ),
+						lastname: $("#lastname").val( ),
+						dob: $("#dob").val( ),
+						gender: $("#gender").val( ),
+					}));
+				});
+				
+				$(".cancel").click(function( ) {
+					$(".register").hide( );
+					$(".window").show( );
+				});
+				
+				$(document).on("click", ".character", function( ) {
+                    current = parseInt($(this).attr("id"));
+                    $(".character").removeClass("white");
+                    $(this).addClass("white");
+                });
+			});
+		</script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'a2plcpnl0439'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>

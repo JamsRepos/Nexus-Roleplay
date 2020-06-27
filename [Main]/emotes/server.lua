@@ -1,0 +1,6 @@
+RegisterServerEvent("anims:hostager")
+AddEventHandler("anims:hostager", function(t)
+ local source = tonumber(source)
+ local target = tonumber(t)
+ TriggerClientEvent('anims:doHostage', target, source)
+end)

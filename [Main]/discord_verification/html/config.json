@@ -1,0 +1,8 @@
+{
+	"header":"Hey!",
+	"secondtext":"<b>Because it's your first time here you have to verify yourself on Discord</b>",
+	"invite":"https://discord.gg/invite",
+	"code":"<i class='fas fa-key'></i> Your code",
+	"empty":"<i class='fas fa-exclamation'></i> Code can't be empty",
+	"wrongCode":"<i class='fas fa-exclamation'></i> That code is wrong. Follow instructions and generate your code on given Discord server. (#TRIESLEFT# attempts left)"
+}

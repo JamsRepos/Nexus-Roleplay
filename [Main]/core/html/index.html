@@ -1,0 +1,596 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="css.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="window-main">
+	<div class="window-initial-load">
+		<div class="window-logo">
+			<img src="img/logo.png">
+		</div>
+		<div class="window-continue">
+			<span class="continue-button continue"><h1>continue</h1></span>
+		</div>
+		<p style="color: white; text-align: center; margin-top: -20px;">If you cannot use your cursor, your Steam has not loaded properly.
+		<br>Please restart Steam and FiveM to fix this. If you are still having issues, contact us on Discord.gg/ZaYvv4K.</p>
+	</div>
+
+	<!-- <div id="rcorners1">
+		<h4>test</h4>
+	</div> -->
+
+
+	<!-- Load Option Window-->
+	<div class="window-character-load">
+		<div class="window-boxes">
+			<div class="box new">
+				<h1>create character</h1>
+			</div>
+			<div class="box load-chars">
+				<h1>select character</h1>
+			</div>
+			<!-- <div class="box commands">
+				<h1>commands</h1>
+			</div> -->
+		</div>
+		<div class="window-logo char-logo">
+			<img src="img/logo.png">
+		</div>
+	
+		<div class="window-boxes-rules">
+			<div class="box rules">
+				<h1>Rules</h1>
+			</div>
+			<div class="box commands">
+				<h1>commands</h1>
+			</div>
+		</div>
+	</div>
+	<!-- Load Command Window-->
+	<div class="window-commands-load"> 
+		<div class="window-logo cmd-logo">
+			<img src="img/logo.png">
+		</div>
+		<div class="window-return return-char-load">
+			<img src="img/chevron-left-128.png">
+			<h4>return</h4>
+		</div>
+		<div class="command-list">
+				<div class="command-list-header"> 
+						<h4>Welcome to Nexus Roleplay, please take your time to read the Rules in Discord and the command list below...</h4>
+					</div>
+				<ul class="command-list-ul">
+					<li>Z = PlayerMenu - your inventory documents etc</li>
+					<li>F1 = Phone</li>
+					<li>F2 = Inventory
+					<li>T = Chat</li>
+					<li>X = Hands up</li>
+					<li>G = Lock/Unlock car</li>
+					<li>M = Cruise control</li>
+					<li>Y = Search locals vehicle</li>
+					<li>F7 = Show emotes also more with /ep, /e</li>
+					<li>CTRL = Player stance modifer press once to crouch then lie down or hold to dolphin dive while running(SPACE = stand up)</li>
+					<li>K = Rob a players pockets if his hands are up</li>
+					<li>E = Rob a players wallet if his hands are up</li>
+					<li>/cancel or /e c = Will cancel animations etc</li>
+					<li>/me Shows </li>
+					<li>/cash = Shows cash in hand</li>
+					<li>/bank = Shows bank</li>
+					<li>/dm   = Shows dirty money</li>
+					<li>/id = Shows id</li>
+					<li>/dl = Shows driving licence</li>
+					<li>/gl = Shows gun licence</li>
+					<li>/fakeid = Opens fake ID menu
+					<li>/mask   = Add/removes mask</li>
+					<li>/glasses   = Add/removes glasses</li>
+					<li>/helmet   = Add/removes helmet/hat</li>
+					<li>/clothes = Puts clothes back on</li>
+					<li>/swimsuit = Gets in swimsuit</li>
+					<li>/naked 1-3 = Gets naked</li>
+					<li>/emotes = Shows and emote list you to you use /e then emote name</li>
+					<li>/plant = To grow a weed seed</li>
+					<li>/rc  =  Gets remote control car out when you have one stand close and pick up with E</li>
+					<li>/roll  = Rolls a dice</li>
+					<li>/radio = Opens option for your radio</li>
+					<li>/frequency <number> = Selects frequency for /radio</li>
+					<li>/k = Puts you in a surrender animation</li>
+					<li>/trunk = Gets you in trunk</li>
+					<li>/hostageped = Takes npc hostage</li>
+					<li>/hostage = Takes player hostage if his holding his hands up</li>
+					<li>/bed = Gets in hospital bed</li>
+					<li>/rep = Drug reputation system</li>
+					<li>/stats = Gym stat system</li>
+				</ul>
+		</div>
+	</div>
+	<!-- Load Rules Window-->
+	<div class="window-rules-load">
+		<div class="window-logo cmd-logo">
+			<img src="img/logo.png">
+		</div>
+		<div class="window-return return-char-load">
+			<img src="img/chevron-left-128.png">
+			<h4>return</h4>
+		</div>
+		<div class="rules-boxes">
+			<div class="rules-box general" data-open="true">
+				<h4>General Rules</h4>
+			</div>
+			<div class="rules-box character" data-open="false">
+				<h4>Character Rules</h4>	
+			</div>
+			<div class="rules-box faction" data-open="false">
+				<h4>Faction Rules</h4>	
+			</div>
+			<div class="rules-box community" data-open="false">
+				<h4>Community Rules</h4>
+			</div>
+		</div>
+		<!-- The General Rules -->
+		<div class="general-rules generic-r">
+			<div class="generic-rules-main">
+				<div class="rules-header">
+					<h1>General Rules</h1>
+				</div>
+				<ul class="rules-list">
+					<li>Microphone - A microphone is required to join the server. 
+						If caught without one you will be kicked and a ban may be issued until you can come on to discord to prove you have a working microphone. 
+						To check if your microphone is working press “n” (which is the default key and check the voice option in the bottom left lights up blue. 
+						If it does not try restoring your defaults in settings and try again.
+					</li>
+					<li>
+						Trolling - Trolling is not welcome and you will be warned.
+					</li>
+					<li>
+						Metagaming - Metagaming is not permitted under any circumstance: stream sniping is included.
+					</li>
+					<li>
+						Power Gaming - This involves using either game or roleplay mechanics to alter a situation so it best suits your desires. 
+						You must be willing to roleplay a situation to its fullest and not ruin the experience of others.
+					</li>
+					<li>
+						AFK - Do not go AFK for periods longer than ten minutes, you will be kicked. Repeated AFK offences may result in a ban.
+					</li>
+					<li>
+						RDM - Random Death Match. An interaction with a player must be established before you can kill someone and a valid in character exchange.
+					</li>
+					<li>
+						RVDM - Random Vehicle Deathmatch. 
+						Randomly running over others is not acceptable and will result in an instant ban. 
+						You can run someone over if they pose a threat or you have a sufficient character reason to do so. Police may pit manoeuvre with reason.
+					</li>
+					<li>
+						Breaking RP - When in-game, you must never break character unless spoken to by an admin - there are no exceptions.
+					</li>
+					<li>
+						Combat logging - Combat Logging will never be tolerated.
+					</li>
+					<li>
+						Combat storing - Combat storing to avoid being robbed/arrested is not permitted.
+					</li>
+					<li>
+						Chat - Using chat in a disrespectful manner will result in kicks and bans. 
+						If you are unhappy with a person, ask them to come to Teamspeak and talk about it with a support member present.
+					</li>
+					<li>
+						Visual mods - We do allow visual mods as long as they don’t give you an unfair advantage. (You are allowed map mods that add street names)
+					</li>
+					<li>
+						Drugs - Only one drug run can be done at one time.
+					</li>
+					<li>
+						NPC Farming - You may not kill NPCs to harvest weapons.
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- The Character Rules -->
+		<div class="character-rules generic-r">
+			<div class="generic-rules-main">
+				<div class="rules-header">
+					<h1>Character Rules</h1>
+				</div>
+				<ul class="rules-list">
+					<li>Malicious Attacks -  Roleplaying sexual assault (such as non-consensual touching, rape, etc.) is not allowed.
+					</li>
+					<li>
+						Value of your Own Life - At all times you must value your life as if it was your last. 
+						If you're at a clear disadvantage, for example, a gun pointed to the back of your head whilst you're looking the other direction, you must comply with their demands.
+						If you are outnumbered 3 to 1 you must comply. 
+					</li>
+					<li>
+						Valuing Other’s Lives - If a person values their own life, for instance, follows orders when at gunpoint, you may not kill them. 
+						If a person is non-cooperative then you do not have to value their life.
+					</li>
+					<li>
+						Terrorist - Terrorist roleplay is not acceptable under any circumstance.
+					</li>
+					<li>
+						Animal Skins - Animal skins may not be used by anyone other than admins on duty or police that have been permitted to use the dog skins.
+					</li>
+					<li>
+						Nudity - Character models with nudity are permitted, but please keep in mind that people do stream. In addition, you can and will be arrested for indecent exposure.
+					</li>
+					<li>
+						Impersonation of Emergency Services - Impersonation of Police/EMS/Mechanics/Military is forbidden. You may not use their character models.
+					</li>
+					<li>
+						Character Death - In the event of character death/disfigurement, the situation must be agreed upon by both parties involved - unless there is sufficient IC reasoning behind it.
+					</li>
+					<li>
+						NLR - New Life Rule. If you are declared dead you cannot return to the situation you were involved in, nor can you partake in it for 15 minutes. 
+						You can return with another character but may not get involved. 
+						If the situation moves location and you accidentally get caught up in it you must make all efforts to leave.
+					</li>
+					<li>
+						Death Avoidance - Passing money or weapons as you are about to die to save the money is not permitted as it avoids the death system.
+					</li>
+					<li>
+						Restraints - If you are in restraints (hands up or police restraints) you must broadcast in the game what you are saying on Teamspeak/group unless your communication devices have been taken. 
+						(Take communications by /me takes communication devices.)
+					</li>
+					<li>
+						No string robbing players or stores - 
+						If you decide to rob a player or group of players in one location, you must wait at least 1 hour before robbing the same player. 
+						Going around and robbing every player you see does not benefit the roleplay on the server and if anything, diminishes it. 
+						Robbing a player should be well thought out and should be fairly uncommon. String robbing players will not be tolerated. 
+						Robbing in a very public location is unrealistic and ruins the experience on the server. Be smart and creative about who and where you rob.
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+		<!-- The Faction Rules -->
+	<div class="faction-rules generic-r">
+		<div class="generic-rules-main">
+				<div class="rules-header">
+					<h1>Faction Rules</h1>
+				</div>
+				<ul class="rules-list">
+					<h5>General</h5>
+					<li>Theft of Emergency Vehicles - The theft of Police, EMS, Mechanic and Military vehicles is not allowed.
+					</li>
+					<li>
+						Whitelisting Abuse - Being whitelisted is a privilege that should not be abused. 
+						To prevent abuse such as, but not limited to handing out police firearms, reviving friends while an off-duty medic or repairing cars while off duty as a mechanic.  
+					</li>
+					<li>
+						Robbing Police  - Due to the balancing of the economy robbing police for equipment such as firearms is not permitted.
+					</li>
+					<li>
+						Kidnapping - To kidnap any player (this includes the police), there must be at least 4 officers on-duty. 
+						If you are unsure on how many cops are on duty, simply ask in OOC. 
+						The police are responsible for not only your roleplay but the roleplay of other players. 
+						By kidnapping these individuals you hold up all emergency service personnel taking away from the experience from others. 
+						For this reason, any kidnappings on emergency service personnel must be reasonable and considerations of making the situation enjoyable. 
+						Nobody wants to be locked in silence whilst taken hostage for long periods of time.
+					</li>
+					<li>
+						Loitering around Emergency Buildings - Loitering around Police Stations, Hospitals, and Mechanic shops without valid roleplay stories are not permitted. 
+					</li>
+					<li>
+						Fort Zancudo - Entering the military base is prohibited. This will be considered FailRP as you would not really be able to enter.
+					</li>
+					<li>
+						Garages - The garages are considered safe zones - vehicles cannot be stolen and people cannot be harmed while they're there. 
+						No Illegal activity, Drifting, doing doughnuts or wheelies is also not acceptable. 
+						It is also not acceptable to flee from police or other players to “safety”. If this happens to report it, do not follow players into the zone.  
+					</li>
+					<li>
+						Business Activities - If you own a business, you are subject to higher standards of roleplay. Although you may have worked hard for it, we expect a high level of roleplay.
+					</li>
+					<h5>Police</h5>
+					<li>
+						Cop Baiting - Cop baiting is not permitted. 
+						Do not purposefully try and get police attention on you by doing things you would not do with an officer near you. 
+						This includes but is not limited to; burning out in the middle of intersections, purposefully revving your motor at lights to bait a pullover/chase, purposely committing traffic violations in the vicinity of a police officer.
+					</li>
+					<li>
+						Unrealistic Phone Use - Using a phone while in Police custody/Prison is considered failRP - this includes sending messages and tweeting.
+					</li>
+					<li>
+						Police Stations - Entering the detention area, roof, offices and locker and the back of Mission Row P.D is strictly prohibited to police and invited guests. 
+						Violent acts can take place here as long as you meet these requirements. 
+					</li>
+					<h5>EMS</h5>
+					<li>
+						Unrealistic Revival - When you are revived, you’re in medical custody until a member of EMS releases you. 
+						You may not simply run off once revived by a medic. 
+						Police will follow you to the hospital and can take firearms from you before you head to the hospital. 
+						Once you are revived, you may not jump up and instantly start shooting police again, you were downed and you lost the fight and it’s unrealistic to recover that quickly.
+					</li>
+					<li>
+						EMS Kidnap - EMS cannot be kidnapped. You can kill a medic with sufficient reasoning to do so: i.e they refuse to cooperate even when threatened.
+					</li>
+				</ul>
+			</div>
+	</div>
+		<!-- The Community Rules -->
+	<div class="community-rules generic-r">
+			<div class="generic-rules-main">
+				<div class="rules-header">
+					<h1>Community Rules</h1>
+				</div>
+				<ul class="rules-list">
+					<h5>Character Building</h5>
+					<li>Reasonable Name - While names that are a joke are allowed, creating a name that is offensive or makes no sense is not accepted. 
+					</li>
+					<li>
+						Traits and characteristics - When creating a character, pick a series of traits to better your roleplay and the people around you. 
+					</li>
+					<li>
+						Unrealistic Character roles - Being a CEO who is a Lawyer who is a Mechanic who is a Gangster is not what we expect. 
+						Pick what a style that suits your character and stick to it. 
+						Also if you are a hobo, we expect you to be doing hobo activities and not representing someone as a lawyer.  
+						You can create characters who are these different roles but try to build and focus on a select few. 
+					</li>
+					<h5>Criminal Story Buidling</h5>
+					<li>
+						Building into crime - 
+						Whilst we appreciate that criminal activities are fun we ask that you don’t come into the server expecting to commit the serious criminal activities such as robbing the bank from the get-go. 
+						Build your way into higher crime and over time. You should attempt to make connections such as joining a gang and working your way into more serious crime.
+					</li>
+					<li>
+						Wanted Level - Criminals should be mindful of the attention from police their actions may generate. 
+						Give time between your crimes for things to cool down. You should expect to get more police attention, longer jail times/fines, and investigations if you repeatedly commit crimes in a small time frame. 
+						Unpaid fines will also result in longer sentences.
+					</li>
+					<li>
+						Mass Murderer - 
+						If a player decides to make a mass murderer and go on a spree the player should expect this type of character to be short-lived and once caught to be punished to the fullest extent of the law. 
+						You may be asked to switch your character and make a new one.
+					</li>
+					<li>
+						Aim to keep crime hidden - As this is active first world state you should be aiming to keep all crime underground. 
+						Continuously broadcasting activities in public are going to create lots of police attention and your time as a criminal will be short-lived. 
+					</li>
+					<li>
+						Gangs - Whilst a gang can contain more than 4 members, it should not have more than 4 members online actively being involved in the gang at any one time. 
+					</li>
+		
+					<li>
+						Gang Alliances - Gang alliances can be created but avoid creating strong alliances that don’t allow for conflict between gangs.
+					</li>
+				</ul>
+			</div>
+	</div>
+	<div class="window-charcreate-load">
+			<div class="window-logo cmd-logo">
+				<img src="img/logo.png">
+			</div>
+			<div class="window-return return-char-load">
+				<img src="img/chevron-left-128.png">
+				<h4>return</h4>
+			</div>
+			<form class="create-char-main">
+				<div class="create-char-header">
+					<h1>Create your Character</h5>
+				</div>
+				<input id="firstname" type="text" placeholder="First Name" required pattern="[A-Za-z]{3,32}">
+				<input id="lastname" type="text" placeholder="Last Name" required pattern="[A-Za-z]{3,32}">
+				<input id="dob" type="text" placeholder="DD/MM/YYYY" required pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
+				<select id="gender" required>
+					<option value="" selected disabled>Select a Gender</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+				<div class="buttons">
+					<button class="submit" type="submit">Create</button>
+				</div>
+			</form>
+	</div>
+	<div class="window-charsload-load">
+		<div class="window-logo cmd-logo">
+			<img src="img/logo.png">
+		</div>
+		<div class="char-top-banner">
+			<div class="window-return return-char-load ">
+				<img src="img/chevron-left-128.png">
+				<h4>return</h4>
+			</div>
+			<div>
+				<div class="char-select">
+					<h4 class="select">SELECT</h4>
+				</div>
+			</div>
+			<div class="char-delete">
+				<h4 class="delete">DELETE</h4>
+			</div>
+		</div>
+		<div class="loaded-characters">
+		</div>
+		
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+			// jquery
+		</script>
+<script type="text/javascript">
+			let current = 0;
+			$(function( ) {
+				window.addEventListener("message", function(event) {
+					if(event.data.type == "enableui") {
+						event.data.enable ? $("body").show( ) : $("body").hide( );
+						
+						if(event.data.enable) {
+							$(".loaded-characters").html(event.data.characters);
+							$(".window-main").show( );
+						} else {
+							$(".window-main").hide( );
+						}   
+					}
+				});
+				/*Returns to previous page*/
+				$(".return-char-load").on("click", function(){
+					$(".window-commands-load").hide();
+                    $(".window-rules-load").hide();
+                    $(".window-charcreate-load").hide();
+					$(".window-character-load").show();
+					$(".character-rules").hide();
+					$(".faction-rules").hide();
+					$(".community-rules").hide();
+					$(".window-charsload-load").hide();
+				});
+
+
+				/*Continues to next pages*/
+				$(".continue").click(function( ) {
+					$(".window-initial-load").hide();
+					$(".window-character-load").show( ); 
+			
+				});
+				 /*NEW CHARACTER*/
+				 $(".new").on("click", function(){
+                    $(".window-charcreate-load").show();
+                    $(".window-character-load").hide();
+				});
+				//Loads users characters
+				$(".load-chars").on("click", function(){
+					$(".window-charsload-load").show();
+					$(".window-character-load").hide();
+					$.post("http://core/refreshload")
+				});
+
+				/*Load the commands list*/
+				$(".commands").on("click", function(){
+					$(".window-character-load").hide();
+					$(".window-commands-load").show();
+				});
+				/*Load the rules main*/
+				$(".rules").on("click", function(){
+					$(".window-character-load").hide();	
+					$(".window-rules-load").show();
+					$(".general-rules").show();
+				});
+				/*Load General Rules*/
+				$(".general").on("click", function(){
+					var itm = $(this);
+					if(!itm.data("open")){
+						$(".general-rules").show();
+						$(".character-rules").hide();
+						$(".faction-rules").hide();
+						$(".community-rules").hide();
+						itm.data("open", true)
+					}
+				});
+				/*Load Character Rules*/
+				$(".character").on("click", function(){
+					var itm = $(this);
+					if(!itm.data("open")){
+						$(".character-rules").show();
+                        $(".general-rules").hide();
+						$(".faction-rules").hide();
+						$(".community-rules").hide();
+						itm.data("open", true)
+					}else{
+                        $(".faction-rules").hide();
+                        $(".character-rules").hide();
+                        $(".community-rules").hide();
+                        $(".general-rules").show();
+						itm.data("open", false)
+					}
+				});
+				/*Load Faction Rules*/
+				$(".faction").on("click", function(){
+					var itm = $(this);
+					if(!itm.data("open")){
+						$(".faction-rules").show();
+                        $(".general-rules").hide();
+                        $(".general").data("open", "false");
+						$(".character-rules").hide();
+						$(".community-rules").hide();
+						itm.data("open", true)
+					}else{
+                        $(".faction-rules").hide();
+                        $(".character-rules").hide();
+						$(".community-rules").hide();
+                        $(".general-rules").show();
+						itm.data("open", false)
+					}
+				});
+				/*Load Community Rules*/
+				$(".community").on("click", function(){
+					var itm = $(this);
+					if(!itm.data("open")){
+						$(".community-rules").show();
+                        $(".general-rules").hide();
+                        $(".general").data("open", "false");
+						$(".character-rules").hide();
+						$(".faction-rules").hide();
+						itm.data("open", true)
+					}else{
+                        $(".character-rules").hide();
+                        $(".community-rules").hide();
+                        $(".faction-rules").hide();
+                        $(".general-rules").show();
+						itm.data("open", false)
+					}
+				});
+
+
+				$(".select").on("click", function() {
+					if (current > 0) {
+						$.post("http://core/selectcharacter", JSON.stringify({id: current}));
+					} 
+					
+					current = 0;
+				});
+				$(".close-item").on("click", function(){
+					var charOptionsDiv = $(this).parent();
+					var parent1 = charOptionsDiv.parent();
+					var parent2 = parent1.parent();
+					var firstChild = parent1.children().eq(0);
+					var childsChild = firstChild.children();
+					childsChild.remove();
+					parent2.hide();
+				});
+
+				$(".delete").on("click", function(){
+					if (current > 0) {
+						$.post("http://core/deletecharacter", JSON.stringify({id: current}));
+					} 
+					current = 0;
+				});
+				
+				$("input, textarea").bind("cut copy paste", function(event) {
+					event.preventDefault( ); 
+				});
+
+				$("form").submit(function(event) {
+					event.preventDefault( );
+					
+					$.post("http://core/create", JSON.stringify({
+						firstname: $("#firstname").val( ),
+						lastname: $("#lastname").val( ),
+						dob: $("#dob").val( ),
+						gender: $("#gender").val( ),
+					}));
+
+					$(".window-charcreate-load").hide();
+					$(".window-charsload-load").show();
+					$.post("http://core/refreshload")
+				});
+				
+				$(".cancel").click(function( ) {
+					$(".register").hide( );
+					$(".window").show( );
+				});
+				
+				$(document).on("click", ".character", function( ) {
+					$(".character").css("background-color", "rgba(0, 0, 0, 0.616)");
+
+					$(this).css("background-color", "black");
+                    current = parseInt($(this).attr("id"));
+                });
+			});
+		</script>
+</body>
+<!-- <script src="script.js"></script> -->
+<!-- <script src="fl-script.js"></script> -->
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'a2plcpnl0439'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
