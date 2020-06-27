@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			.mechanic {
+				height: 60vh;
+				width: 35vw;
+				padding: 15px;
+				position: fixed;
+				left: 32.5vw;
+				top: 23.5vh;
+				background: #282c37;
+				font-family: "Poppins", sans-serif;
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+				display: none;
+			}
+			
+			input, textarea {
+				width: 100%;
+				background: #16191f;
+				padding: 15px;
+				border: 0;
+				color: #9baec8;
+				font-family: "Poppins", sans-serif;
+			}
+			
+			input, select {
+				margin-bottom: 15px;
+			}
+			
+			textarea {
+				resize: none;
+				height: calc(75vh - 421px);
+			}			
+			
+			.mechanic button {
+				border: none;
+				padding: 15px;
+				font-weight: bold;
+				font-family: "Poppins", sans-serif;
+				width: calc(100% - 22.5px);
+				position: absolute;
+				bottom: 15px;
+				transition: all 0.25s ease;
+			}
+			
+			.mechanic .buttons button:nth-child(2) {
+				right: 15px;
+			}
+			
+			.mechanic button:hover {
+				cursor: pointer;
+				transition: all 0.25s ease;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+			}
+			
+			.confirm {
+				background: #64ce87;
+				color: #1f6135;
+			}
+			
+			.cancel {
+				background: #ff5e5e;
+				color: #9c1b1b;
+			}
+
+			h2 {
+				text-align: center;
+				color: #d9e1e8;
+			}
+
+			h3 {
+				text-align: center;
+				color: #d9e1e8;
+				font-family: "Poppins", sans-serif;
+			}
+
+		</style>
+</head>
+<body>
+<div class="mechanic">
+<form>
+<h2>CREATING A NEW ID WILL COST</br>$80,000</h2>
+<h3>PLEASE NOTE: IF YOU ARE CAUGHT USING A FAKE ID, POLICE CAN REMOVE AND FINE YOU FOR IT!</h3>
+<input type="text" id="cityid" placeholder="City Identity Number">
+<input type="text" id="newname" placeholder="New Full Name">
+<input type="text" id="newjob" placeholder="New Job">
+<input type="text" id="newdob" placeholder="DD/MM/YYYY">
+<input type="text" id="newgender" placeholder="Gender">
+<div class="buttons">
+<button type="submit" class="confirm">Confirm</button>
+</div>
+</form>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+			// jquery
+		</script>
+<script type="text/javascript">
+			$(function( ) {
+				window.addEventListener("message", function(event) {
+                    if(event.data.open) {
+                        $(".mechanic").show( );
+                    } else {
+                        $(".mechanic").hide( );
+                    }
+                });
+				
+				$(document).keyup(function(event) {
+					if(event.which === 27) {
+						$.post("http://fakeids/escape", JSON.stringify({ }));
+					}
+				});;
+				
+				$("form").submit(function(event) {
+					event.preventDefault( );
+				
+					$.post("http://fakeids/confirmsale", JSON.stringify({
+						cityid: $("#cityid").val( ),
+						newname: $("#newname").val( ),
+						newjob: $("#newjob").val( ),
+						newdob: $("#newdob").val( ),
+						newgender: $("#newgender").val( ),
+					}));
+				});
+					
+				$(".cancel").click(function(event) {
+					$.post("http://fakeids/escape");
+				});
+				
+			});
+		</script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'a2plcpnl0439'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>

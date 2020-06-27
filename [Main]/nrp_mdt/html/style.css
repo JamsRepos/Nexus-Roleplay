@@ -1,0 +1,391 @@
+:root {
+  --MDT-Color-1: white;
+  --MDT-Color-2: #c7c7c7;
+  --Button-Color: #0d1722;
+  --Background-Color-3: white;
+  --Background-Color-2: #152536;
+  --Background-Color: #0d1722;
+  --Border-Color: #111f2e;
+
+}
+
+body {
+ overflow: hidden;
+ display: none;
+ font-family: 'Roboto', sans-serif;
+ background-color: transparent !important;
+}
+
+/*
+ * Hidden scrollbar
+ */
+::-webkit-scrollbar{
+ width: 0px;
+}
+
+tr {
+  color: var(--MDT-Color-2);
+}
+
+::-webkit-scrollbar-track-piece{
+ background-color: transparent;
+ -webkit-border-radius: 6px;
+}
+
+.content {
+  display: block;
+  width: 70%;
+  height: 60%;
+  position: absolute;
+  left: 15%;
+  bottom: 20%;
+  margin: auto;
+  color: var(--MDT-Color-2);
+  background-color: var(--Background-Color);
+}
+
+.display {
+  display: block;
+  width: 100%;
+  height: 90%;
+  background-color: var(--Background-Color-2);  
+  color: var(--Background-Color-3);
+
+}
+
+.navBar {
+  background-color: var(--Background-Color);
+  overflow: hidden;
+  height: 10%;
+  color: var(--MDT-Color-2);
+}
+
+.navBar h2 {
+  display: block;
+  color: var(--MDT-Color-2);  
+  padding: 10px 12px;
+  font-size: 20px;
+  position: absolute;
+  background-color: var(--Background-Color);
+}
+
+.navBar h2:hover {
+ background-color: var(--Background-Color-2);
+}
+
+#charges .chargeList {
+  width: 75%;
+  height: 92%;
+  margin-top: 4%;
+  float: left;
+  overflow-x: scroll;
+  color: var(--MDT-Color-1);
+  
+}
+
+.chargeList .newCharge {
+  width: 98%;
+  height: 6%;
+  background-color: var(--Background-Color);
+  color: var(--MDT-Color-1);
+}
+
+.chargeList .newCharge:hover {
+ background-color: var(--Background-Color-2);
+}
+
+.chargeList .newCharge p {
+ color: var(--MDT-Color-1);
+ padding-left: 20px;
+ padding-right: 20px;
+ font-size: 20px;
+ 
+ 
+}
+
+
+#charges .suspectInfo {
+  width: 25%;
+  height: 100%;
+  float: right;
+  color: var(--Background-Color-3);
+}
+
+.suspectData {
+  height: 60%;
+  width: 24%;
+  position: absolute;
+  top: 20%;
+  color: var(--MDT-Color-1);
+}
+
+
+.suspectData input {
+ border: 2px solid var(--Border-Color);
+ border-radius: 4px;
+ outline: none;
+ padding: 4px;
+ font-size: 16px;
+ box-sizing: border-box;
+ height: 10%;
+ width: 100%
+ 
+}
+
+.suspectData textarea {
+ resize: none;
+ width: 100%;
+ height: 40%;
+ font-size:18px;
+ margin: 4px 0;
+ padding: 4px;
+ color: var(--MDT-Color-1);
+} 
+
+
+#charges input {
+ border: 2px solid var(--Border-Color);
+ border-radius: 4px;
+ outline: none;
+ padding: 4px;
+ box-sizing: border-box;
+ background-color: var(--Background-Color);
+ color: var(--MDT-Color-2);
+}
+
+
+
+/* Warrnt List */
+.warrantList {
+ height: 80%;
+ width: 35%;
+ top: 20%;
+ overflow-x: scroll;
+ position: absolute;
+ color: var(--MDT-Color-2);
+}
+
+.warrantTitle {
+ position: absolute; 
+ width: 98.40%; 
+ left: 1.60%; 
+ top: 12%;
+ color: var(--Background-Color-3);
+}
+
+.warrantList .warrant {
+ width: 100%;
+ height: 9%;
+ color: var(--MDT-Color-2);
+ background-color: var(--Background-Color);
+}
+
+.warrantList .warrant:hover {
+ background-color: var(--Background-Color-2);
+}
+
+.warrantList .warrant h4 {
+ color: var(--MDT-Color-2); 
+ padding-left: 20px;
+ padding-top: 8px;
+}
+
+.viewWarrant {
+ height: 79%;
+ width: 64%;
+ top: 20%;
+ right: 0.5%;
+ overflow-x: scroll;
+ position: absolute;
+ background-color:var(--Background-Color);
+ border-radius: 5px;
+ display: block;
+ color: var(--MDT-Color-2);
+}
+
+
+.newWarrant {
+ height: 79%;
+ width: 64%;
+ top: 20%;
+ right: 0.5%;
+ padding: 2%;
+ overflow-x: scroll;
+ position: absolute;
+ background-color: var(--Background-Color);
+ border-radius: 5px;
+ display: none;
+ color: var(--MDT-Color-2);
+}
+
+#ncic .ncicSearch {
+  width: 100%;
+  height: 11%;
+  padding: 1%;
+  color: var(--MDT-Color-2);
+  background-color: var(--Background-Color);
+}
+
+#ncic .ncicBody {
+  width: 100%;
+  height: 80%;
+  margin-top: 1.5%;
+  padding: 1%;
+  color: var(--MDT-Color-2);
+  background-color: var(--Background-Color);
+}
+
+#ncic .ncicStuff {
+  width: 20%;
+  height: 100%;
+  background-color: var(--Background-Color-2);
+  border-radius: 8px;
+  float: left;
+  color: var(--MDT-Color-2);
+}
+
+#ncic .ncicCatagory {
+  height: 10%; 
+  background-color: var(--Background-Color-2);
+}
+
+#ncic .ncicCatagory:hover {
+  background-color: var(--Background-Color);
+}
+
+#ncic .ncicCatagory h4 {
+ padding-left: 5%;
+ padding-top: 3%;
+ font-size: 22px;
+ color: var(--MDT-Color-2);
+ font-weight: 440;
+}
+
+#ncic .ncicResult {
+  width: 78%;
+  height: 100%;
+  background-color: var(--Background-Color-2);
+  border-radius: 4px;
+  float: right;
+  overflow-x: scroll;
+  color: var(--MDT-Color-2);
+  
+
+}
+
+#ncic .ncicInformation {
+ display: block;
+ padding: 4%;
+ color: var(--MDT-Color-2);
+}
+
+#ncic .ncicArrests {
+ display: none;
+ padding: 0.5%;
+ color: var(--MDT-Color-2);
+
+}
+
+#ncic .ncicVehicles {
+ display: none;
+ padding: 0.5%;
+ color: var(--MDT-Color-2);
+}
+
+#ncic .ncicWeapons {
+ display: none;
+ padding: 0.5%;
+ color: var(--MDT-Color-2);
+
+}
+
+#ncic .ncicHomes {
+ display: none;
+ padding: 0.5%;
+}
+
+#ncic .ncicWarnings {
+ display: none;
+ padding: 0.5%;
+}
+
+#ncic .ncicTags {
+ display: none;
+ padding: 4%;
+
+}
+
+#archives .result {
+  width: 72%;
+  height: 86%;
+  overflow-x: scroll;
+  position: absolute;
+  right: 1%;
+  top: 12%;
+  color: var(--MDT-Color-2);
+}
+
+/* Settings */
+.suspectData p {
+ font-size: 18px;
+ padding-top: 3.5%;
+ padding-left: 5%;
+ color: var(--MDT-Color-2);
+}
+
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 65px;
+  height: 34px;
+  float:right;
+  bottom: 10%;
+  right: 5%;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+}
+
+input.default:checked + .slider {
+  background-color: #f44336;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.ncicTags input[type="checkbox"]{
+  width: 17.5px; /*Desired width*/
+  height: 17.5px; /*Desired height*/
+}

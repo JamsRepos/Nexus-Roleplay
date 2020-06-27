@@ -1,0 +1,307 @@
+<html>
+ <head>
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+ </head>
+ <body>
+  <img id="cursor">
+  <div class="content">
+   <div class="navBar">
+    <img src="https://sites.google.com/site/kingdomstatepolice/_/rsrc/1532298467758/home/SASP%20logo.jpg" height="50" width="50" style="float: left;">
+    <h2 style="left: 6%;" onclick="openPage('ncic')">NCIC</h2>
+    <h2 style="left: 11%;" onclick="openPage('warrants')">Active Warrants</h2>
+    <h2 style="left: 23.5%;" onclick="openPage('charges')">Charges</h2>
+    <h2 style="left: 91.5%;" onclick="openPage('dispatch')">Dispatch</h2>
+   </div>
+   <div class="display">
+    <div id="charges" style="display: block">
+     <h4 style="position: absolute; width: 72%; left: 1.60%; top: 12%;">Charge List <font style="float: right; padding-right: 2%;"><input type="text" style="font-size: 16px;" id="searchCharges"></font></h4>
+     <div class="chargeList" id="chargeList"></div>
+     <div class="suspectInfo">
+      <h4 style="position: absolute; top: 12%; right: 5%">Suspect Information</h4>
+      <div class="suspectData">
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Server ID <i style="padding-left: 10px;" class="fas fa-user"></i></span>
+        </div>
+        <input type="number" class="form-control" value="0" id="playerID">
+       </div>
+       
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Jail Time <i style="padding-left: 10px;" class="fas fa-clock"></i></span>
+        </div>
+        <input type="number" class="form-control" value="0" id="jailTime">
+       </div>
+       
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Fine <i style="padding-left: 10px;" class="fas fa-dollar-sign"></i></span>
+        </div>
+        <input type="number" class="form-control" value="0" id="fine">
+       </div>
+       
+       <textarea style="height: 47.5%;" class="form-control" id="suspectChargeList"></textarea>
+
+       <div class="input-group mb-3">
+        <p>Verbal Warning</p>
+        <label class="switch">
+         <input type="checkbox" class="default" id="setAsWarning">
+         <span class="slider"></span>
+        </label>
+       </div>
+      </div>
+
+      <div style="padding: 7.5%; position: relative; bottom: -77.5%; left: -2%;">
+       <button type="button" class="btn btn-success" onclick="processSuspect()" style="width: 100%; margin-top: 1%">Submit</button>
+       <button type="button" class="btn btn-danger" onclick="clearSuspect()" style="width: 100%; margin-top: 1%">Clear</button>
+      </div>
+     </div>
+    </div>
+
+    <div id="warrants" style="display: none">
+     <h4 class="warrantTitle">Active Warrants<font style="float: right; padding-right: 2%;"><input type="text" style="font-size: 16px;" id="searchWarrants"></font></h4>
+     <div class="warrantList" id="warrantList"></div>
+     <div class="viewWarrant">
+      <h3 style="text-align: left; padding-left: 15px; padding-top: 20px;" id="suspectName"></h3>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 50px;" id="suspectDesciption">Suspect's Desciption: </h5>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="suspectVehicles">Suspect's Known Vehicle: </h5>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="suspectCharges">Suspect's Charges: </h5>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="issuingOfficer">Issuing Officer: </h5>
+      <div style="position: absolute; width: 20%; bottom: 0%; right: 2%;">
+       <button type="button" class="btn btn-danger" onclick="deleteWarrant()" style="width: 100%;">Delete</button>
+      </div>
+     </div>
+
+     <div class="newWarrant">
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Suspects Name </span>
+        </div>
+        <input type="name" class="form-control" id="warrantName">
+       </div>
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Known Vehicles </span>
+        </div>
+        <input type="name" class="form-control" id="warrantVehicles">
+       </div>
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon3">Description </span>
+        </div>
+        <input type="name" class="form-control" id="warrantDecription">
+       </div>
+       <textarea style="height: 40%;" class="form-control" placeholder="Suspects Charges" id="warrantCharges"></textarea>
+       <div style="">
+        <button type="button" class="btn btn-success" onclick="submitNewWarrant()" style="width: 100%; margin-top: 1%">Submit</button>
+        <button type="button" class="btn btn-danger" onclick='$(".newWarrant").css("display", "none"); $(".viewWarrant").css("display", "block");' style="width: 100%; margin-top: 1%">Return</button>
+       </div>
+      </div>
+     </div>
+
+    <div id="dispatch" style="display: none">
+     <h4 class="warrantTitle">Active Calls</h4>
+     <div class="warrantList" id="callList"></div>
+     <div class="viewWarrant">
+      <h3 style="text-align: left; padding-left: 15px; padding-top: 20px;" id="callerName">James Dean</h3>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="callerVehicles">Call Information: </h5>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="callerDistance">Call Distance: </h5>
+      <h5 style="text-align: left; padding-left: 15px; padding-top: 30px;" id="callResponders">Call Responders: </h5>
+      <div style="position: absolute; width: 55%; bottom: 0%; right: 2%;">
+       <button type="button" class="btn btn-success" onclick="acceptCall()" style="width: 32%;">Accept Call</button>
+       <button type="button" class="btn btn-warning" onclick='$("#callReport").css("display", "block"); $(".viewWarrant").css("display", "");' style="width: 34%;">Incident Report</button>
+       <button type="button" class="btn btn-primary" onclick="finishCall()" style="float: right; width: 32%;">Finish Call</button>
+      </div>
+     </div>
+
+     <div class="newWarrant" id="callReport" style="display: none;">
+      <div class="input-group mb-3">
+       <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">Caller Name </span>
+       </div>
+       <input type="name" class="form-control" id="callName">
+      </div>
+      <div class="input-group mb-3">
+       <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">Additional Infromation</span>
+       </div>
+       <input type="name" class="form-control" id="additionalInfo">
+      </div>
+      <div class="input-group">
+       <div class="input-group-prepend">
+        <span class="input-group-text">Incident Report</span>
+       </div>
+       <textarea class="form-control" aria-label="Incident Report" id="incidentReport"></textarea>
+      </div>
+      <div style="">
+       <button type="button" class="btn btn-success" onclick="newCallReport()" style="width: 100%; margin-top: 1%">Submit</button>
+       <button type="button" class="btn btn-danger" onclick='$("#callReport").css("display", "none"); $(".viewWarrant").css("display", "block");' style="width: 100%; margin-top: 1%">Return</button>
+      </div>
+     </div>
+    </div>
+
+ 
+    <!-- NCIC -->
+     <div id="ncic" style="display: none; padding: 15px;">
+      <div class="ncicSearch">
+       <form class="form-inline">
+        <div class="input-group" style="width: 35%; padding-left: 1%">
+	 	 <input type="text" class="form-control" id="ncicSearchFirstname" placeholder="Firstname">
+ 		 <input type="text" class="form-control" id="ncicSearchLastname" placeholder="Lastname">
+		 <div class="input-group-append">
+		  <button class="btn btn-primary" onclick="searchNCIC(`Person`)" type="button">Person</button>
+		 </div>
+	    </div>
+
+        <div class="input-group" style="width: 21.5%; padding-left: 1%">
+	  	 <input type="text" class="form-control" id="ncicSearchPlate" placeholder="Plate">
+		 <div class="input-group-append">
+		  <button class="btn btn-primary" onclick="searchNCIC(`Vehicle`)" type="button">Vehicle</button>
+		 </div>
+	    </div>
+
+  
+
+        <div class="input-group" style="width: 21.5%; padding-left: 1%">
+	 	 <input type="text" class="form-control" id="ncicSearchLicense" placeholder="C000****">
+		 <div class="input-group-append">
+		  <button class="btn btn-primary" onclick="searchNCIC(`License`)" type="button">License</button>
+		 </div>
+		</div>
+	   </form>
+      </div>
+      <div class="ncicBody">
+       <div class="ncicStuff"><br>
+       	<div class="ncicCatagory" onclick="showNCICInfo()">
+       	 <h4 style="font-weight: 450;">Information</h4>
+       	</div>
+       	<div class="ncicCatagory" onclick="showNCICWarnings()">
+       	 <h4 style="font-weight: 450;">Warning History</h4>
+       	</div>
+       	<div class="ncicCatagory" onclick="showNCICArrest()">
+       	 <h4 style="font-weight: 450;">Arrest History</h4>
+       	</div>
+       	<div class="ncicCatagory" onclick="showNCICVehicles()">
+       	 <h4 style="font-weight: 450;">Registered Vehicles</h4>
+       	</div>
+       	<div class="ncicCatagory" onclick="showNCICProperys()">
+       	 <h4 style="font-weight: 450;">Registered Propertys</h4>
+       	</div>
+        <div class="ncicCatagory" onclick="showNCICTags()">
+         <h4 style="font-weight: 450;">Caution Codes</h4>
+        </div>
+       </div>
+       <div class="ncicResult">
+        <div class="ncicInformation">
+         <div id="cautionCodes"></div><br>
+         <div style="float: left;">
+          <h5>Name: <font id="ncicInfoName" style="font-weight: 420;">Phil McCrackin</font></h5><br>
+          <h5>Gender: <font id="ncicInfoGender" style="font-weight: 420;">Male</font></h5><br>
+          <h5>Date Of Birth: <font id="ncicInfoDOB" style="font-weight: 420;">07/01/1992</font></h5><br>
+          <h5>Occuptation: <font id="ncicInfoJob" style="font-weight: 420;">Phil in crack repairs</font></h5><br>
+          <h5>License ID: <font id="ncicInfoCID" style="font-weight: 420;">C0004895</font></h5>
+         </div>
+        </div>
+        <div class="ncicArrests">
+         <table class="table table-hover">
+          <thead class="thead-dark">
+           <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Fine</th>
+            <th scope="col">Offence</th>
+            <th scope="col">Officer</th>
+            <th scope="col">Time</th>
+           </tr>
+          </thead>
+          <tbody id="arrestList"></tbody>
+         </table>
+        </div>
+        <div class="ncicVehicles">
+         <table class="table table-hover">
+          <thead class="thead-dark">
+           <tr>
+            <th scope="col">Plate</th>
+            <th scope="col">Insuranced</th>
+           </tr>
+          </thead>
+          <tbody id="vehicleList"></tbody>
+         </table>
+        </div>
+        <div class="ncicWeapons">
+         <table class="table table-hover">
+          <thead class="thead-dark">
+           <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Serial ID</th>
+            <th scope="col">Timestamp</th>
+           </tr>
+          </thead>
+          <tbody id="weaponList"></tbody>
+         </table>
+        </div>
+        <div class="ncicHomes">
+         <table class="table table-hover">
+          <thead class="thead-dark">
+           <tr>
+            <th scope="col">Address</th>
+            <th scope="col">Rent</th>
+            <th scope="col">Rent Due</th>
+           </tr>
+          </thead>
+          <tbody id="homesList"></tbody>
+         </table>
+        </div>
+        <div class="ncicWarnings">
+         <table class="table table-hover">
+          <thead class="thead-dark">
+           <tr>
+            <th scope="col">Charges</th>
+            <th scope="col">Officer</th>
+            <th scope="col">Timestamp</th>
+           </tr>
+          </thead>
+          <tbody id="warningHistory"></tbody>
+         </table>
+        </div>
+        <div class="ncicTags">
+         <div style="float: right;">
+         </div>
+         <div style="float: left;">
+          <h5><input type="checkbox" onclick="updateTags(1)" id="1"> <font id="ncicInfoName" style="font-weight: 455;">Armed And Dangerous</font></h5><br>
+          <h5><input type="checkbox" onclick="updateTags(2)" id="2"> <font id="ncicInfoName" style="font-weight: 455;">Fleeing Risk</font></h5><br>
+          <h5><input type="checkbox" onclick="updateTags(3)" id="3"> <font id="ncicInfoName" style="font-weight: 455;">Drug Dealer</font></h5><br>
+          <h5><input type="checkbox" onclick="updateTags(4)" id="4"> <font id="ncicInfoName" style="font-weight: 455;">Gang Member</font></h5><br>
+          <h5><input type="checkbox" onclick="updateTags(5)" id="5"> <font id="ncicInfoName" style="font-weight: 455;">Mental</font></h5><br>
+          <h5><input type="checkbox" onclick="updateTags(6)" id="6"> <font id="ncicInfoName" style="font-weight: 455;">Terrorist</font></h5><br>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="script.js" type="text/javascript"></script>
+  <script>
+   $(document).ready(function(){
+    $("#searchCharges").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $(".chargeList *").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+    });
+
+    $("#searchWarrants").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $(".warrantList *").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+    });
+   });
+  </script>
+ </body> 
+</html>
