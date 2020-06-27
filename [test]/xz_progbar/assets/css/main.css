@@ -1,0 +1,38 @@
+wwwwwbody {
+    overflow: hidden;
+    width: 100%;
+    height: 85%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Agency FB', sans-serif;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#loading-bar {
+    background: rgba(0, 1, 12, 0.808);
+    width: 16%;
+    height: 7%;
+    position: absolute;
+    margin-top: 45%;
+    margin-left: 42%;
+}
+
+#loading-animation {
+    width: 0%;
+    height: 100%;
+    background: #040036;
+}
+
+#loading-label {
+    position: absolute;
+    margin-top: -19%;
+    width: 99%;
+    text-align: center;
+    color: rgb(173, 171, 2);
+    font-size: 30px;
+}

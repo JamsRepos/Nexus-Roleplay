@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <setting key="MySQL:UseConvars">true</setting>
+  <setting key="MySQL:Server">localhost</setting>
+  <setting key="MySQL:Port">3306</setting>
+  <setting key="MySQL:Database">nexusrp</setting>
+  <setting key="MySQL:Username">webserver</setting>
+  <setting key="MySQL:Password">9xQpK4-w2WE+XYEx</setting>
+  <setting key="MySQL:Debug">false</setting>
+</configuration>
