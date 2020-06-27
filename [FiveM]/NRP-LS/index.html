@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<style>
+			body, .content {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			body {
+				background: #16191f;
+				font-family: "Poppins", sens-serif;
+				color: #fdfdfd;
+				font-weight: 500;
+			}
+			
+			.content {
+				background: rgba(78, 97, 240, 0.2);
+			}
+			
+			.left-background {
+				position: absolute;
+				height: 100vh;
+				width: 100vw;
+				top: -48vh;
+				right: -45vw;
+				transform: rotate(60deg);
+				background: #050316;
+				box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+				border: solid 1vh #119e23;
+			}
+			
+			.right-background {
+				position: absolute;
+				height: 100vh;
+				left: 0;
+				top: 0;
+				width: 60vw;
+				z-index: -1;
+			}
+			
+			.left-foreground {
+				position: absolute;
+				height: 100vh;
+				width: 45vw;
+				top: 0;
+				right: 0;
+				text-align: center;
+			}
+			
+			.left-foreground img {
+				height: 15vw;
+				margin-top: 6vh;
+				margin-left: 36vh;
+			}
+			
+			h2 {
+				color: #119e23;
+				font-size: 1.5vw;
+				margin-left: 20vw;
+			}
+			h3 {
+				color: #ffffff;
+				margin-top: 10px;
+				font-size: 1vw;
+				margin-left: 20vw;
+			}
+			
+			.right-background img {
+				height: 120%;
+			}
+		</style>
+</head>
+<body>
+<div class="content">
+<div class="left-background">
+	
+</div>
+<div class="right-background">
+<img src="https://i.imgur.com/HxJEOOc.png">
+</div>
+<div class="content1">
+	<div class="left-foreground">
+	<img src="logo.gif">
+	<h2>Discord.gg/ZaYvv4K</h2>
+	<h3>Loading elements.</h3>
+	<h6></h6>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+			// jquery
+		</script>
+<script type="text/javascript">
+			let images = [
+				"https://i.imgur.com/0PfZEku.png",
+				"https://i.imgur.com/PoEQIbF.png",
+				"https://i.imgur.com/i9WEcRc.jpg",
+				"https://i.imgur.com/1x3GMMG.png",
+				"https://i.imgur.com/U4Wpfb0.png",
+				"https://i.imgur.com/m6kOEYT.png",
+				"https://i.imgur.com/K62gSGu.png",
+			    "https://i.imgur.com/TXU07Sm.png",
+				];
+				
+			let descriptions = [
+				"Loading Elements.",
+				"Loading Elements..",
+				"Loading Elements..."
+				];
+				
+			let image = 0;
+			
+			let description = 0;
+			
+			setInterval(function( ) {
+				image < images.length - 1 ? image++ : image = 0;
+				
+				$(".right-background img").fadeOut(300, function( ) {
+					$(".right-background img").attr("src", images[image]);
+					$(".right-background img").fadeIn(300);
+				});
+			}, 7500);
+			
+			setInterval(function( ) {
+				description < 2 ? description++ : description = 0;
+				
+				$("h3").text(descriptions[description]);
+			}, 1000);
+		</script>
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'a2plcpnl0439'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
