@@ -294,7 +294,7 @@ AddEventHandler('player:gunL', function()
      local appointed = character[1].given
      TriggerClientEvent('player:gunlicense', -1, source, fullname, reg, appointed)
     else
-     TriggerClientEvent('chatMessage', source, "THE LAW", {66, 134, 244}, "You do not have a Gun License, You can get one from the DOJ.")
+     TriggerClientEvent('chatMessage', source, "THE LAW", {66, 134, 244}, "You do not have a Gun License, You can get one from the City Hall.")
     end
   end)
  end)

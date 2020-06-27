@@ -61,10 +61,10 @@ Citizen.CreateThread(function()
   while true do
     Citizen.Wait(0)
     local pos = GetEntityCoords(GetPlayerPed(-1))
-    if(GetDistanceBetweenCoords(pos, 235.789, -417.017,-118.163, true) < 25) then
-      DrawMarker(27, 235.789, -417.017,-118.163-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 140, 0, 0, 2, 0, 0, 0, 0)
-       if(GetDistanceBetweenCoords(pos, 235.789, -417.017,-118.163, true) < 1.35) then
-          DrawText3Ds(235.789, -417.017,-118.163,'~g~[E]~w~ Purchase A Gun License For ~g~$4000')
+    if(GetDistanceBetweenCoords(pos, -550.993, -192.062, 38.223, true) < 25) then
+      DrawMarker(27, -550.993, -192.062, 38.223-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 140, 0, 0, 2, 0, 0, 0, 0)
+       if(GetDistanceBetweenCoords(pos, -550.993, -192.062, 38.223, true) < 1.35) then
+          DrawText3Ds(-550.993, -192.062, 38.223,'~g~[E]~w~ Purchase a Gun License For ~g~$4000')
          if IsControlJustPressed(0, 38) then
           TriggerServerEvent('gun:addLicense')
          end
