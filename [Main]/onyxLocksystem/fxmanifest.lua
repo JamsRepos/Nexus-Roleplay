@@ -13,5 +13,6 @@ client_scripts {
     'client/main.lua',
 }
 
+export "hasKeys"
 export "givePlayerKeys"
 export "toggleLock"

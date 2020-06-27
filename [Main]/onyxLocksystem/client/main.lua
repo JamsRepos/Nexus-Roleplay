@@ -483,6 +483,9 @@ function hasKeys(plate)
             return true
         end
     end
+    if exports['core']:HasKey(vehPlate) then
+        return true
+    end
     return false
 end
 
