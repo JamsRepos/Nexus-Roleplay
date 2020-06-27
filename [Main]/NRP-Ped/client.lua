@@ -129,10 +129,24 @@ Citizen.CreateThread(function()
   Citizen.Wait(5)
   if IsPedInAnyVehicle(ped, false) then
    local plate = GetVehicleNumberPlateText(vehicle)
-   if IsControlJustPressed(0, 246) and not Searched(plate) and not exports['core']:HasKey(plate) then 
-    ProgressBar('Searching Vehicle', 25)
-    Wait(3750)
-    getRandomReward(plate)
+   if IsControlJustPressed(0, 246) and not Searched(plate) and not exports["onyxLocksystem"]:hasKeys(plate) then 
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "searching_vehicle3",
+        duration = 3750,
+        label = "Searching Vehicle",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+    }, function(status)
+        if not status then
+          getRandomReward(plate)
+        end
+    end)
    end
   end
  end
@@ -252,10 +266,24 @@ Citizen.CreateThread(function()
       -- WarMenu.OpenMenu('trash')
     elseif IsControlJustPressed(0, 246) and not SearchedTrash(clostestProp) then
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_BUM_BIN", 0, true)
-      ProgressBar('Searching Trash Can', 25)
-      Wait(3750)
-      ClearPedTasksImmediately(GetPlayerPed(-1))
-      getRandomTrashReward(clostestProp)
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "searching_vehicle3",
+        duration = 3750,
+        label = "Searching Vehicle",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+    }, function(status)
+        if not status then
+          ClearPedTasksImmediately(GetPlayerPed(-1))
+          getRandomTrashReward(clostestProp)
+        end
+    end)
     end
    end
   end

@@ -21,7 +21,7 @@
     "AntiKeyLynxR3": true,
     "AntiKeyLynxEvo": false,
     "AntiKeyLynxR4": true,
-    "AntiKeyDel": true,
+    "AntiKeyDel": false,
     "TPWarning": true,
     "TPWarningKick": false,
     "TPWarningDistance": 2500,

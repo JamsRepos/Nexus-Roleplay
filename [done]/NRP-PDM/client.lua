@@ -179,6 +179,7 @@ function spawnCar(option, model, price)
   SetVehicleEngineOn(demo.car, false)
   SetPedIntoVehicle(GetPlayerPed(-1), demo.car, -1)
   FreezeEntityPosition(demo.car, true)
+  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(demo.car))
  end
 
 
