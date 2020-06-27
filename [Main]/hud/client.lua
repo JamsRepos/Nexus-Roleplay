@@ -495,12 +495,10 @@ end)
 
 RegisterNetEvent('hud:updatepresence')
 AddEventHandler('hud:updatepresence', function(copss, emss, mechc)
- if copss < 3 then
-  cops = 'Weak'
- elseif copss >= 3 and copss <= 4 then 
-  cops = 'Medium'
- elseif copss >= 5 then 
-  cops = 'Strong'
+ if copss == 0 then
+  cops = 'Unavailable'
+ elseif copss > 0 then
+  cops = copss
  end
  if emss == 0 then
   ems = 'Unavailable'
