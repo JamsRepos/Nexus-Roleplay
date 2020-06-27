@@ -99,9 +99,9 @@ Citizen.CreateThread(function()
                     end
                 end
 
-                if IsPedInAnyPlane(GetPlayerPed(-1)) or IsPedInAnyHeli(GetPlayerPed(-1)) and not DecorGetBool(GetPlayerPed(-1), "isOfficer") or not DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+                if IsPedInAnyPlane(GetPlayerPed(-1)) or IsPedInAnyHeli(GetPlayerPed(-1)) and not DecorGetBool(GetPlayerPed(-1), "isOfficer") and not DecorGetBool(GetPlayerPed(-1), "isParamedic") then
                     SetEntityAsMissionEntity(veh, true, true)
-                    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))                
+                    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))     
                 end
 
                 if GetVehicleNumberPlateText(veh) == 'FIVE M' or GetVehicleNumberPlateText(veh) == 'FiveM' then 
