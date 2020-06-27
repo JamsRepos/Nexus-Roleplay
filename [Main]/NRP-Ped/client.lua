@@ -195,6 +195,7 @@ local rempoints = {
   {x = 405.144, y = -852.109, z = 29.341, radius = 50.0}, -- legion
   {x = 981.376, y = -3169.650, z = 5.901, radius = 200.0}, -- Go Karting
   {x = 152.846, y = -1004.446, z = -99.000, radius = 10.0, peds = true}, -- Motel Interior
+  {x = -44.968, y = -1097.894, z = 26.422, radius = 10.0}, -- PDM
 }
 
 Citizen.CreateThread(function()

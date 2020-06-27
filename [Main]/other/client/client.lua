@@ -54,15 +54,6 @@ Citizen.CreateThread(function()
   end
 end)
 
--- Remove Vehicle Spawns
-
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(0)
-    RemoveVehiclesFromGeneratorsInArea(-45.121 - 10.0, -1098.38 - 10.0, 26.422 - 10.0, -45.121 + 10.0, -1098.38 + 10.0, -45.121 + 10.0); -- PDM
-  end
-end)
-
 function loadAnimDict( dict )
   while ( not HasAnimDictLoaded( dict ) ) do
       RequestAnimDict( dict )
