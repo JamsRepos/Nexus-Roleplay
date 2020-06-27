@@ -2,7 +2,6 @@ local isAdmin = false
 local banned = false
 local AlreadyTriggered = false
 local BannedVehicles = {
-  "baller",
   "rhino",
   "apc",
   "oppressor",
@@ -94,13 +93,17 @@ Citizen.CreateThread(function()
                         if not banned then
                             SetEntityAsMissionEntity(veh, true, true)
                             Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))
-                            if not vehicle == 'baller' then
-                                banned = true
-                                TriggerServerEvent('anticheat:ban')
-                            end
+                            banned = true
+                            TriggerServerEvent('anticheat:ban')
                         end
                     end
                 end
+
+                if IsPedInAnyPlane(GetPlayerPed(-1)) or IsPedInAnyHeli(GetPlayerPed(-1)) and not DecorGetBool(GetPlayerPed(-1), "isOfficer") or not DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+                    SetEntityAsMissionEntity(veh, true, true)
+                    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))                
+                end
+
                 if GetVehicleNumberPlateText(veh) == 'FIVE M' or GetVehicleNumberPlateText(veh) == 'FiveM' then 
                 	SetEntityAsMissionEntity(veh, true, true)
                		Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))
