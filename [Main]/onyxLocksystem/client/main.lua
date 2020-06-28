@@ -401,7 +401,6 @@ Citizen.CreateThread(function()
                         end
 
                         Wait(1000)
-                        
                         givePlayerKeys(plate)
                         exports['NRP-notify']:DoHudText('inform', 'You rob the keys')
                     end
