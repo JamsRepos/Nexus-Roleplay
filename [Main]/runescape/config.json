@@ -12,7 +12,7 @@
     "AntiPeds": true,
     "AntiProps": true,
     "AntiHashCheat": true,
-    "AntiGodmode": true,
+    "AntiGodmode": false,
     "MaxPlayerHealth": 1001,
     "AntiPlayerBlips": false,
     "AntiPlayerBlipsKick": true,
