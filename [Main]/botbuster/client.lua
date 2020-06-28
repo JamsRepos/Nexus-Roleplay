@@ -2,6 +2,7 @@ local isAdmin = false
 local banned = false
 local AlreadyTriggered = false
 local BannedVehicles = {
+  "baller",
   "rhino",
   "apc",
   "oppressor",
@@ -93,8 +94,10 @@ Citizen.CreateThread(function()
                         if not banned then
                             SetEntityAsMissionEntity(veh, true, true)
                             Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))
-                            banned = true
-                            TriggerServerEvent('anticheat:ban')
+                            if not vehicle == 'baller' then
+                                banned = true
+                                TriggerServerEvent('anticheat:ban')
+                            end
                         end
                     end
                 end
