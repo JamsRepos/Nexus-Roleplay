@@ -132,6 +132,27 @@ function getMaxSpeed(vehicle)
 end
 --]]
 
+local fuelcooldowntimer = 60
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1000)
+    if fuelcooldowntimer > 0 then
+      fuelcooldowntimer = fuelcooldowntimer - 1
+      if fuelcooldowntimer == 1 then
+        local ped = PlayerPedId()  
+        local vehicle = GetVehiclePedIsIn(ped, false)
+        local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")
+        fuelcooldowntimer = 60
+        if currentfuelraw <= 25000 then
+          TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "Low Fuel!", length = 5000})
+          TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 1.0, 'fuel', 0.5)
+        end
+      end
+    end
+  end
+end)
+
 Citizen.CreateThread(function()
  while true do
   local ped = PlayerPedId()  
@@ -142,8 +163,17 @@ Citizen.CreateThread(function()
    if IsPedInAnyVehicle(ped) then
     -- Speed & Fuel
     local currentfuel = DecorGetInt(vehicle, "_Fuel_Level") * 0.001
+    local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")
     --drawUI(0.517, 1.302, 1.0, 1.0, 0.4, "MPH", 255, 255, 255, 255, false)
-    drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~g~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+    if currentfuelraw >= 75000 then
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~g~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+    elseif currentfuelraw <= 75000 and currentfuelraw >= 50000 then
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~y~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+    elseif currentfuelraw <= 50000 and currentfuelraw >= 25000 then
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~o~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+    elseif currentfuelraw <= 25000 then
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~r~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+    end
     --drawUI(0.517, 1.302, 1.0, 1.0, 0.4, "~g~MPH:~w~", 255, 255, 255, 255, false)
     -- Cruise
     if speedLimiter then

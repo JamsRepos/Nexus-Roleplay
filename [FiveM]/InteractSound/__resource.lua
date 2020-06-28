@@ -38,6 +38,7 @@ files({
     'client/html/sounds/drinking.ogg',
     'client/html/sounds/eating.ogg',
     'client/html/sounds/belt.ogg',
+    'client/html/sounds/fuel.ogg',
     'client/html/sounds/pager.ogg',
     
 })
