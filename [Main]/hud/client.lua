@@ -265,7 +265,7 @@ Citizen.CreateThread(function()
       end
      end
          --VO-IP MARKER UNDER TALKING PLAYER
-     if enablemarkers and ((distance < 30)) and IsEntityVisible(ped) and HasEntityClearLosToEntity(ped) and not enableids then
+     if enablemarkers and ((distance < 30)) and IsEntityVisible(ped) and not enableids then
       if NetworkIsPlayerTalking(id) then
         DrawText3D(x2, y2, z2+1.2, "...", true)
       end
