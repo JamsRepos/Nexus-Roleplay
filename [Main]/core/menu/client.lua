@@ -127,6 +127,31 @@ Citizen.CreateThread(function()
    elseif WarMenu.Button('House Key') then
 	  TriggerEvent("housing:keys")
     WarMenu.CloseMenu()
+   elseif WarMenu.Button('Car Key') then
+    local pos = GetEntityCoords(GetPlayerPed(-1))
+    if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+        local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+        local plate = GetVehicleNumberPlateText(veh)
+        if exports["onyxLocksystem"]:hasKeys(plate) then
+          local t, distance = GetClosestPlayer()
+          if(distance ~= -1 and distance < 3) then
+            ExecuteCommand('me slips a spare car key into their pocket')
+            TriggerServerEvent('onyx:giveKey', GetPlayerServerId(t), plate)
+          end
+        end
+    else
+        local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
+        if DoesEntityExist(veh) then
+          local plate = GetVehicleNumberPlateText(veh)
+          if exports["onyxLocksystem"]:hasKeys(plate) then
+            local t, distance = GetClosestPlayer()
+            if(distance ~= -1 and distance < 3) then
+              ExecuteCommand('me slips a spare car key into their pocket')
+              TriggerServerEvent('onyx:giveKey', GetPlayerServerId(t), plate)
+            end
+          end
+        end
+    end
    --[[elseif WarMenu.Button('Toggle Mask') then
     TriggerEvent('clothing:togglemask')
    elseif WarMenu.Button('Toggle Glasses') then
