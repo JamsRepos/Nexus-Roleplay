@@ -1,6 +1,7 @@
 -- Blips 
 local blips = {
-	{title="Department Of Justice", colour=74, id=181, x=233.20599365234, y=-410.57699584961, z=48.117725372314},
+	{title="Court House", colour=38, id=181, x=233.205, y=-410.576, z=48.117},
+	{title="City Hall", colour=38, id=181, x=-549.870, y=-195.710, z=38.223},
 	{title="Job Center", colour=18, id=408, x=-265.036, y=-963.630, z=30.223},
   {title="Hospital", colour=69, id=80, x=296.674, y=-583.476, z=43.137},
   {title="Gym", colour=39, id=311,  x= -1201.973, y= -1567.054, z= 4.611},
@@ -23,16 +24,12 @@ local blips = {
   --{title="Drive-Thru", colour=81, id=206, x = 145.572, y = -1460.359, z = 29.142}},
   {title="Vanilla Unicorn", colour=64, id=93, x = 130.070, y = -1300.662, z = 29.233},
   {title="Smoke On The Water", colour=11, id=140, x = -1170.221, y = -1570.822, z = 4.664},
-  {title="Diamond Casino", colour=28, id=89, x = 924.36, y = 47.50, z = 81.1},
+  {title="Diamond Casino", colour=28, id=431, x = 924.36, y = 47.50, z = 81.1},
   {title="Time Trial", colour=46, id=127, x = -1659.968, y =-228.013, z = 54.972},
   {title="Mission Row", colour=77, id=60, x = 443.106, y = -997.062, z = 43.591},
   {title="Sandy Shores", colour=77, id=60, x = 1853.040, y = 3686.867, z = 34.267},
   {title="Paleto Bay", colour=77, id=60, x = -446.265, y = 6012.102, z = 31.716},
 }
-
-RegisterCommand("briefcase", function(source, args, rawCommand)
-  SetCurrentPedWeapon(GetPlayerPed(-1), GetHashKey('WEAPON_BRIEFCASE'))
-end)
 
 Citizen.CreateThread(function()
     for _, info in pairs(blips) do
@@ -40,7 +37,7 @@ Citizen.CreateThread(function()
       SetBlipSprite(info.blip, info.id)
       SetBlipDisplay(info.blip, 4)
       SetBlipScale(info.blip, 0.8)
-      if info.id == 60 then 
+      if info.id == 60 or info.id == 181 then 
         SetBlipScale(info.blip, 1.0)
       end
       if info.colour ~= 0 then SetBlipColour(info.blip, info.colour) end
