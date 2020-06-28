@@ -140,13 +140,15 @@ Citizen.CreateThread(function()
     if fuelcooldowntimer > 0 then
       fuelcooldowntimer = fuelcooldowntimer - 1
       if fuelcooldowntimer == 1 then
-        local ped = PlayerPedId()  
-        local vehicle = GetVehiclePedIsIn(ped, false)
-        local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")
-        fuelcooldowntimer = 60
-        if currentfuelraw <= 25000 then
-          TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "Low Fuel!", length = 5000})
-          TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 1.0, 'fuel', 0.5)
+        local ped = PlayerPedId()
+        if IsPedInAnyVehicle(ped) then
+          local vehicle = GetVehiclePedIsIn(ped, false)
+          local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")
+          fuelcooldowntimer = 60
+          if currentfuelraw <= 25000 then
+            TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "Low Fuel!", length = 5000})
+            TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 1.0, 'fuel', 0.5)
+          end
         end
       end
     end
