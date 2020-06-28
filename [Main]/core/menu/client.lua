@@ -124,10 +124,10 @@ Citizen.CreateThread(function()
        end    
       end  
      end
-   elseif WarMenu.Button('House Key') then
+   elseif WarMenu.Button('Give House Key') then
 	  TriggerEvent("housing:keys")
     WarMenu.CloseMenu()
-   elseif WarMenu.Button('Car Key') then
+   elseif WarMenu.Button('Give Car Key') then
     local pos = GetEntityCoords(GetPlayerPed(-1))
     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
         local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
