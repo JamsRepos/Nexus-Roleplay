@@ -18,7 +18,7 @@
     "AntiPlayerBlipsKick": true,
     "AntiSpectate": true,
     "AntiKeyRuby": false,
-    "AntiKeyLynxR3": true,
+    "AntiKeyLynxR3": false,
     "AntiKeyLynxEvo": false,
     "AntiKeyLynxR4": true,
     "AntiKeyDel": false,
