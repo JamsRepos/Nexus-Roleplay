@@ -400,24 +400,10 @@ Citizen.CreateThread(function()
                             TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
                         end
 
-                        TriggerEvent("mythic_progbar:client:progress", {
-                            name = "taking_keys",
-                            duration = 5000,
-                            label = "Taking Keys",
-                            useWhileDead = false,
-                            canCancel = false,
-                            controlDisables = {
-                                disableMovement = true,
-                                disableCarMovement = true,
-                                disableMouse = false,
-                                disableCombat = true,
-                            },
-                        }, function(status)
-                            if not status then
-                                givePlayerKeys(plate)
-                                exports['NRP-notify']:DoHudText('inform', 'You rob the keys')
-                            end
-                        end)
+                        Wait(1000)
+                        
+                        givePlayerKeys(plate)
+                        exports['NRP-notify']:DoHudText('inform', 'You rob the keys')
                     end
                     SetBlockingOfNonTemporaryEvents(prevPed, false)
                     canRob = false
