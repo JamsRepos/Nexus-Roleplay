@@ -14,6 +14,33 @@ local garages = {
     [6] = {name="Public Garage", colour=1, x=50.107, y = -880.230, z = 30.30, id=6, gname="[6] Vespucci Garage", cost=0, heading=-90.0, maxslots=5, type='Public', hidden=false}, -- Public Legion
   }
 
+local repairprice = {
+  [0] = 25, --Compact
+  [1] = 10, --Sedan
+  [2] = 15, --SUV
+  [3] = 20, --Coupes
+  [4] = 25, --Muscle
+  [5] = 25, --Sports Classics
+  [6] = 55, --Sports
+  [7] = 65, --Super
+  [8] = 15, --Motorcycles
+  [9] = 15, --Off-road
+  [10] = 15, --Industrial
+  [11] = 15, --Utility
+  [12] = 15, --Vans
+  [17] = 15, --Service
+  [18] = 15, --Emergency
+  [20] = 15, --Commercial
+}
+
+local function round(num, idp)
+  if idp and idp>0 then
+    local mult = 10^idp
+    return math.floor(num * mult + 0.5) / mult
+  end
+  return math.floor(num + 0.5)
+end
+
 
 Citizen.CreateThread(function()
  addGarageBlips()
@@ -201,7 +228,13 @@ Citizen.CreateThread(function()
    elseif(GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 25) and IsPedInAnyVehicle(GetPlayerPed(-1)) then
     DrawMarker(2, v.x, v.y, v.z, 0, 0, 0, 0, 0, 0, 0.3,0.3,0.3, 255, 255, 0, 100, 0, 0, 2, 0, 0, 0, 0)
     if(GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 3.0) then
-     DrawText3Ds(v.x, v.y, v.z+0.35,'~g~[ENTER]~w~ Store Vehicle')
+      local veh = GetVehiclePedIsUsing(GetPlayerPed(-1))
+      local maxvehhp = 1000
+      local damage = 0 
+      local enginedamage = 0
+      damage = (maxvehhp - GetVehicleBodyHealth(veh))/100
+      enginedamage = (maxvehhp - GetVehicleEngineHealth(veh))
+     DrawText3Ds(v.x, v.y, v.z+0.35,'~g~[ENTER]~w~ Store Vehicle\n~g~Repair Costs: ~w~$'..round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0))
      if IsControlJustPressed(0, 176) then
       currentgarage = garages[k]
       SetVehicleForwardSpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false), 0)
@@ -285,11 +318,16 @@ function StoreVehicle()
     end
    end
    if count <= actualslots then
-  
-    TriggerServerEvent("garage:store", components, currentgarage.id, fuel)
+    local maxvehhp = 1000
+    local damage = 0 
+    local enginedamage = 0
+    damage = (maxvehhp - GetVehicleBodyHealth(vehicle))/100
+    enginedamage = (maxvehhp - GetVehicleEngineHealth(vehicle))
+    local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
+    TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
     SetEntityAsMissionEntity(vehicle, true, true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
-    exports['NRP-notify']:DoHudText('success', 'Vehicle Stored')
+    exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
    else
     exports['NRP-notify']:DoHudText('error', 'Garage Full, You can buy more slots at the vehicle shop!')
    end

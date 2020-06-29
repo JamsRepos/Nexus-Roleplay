@@ -39,10 +39,11 @@ TriggerEvent('core:addGroupCommand', 'carreset', "helper", function(source, args
 end)
 
 RegisterServerEvent("garage:store")
-AddEventHandler("garage:store", function(components, garage, fuel)
+AddEventHandler("garage:store", function(components, garage, fuel, price)
  local source = source
  TriggerEvent("core:getPlayerFromId", source, function(user)
   user.storeVehicle(components.plate, components, fuel, garage)
+  user.removeBank(price)
  end)
 end)
 
