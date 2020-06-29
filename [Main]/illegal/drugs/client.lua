@@ -195,6 +195,9 @@ Citizen.CreateThread(function()
             disableInventory = true
             if randomizer >= 80 then
               RejectSale()
+              if rep <= 750 then
+                TriggerServerEvent('removeReputation', 1)
+              end
              if copalert >= 90 then
               Snitch()
               SetEntityAsMissionEntity(currentNPC)
@@ -223,6 +226,9 @@ Citizen.CreateThread(function()
             disableInventory = true
             if randomizer >= 70 then
               RejectSale()
+              if rep <= 1750 then
+                TriggerServerEvent('removeReputation', 1)
+              end
              if copalert >= 80 then
               Snitch()
               SetEntityAsMissionEntity(currentNPC)
@@ -251,6 +257,9 @@ Citizen.CreateThread(function()
             disableInventory = true
             if randomizer >= 75 then
               RejectSale()
+              if rep <= 1250 then
+                TriggerServerEvent('removeReputation', 1)
+              end
              if copalert >= 85 then
               Snitch()
               SetEntityAsMissionEntity(currentNPC)
@@ -279,6 +288,9 @@ Citizen.CreateThread(function()
             disableInventory = true
             if randomizer >= 65 then
               RejectSale()
+              if rep <= 2250 then
+                TriggerServerEvent('removeReputation', 1)
+              end
              if copalert >= 75 then
               Snitch()
               SetEntityAsMissionEntity(currentNPC)
@@ -307,6 +319,7 @@ Citizen.CreateThread(function()
           disableInventory = true
           if randomizer >= 60 then
             RejectSale()
+            TriggerServerEvent('removeReputation', 1)
            if copalert >= 70 then
             Snitch()
             SetEntityAsMissionEntity(currentNPC)
@@ -363,7 +376,6 @@ function RejectSale()
   ClearPedTasksImmediately(rpped)
   ClearPedTasks(GetPlayerPed(-1))
   SetPedAsNoLongerNeeded(rpped)
-  TriggerServerEvent('removeReputation', 1)
   disableInventory = false
 end
 function MakeSale()
