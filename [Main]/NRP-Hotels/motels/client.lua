@@ -152,6 +152,27 @@ function DrawText3Ds(x,y,z, text)
   
 end
 
+local Objects = {
+  { ["x"] = 150.747, ["y"] = -1005.814, ["z"] = -99.00, ["h"] = 90.0, ["model"] = "prop_bin_11b" }
+}
+
+Citizen.CreateThread(function()
+  for i = 1, #Objects, 1 do
+      while not HasModelLoaded(GetHashKey(Objects[i]["model"])) do
+          RequestModel(GetHashKey(Objects[i]["model"]))
+
+          Citizen.Wait(5)
+      end
+
+      Objects[i]["objectId"] = CreateObject(GetHashKey(Objects[i]["model"]), Objects[i]["x"], Objects[i]["y"], Objects[i]["z"], false)
+
+      PlaceObjectOnGroundProperly(Objects[i]["objectId"])
+      SetEntityHeading(Objects[i]["objectId"], Objects[i]["h"])
+      FreezeEntityPosition(Objects[i]["objectId"], true)
+      SetEntityAsMissionEntity(Objects[i]["objectId"], true, true)
+  end
+end)
+
 
 Citizen.CreateThread(function()
  local currentItemIndex = 1
@@ -252,7 +273,7 @@ Citizen.CreateThread(function()
   end
   WarMenu.Display()
   end
-  if(GetDistanceBetweenCoords(coords, 151.428, -1007.758, -99.00, true) < 1.5 and inHotel) then 
+  if(GetDistanceBetweenCoords(coords, 151.428, -1007.758, -99.00, true) < 1.0 and inHotel) then 
    DrawText3Ds(151.428, -1007.758, -99.00, "~g~[E]~w~ Leave Motel")
    if (IsControlJustReleased(1, 38)) then
     RequestCollisionAtCoord(currentHotel.pos.x, currentHotel.pos.y, currentHotel.pos.z)

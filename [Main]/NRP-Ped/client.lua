@@ -292,7 +292,8 @@ local models = {
   [4] = -468629664,
   [5] = -130812911,
   [6] = -93819890,
-  [7] = -1426008804
+  [7] = -1426008804,
+  [8] = 1792999139
 }
 
 Citizen.CreateThread(function()
@@ -319,7 +320,7 @@ Citizen.CreateThread(function()
  while true do
   Wait(5)
   if isNearObject then 
-   if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), objectLoc1.x, objectLoc1.y, objectLoc1.z, true) < 1.4) then
+   if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), objectLoc1.x, objectLoc1.y, objectLoc1.z, true) < 1.2) then
     DrawText3Ds(objectLoc1.x, objectLoc1.y, objectLoc1.z,'~g~[E] ~w~Trash Can')
     if IsControlJustPressed(0, 38) then
       TriggerEvent("inventory:openTrash")
