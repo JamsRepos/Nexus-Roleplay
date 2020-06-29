@@ -10,7 +10,7 @@ LicencePlate.Number = false
 RegisterCommand("removeplate", function()
  local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
   if rep > 500 then
-   if exports['core']:GetItemQuantity >= 1 then   
+   if exports['core']:GetItemQuantity(262) >= 1 then   
     -- Check if the player has plates stored
     if not LicencePlate.Index and not LicencePlate.Number then
         -- Client's ped
