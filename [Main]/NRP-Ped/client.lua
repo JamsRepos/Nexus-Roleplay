@@ -8,7 +8,7 @@ local blips = {
   {title="Train Station", colour=47, id=280, x = -216.964, y = -1038.245, z = 30.144},
   {title="Train Station", colour=47, id=280, x = -487.521, y = 5260.139, z = 87.011},
   {title="Train Station", colour=47, id=280, x = 2620.431, y = 2930.545, z = 40.423},
-  {title="Burger Shot", colour=49, id=106, x=-1193.290, y = -892.294, z = 13.995},
+  --{title="Burger Shot", colour=49, id=106, x=-1193.290, y = -892.294, z = 13.995},
   {title="Hotel Block", colour=17, id=350, x = -91.151, y = 6327.072, z = 31.490},
   {title="Hotel Block", colour=17, id=350, x = 325.925, y = -212.534, z = 54.081},
   {title="Hotel Block", colour=17, id=350, x = 566.496, y = -1762.757, z = 29.169},
@@ -293,7 +293,7 @@ local models = {
   [5] = -130812911,
   [6] = -93819890,
   [7] = -1426008804,
-  [8] = 1792999139
+  [8] = -1830793175
 }
 
 Citizen.CreateThread(function()

@@ -153,7 +153,7 @@ function DrawText3Ds(x,y,z, text)
 end
 
 local Objects = {
-  { ["x"] = 150.747, ["y"] = -1005.814, ["z"] = -99.00, ["h"] = 90.0, ["model"] = "prop_bin_11b" }
+  { ["x"] = 150.747, ["y"] = -1005.814, ["z"] = -99.00, ["h"] = 270.0, ["model"] = "prop_bin_10a" }
 }
 
 Citizen.CreateThread(function()
