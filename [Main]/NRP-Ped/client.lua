@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 	while true do
 		Wait(0)
 
-		if IsControlPressed(0, 21) and IsControlPressed(0, 46) and not isTackling then
+		if IsControlPressed(0, 21) and IsControlPressed(0, 46) and not isTackling and GetGameTimer() - lastTackleTime > 10 * 1000 then
 			Citizen.Wait(10)
 			local closestPlayer, distance = GetClosestPlayer();
 
