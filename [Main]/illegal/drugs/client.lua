@@ -565,7 +565,7 @@ function DrugsSell()
       cokeSoldBags = math.random(1, 2)
     elseif rep >= 2000 and coke >= 1 then 
       cokeSoldBags = math.random(1, 1)
-    elseif rep >= 1000 and coke >= 1 then 
+    elseif rep < 1000 and coke >= 1 then 
       cokeSoldBags = math.random(1, 1)
     elseif coke < 1 then 
       cokeSoldBags = 1 
