@@ -874,7 +874,7 @@ end)
         DrawMarker(27, 726.35,-1066.5,28.31-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 180, 0, 0, 2, 0, 0, 0, 0)
         if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 726.35,-1066.5,28.31, true) < 1.5) then
           DrawText3Ds(726.35,-1066.5,28.31,'~g~[E]~w~ Sign On/Off Duty')
-          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 38 or DecorGetInt(GetPlayerPed(-1), "Job") == 4 or DecorGetInt(GetPlayerPed(-1), "Job") == 5 or DecorGetInt(GetPlayerPed(-1), "Job") == 6 or DecorGetInt(GetPlayerPed(-1), "Job") == 7 or DecorGetInt(GetPlayerPed(-1), "Job") == 10 or DecorGetInt(GetPlayerPed(-1), "Job") == 27 or DecorGetInt(GetPlayerPed(-1), "Job") == 28 or DecorGetInt(GetPlayerPed(-1), "Job") == 14 or DecorGetInt(GetPlayerPed(-1), "Job") == 11 then
+          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") ~= 3 then
             TriggerServerEvent('xz-mech:onduty')
           elseif IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
             TriggerServerEvent('xz-mech:offduty')
@@ -887,7 +887,7 @@ end)
         DrawMarker(27, -344.345, -123.595, 39.010-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 180, 0, 0, 2, 0, 0, 0, 0)
         if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -344.345, -123.595, 39.010, true) < 1.5) then
           DrawText3Ds(-344.345, -123.595, 39.010,'~g~[E]~w~ Sign On/Off Duty')
-          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 38 or DecorGetInt(GetPlayerPed(-1), "Job") == 4 or DecorGetInt(GetPlayerPed(-1), "Job") == 5 or DecorGetInt(GetPlayerPed(-1), "Job") == 6 or DecorGetInt(GetPlayerPed(-1), "Job") == 7 or DecorGetInt(GetPlayerPed(-1), "Job") == 10 or DecorGetInt(GetPlayerPed(-1), "Job") == 27 or DecorGetInt(GetPlayerPed(-1), "Job") == 28 or DecorGetInt(GetPlayerPed(-1), "Job") == 14 or DecorGetInt(GetPlayerPed(-1), "Job") == 11 then
+          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") ~= 3 then
             TriggerServerEvent('xz-mech:onduty')
           elseif IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
             TriggerServerEvent('xz-mech:offduty')
@@ -900,7 +900,7 @@ end)
         DrawMarker(27, -207.84,-1340.6,34.9-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 180, 0, 0, 2, 0, 0, 0, 0)
         if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -207.84,-1340.6,34.9, true) < 1.5) then
           DrawText3Ds(-207.84,-1340.6,34.9,'~g~[E]~w~ Sign On/Off Duty')
-          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 38 or DecorGetInt(GetPlayerPed(-1), "Job") == 4 or DecorGetInt(GetPlayerPed(-1), "Job") == 5 or DecorGetInt(GetPlayerPed(-1), "Job") == 6 or DecorGetInt(GetPlayerPed(-1), "Job") == 7 or DecorGetInt(GetPlayerPed(-1), "Job") == 10 or DecorGetInt(GetPlayerPed(-1), "Job") == 27 or DecorGetInt(GetPlayerPed(-1), "Job") == 28 or DecorGetInt(GetPlayerPed(-1), "Job") == 14 or DecorGetInt(GetPlayerPed(-1), "Job") == 11 then
+          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") ~= 3 then
             TriggerServerEvent('xz-mech:onduty')
           elseif IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
             TriggerServerEvent('xz-mech:offduty')
@@ -913,7 +913,7 @@ end)
         DrawMarker(27, 261.42,-1809.47,26.9-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 180, 0, 0, 2, 0, 0, 0, 0)
         if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 261.42,-1809.47,26.9, true) < 1.5) then
           DrawText3Ds(261.42,-1809.47,26.9,'~g~[E]~w~ Sign On/Off Duty')
-          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 38 or DecorGetInt(GetPlayerPed(-1), "Job") == 4 or DecorGetInt(GetPlayerPed(-1), "Job") == 5 or DecorGetInt(GetPlayerPed(-1), "Job") == 6 or DecorGetInt(GetPlayerPed(-1), "Job") == 7 or DecorGetInt(GetPlayerPed(-1), "Job") == 10 or DecorGetInt(GetPlayerPed(-1), "Job") == 27 or DecorGetInt(GetPlayerPed(-1), "Job") == 28 or DecorGetInt(GetPlayerPed(-1), "Job") == 14 or DecorGetInt(GetPlayerPed(-1), "Job") == 11 then
+          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") ~= 3 then
             TriggerServerEvent('xz-mech:onduty')
           elseif IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
             TriggerServerEvent('xz-mech:offduty')
