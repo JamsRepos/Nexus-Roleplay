@@ -523,6 +523,8 @@ Citizen.CreateThread(function()
    local playerPed = GetPlayerPed(-1)
    Citizen.Wait(0)
    if (instance and instance.houseid and instance.houseid > 0) then
+    DisablePlayerFiring(GetPlayerPed(-1), true)
+    DisableControlAction(0, 21)
     if instance.houseid then
       for i=0, 255, 1 do
         local found = false

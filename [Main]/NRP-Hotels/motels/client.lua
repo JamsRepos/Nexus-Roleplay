@@ -329,6 +329,7 @@ Citizen.CreateThread(function()
    Citizen.Wait(1)
    if (instance and instance.hotelid and instance.hotelid > 0) and inHotel then
     DisablePlayerFiring(GetPlayerPed(-1), true)
+    DisableControlAction(0, 21)
     if instance.hotelid then
       for i=0, 255, 1 do
           local otherPlayerPed = GetPlayerPed(i)
