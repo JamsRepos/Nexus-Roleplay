@@ -51,24 +51,86 @@ end)
 ------------------------------------------------------
 ---------------------- Tackling -------------------
 ------------------------------------------------------
+
+local isTackling = false
+local isGettingTackled = false
+local lastTackleTime = 0
+local isRagdoll = false
+local tackleLib = 'missmic2ig_11'
+local tackleAnim = 'mic_2_ig_11_intro_goon'
+local tackleVictimAnim = 'mic_2_ig_11_intro_p_one'
+
+
 Citizen.CreateThread(function()
- while true do
-  Citizen.Wait(10)
-  -- Tackling
-  if IsPedRunning(GetPlayerPed(-1)) and IsControlPressed(0, 38) then
-   local t, distance = GetClosestPlayer()
-   if distance ~= -1 and distance <= 3.0 then
-    TriggerServerEvent('power:tackle', GetPlayerServerId(t))
-    SetPedToRagdoll(GetPlayerPed(-1), 1500, 1500, 0, 0, 0, 0)
-    Wait(15000)
-   end
-  end
-  if IsPedJumping(GetPlayerPed(-1)) and IsPedRunning(GetPlayerPed(-1)) then
-   if math.random(1,100) > 90 then
-    SetPedToRagdoll(GetPlayerPed(-1), 250, 250, 0, 0, 0, 0)
-   end
-  end
- end
+	while true do
+		Citizen.Wait(0)
+		
+		if isRagdoll then
+			SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
+		end
+	end
+end)
+
+RegisterNetEvent('tackle:getTackled')
+AddEventHandler('tackle:getTackled', function(target)
+	isGettingTackled = true
+
+	local playerPed = GetPlayerPed(-1)
+	local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+
+	RequestAnimDict(tackleLib)
+
+	while not HasAnimDictLoaded(tackleLib) do
+		Citizen.Wait(10)
+	end
+
+	AttachEntityToEntity(GetPlayerPed(-1), targetPed, 11816, 0.25, 0.5, 0.0, 0.5, 0.5, 180.0, false, false, false, false, 2, false)
+	TaskPlayAnim(playerPed, tackleLib, tackleVictimAnim, 8.0, -8.0, 3000, 0, 0, false, false, false)
+
+	Citizen.Wait(3000)
+	DetachEntity(GetPlayerPed(-1), true, false)
+
+	isRagdoll = true
+	Citizen.Wait(3000)
+	isRagdoll = false
+
+	isGettingTackled = false
+end)
+
+RegisterNetEvent('tackle:playTackle')
+AddEventHandler('tackle:playTackle', function()
+	local playerPed = GetPlayerPed(-1)
+
+	RequestAnimDict(tackleLib)
+
+	while not HasAnimDictLoaded(tackleLib) do
+		Citizen.Wait(10)
+	end
+
+	TaskPlayAnim(playerPed, tackleLib, tackleAnim, 8.0, -8.0, 3000, 0, 0, false, false, false)
+
+	Citizen.Wait(3000)
+
+	isTackling = false
+
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Wait(0)
+
+		if IsControlPressed(0, 21) and IsControlPressed(0, 46) and not isTackling then
+			Citizen.Wait(10)
+			local closestPlayer, distance = GetClosestPlayer();
+
+			if distance ~= -1 and distance <= 3.0 and not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) and not IsPedInAnyVehicle(GetPlayerPed(closestPlayer)) then
+				isTackling = true
+				lastTackleTime = GetGameTimer()
+
+				TriggerServerEvent('tackle:tryTackle', GetPlayerServerId(closestPlayer))
+			end
+		end
+	end
 end)
 
 RegisterNetEvent('power:toggletackle')

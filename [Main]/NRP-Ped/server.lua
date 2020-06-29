@@ -80,6 +80,12 @@ AddEventHandler('power:tackle', function(target)
   TriggerClientEvent('power:toggletackle', target)
 end)
 
+RegisterServerEvent('tackle:tryTackle')
+AddEventHandler('tackle:tryTackle', function(target)
+	TriggerClientEvent('tackle:getTackled', target, source)
+	TriggerClientEvent('tackle:playTackle', source)
+end)
+
 RegisterServerEvent('trash:additems')
 AddEventHandler('trash:additems', function(item, qty)
  local source = tonumber(source)
