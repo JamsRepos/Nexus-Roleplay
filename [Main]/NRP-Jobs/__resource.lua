@@ -43,8 +43,8 @@ client_script 'vineyard/deliver.lua'
 client_script 'vineyard/function.lua'
 client_script 'vineyard/pick.lua'
 --miner
-client_script 'xz-miner/client.lua'
-server_script 'xz-miner/server.lua'
+--client_script 'xz-miner/client.lua'
+--server_script 'xz-miner/server.lua'
 --smoke
 --client_script 'xz-smoke/client.lua'
 --client_script 'xz-smoke/weedruns.lua'

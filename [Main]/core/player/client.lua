@@ -226,29 +226,6 @@ Citizen.CreateThread(function()
         WarMenu.CloseMenu('job_center')
         TriggerServerEvent('FL_Perks:LevelChecks')
         Wait(100)
-        if v.id == 41 then
-            if tostring(job) == 'SOTW' then
-             if tonumber(points) >= 75 then
-              exports['NRP-notify']:DoHudText('inform', "Head To The Grow Room Round Back To Start Work")
-              TriggerServerEvent('jobs:setjob', v.id)
-             else
-               exports['NRP-notify']:DoHudText('inform', "You Need Atleast 75 Points in SOTW To Use the Grow Room")
-             end
-            end
-        elseif v.id == 46 then
-            TriggerServerEvent('jobs:setjob', v.id)
-            exports['NRP-notify']:DoHudText('inform', "Check The Till For What Stock Is Running Low") 
-         
-        elseif v.id == 47 then
-            if tostring(job) == 'SOTW' then
-             if tonumber(points) >= 350 then
-              TriggerServerEvent('jobs:setjob', v.id)
-              exports['NRP-notify']:DoHudText('inform', "Head to the back of the grow room to pick up weed from storage then go to the laptop to sign on") 
-              else
-                exports['NRP-notify']:DoHudText('inform', "You Need Atleast 350 Points in SOTW To Deliver Weed For Them")
-              end
-            end
-        end
     end
    end
    WarMenu.Display()
