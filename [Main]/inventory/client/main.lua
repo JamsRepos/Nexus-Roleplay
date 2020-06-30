@@ -478,8 +478,8 @@ function use(item, meta)
             else
              TriggerEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You dont have a fishing rod"})
             end
-        --[[elseif item == 293 then
-            TriggerEvent('items:cuff')]]--
+        elseif item == 300 then
+            TriggerEvent('items:gopro')
       end
     loadPlayerInventory()
 end

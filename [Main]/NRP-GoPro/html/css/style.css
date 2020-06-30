@@ -1,0 +1,16 @@
+body {
+    overflow: hidden;
+    max-width:100%;
+}
+
+
+#icon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    opacity: 0.75;
+}
+
+#icon img {
+    width: 250px;
+}
