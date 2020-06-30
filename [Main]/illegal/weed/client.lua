@@ -545,7 +545,6 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 18, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You found cyclopentyl!", length = 5000})
             if cyclopentylcount == 5 then
-              TriggerServerEvent('timers:add', 'Cyclopentyl', 3600)
               TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, 3600, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
