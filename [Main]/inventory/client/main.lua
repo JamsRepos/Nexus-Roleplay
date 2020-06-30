@@ -325,7 +325,6 @@ function use(item, meta)
         removeQty(item,1)
         TriggerEvent('items:tent')
        elseif item == 143 then
-        removeQty(item,1)
         TriggerEvent("kepo_speaker:place")
        elseif item == 144 then
         removeQty(item,1)
