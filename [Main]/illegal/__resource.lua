@@ -50,6 +50,7 @@ client_script 'meth/client.lua'
 server_script 'meth/server.lua'
 
 client_script 'weed/client.lua'
+server_script 'weed/server.lua'
 
 client_script 'drugs/client.lua'
 server_script 'drugs/server.lua'

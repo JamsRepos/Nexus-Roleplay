@@ -31,6 +31,7 @@ function CreatePlayer(source, data)
 	self.vitals = data.vitals
 	self.statistics = data.statistics
 	self.points = data.points
+	self.timers = data.timers
 	self.playtime = data.playtime
 	self.reputation = data.reputation
 	self.outfit = data.outfit 
@@ -699,7 +700,6 @@ function CreatePlayer(source, data)
 		end
 	end
 	
-	-- added by gallows
 	-- Points
 	 rTable.getPoints = function()
 		return self.points
@@ -744,7 +744,51 @@ function CreatePlayer(source, data)
 				end
 		   end
 	   end
--- added by gallows end
+	
+	-- Timers
+	 rTable.getTimers = function()
+		return self.timers
+	   end
+   
+	   rTable.getTimer = function(name)
+		for i = 1, #self.timers do
+		 if self.timers[i] ~= nil then
+		  if self.timers[i].name == tostring(name) then
+		   return self.timers[i].value
+		  end
+		 end
+		end
+	   end
+   
+	   rTable.setTimer = function(name, value)
+		   for i = 1, #self.timers do
+			   if self.timers[i] ~= nil then
+					if self.timers[i].name == tostring(name) then
+						self.timers[i].value = tonumber(value)
+					end
+				end
+		   end
+	   end
+   
+	   rTable.addTimer = function(name, value)
+		   for i = 1, #self.timers do
+			   if self.timers[i] ~= nil then
+					if self.timers[i].name == tostring(name) then
+						self.timers[i].value = self.timers[i].value+tonumber(value)
+					end
+				end
+		   end
+	   end
+   
+	   rTable.removeTimer = function(name, value)
+		   for i = 1, #self.timers do
+			   if self.timers[i] ~= nil then
+					if self.timers[i].name == tostring(name) then
+						self.timers[i].value = self.timers[i].value-tonumber(value)
+					end
+				end
+		   end
+	   end
 
 
 	-- Vitals 
@@ -861,7 +905,7 @@ local function saveCharacterData()
     Citizen.CreateThread(function()
       for k,v in pairs(Users)do
         if Users[k] ~= nil then
-         exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank, dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, statistics=@statistics, points=@points, vitals=@vitals, reputation=@reputation, playtime = playtime+2 WHERE id = @id", {
+         exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank, dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, statistics=@statistics, points=@points, timers=@timers, vitals=@vitals, reputation=@reputation, playtime = playtime+2 WHERE id = @id", {
           ['@id'] = v.getCharacterID(),
           ['@money'] = v.getMoney(),
           ['@bank'] = v.getBank(),
@@ -878,6 +922,7 @@ local function saveCharacterData()
 		  ['@vitals'] = json.encode(v.getVitals()),
 		  --['@perks'] = json.encode(v.getPerks()),
 		  ['@points'] = json.encode(v.getPoints()),
+		  ['@timers'] = json.encode(v.getTimers()),
          })
         end
       end

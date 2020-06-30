@@ -62,6 +62,7 @@ AddEventHandler('core:loadplayer', function(source)
      vitals = json.decode(character[1].vitals),
 	 statistics = json.decode(character[1].statistics),
 	 points = json.decode(character[1].points),
+	 timers = json.decode(character[1].timers),
      reputation = character[1].reputation,
      playtime = character[1].playtime,
     })
@@ -103,7 +104,7 @@ RegisterServerEvent('core:playerDropped')
 AddEventHandler('core:playerDropped', function(Source)
  local Source = tonumber(Source)
  TriggerEvent("core:getPlayerFromId", Source, function(user)
-  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation WHERE id = @id", {
+  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
    ['@money'] = user.getMoney(),
    ['@bank'] = user.getBank(),
@@ -118,6 +119,7 @@ AddEventHandler('core:playerDropped', function(Source)
    ['@faction'] = user.getFaction(),
    ['@reputation'] = user.getReputation(),
    ['@vitals'] = json.encode(user.getVitals()),
+   ['@timers'] = json.encode(user.getTimers()),
   })
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET isOnline=@isonline, current_id=@cid WHERE identifier=@id",{['@id'] = user.getIdentifier(), ['@isonline'] = 0, ['@cid'] = 0})
   TriggerEvent('phone:removePhoneNumber', user.getPhoneNumber())
@@ -129,7 +131,7 @@ RegisterServerEvent('core:characterDisconnect')
 AddEventHandler('core:characterDisconnect', function()
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", Source, function(user)
-  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank, dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation WHERE id = @id", {
+  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank, dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
    ['@money'] = user.getMoney(),
    ['@bank'] = user.getBank(),
@@ -144,6 +146,7 @@ AddEventHandler('core:characterDisconnect', function()
    ['@faction'] = user.getFaction(),
    ['@reputation'] = user.getReputation(),
    ['@vitals'] = json.encode(user.getVitals()),
+   ['@timers'] = json.encode(user.getTimers()),
   })
   TriggerClientEvent('NRP-Hud:Logout')
  end)

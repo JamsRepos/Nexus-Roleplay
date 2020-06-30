@@ -95,6 +95,7 @@ AddEventHandler("core:loadcharacter", function(data)
  TriggerEvent('core:serverPasswordInitialize', source)
  Wait(1000)
  TriggerEvent('stats:load', source)
+ TriggerEvent('timers:load', source)
 end)
 
 function GetActiveCharacterID(source)
