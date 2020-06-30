@@ -362,10 +362,25 @@ Citizen.CreateThread(function()
     DrawText3Ds(v.pos.x, v.pos.y, v.pos.z-0.55,'~g~[E]~w~ Pick Up '..v.qty.."x "..v.name)
     if IsControlJustPressed(0, 38) then
      if v.qty + getQuantity() <= 120 then
-      TriggerServerEvent('inventory:pickup', k, v.item, v.qty, v.meta)
-      API_ProgressBar('Picking Up', 20)
-      TaskPlayAnim(GetPlayerPed(-1), "anim@mp_snowball", "pickup_snowball", 8.0, -1, -1, false, 1, 0, 0, 0)
-      Wait(2000)
+        TriggerEvent("mythic_progbar:client:progress", {
+            name = "pickingup_item",
+            duration = 3000,
+            label = "Picking Up",
+            useWhileDead = false,
+            canCancel = false,
+            controlDisables = {
+                disableMovement = true,
+                disableCarMovement = true,
+                disableMouse = false,
+                disableCombat = true,
+            },
+        }, function(status)
+            if not status then
+                TriggerServerEvent('inventory:pickup', k, v.item, v.qty, v.meta)
+                TaskPlayAnim(GetPlayerPed(-1), "anim@mp_snowball", "pickup_snowball", 8.0, -1, -1, false, 1, 0, 0, 0)
+              inGUI = false
+            end
+        end)
      else
       exports['NRP-notify']:DoHudText('inform', 'Inventory Full') 
      end 
