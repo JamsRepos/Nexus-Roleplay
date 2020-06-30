@@ -91,6 +91,12 @@ AddEventHandler('hotel:rentRoom', function(id, address, days, price, management)
    TriggerEvent("core:moneylog", source, "Hotel Room Rented For "..days.." Days! > $"..price)
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Hotel Room Rented For "..days.." Days!"})
    TriggerEvent('hotels:update')
+  elseif user.getBank() >= price then 
+   user.removeBank(price)
+   exports['GHMattiMySQL']:QueryAsync('INSERT INTO `owned_hotels` (char_id, char_name, address, hotel_id, days_left, management_id) VALUES (@char_id, @char_name, @address, @hotel_id, @days, @management_id)',{['@char_id'] = user.getCharacterID(), ['@char_name'] = identity.fullname, ['@hotel_id'] = id, ['@days'] = days, ['@address'] = address, ['@management_id'] = management})
+   TriggerEvent("core:moneylog", source, "Hotel Room Rented For "..days.." Days! > $"..price)
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Hotel Room Rented For "..days.." Days!"})
+   TriggerEvent('hotels:update')
   else 
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds"}) 
   end 
