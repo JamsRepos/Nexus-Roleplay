@@ -17,7 +17,6 @@ local cocaine_cooldowntimer = 0
 RegisterNetEvent('timers:character')
 AddEventHandler('timers:character', function(data)
  for _,v in pairs(data) do
-  print(v.name .. " : " .. v.value)
   if v.name == 'Weed' then 
     weed_cooldowntimer = v.value
   elseif v.name == 'Ammonia' then
