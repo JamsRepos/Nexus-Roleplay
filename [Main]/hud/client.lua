@@ -445,16 +445,21 @@ RegisterCommand("mechanic", function(source, rawCommand)   -- Modify the "mechan
       exports['NRP-notify']:DoHudText('error', 'You need to be in a Vehicle to use this service!') 
    end
   else 
-     exports['NRP-notify']:DoHudText('error', 'Mechanic is Busy atm , Ring a Mechanic off Your Phone under Favourites!') 
+    exports['NRP-notify']:DoHudText('error', 'There is a civilian mechanic awake, call them from your favourites!') 
   end	
 end, false)
 
 RegisterCommand("tow", function(source,rawCommand)												--Change "tow" value to change activation command.
+  if mechanic == 'Unavailable' then
     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then  
-      TriggerEvent("knb:tow")
-    else 
-     exports['NRP-notify']:DoHudText('error', 'You need to be in a Vehicle to use this service!')  
-    end
+     TriggerServerEvent("mechanic:repair")
+     TriggerEvent("knb:tow")
+    else
+      exports['NRP-notify']:DoHudText('error', 'You need to be in a Vehicle to use this service!') 
+   end
+  else 
+     exports['NRP-notify']:DoHudText('error', 'There is a civilian mechanic awake, call them from your favourites!') 
+  end	
 end, false)
 
 Citizen.CreateThread(function()
