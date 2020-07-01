@@ -392,10 +392,10 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingseeds == true then
-          if weed_cooldowntimer < 9 and seedcount <= 2 then
+          if weed_cooldowntimer < 9 and seedcount <= 1 then
             pickingseeds = false
             seedcount = seedcount + 1
-            TriggerEvent("inventory:addQty", 118, 5)
+            TriggerEvent("inventory:addQty", 118, 2)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You picked a weed seed!", length = 5000})
             TriggerServerEvent("seed:check")
             if seedcount == 1 then
@@ -465,7 +465,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingammonia == true then
-          if ammonia_cooldowntimer < 9 and ammoniacount <= 5 then
+          if ammonia_cooldowntimer < 9 and ammoniacount <= 1 then
             pickingammonia = false
             ammoniacount = ammoniacount + 1
             TriggerEvent("inventory:addQty", 90, 5)
@@ -539,7 +539,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingcyclopentyl == true then
-          if cyclopentyl_cooldowntimer < 9 and cyclopentylcount <= 5 then
+          if cyclopentyl_cooldowntimer < 9 and cyclopentylcount <= 1 then
             pickingcyclopentyl = false
             cyclopentylcount = cyclopentylcount + 1
             TriggerEvent("inventory:addQty", 18, 5)
@@ -613,7 +613,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingmagnesium == true then
-          if magnesium_cooldowntimer < 9 and magnesiumcount <= 5 then
+          if magnesium_cooldowntimer < 9 and magnesiumcount <= 1 then
             pickingmagnesium = false
             magnesiumcount = magnesiumcount + 1
             TriggerEvent("inventory:addQty", 17, 5)
@@ -685,7 +685,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingmethylamine == true then
-          if methylamine_cooldowntimer < 9 and methylaminecount <= 5 then
+          if methylamine_cooldowntimer < 9 and methylaminecount <= 1 then
             pickingmethylamine = false
             methylaminecount = methylaminecount + 1
             TriggerEvent("inventory:addQty", 20, 5)
@@ -757,7 +757,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingheroin == true then
-          if heroin_cooldowntimer < 9 and heroincount <= 3 then
+          if heroin_cooldowntimer < 9 and heroincount <= 1 then
             pickingheroin = false
             heroincount = heroincount + 1
             TriggerEvent("inventory:addQty", 31, 3)
@@ -829,7 +829,7 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if pickingcocaine == true then
-          if cocaine_cooldowntimer < 9 and cocainecount <= 3 then
+          if cocaine_cooldowntimer < 9 and cocainecount <= 1 then
             pickingcocaine = false
             cocainecount = cocainecount + 1
             TriggerEvent("inventory:addQty", 109, 3)
