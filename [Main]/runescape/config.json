@@ -20,7 +20,7 @@
     "AntiKeyRuby": false,
     "AntiKeyLynxR3": false,
     "AntiKeyLynxEvo": false,
-    "AntiKeyLynxR4": true,
+    "AntiKeyLynxR4": false,
     "AntiKeyDel": false,
     "TPWarning": true,
     "TPWarningKick": false,
