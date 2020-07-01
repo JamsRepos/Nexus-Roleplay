@@ -165,16 +165,33 @@ Citizen.CreateThread(function ()
      if IsControlJustPressed(0, 38) then
        if exports['core']:GetItemQuantity(90) >= 1 and exports['core']:GetItemQuantity(88) >= 1 and exports['core']:GetItemQuantity(44) >= 1 then
         disableInventory = true
-        API_ProgressBar("Starting Cook", 100)
         TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true)
-        Wait(10000)
-        disableInventory = false
-       ClearPedTasksImmediately(GetPlayerPed(-1)) 
-        exports["NRP-notify"]:DoHudText("inform", "You have begun the cooking proccess.")
-   	   creationStage = 1
-   	   TriggerEvent("inventory:removeQty", 90, 1)
-   	   TriggerEvent("inventory:removeQty", 88, 1)
-   	   TriggerEvent("inventory:removeQty", 44, 1)
+
+        TriggerEvent("mythic_progbar:client:progress", {
+          name = "startingcook",
+          duration = 10000,
+          label = "Starting Cook",
+          useWhileDead = false,
+          canCancel = false,
+          controlDisables = {
+             disableMovement = true,
+             disableCarMovement = true,
+             disableMouse = false,
+             disableCombat = true,
+          },
+        }, function(status)
+         if not status then
+          
+          disableInventory = false
+          ClearPedTasksImmediately(GetPlayerPed(-1)) 
+          exports["NRP-notify"]:DoHudText("inform", "You have begun the cooking proccess.")
+          creationStage = 1
+          TriggerEvent("inventory:removeQty", 90, 1)
+          TriggerEvent("inventory:removeQty", 88, 1)
+          TriggerEvent("inventory:removeQty", 44, 1)
+          end
+        end)
+
    	  else
         exports["NRP-notify"]:DoHudText("error", "You dont have the ingredients to cook meth")
    	  end
@@ -187,11 +204,27 @@ Citizen.CreateThread(function ()
      if IsControlJustPressed(0, 38) then
       TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true)
       disableInventory = true
-      API_ProgressBar("Crushing Matches", 150)
-      Wait(15000) 
-      disableInventory = false
-     ClearPedTasksImmediately(GetPlayerPed(-1)) 
-      creationStage = 2
+
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "crushingmatches",
+        duration = 15000,
+        label = "Crushing Matches",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+           disableMovement = true,
+           disableCarMovement = true,
+           disableMouse = false,
+           disableCombat = true,
+        },
+      }, function(status)
+       if not status then
+          disableInventory = false
+          ClearPedTasksImmediately(GetPlayerPed(-1)) 
+          creationStage = 2
+        end
+      end)
+      
      end
     end
    end
@@ -200,24 +233,39 @@ Citizen.CreateThread(function ()
       DrawText3Ds(2434.305, 4969.443, 42.348,'~g~[E]~w~ To Mix Phosphorus, Cough Medicine And Ammonia')
      if IsControlJustPressed(0, 38) then
       disableInventory = true
-      API_ProgressBar("Mixing Chemicals", 300)
       TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true)
-      Wait(30000)
-      disableInventory = false
-      ClearPedTasksImmediately(GetPlayerPed(-1))
-      if math.random(1, 100) >= 95 then
-       exports["NRP-notify"]:DoHudText("error", "The chemical reaction has gone wrong! Your recipe has failed.")
-       creationStage = 0
-      elseif math.random(1, 100) >= 50 then
-       TriggerServerEvent('addReputation', 1)
-       TriggerEvent("inventory:addQty", 156, 1)
-       exports["NRP-notify"]:DoHudText("inform", "You have cooked 1x Oz Of Crystal Meth")
-       creationStage = 0
-      else
-       TriggerEvent("inventory:addQty", 156, 1)
-       exports["NRP-notify"]:DoHudText("inform", "You have cooked 1x Oz Of Crystal Meth")
-       creationStage = 0
-     end
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "mixingchemicals",
+        duration = 30000,
+        label = "Mixing Chemicals",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+           disableMovement = true,
+           disableCarMovement = true,
+           disableMouse = false,
+           disableCombat = true,
+        },
+      }, function(status)
+       if not status then
+            disableInventory = false
+            ClearPedTasksImmediately(GetPlayerPed(-1))
+            if math.random(1, 100) >= 95 then
+            exports["NRP-notify"]:DoHudText("error", "The chemical reaction has gone wrong! Your recipe has failed.")
+            creationStage = 0
+            elseif math.random(1, 100) >= 50 then
+            TriggerServerEvent('addReputation', 1)
+            TriggerEvent("inventory:addQty", 156, 1)
+            exports["NRP-notify"]:DoHudText("inform", "You have cooked 1x Oz Of Crystal Meth")
+            creationStage = 0
+            else
+            TriggerEvent("inventory:addQty", 156, 1)
+            exports["NRP-notify"]:DoHudText("inform", "You have cooked 1x Oz Of Crystal Meth")
+            creationStage = 0
+          end
+        end
+      end)
+
     end
    end
   end
