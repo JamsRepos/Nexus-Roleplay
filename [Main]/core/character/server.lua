@@ -1,5 +1,5 @@
 SetGameType('Nexus Roleplay')
-SetMapName('San Andreas')
+SetMapName('Los Santos')
 local characters = {}
 
 RegisterServerEvent("core:getCharacters")
