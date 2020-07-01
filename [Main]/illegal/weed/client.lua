@@ -399,7 +399,7 @@ Citizen.CreateThread(function()
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You picked a weed seed!", length = 5000})
             TriggerServerEvent("seed:check")
             if seedcount == 2 then
-              TriggerServerEvent('timers:add', 1200, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', 1200, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
             pickingseeds = false
@@ -471,7 +471,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 90, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained ammonia!", length = 5000})
             if ammoniacount == 5 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, 7200, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, 7200, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
             pickingammonia = false
@@ -545,7 +545,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 18, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You found cyclopentyl!", length = 5000})
             if cyclopentylcount == 5 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, 3600, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, 3600, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
             pickingcyclopentyl = false
@@ -619,7 +619,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 17, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You found magnesium!", length = 5000})
             if magnesiumcount == 5 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, 3600, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, 3600, methylamine_cooldowntimer, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
             pickingmagnesium = false
@@ -691,7 +691,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 20, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You found methylamine!", length = 5000})
             if methylaminecount == 5 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, 3600, heroin_cooldowntimer, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, 3600, heroin_cooldowntimer, cocaine_cooldowntimer)
             end
           else
             pickingmethylamine = false
@@ -763,7 +763,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 31, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained heroin!", length = 5000})
             if heroincount == 3 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, 3600, cocaine_cooldowntimer)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, 3600, cocaine_cooldowntimer)
             end
           else
             pickingheroin = false
@@ -835,7 +835,7 @@ Citizen.CreateThread(function()
             TriggerEvent("inventory:addQty", 109, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained cocaine!", length = 5000})
             if cocainecount == 3 then
-              TriggerServerEvent('timers:add', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, 3600)
+              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, 3600)
             end
           else
             pickingcocaine = false
