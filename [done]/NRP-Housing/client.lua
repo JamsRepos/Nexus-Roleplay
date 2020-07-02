@@ -180,6 +180,12 @@ Citizen.CreateThread(function()
             currentHouse = v
             WarMenu.OpenMenu('housing_manage')
           end
+        elseif DecorGetInt(PlayerPedId(), 'Faction') == 30 and allHouses[v.id].id == 1841 or allHouses[v.id].id == 1842 or allHouses[v.id].id == 1843 or allHouses[v.id].id == 1844 or allHouses[v.id].id == 1845 then
+          DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[E]~w~ Enter Showroom\n~g~'..allHouses[v.id].address)
+          if IsControlJustPressed(0, 38) then
+            currentHouse = v
+            WarMenu.OpenMenu('housing_manage')
+          end
         elseif hasHouseKey(v.id) then
           DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[E]~w~ Enter\n~g~'..allHouses[v.id].address)
           if IsControlJustPressed(0, 38) then

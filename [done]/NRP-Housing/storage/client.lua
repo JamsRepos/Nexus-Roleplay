@@ -6,7 +6,11 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), lastipl.item_storage.x, lastipl.item_storage.y, lastipl.item_storage.z, true) < 1.2) then
       DrawText3Ds(lastipl.item_storage.x, lastipl.item_storage.y, lastipl.item_storage.z,'~g~[E]~w~ Storage ')
      if IsControlJustPressed(0, 38) then
-      TriggerServerEvent("housing:storage:getInventory", currentHouse.id, lastipl.storage)
+      if currentHouse.id == 1841 or currentHouse.id == 1842 or currentHouse.id == 1843 or currentHouse.id == 1844 or currentHouse.id == 1845 then
+        exports['NRP-notify']:DoHudText('error', 'This is a show room, you cannot access this.')
+      else
+        TriggerServerEvent("housing:storage:getInventory", currentHouse.id, lastipl.storage)
+      end
      end
     end
    end
