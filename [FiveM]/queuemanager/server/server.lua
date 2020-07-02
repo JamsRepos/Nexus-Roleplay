@@ -575,6 +575,12 @@ Citizen.CreateThread(function()
         TriggerClientEvent("debug:queueCount", -1, qCount)
         TriggerEvent("grafana:connectqueue", qCount, Queue.PlayerCount)
         
+        if qCount > 1 then
+            SetConvar("Queue", "Enabled | Count: " .. qCount)
+        else
+            SetConvar("Queue", "Enabled")
+        end
+
         if qCount ~= savedQueue then 
          savedQueue = qCount
         end
