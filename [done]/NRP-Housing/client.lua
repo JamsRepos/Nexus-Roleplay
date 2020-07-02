@@ -196,7 +196,7 @@ Citizen.CreateThread(function()
           end
         else
           if DecorGetInt(PlayerPedId(), 'Faction') == 30 and (allHouses[v.id].id == 1841 or allHouses[v.id].id == 1842 or allHouses[v.id].id == 1843 or allHouses[v.id].id == 1844 or allHouses[v.id].id == 1845) then
-            DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'[~g~Contact D8 to view this showroom.]')
+            DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~s~[~g~Contact D8 to view this showroom.~s~]')
           else
             if DecorGetInt(PlayerPedId(), 'Faction') == 30 then
               DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[Address: ~r~'..allHouses[v.id].address..'~g~]\n~g~ [House ID: ~r~'..allHouses[v.id].id..'~g~]\n~g~ [~r~Owned~g~]') ----- testing
