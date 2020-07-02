@@ -180,7 +180,7 @@ Citizen.CreateThread(function()
             currentHouse = v
             WarMenu.OpenMenu('housing_manage')
           end
-        elseif DecorGetInt(PlayerPedId(), 'Faction') == 30 and allHouses[v.id].id == 1841 or allHouses[v.id].id == 1842 or allHouses[v.id].id == 1843 or allHouses[v.id].id == 1844 or allHouses[v.id].id == 1845 then
+        elseif DecorGetInt(PlayerPedId(), 'Faction') == 30 and (allHouses[v.id].id == 1841 or allHouses[v.id].id == 1842 or allHouses[v.id].id == 1843 or allHouses[v.id].id == 1844 or allHouses[v.id].id == 1845) then
           DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[E]~w~ Enter Showroom\n~g~'..allHouses[v.id].address)
           if IsControlJustPressed(0, 38) then
             currentHouse = v
@@ -195,10 +195,14 @@ Citizen.CreateThread(function()
            TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
           end
         else
-          if DecorGetInt(PlayerPedId(), 'Faction') == 30 then
-            DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[Address: ~r~'..allHouses[v.id].address..'~g~]\n~g~ [House ID: ~r~'..allHouses[v.id].id..'~g~]\n~g~ [~r~Owned~g~]') ----- testing
+          if DecorGetInt(PlayerPedId(), 'Faction') == 30 and (allHouses[v.id].id == 1841 or allHouses[v.id].id == 1842 or allHouses[v.id].id == 1843 or allHouses[v.id].id == 1844 or allHouses[v.id].id == 1845) then
+            DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'[~g~Contact D8 to view this showroom.]')
           else
-            DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[Address: ~r~'..allHouses[v.id].address..'~g~]\n~g~ [~r~Owned~g~]') ----- testing
+            if DecorGetInt(PlayerPedId(), 'Faction') == 30 then
+              DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[Address: ~r~'..allHouses[v.id].address..'~g~]\n~g~ [House ID: ~r~'..allHouses[v.id].id..'~g~]\n~g~ [~r~Owned~g~]') ----- testing
+            else
+              DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[Address: ~r~'..allHouses[v.id].address..'~g~]\n~g~ [~r~Owned~g~]') ----- testing
+            end
           end
         end
       end
