@@ -454,9 +454,9 @@ function DrugsSell()
   local heroin = exports['core']:GetItemQuantity(159)
   local coke = exports['core']:GetItemQuantity(110) 
 
-  local weedPricePerBag = math.random(60, 80)
-  local methPricePerBag = math.random(90, 110)
-  local ketaminePricePerBag = math.random(120, 140)
+  local weedPricePerBag = math.random(30, 50)
+  local methPricePerBag = math.random(80, 100)
+  local ketaminePricePerBag = math.random(120, 150)
   local heroinPricePerBag = math.random(210, 230)
   local cokePricePerBag = math.random(230, 250)
 
