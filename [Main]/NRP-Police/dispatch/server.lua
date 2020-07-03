@@ -1,3 +1,31 @@
+local inService = {}
+local onDuty = {}
+
+RegisterServerEvent('dispatch:duty')
+AddEventHandler('dispatch:duty', function(status, callsign)
+	local source = tonumber(source)
+	TriggerEvent('core:getPlayerFromId', source, function(user)
+		local name = user.getIdentity()
+		fal = name.firstname .. " " .. name.lastname
+		if status then
+			inService[source] = callsign .. " | " .. fal
+			onDuty[source] = source
+			TriggerClientEvent("dispatch:update", -1, inService, onDuty)
+		else
+			inService[source] = nil
+			onDuty[source] = nil
+			TriggerClientEvent("dispatch:update", -1, inService, onDuty)
+		end
+	end)
+end)
+
+AddEventHandler('playerDropped', function()
+	inService[source] = nil
+	onDuty[source] = nil
+	TriggerClientEvent("dispatch:update", -1, inService, onDuty)
+end)
+
+
 RegisterServerEvent('dispatch:vehicle')
 AddEventHandler('dispatch:vehicle', function(suspectLocation, suspectSex, vehicleName, vehiclePlate, vehicleColour)
 	if suspectLocation.both then

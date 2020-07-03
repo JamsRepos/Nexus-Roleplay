@@ -110,12 +110,25 @@ function OnDuty()
   SetAudioFlag("WantedMusicDisabled", false)
   SetAudioFlag("AllowScoreAndRadio", true)
   exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
+  
+  TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
+  DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
+  while (UpdateOnscreenKeyboard() == 0) do
+    DisableAllControlActions(0);
+    Wait(0);
+  end
+  if (GetOnscreenKeyboardResult()) then
+   local result = tonumber(GetOnscreenKeyboardResult())
+   TriggerServerEvent('dispatch:duty', true, result)
+   TriggerEvent("police:ondutynotification")
+  end
 end
 
 function OffDuty()
   RemoveAllPedWeapons(GetPlayerPed(-1), true)  
   TriggerServerEvent("blips:deactivate")
   TriggerServerEvent('police:duty', false)
+  TriggerServerEvent('dispatch:duty', false)
   exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
 end
 

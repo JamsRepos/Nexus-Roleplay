@@ -293,7 +293,6 @@ Citizen.CreateThread(function()
       else
        DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Go On Duty')
        if IsControlJustPressed(0, 38) then
-        TriggerEvent("police:ondutynotification")
         OnDuty()
         isInService = true
         PlaySound(-1, 'GO', 'HUD_MINI_GAME_SOUNDSET', 0, 0, 1)
@@ -728,9 +727,14 @@ Citizen.CreateThread(function()
  local currentItemIndex5 = 1
  local Test = 1
  local currentItemIndex7 = 1
+ local dispatch = false
  while true do
   Wait(5)
   if WarMenu.IsMenuOpened('police_toolkit') then
+    if isInService then
+      TriggerEvent('dispatch:toggle', false)
+      dispatch = true
+    end
    if WarMenu.Button('Missions') then
     WarMenu.OpenMenu('police_missions')
    elseif WarMenu.Button('Escort') then
@@ -907,6 +911,11 @@ Citizen.CreateThread(function()
       end
      end
    end
+  else
+    if isInService and dispatch then
+      TriggerEvent('dispatch:toggle', true)
+      dispatch = false
+    end
   end
   WarMenu.Display()
  end

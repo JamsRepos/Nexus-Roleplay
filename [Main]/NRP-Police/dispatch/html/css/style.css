@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'pricedown';
+    src: url('../fonts/pricedown.ttf');
+}
+
+@font-face {
+    font-family: 'gta-ui';
+    src: url('../fonts/gta-ui.ttf');
+}
+
+body {
+    font-size: 35px;
+    font-family: "pricedown", Verdana, Tahoma;
+    overflow: hidden;
+    max-width:100%;
+}
+
+#duty-list {
+    font-family: "gta-ui", Verdana, Tahoma;
+    color: white;
+    text-shadow: black 1px;
+    position: absolute;
+    text-align: right;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 30px;
+}
+
+#duty-list h2 {
+    color: #0099ff;
+    margin-bottom: 10px;
+}

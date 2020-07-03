@@ -18,6 +18,16 @@ server_script 'server.lua'
 client_script 'dispatch/client.lua'
 server_script 'dispatch/server.lua'
 
+ui_page	'dispatch/html/index.html'
+
+files {
+	'dispatch/html/css/style.css',
+	'dispatch/html/fonts/pricedown.ttf',
+	'dispatch/html/fonts/gta-ui.ttf',
+	'dispatch/html/js/app.js',
+	'dispatch/html/index.html',
+}
+
 -- Doors
 server_script "lockabledoors/server.lua"
 client_script "lockabledoors/client.lua"

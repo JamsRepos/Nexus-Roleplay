@@ -144,6 +144,17 @@ function OnDuty()
   TriggerEvent("inventory:addQty", 198, 1)
   TriggerServerEvent('blips:activate', 'ems')
   exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
+
+  TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
+  DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
+  while (UpdateOnscreenKeyboard() == 0) do
+    DisableAllControlActions(0);
+    Wait(0);
+  end
+  if (GetOnscreenKeyboardResult()) then
+   local result = tonumber(GetOnscreenKeyboardResult())
+   TriggerServerEvent('dispatch:duty', true, result)
+  end
 end
 
 function OffDuty()
@@ -153,6 +164,7 @@ function OffDuty()
   --RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_STUNGUN'))
   TriggerEvent("inventory:removeQty", 198, 1)
   TriggerServerEvent('blips:deactivate')
+  TriggerServerEvent('dispatch:duty', false)
   exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
 end
 

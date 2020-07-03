@@ -1,3 +1,37 @@
+RegisterNetEvent('dispatch:toggle')
+AddEventHandler('dispatch:toggle', function(status)
+  SendNUIMessage({
+    type = "dispatch",
+    display = status
+  })
+end)
+
+RegisterNetEvent('dispatch:update')
+AddEventHandler('dispatch:update', function(string, duty)
+  if DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+    local onDuty = {}
+    for k,v in pairs(string) do
+      if v ~= nil then
+        table.insert(onDuty, v)
+      end
+    end
+    local officers = onDuty
+    SendNUIMessage({
+      type = "dispatch",
+      display = false
+    })
+    for k,v in pairs(duty) do
+      if v == GetPlayerServerId(PlayerId()) then
+        SendNUIMessage({
+          type = "dispatch",
+          display = true,
+          onduty = officers
+        })
+      end
+    end
+  end
+end)
+
 RegisterNetEvent('dispatch:notify')
 AddEventHandler('dispatch:notify', function(alert)
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
