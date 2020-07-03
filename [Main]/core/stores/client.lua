@@ -414,7 +414,7 @@ Citizen.CreateThread(function()
   end
  end
 end)
-
+--[[
 Citizen.CreateThread(function()
  WarMenu.CreateLongMenu('Petshop', 'Petshop')
  while true do
@@ -447,7 +447,7 @@ Citizen.CreateThread(function()
   end
  end
 end)
-
+--]]
 Citizen.CreateThread(function()
  WarMenu.CreateLongMenu('Token Seller', 'Token Seller')
  while true do
