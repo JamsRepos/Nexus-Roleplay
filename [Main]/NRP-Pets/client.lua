@@ -23,7 +23,7 @@ local my_pet ={
 
 RegisterCommand('pet', function(source, args, rawCommand) 
 	if exports['core']:GetItemQuantity(278) >= 1 then
-		WarMenu.OpenMenu('PET_MENU')
+		--WarMenu.OpenMenu('PET_MENU')
 	else
 	 exports['NRP-notify']:DoHudText('error', 'You dont have a pet with you')		
 	end
@@ -43,7 +43,7 @@ Citizen.CreateThread(function()
 		--- add here for if have item then -- U
 		if IsControlPressed(1, 21) and IsControlJustPressed(1, 213) then	
 		  if exports['core']:GetItemQuantity(278) >= 1 then
-			WarMenu.OpenMenu('PET_MENU')
+			--WarMenu.OpenMenu('PET_MENU')
 		  else
 			exports['NRP-notify']:DoHudText('error', 'You dont have a pet with you')	
 		  end	
