@@ -81,7 +81,7 @@ end)
 -- Locking vehicles
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0)
+        Citizen.Wait(5)
         local pos = GetEntityCoords(GetPlayerPed(-1))
         if IsControlJustReleased(0, 47) then
             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
