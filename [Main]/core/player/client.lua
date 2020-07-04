@@ -252,7 +252,7 @@ Citizen.CreateThread(function()
  end
 end) 
 
-secondsUntilKick = 300
+secondsUntilKick = 900
 kickWarning = true
 
 Citizen.CreateThread(function()
