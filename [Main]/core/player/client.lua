@@ -252,6 +252,36 @@ Citizen.CreateThread(function()
  end
 end) 
 
+secondsUntilKick = 300
+kickWarning = true
+
+Citizen.CreateThread(function()
+	while true do
+		Wait(1000)
+
+		playerPed = GetPlayerPed(-1)
+		if playerPed then
+			currentPos = GetEntityCoords(playerPed, true)
+
+			if currentPos == prevPos then
+				if time > 0 then
+					if kickWarning and time == math.ceil(secondsUntilKick / 4) then
+						TriggerEvent("chatMessage", "WARNING", {255, 0, 0}, "^1 You'll be kicked in " .. time .. " second(s) for being AFK!")
+					end
+
+					time = time - 1
+				else
+					TriggerServerEvent("core:afkkick")
+				end
+			else
+				time = secondsUntilKick
+			end
+
+			prevPos = currentPos
+		end
+	end
+end)
+
 function DrawText3Ds(x,y,z, text)
   local onScreen,_x,_y=World3dToScreen2d(x,y,z)
   local px,py,pz=table.unpack(GetGameplayCamCoords())

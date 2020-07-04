@@ -460,6 +460,11 @@ end
 AddEventHandler('core:addACECommand', function(command, group, callback)
 	addACECommand(command, group, callback)
 end)
+
+RegisterServerEvent("core:afkkick")
+AddEventHandler("core:afkkick", function()
+	DropPlayer(source, "You were AFK for too long.")
+end)
  
 function getCops()
  local cops = 0
