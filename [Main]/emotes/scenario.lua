@@ -484,7 +484,7 @@ RegisterCommand("ce", function(source, args, rawCommand)
 end)
  
 RegisterCommand("cancel", function(source, args, rawCommand)
- ClearPedTasksImmediately(GetPlayerPed(-1))
+    ClearPedTasks(GetPlayerPed(-1))
 end)
 
 -- Personal Actions!!!
