@@ -91,7 +91,7 @@ function xzbigprize()
 	  TriggerEvent("inventory:addQty", 142, 1)
 	 elseif moneybags == 10 or moneybags == 40 or moneybags == 80 or moneybags == 120 or moneybags == 140 or moneybags == 180 then
 	  exports['NRP-notify']:DoHudText('success', 'Damn a Bar of Gold!!')
-	  TriggerEvent("inventory:addQty", 132, 1)
+	  TriggerEvent("inventory:addQty", 133, 1)
 	end		
 end
 
