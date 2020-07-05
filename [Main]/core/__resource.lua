@@ -66,8 +66,8 @@ client_script 'vat/client.lua'
 server_script 'vat/server.lua'
 
 -- Server Password
-client_script 'verification/client.lua'
-server_script 'verification/server.lua'
+--client_script 'verification/client.lua'
+--server_script 'verification/server.lua'
 
 client_script '@global_api/client.lua'
 
