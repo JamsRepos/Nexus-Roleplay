@@ -583,6 +583,7 @@ AddEventHandler("core:log", function(text, channel)
   local f,err = io.open("server.log","a")
   local formattedlog = string.format("["..os.date("%d/%m/%Y %X").."] "..text.."\n")
   local webhook = nil
+  local mention = nil
   f:write(formattedlog)
   f:close()
 
@@ -593,6 +594,12 @@ AddEventHandler("core:log", function(text, channel)
 	if date.hour < 10 then date.hour = '0' .. tostring(date.hour) end
 	if date.min < 10 then date.min = '0' .. tostring(date.min) end
   if date.sec < 10 then date.sec = '0' .. tostring(date.sec) end
+
+  if channel == "evidence" and string.match(text, "from the evidence locker") then
+    mention = "<@&713167660086722660>"
+  else
+    mention = ""
+  end
   
   if channel == "staff" then
     webhook = "https://discordapp.com/api/webhooks/713815904659439737/6hOzj8gaNOl5p-2GF5pIZlxlYdt_Rz_xeEsCxcxvq9KEz9vf1tsIUQUKR0H01BUdID6p"
@@ -625,7 +632,7 @@ AddEventHandler("core:log", function(text, channel)
   elseif channel == "realestate" then
     webhook = "https://discordapp.com/api/webhooks/719396840755167293/loW-pTVKWppZwT8N4_hMoS2VIThOKLAGlLAM1UAWAlne_hSepoNMKdKu3Z0u_i1Sqt75"
   end
-  PerformHttpRequest(webhook, function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, content = "```\n"..text.."\n[" .. date.day .. '/' .. date.month .. '/' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec .. "]```", avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
+  PerformHttpRequest(webhook, function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, content = mention.."```\n"..text.."\n[" .. date.day .. '/' .. date.month .. '/' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec .. "]```", avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
 end)
 
 RegisterServerEvent("core:moneylog")

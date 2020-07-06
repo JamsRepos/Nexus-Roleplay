@@ -893,17 +893,20 @@ end)
 
 RegisterServerEvent('evidence:removeitems')
 AddEventHandler('evidence:removeitems', function(item, name, qty, meta)
-    print("remove")
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   local canGet = user.isAbleToReceive(qty)
   if not canGet then
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "Inventory Full"})
   else
-   user.addQuantity(item,qty, meta)
-   exports['GHMattiMySQL']:QueryAsync('UPDATE `stored_inventorys` SET `qty`= `qty` - @qty WHERE `unique_id` = @unique_id AND `item`= @item and `meta` = @meta',{['@unique_id'] = 'evidence', ['@qty'] = qty, ['@item'] = item, ['@meta'] = meta})
-   TriggerEvent('evidence:refresh', source, id)
-   TriggerEvent("core:log", tostring("[EVIDENCE] "..user.getIdentity().fullname.."("..source..") took "..qty.."x "..name.."("..item..") from the evidence locker."), "evidence")
+    if user.getJob() == 1 then
+        user.addQuantity(item,qty, meta)
+        exports['GHMattiMySQL']:QueryAsync('UPDATE `stored_inventorys` SET `qty`= `qty` - @qty WHERE `unique_id` = @unique_id AND `item`= @item and `meta` = @meta',{['@unique_id'] = 'evidence', ['@qty'] = qty, ['@item'] = item, ['@meta'] = meta})
+        TriggerEvent('evidence:refresh', source, id)
+        TriggerEvent("core:log", tostring("[EVIDENCE] "..user.getIdentity().fullname.."("..source..") took "..qty.."x "..name.."("..item..") from the evidence locker."), "evidence")
+    else
+        TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You are not the sufficient rank to do this."})
+    end
   end
  end)
 end)
