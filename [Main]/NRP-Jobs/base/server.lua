@@ -57,6 +57,7 @@ TriggerEvent('core:addGroupCommand', 'setjob', "helper", function(source, args, 
     local source = tonumber(source)
     TriggerEvent('core:getPlayerFromId', player, function(user)
      user.setJob(jobid)
+     user.setFaction(0)
      TriggerClientEvent('NRP-notify:client:SendAlert', player, { type = 'inform', text = "Your Job Has Been Set To ".. user.getJobName(jobid), timeout= 10000})
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Job Set!", timeout= 10000})
     end)
