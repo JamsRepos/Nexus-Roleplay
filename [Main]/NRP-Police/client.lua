@@ -306,7 +306,7 @@ Citizen.CreateThread(function()
     for k,v in pairs(garage) do
      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 50) then
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 4.0) then
-       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~w~Press ~g~g~w~ To Apply All Extras')
+       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~w~Press ~g~[G]~w~ To Apply All Extras')
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
@@ -316,7 +316,7 @@ Citizen.CreateThread(function()
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          WarMenu.OpenMenu('police_garage')
        end
-         elseif IsControlPressed(0, 246) then
+         elseif IsControlPressed(0, 47) then
           Applyextras()
           exports['NRP-notify']:DoHudText('inform', "Extras Applied")
           Wait(1000)
@@ -325,10 +325,32 @@ Citizen.CreateThread(function()
      end
     end
 
+    for k,v in pairs(bcsogarage) do
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 50) then
+       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 4.0) then
+        DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~w~Press ~g~[G]~w~ To Apply All Extras')
+        if IsControlJustPressed(0, 38) then
+         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
+          SetEntityAsMissionEntity(vehicle, true, true)
+          Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+         else
+          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
+          WarMenu.OpenMenu('police_bcsogarage')
+        end
+          elseif IsControlPressed(0, 47) then
+           Applyextras()
+           exports['NRP-notify']:DoHudText('inform', "Extras Applied")
+           Wait(1000)
+        end
+       end
+      end
+     end
+
     for k,v in pairs(spgarage) do
      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 50) then
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 4.0) then
-       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~c~Press ~g~g~c~ To Apply All Extras')
+       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~c~Press ~g~[G]~c~ To Apply All Extras')
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
@@ -342,7 +364,7 @@ Citizen.CreateThread(function()
           exports['NRP-notify']:DoHudText('success', 'You cannot take out a specialized vehicle.')
          end
        end
-         elseif IsControlPressed(0, 246) then
+         elseif IsControlPressed(0, 47) then
           Applyextras()
           exports['NRP-notify']:DoHudText('inform', "Extras Applied")
           Wait(1000)
@@ -620,6 +642,7 @@ Citizen.CreateThread(function()
  local armor = 1
  local vehicle = '' 
  WarMenu.CreateLongMenu('police_garage', "Garage")
+ WarMenu.CreateLongMenu('police_bcsogarage', "Garage")
  WarMenu.CreateLongMenu('police_unmarkedgarage', "Garage")
 --WarMenu.CreateLongMenu('police_armoury', "Armoury")
  --WarMenu.CreateLongMenu('police_jcabinet', "Cabinet")
@@ -642,6 +665,33 @@ Citizen.CreateThread(function()
       elseif currentveh == 6 then vehicle = 'police8'
       elseif currentveh == 7 then vehicle = 'pbus'
       elseif currentveh == 8 then vehicle = 'polthrust'
+      end
+     end) then
+   elseif WarMenu.Button('Confirm') then
+    if vehicle == 'riot' or vehicle == 'riot2' or vehicle == 'fbi' or vehicle == 'fbi2' or vehicle == 'suburban' or vehicle == 'policeb' then
+     local pos = GetEntityCoords(GetPlayerPed(-1))
+     API_CreateVehicle(vehicle, pos.x, pos.y, pos.z)
+      --TriggerServerEvent('bank:outofSharedBank', 1500, 7)
+    else
+     SpawnVehicle(vehicle)
+    if vehicle == 'zl1' then
+      Wait(1000)
+      local Veh = GetVehiclePedIsIn(GetPlayerPed(-1))
+      SetVehicleCustomPrimaryColour(Veh, 0, 0, 0)
+      SetVehicleCustomSecondaryColour(Veh, 0, 0, 0)
+    end
+      --TriggerServerEvent('bank:outofSharedBank', 1500, 7)
+    end
+  end
+  elseif WarMenu.IsMenuOpened('police_bcsogarage') then
+    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'BCSO Explorer', 'BCSO Charger', 'BCSO Tahoe', 'BCSO Crown Vic', 'BCSO Taurus'}, currentveh, selectedveh, function(veh)
+      currentveh = veh
+      selectedveh = currentveh
+      if currentveh == 1 then vehicle = '16exp'
+      elseif currentveh == 2 then vehicle = '18charger'
+      elseif currentveh == 3 then vehicle = '19hoe'
+      elseif currentveh == 4 then vehicle = 'cvpi'
+      elseif currentveh == 5 then vehicle = 'tau'
       end
      end) then
    elseif WarMenu.Button('Confirm') then
