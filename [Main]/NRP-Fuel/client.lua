@@ -284,6 +284,7 @@ Citizen.CreateThread(function()
    if IsControlJustPressed(0, 38) and not stopRefueling then vehicleFuel = DecorGetInt(vehicle, "_Fuel_Level") hold = false end
    if IsControlPressed(0, 38) and not stopRefueling then 
     hold = true
+    --DisableControlAction(0, 200, true)
     if DecorGetInt(vehicle, "_Fuel_Level") < getMaxFuel(vehicle) then 
      stopRefueling = false
      refuelingVehicle = true
@@ -377,7 +378,7 @@ end)
 Citizen.CreateThread(function()
  while true do
   Citizen.Wait(0)
-  if refuelingVehicle then
+  if refuelingVehicle and hold then
    local vehicle = GetVehiclePedIsIn(PlayerPedId(), true)
    DecorSetInt(vehicle, "_Fuel_Level", tonumber(DecorGetInt(vehicle, "_Fuel_Level") + 25))
  
@@ -407,6 +408,13 @@ Citizen.CreateThread(function()
     DecorSetInt(vehicle, "_Fuel_Level", getMaxFuel(vehicle))
     stopRefueling = true 
    end
+  else
+    refuelingVehicle = false
+    hold = false
+    if isPlayingAnimation then
+      ClearPedTasksImmediately(PlayerPedId())
+      isPlayingAnimation = false
+    end
   end
  end
 end)
