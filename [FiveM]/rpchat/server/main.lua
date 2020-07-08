@@ -21,33 +21,6 @@ RegisterCommand('me', function(source, args, user)
     end)
 end)
 
-
- RegisterCommand('tweet', function(source, args, rawCommand)
-    TriggerEvent("core:getPlayerFromId", source, function(user)
-        local msg = rawCommand:sub(6)
-        local name = user.getIdentity()
-        fal = name.firstname .. " " .. name.lastname
-        TriggerEvent("core:log", tostring("[TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")
-        TriggerClientEvent('chat:addMessage', -1, {
-            template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}:<br> {1}</div>',
-            args = { fal, msg }
-        })
-    end)
-end, false)
-
-RegisterCommand('anontweet', function(source, args, rawCommand)
-    TriggerEvent("core:getPlayerFromId", source, function(user)
-        local msg = rawCommand:sub(11)
-        local name = user.getIdentity()
-        fal = name.firstname .. " " .. name.lastname
-        TriggerEvent("core:log", tostring("[ANON TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")
-        TriggerClientEvent('chat:addMessage', -1, {
-            template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @Anonymous:<br> {1}</div>',
-            args = { fal, msg }
-        })
-    end)
-end, false)
-
 RegisterCommand('ad', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)
         local msg = rawCommand:sub(4)
@@ -93,6 +66,33 @@ RegisterCommand('ooc', function(source, args, rawCommand)
                 template = '<div style="padding: 0.5vw; background-color: rgba(41, 41, 41, 0.6); border-radius: 3px;"><i class="fas fa-globe"></i> {0}:<br> {1}</div>',
                 args = { fal, msg }
             })
+        end
+    end)
+end, false)
+
+RegisterCommand('r', function(source, args, rawCommand)
+    TriggerEvent("core:getPlayerFromId", source, function(user)
+        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37  or user.getJob() == 90 or user.getJob() == 91 then
+            local msg = rawCommand:sub(3)
+            local name = user.getIdentity()
+            fal = name.firstname .. " " .. name.lastname
+            TriggerEvent("core:log", tostring("[RADIO] " .. fal .. "(".. source ..") said: " .. msg), "chat")
+
+            Citizen.CreateThread(function()
+                TriggerEvent('core:getPlayers', function(Users)
+                    for k,v in pairs(Users)do
+                        local job = Users[k]:getJob()
+                        if job == 1 or job == 32 or job == 33 or job == 34 or job == 35 or job == 36 or job == 37 or job == 90 or job == 91 then
+                            TriggerClientEvent('chat:addMessage', k, {
+                                template = '<div style="padding: 0.5vw; background-color: rgba(200, 0, 0, 0.6); border-radius: 3px;"><i class="fa fa-taxi"></i> {0}:<br> {1}</div>',
+                                args = { fal, msg }
+                            })
+                        end
+                    end
+                end)
+            end)
+        else
+            TriggerClientEvent('chatMessage', source, "RADIO", {255, 0, 0}, " You are not a police officer or an EMS.")
         end
     end)
 end, false)
