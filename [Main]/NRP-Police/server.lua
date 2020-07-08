@@ -1,3 +1,5 @@
+local dispatchStatus = {}
+
 RegisterServerEvent('police:prisontrans')
 AddEventHandler('police:prisontrans', function(t)
  TriggerClientEvent('police:prisontrans', t)
@@ -114,16 +116,6 @@ TriggerEvent('core:addGroupCommand', 'setdept', 'user', function(source, args, u
     end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'setmech', 'helper', function(source, args, user)
-    local player = tonumber(args[2])
-    local source = tonumber(source)
-    TriggerEvent('core:getPlayerFromId', player, function(user)
-        user.setJob(3)
-        TriggerClientEvent('NRP-notify:client:SendAlert', player, { type = 'inform', text = "Your Job Has Been Set To ".. user.getJobName(jobid), duration= 10000})
-        TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Job Set to Mechanic", duration= 10000})
-    end)
-end)
-
 TriggerEvent('core:addGroupCommand', 'setems', 'helper', function(source, args, user)
     local player = tonumber(args[2])
     local source = tonumber(source)
@@ -174,19 +166,19 @@ end)
 RegisterServerEvent('police:triggerpanic')
 AddEventHandler('police:triggerpanic', function(x,y,z)
  TriggerClientEvent('police:panic', -1,x,y,z)
- TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = "Panic Button Triggered All Officer's Alerted"})
+ TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Panic Button Triggered All Officer's Alerted"})
 end)
 
 RegisterServerEvent('ss:triggerpanic')
 AddEventHandler('ss:triggerpanic', function(x,y,z)
  TriggerClientEvent('ss:panic', -1,x,y,z)
- TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = "Panic Button Triggered All Officer's Alerted"})
+ TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Panic Button Triggered All Officer's Alerted"})
 end)
 
 RegisterServerEvent('police:1020')
 AddEventHandler('police:1020', function(x,y,z)
  TriggerClientEvent('police:11020', -1,x,y,z)
- TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = "You have Dropped Your 10-20"})
+ TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "You have Dropped Your 10-20"})
 end)
 
 RegisterServerEvent('police:targetCheckInventory')
@@ -208,7 +200,7 @@ AddEventHandler('police:targetCheckInventory', function(target)
   end
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = strResult , duration=20000})
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = user.getIdentity().fullname.." has $"..user.getDirtyMoney().."in dirty money!"})
-  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = "you are being searched for illegal goods!"})
+  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "you are being searched for illegal goods!"})
  end)
 end)
 
@@ -235,10 +227,10 @@ AddEventHandler('police:targetSeizeInventory', function(target)
    end
   end
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = user.getIdentity().fullname.."'s illegal items have been seized"})
-  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = "Your illegal items have been seized"})
+  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "Your illegal items have been seized"})
   user.setDirtyMoney(0)
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = user.getIdentity().fullname.."'s dirty money has been seized"})
-  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = "Your dirty money has been seized"})
+  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "Your dirty money has been seized"})
  end)
 end)
 
@@ -271,8 +263,8 @@ AddEventHandler('police:byebyeweapons', function(target)
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', target, function(user)
   user.removeAllWeapons()
-  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = "Your weapons have been confiscated!"})  
-  TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = "Players weapons have been removed!"})
+  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "Your weapons have been confiscated!"})  
+  TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Players weapons have been removed!"})
   TriggerClientEvent("police:byebyeweapons", target)
  end)
 end)
@@ -619,7 +611,7 @@ TriggerEvent('core:addGroupCommand', 'runweapon', 'user', function(source, args,
   local gun = args[2]
   if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
    local owner = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `owned_weapons` WHERE id = @id", {['@id'] = gun})
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = "Weapon ("..owner[1].id..") is registered to: "..owner[1].owner})  
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Weapon ("..owner[1].id..") is registered to: "..owner[1].owner})  
   end
  end)
 end)
@@ -647,18 +639,20 @@ TriggerEvent('core:addGroupCommand', 'dutyboat', 'user', function(source, args, 
 end)
 
 TriggerEvent('core:addGroupCommand', 'dispatch', 'user', function(source, args, user)
- local source = tonumber(source)
- local player = args[2]
- local message = args
- table.remove(message, 1)
- table.remove(message, 1)
- message = table.concat(message, " ")
- TriggerEvent('core:getPlayerFromId', source, function(user)
-  if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
-   TriggerClientEvent('chatMessage', source, 'Dispatch Message Sent')
-   TriggerClientEvent('chatMessage', player, '^2Dispatch: ^3'..message)
-  end
- end)
+    TriggerEvent('core:getPlayerFromId', source, function(user)
+        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
+            local status = nil
+            if dispatchStatus[source] == true then
+                dispatchStatus[source] = false
+                status = "Off"
+            else
+                dispatchStatus[source] = true
+                status = "On"
+            end
+            TriggerClientEvent('dispatch:toggle', source, dispatchStatus[source])
+            TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Dispatch HUD: "..status.."."}) 
+        end
+    end)
 end)
 
 local firstnames = {[1] = 'Barb',[2] = 'Dick',[3] = 'Steve',[4] = 'Margie ',[5] = 'Sean',[6] = 'Jim',[7] = 'Robert',[8] = 'Erika',[9] = 'Laura',[10] = 'Isabel',[11] = 'Craig',[12] = 'Tommy',[13] = 'Greg',[14] = 'Ralph',[15] = 'Donald',[16] = 'Bruce',[17] = 'Jackie',[18] = 'Lee',[19] = 'Jane',[20] = 'Kate'}
@@ -762,7 +756,7 @@ AddEventHandler('police:k9targetCheckInventory', function(target)
   end
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = strResult,duration = 20000})
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = user.getIdentity().fullname.." has <span style='color:lime'>$</span><span style='color:white'>"..user.getDirtyMoney().."</span> in dirty money!"})
-  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = "You notice the dog sniffing around you.."})
+  TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "You notice the dog sniffing around you.."})
  end)
 end)
 
