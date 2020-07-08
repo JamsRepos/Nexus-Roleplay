@@ -163,16 +163,16 @@ AddEventHandler("garage:transfervehicle", function(player, plate)  --- use this 
 end)
 
 RegisterServerEvent('garagepayment:removemoney')
-AddEventHandler('garagepayment:removemoney', function(name, pay)
+AddEventHandler('garagepayment:removemoney', function(cost)
  local sourcePlayer = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-  if user.getMoney() >= 500 then
-   user.removeMoney(500)
+  if user.getMoney() >= cost then
+   user.removeMoney(cost)
    user.setAllVehicleState(true)
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Cars Retrieved"})
    TriggerEvent("core:moneylog", source, "Paid For DMV To Retrieve Vehicles")
-  elseif user.getBank() >= 500 then
-   user.removeBank(500)
+  elseif user.getBank() >= cost then
+   user.removeBank(cost)
    user.setAllVehicleState(true)
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Cars Retrieved"})
    TriggerEvent("core:moneylog", source, "Paid For DMV To Retrieve Vehicles")
