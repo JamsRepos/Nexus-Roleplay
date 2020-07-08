@@ -70,6 +70,32 @@ RegisterCommand('ooc', function(source, args, rawCommand)
     end)
 end, false)
 
+RegisterCommand('tweet', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        local msg = rawCommand:sub(6)	
+        local name = user.getIdentity()	
+        fal = name.firstname .. " " .. name.lastname	
+        TriggerEvent("core:log", tostring("[TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")	
+        TriggerClientEvent('chat:addMessage', -1, {	
+            template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}:<br> {1}</div>',	
+            args = { fal, msg }	
+        })	
+    end)	
+end, false)	
+
+RegisterCommand('anontweet', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        local msg = rawCommand:sub(11)	
+        local name = user.getIdentity()	
+        fal = name.firstname .. " " .. name.lastname	
+        TriggerEvent("core:log", tostring("[ANON TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")	
+        TriggerClientEvent('chat:addMessage', -1, {	
+            template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @Anonymous:<br> {1}</div>',	
+            args = { fal, msg }	
+        })	
+    end)	
+end, false)
+
 RegisterCommand('r', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)
         if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37  or user.getJob() == 90 or user.getJob() == 91 then
