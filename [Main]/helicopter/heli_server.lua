@@ -1,72 +1,17 @@
--- FiveM Heli Cam by mraes, Version 1.3 (2017-06-12)
--- Modified by rjross2013 (2017-06-23)
--- Further modified by Loque (2017-08-15)
+-- FiveM Heli Cam by davwheat and mraes
+-- Version 2.0 05-11-2018 (DD-MM-YYYY)
+RegisterServerEvent("heli:spotlight_on")
+RegisterServerEvent("heli:spotlight_off")
+RegisterServerEvent("heli:spotlight_update")
 
-RegisterServerEvent('heli:forward.spotlight')
-AddEventHandler('heli:forward.spotlight', function(state)
-	local serverID = source
-	TriggerClientEvent('heli:forward.spotlight', -1, serverID, state)
+AddEventHandler("heli:spotlight_on", function(playerId)
+    TriggerClientEvent("heli:spotlight_on", -1, playerId, 0)
 end)
 
-RegisterServerEvent('heli:tracking.spotlight')
-AddEventHandler('heli:tracking.spotlight', function(target_netID, target_plate, targetposx, targetposy, targetposz)
-	local serverID = source
-	TriggerClientEvent('heli:Tspotlight', -1, serverID, target_netID, target_plate, targetposx, targetposy, targetposz)
+AddEventHandler("heli:spotlight_off", function(playerId)
+    TriggerClientEvent("heli:spotlight_off", -1, playerId, 0)
 end)
 
-RegisterServerEvent('heli:tracking.spotlight.toggle')
-AddEventHandler('heli:tracking.spotlight.toggle', function()
-	local serverID = source
-	TriggerClientEvent('heli:Tspotlight.toggle', -1, serverID)
+AddEventHandler("heli:spotlight_update", function(playerId, data)
+    TriggerClientEvent("heli:spotlight_update", -1, playerId, data)
 end)
-
-RegisterServerEvent('heli:pause.tracking.spotlight')
-AddEventHandler('heli:pause.tracking.spotlight', function(pause_Tspotlight)
-	local serverID = source
-	TriggerClientEvent('heli:pause.Tspotlight', -1, serverID, pause_Tspotlight)
-end)
-
-RegisterServerEvent('heli:manual.spotlight')
-AddEventHandler('heli:manual.spotlight', function()
-	local serverID = source
-	TriggerClientEvent('heli:Mspotlight', -1, serverID)
-end)
-
-RegisterServerEvent('heli:manual.spotlight.toggle')
-AddEventHandler('heli:manual.spotlight.toggle', function()
-	local serverID = source
-	TriggerClientEvent('heli:Mspotlight.toggle', -1, serverID)
-end)
-
-RegisterServerEvent('heli:light.up')
-AddEventHandler('heli:light.up', function()
-	local serverID = source
-	TriggerClientEvent('heli:light.up', -1, serverID)
-end)
-
-RegisterServerEvent('heli:light.down')
-AddEventHandler('heli:light.down', function()
-	local serverID = source
-	TriggerClientEvent('heli:light.down', -1, serverID)
-end)
-
-RegisterServerEvent('heli:radius.up')
-AddEventHandler('heli:radius.up', function()
-	local serverID = source
-	TriggerClientEvent('heli:radius.up', -1, serverID)
-end)
-
-RegisterServerEvent('heli:radius.down')
-AddEventHandler('heli:radius.down', function()
-	local serverID = source
-	TriggerClientEvent('heli:radius.down', -1, serverID)
-end)
-
--- FiveM Heli Cam by mraes
--- Version 1.3 2017-06-12
---[[
-RegisterServerEvent('heli:spotlight')
-AddEventHandler('heli:spotlight', function(state)
-	local serverID = source
-	TriggerClientEvent('heli:spotlight', -1, serverID, state)
-end)]]
