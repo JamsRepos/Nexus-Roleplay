@@ -78,14 +78,25 @@ Citizen.CreateThread(function()
      end) then
     end
    else
-    if WarMenu.Button('Restore Cars ~g~$500') and IsPedOnFoot(GetPlayerPed(-1)) then
-      exports['NRP-notify']:DoHudText('success', 'DMV: Please Wait While We Recover Your Cars')
-      Wait(3000)
-      TriggerServerEvent('garagepayment:removemoney')
+
+    local vehiclesOut = 0
+    for i = 1,#user_vehicles do
+      if (user_vehicles[i] ~= nil) then
+       if user_vehicles[i].garage == currentgarage.id then
+        if user_vehicles[i].impound or not user_vehicles[i].stored then
+          vehiclesOut = vehiclesOut + 1
+        end
+       end
+      end
+     end
+
+    local restoreprice = vehiclesOut * 1000
+    if WarMenu.Button('Restore Cars ~g~$'..restoreprice) and IsPedOnFoot(GetPlayerPed(-1)) then
+      exports['NRP-notify']:DoHudText('success', 'DMV: Please wait whilst we recover your vehicles.')
+      Wait(5000)
+      TriggerServerEvent('garagepayment:removemoney', restoreprice)
     elseif WarMenu.Button('List Vehicles', getCarQ().."/"..getGarageQ()) then
       WarMenu.OpenMenu('vehicle_list')
-    elseif WarMenu.Button('Store Vehicle') then
-     StoreVehicle()
     end
    end
    WarMenu.Display()
