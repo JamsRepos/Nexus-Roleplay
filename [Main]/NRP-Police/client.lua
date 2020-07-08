@@ -306,7 +306,7 @@ Citizen.CreateThread(function()
     for k,v in pairs(garage) do
      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 50) then
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 4.0) then
-       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~w~Press ~g~[G]~w~ To Apply All Extras')
+       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~w~Press ~g~[R]~w~ To Apply All Extras')
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
@@ -316,7 +316,7 @@ Citizen.CreateThread(function()
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          WarMenu.OpenMenu('police_garage')
        end
-         elseif IsControlPressed(0, 47) then
+         elseif IsControlPressed(0, 45) then
           Applyextras()
           exports['NRP-notify']:DoHudText('inform', "Extras Applied")
           Wait(1000)
@@ -328,7 +328,7 @@ Citizen.CreateThread(function()
     for k,v in pairs(spgarage) do
      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 50) then
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 4.0) then
-       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~c~Press ~g~[G]~c~ To Apply All Extras')
+       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ To Access Garage \n ~c~Press ~g~[R]~c~ To Apply All Extras')
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
@@ -342,7 +342,7 @@ Citizen.CreateThread(function()
           exports['NRP-notify']:DoHudText('success', 'You cannot take out a specialized vehicle.')
          end
        end
-         elseif IsControlPressed(0, 47) then
+         elseif IsControlPressed(0, 45) then
           Applyextras()
           exports['NRP-notify']:DoHudText('inform', "Extras Applied")
           Wait(1000)
