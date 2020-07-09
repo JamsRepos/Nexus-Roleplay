@@ -363,6 +363,7 @@ Citizen.CreateThread(function()
     if IsControlJustPressed(0, 38) then
      if v.qty + getQuantity() <= 120 then
         TriggerServerEvent('inventory:pickup', k, v.item, v.qty, v.meta)
+        TriggerServerEvent("core:log", tostring("[PICKUP] "..GetPlayerName(PlayerId()).."("..PlayerId()..") picked up "..v.qty.."x "..v.name.."("..v.item..") off the ground."), "item")
         TriggerEvent("mythic_progbar:client:progress", {
             name = "pickingup_item",
             duration = 3000,

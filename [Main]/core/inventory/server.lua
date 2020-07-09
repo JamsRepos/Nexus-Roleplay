@@ -102,7 +102,6 @@ AddEventHandler('inventory:pickup', function(id, item, qty, meta)
    user.addQuantity(item, qty, meta)
    table.remove(droppedItems, id)
    TriggerClientEvent("inventory:droppeditems", -1, droppedItems)
-   TriggerEvent("core:log", tostring("[PICKUP] "..GetPlayerName(source).."("..source..") picked up "..qty.."x "..item.."("..id..") off the ground."), "item")
   end
  end)
 end)
