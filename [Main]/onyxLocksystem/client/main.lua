@@ -88,7 +88,7 @@ Citizen.CreateThread(function()
                 local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
                 toggleLock(veh)
             else
-                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
+                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 3.0, 0, 70)
                 if DoesEntityExist(veh) then
                     toggleLock(veh)
                 end
