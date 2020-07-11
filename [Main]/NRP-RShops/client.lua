@@ -125,6 +125,31 @@ AddEventHandler('hud:updatepresence', function(copss)
  currentPolice = copss
 end)
 
+RegisterCommand("boat", function()
+  local b = ("predator")
+  if DecorGetBool(GetPlayerPed(-1), isOfficer) then
+      if IsEntityInWater(GetPlayerPed(-1)) then 
+          local boat = GetHashKey(b)
+  
+          RequestModel(boat)
+          while not HasModelLoaded(boat) do
+              RequestModel(boat)
+              Citizen.Wait(0)
+          end
+      
+          local x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), false))
+          local vehicle = CreateVehicle(boat, x, y, z, 0.0, true, false)
+          SetEntityAsMissionEntity(vehicle, true, true)
+          exports['NRP-notify']:DoHudText('success', 'You have taken out a Police Predator')
+      else
+          exports['NRP-notify']:DoHudText('error', 'You are not in water')
+      end
+  else 
+      exports['NRP-notify']:DoHudText('inform', 'You are not permitted to take out a boat')
+  end
+
+end)
+
 --- NPC ROBBING
 
 local robbedRecently = false
