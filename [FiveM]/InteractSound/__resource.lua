@@ -28,7 +28,7 @@ files({
     'client/html/sounds/ring.ogg',
     'client/html/sounds/lock.ogg',
     'client/html/sounds/Firearmdis.ogg',
-    'client/html/sounds/VTheft.ogg',
+    'client/html/sounds/handcuff.ogg',
     'client/html/sounds/get_out_of_here_now.ogg',
     'client/html/sounds/CDScomp.ogg',
     'client/html/sounds/move_along_people.ogg',

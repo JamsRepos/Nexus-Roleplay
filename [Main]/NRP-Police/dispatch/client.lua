@@ -1,3 +1,50 @@
+local currentJob = nil
+local disableNotifs = false
+
+RegisterNetEvent('nrp:clNotify')
+AddEventHandler('nrp:clNotify', function(pData)
+    if pData ~= nil then
+        if pData.recipientList then
+            if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
+              currentJob = "police"
+            elseif DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+              currentJob = "ems"
+            else
+              currentJob = "none"
+            end
+            if isInService and (currentJob == pData.recipientList[1].name or currentJob == pData.recipientList[2].name) then
+                SendNUIMessage({type = "alerts", info = pData, job = currentJob})
+                PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
+            end
+        end
+    end
+end)
+
+RegisterNetEvent('nrp:dispatch:notify')
+AddEventHandler('nrp:dispatch:notify', function(alertType, additionalInformation)
+    street = GetTheStreet()
+    local job = false
+    
+    if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
+        job = true
+        if alertType == "10-20" or alertType == "10-33" then
+          job = false
+        end
+    elseif DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+        job = true
+    end
+
+    if not job then
+        if additionalInformation ~= nil then
+          data = {dispatchCode = alertType, street = playerStreetsLocation, extra = additionalInformation}
+        else
+          data = {dispatchCode = alertType, street = playerStreetsLocation}
+        end
+        local suspectLocation = getSuspectLocation()
+        TriggerServerEvent('nrp:svNotify', data, suspectLocation.pos)
+    end
+end)
+
 RegisterNetEvent('dispatch:toggle')
 AddEventHandler('dispatch:toggle', function(status)
   SendNUIMessage({
@@ -77,8 +124,11 @@ end)
 RegisterNetEvent("dispatch:robbery")
 AddEventHandler("dispatch:robbery", function()
  local suspectSex = getSuspectSex()
- local suspectLocation = getSuspectLocation()
- TriggerServerEvent('dispatch:robbery', suspectLocation, suspectSex)
+ TriggerEvent('core:getPlayers', function(players)
+  for i in pairs(players)do
+    TriggerEvent('nrp:dispatch:notify', '10-31B', json.encode({{civrobSex=suspectSex}}))
+  end 
+end)
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'CDScomp', 0.05)
 end
@@ -142,8 +192,7 @@ end)
 RegisterNetEvent("dispatch:cds")
 AddEventHandler("dispatch:cds", function()
  local suspectSex = getSuspectSex()
- local suspectLocation = getSuspectLocation()
- TriggerServerEvent('dispatch:cds', suspectLocation, suspectSex)
+  TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{drugsaleSex=suspectSex}}))
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'CDScomp', 0.05)
 end
@@ -174,7 +223,8 @@ end)
 --== Melee Reports
 RegisterNetEvent('dispatch:vehiclePos')
 AddEventHandler('dispatch:vehiclePos', function(pos)
- if isInService then
+  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
+  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
   local transT = 250
   local thiefBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
   SetBlipSprite(thiefBlip, 10)
@@ -218,7 +268,8 @@ end)
 --== Gun Shots Reports
 RegisterNetEvent('dispatch:shotPos')
 AddEventHandler('dispatch:shotPos', function(pos)
- if isInService then
+  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
+  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
   local transG = 250
   local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
   SetBlipSprite(gunshotBlip,  1)
@@ -243,13 +294,10 @@ Citizen.CreateThread(function()
   if IsPedShooting(GetPlayerPed(-1)) then
    if GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 317205821 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 883325847 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 101631238 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 911657153 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 1198879012 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= GetHashKey("WEAPON_BALL") then
     if not IsSuppressed() and NearestNPC() then
-	 local suspectSex = getSuspectSex()
-	 local suspectLocation = getSuspectLocation()
-    Wait(1000)
-	 TriggerServerEvent('dispatch:shot', suspectLocation, suspectSex)
-  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
-   TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
-end
+   local suspectSex = getSuspectSex()
+   local suspectLocation = getSuspectLocation()
+    TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{gunshotSex=suspectSex}}))
+  Wait(2500)
    end
   end
  end
@@ -366,4 +414,32 @@ function getSuspectLocation()
  else 
   return {street1 = GetStreetNameFromHashKey(s1), street2 = GetStreetNameFromHashKey(s2), both = true, pos = {x = pos.x, y = pos.y, z = pos.z}}
  end
+end
+
+local zoneNames = {AIRP = "Los Santos International Airport",ALAMO = "Alamo Sea",ALTA = "Alta",ARMYB = "Fort Zancudo",BANHAMC = "Banham Canyon Dr",BANNING = "Banning",BAYTRE = "Baytree Canyon", BEACH = "Vespucci Beach",BHAMCA = "Banham Canyon",BRADP = "Braddock Pass",BRADT = "Braddock Tunnel",BURTON = "Burton",CALAFB = "Calafia Bridge",CANNY = "Raton Canyon",CCREAK = "Cassidy Creek",CHAMH = "Chamberlain Hills",CHIL = "Vinewood Hills",CHU = "Chumash",CMSW = "Chiliad Mountain State Wilderness",CYPRE = "Cypress Flats",DAVIS = "Davis",DELBE = "Del Perro Beach",DELPE = "Del Perro",DELSOL = "La Puerta",DESRT = "Grand Senora Desert",DOWNT = "Downtown",DTVINE = "Downtown Vinewood",EAST_V = "East Vinewood",EBURO = "El Burro Heights",ELGORL = "El Gordo Lighthouse",ELYSIAN = "Elysian Island",GALFISH = "Galilee",GALLI = "Galileo Park",golf = "GWC and Golfing Society",GRAPES = "Grapeseed",GREATC = "Great Chaparral",HARMO = "Harmony",HAWICK = "Hawick",HORS = "Vinewood Racetrack",HUMLAB = "Humane Labs and Research",JAIL = "Bolingbroke Penitentiary",KOREAT = "Little Seoul",LACT = "Land Act Reservoir",LAGO = "Lago Zancudo",LDAM = "Land Act Dam",LEGSQU = "Legion Square",LMESA = "La Mesa",LOSPUER = "La Puerta",MIRR = "Mirror Park",MORN = "Morningwood",MOVIE = "Richards Majestic",MTCHIL = "Mount Chiliad",MTGORDO = "Mount Gordo",MTJOSE = "Mount Josiah",MURRI = "Murrieta Heights",NCHU = "North Chumash",NOOSE = "N.O.O.S.E",OCEANA = "Pacific Ocean",PALCOV = "Paleto Cove",PALETO = "Paleto Bay",PALFOR = "Paleto Forest",PALHIGH = "Palomino Highlands",PALMPOW = "Palmer-Taylor Power Station",PBLUFF = "Pacific Bluffs",PBOX = "Pillbox Hill",PROCOB = "Procopio Beach",RANCHO = "Rancho",RGLEN = "Richman Glen",RICHM = "Richman",ROCKF = "Rockford Hills",RTRAK = "Redwood Lights Track",SanAnd = "San Andreas",SANCHIA = "San Chianski Mountain Range",SANDY = "Sandy Shores",SKID = "Mission Row",SLAB = "Stab City",STAD = "Maze Bank Arena",STRAW = "Strawberry",TATAMO = "Tataviam Mountains",TERMINA = "Terminal",TEXTI = "Textile City",TONGVAH = "Tongva Hills",TONGVAV = "Tongva Valley",VCANA = "Vespucci Canals",VESP = "Vespucci",VINE = "Vinewood",WINDF = "Ron Alternates Wind Farm",WVINE = "West Vinewood",ZANCUDO = "Zancudo River",ZP_ORT = "Port of South Los Santos",ZQ_UAR = "Davis Quartz"}
+
+function GetTheStreet()
+    local x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+    local currentStreetHash, intersectStreetHash = GetStreetNameAtCoord(x, y, z, currentStreetHash, intersectStreetHash)
+    currentStreetName = GetStreetNameFromHashKey(currentStreetHash)
+    intersectStreetName = GetStreetNameFromHashKey(intersectStreetHash)
+    zone = tostring(GetNameOfZone(x, y, z))
+    playerStreetsLocation = zoneNames[tostring(zone)]
+
+    if not zone then
+        zone = "UNKNOWN"
+        zoneNames['UNKNOWN'] = zone
+    elseif not zoneNames[tostring(zone)] then
+        local undefinedZone = zone .. " " .. x .. " " .. y .. " " .. z
+        zoneNames[tostring(zone)] = "Undefined Zone"
+    end
+
+    if intersectStreetName ~= nil and intersectStreetName ~= "" then
+        playerStreetsLocation = currentStreetName .. " | " .. intersectStreetName .. " | " .. zoneNames[tostring(zone)]
+    elseif currentStreetName ~= nil and currentStreetName ~= "" then
+        playerStreetsLocation = currentStreetName .. " | " .. zoneNames[tostring(zone)]
+    else
+        playerStreetsLocation = zoneNames[tostring(zone)]
+    end
+
 end

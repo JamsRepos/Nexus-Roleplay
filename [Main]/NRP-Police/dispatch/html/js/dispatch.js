@@ -7,7 +7,7 @@ $(function(){
 			if (item !== undefined && item.type === "dispatch") {
                 /* if the display is true, it will show */
 				if (item.display === true) {
-					$('body').show();
+					$('.container').show();
 					var table = item.onduty;
 					if (table != null) {
 						var string = table.toString();
@@ -15,7 +15,7 @@ $(function(){
 						document.getElementById('duty-list').innerHTML = "<h2>Dispatch</h2>" + onduty;
 					}            
 				} else{
-                    $('body').hide();
+                    $('.container').hide();
                 }
 			}
 		});

@@ -67,7 +67,7 @@ function xzbigprize()
 	 elseif easywin == 5 then
 	  exports['NRP-notify']:DoHudText('error', 'You Suck At This, Empty Handed')
 	 elseif easywin == 6 then
-	  exports['NRP-notify']:DoHudText('inform', 'You Stole'..wick..' 10k Cash Stacks!')
+	  exports['NRP-notify']:DoHudText('inform', 'You Stole '..wick..' 10k Cash Stacks!')
 	  TriggerEvent("inventory:addQty", 152, wick )
 	 elseif easywin == 7 then
 	  exports['NRP-notify']:DoHudText('success', "You Grabbed "..necklace.." Diamond Necklaces and "..ring.." Gold Rings!!")
@@ -76,12 +76,12 @@ function xzbigprize()
 	 elseif easywin == 8 then    
 	  exports['NRP-notify']:DoHudText('error', 'You Got Nothing')
 	 elseif easywin == 9 then
-	  exports['NRP-notify']:DoHudText('success', 'You Stole'..john..' 5k Cash Stacks!')
+	  exports['NRP-notify']:DoHudText('success', 'You Stole '..john..' 5k Cash Stacks!')
 	  TriggerEvent("inventory:addQty", 153, john )
 	 elseif easywin == 10 then    
 	  exports['NRP-notify']:DoHudText('error', 'You Got Nothing')
 	 elseif easywin == 11 then  
-	  exports['NRP-notify']:DoHudText('success', 'You Stole'..brad..' 1k Cash Stacks!')
+	  exports['NRP-notify']:DoHudText('success', 'You Stole '..brad..' 1k Cash Stacks!')
 	  TriggerEvent("inventory:addQty", 154, brad )
 	 elseif easywin == 12 then    
 	  exports['NRP-notify']:DoHudText('error', 'You Suck At This, Empty Handed')

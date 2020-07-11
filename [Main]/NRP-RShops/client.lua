@@ -40,15 +40,31 @@ end)
 RegisterNetEvent('xzurvRobbery:started')
 AddEventHandler('xzurvRobbery:started', function()
   storeRobberyInProgress = true
-  TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_PARKING_METER', false, true) 
-  local status = ProgressBar('Robbing Store', 2200)
-  if status then 
-   ClearPedTasksImmediately(GetPlayerPed(-1))
-   if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), storeLoc.x, storeLoc.y, storeLoc.z, true) < 6.0) then
-    TriggerServerEvent('robberies:end', 'Store', storeLoc, math.random(10000,15000))
-    Wait(25000)
-   end
-  end
+  TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_PARKING_METER', false, true)
+
+  TriggerEvent("mythic_progbar:client:progress", {
+    name = "robbing_store",
+    duration = 120000,
+    label = "Robbing Store",
+    useWhileDead = false,
+    canCancel = true,
+    controlDisables = {
+        disableMovement = false,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = false,
+    },
+  }, function(status)
+      if not status then
+        if storeRobberyInProgress then
+          ClearPedTasksImmediately(GetPlayerPed(-1))
+          if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), storeLoc.x, storeLoc.y, storeLoc.z, true) < 6.0) then
+          TriggerServerEvent('robberies:end', 'Store', storeLoc, math.random(10000,15000))
+          Wait(25000)
+          end
+        end
+      end
+  end)
 end) 
 
 Citizen.CreateThread(function()
@@ -57,6 +73,7 @@ Citizen.CreateThread(function()
   if storeRobberyInProgress then
    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), storeLoc.x, storeLoc.y, storeLoc.z, true) > 7.0) then
     TriggerServerEvent('robberies:cancel', 'Store', storeLoc)
+    TriggerEvent("mythic_progbar:client:cancel")
     storeRobberyInProgress = false 
     Wait(25000)
    end

@@ -9,7 +9,8 @@ RegisterServerEvent('NRP-holdupbank:toofar')
 AddEventHandler('NRP-holdupbank:toofar', function(robb)
 	local source = source
 	rob = false
-	AlertPolice('BANK ROBBERY :  Robbery at Principal Bank Cancelled :  RED ALERT!! ')
+	--('BANK ROBBERY :  Robbery at Principal Bank Cancelled :  RED ALERT!! ')
+	TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted criminals leaving"}}))
  TriggerEvent('core:getPlayerFromId', source, function(user)
   if(robbers[source])then
 	 TriggerClientEvent('NRP-holdupbank:toofarlocal', source)
@@ -22,7 +23,8 @@ RegisterServerEvent('NRP-holdupbank:toofarhack')
 AddEventHandler('NRP-holdupbank:toofarhack', function(robb)
 	local source = source
 	rob = false
- AlertPolice('BANK ROBBERY :  Robbery at Principal Bank Cancelled :  RED ALERT!! ')
+ --AlertPolice('BANK ROBBERY :  Robbery at Principal Bank Cancelled :  RED ALERT!! ')
+ TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted criminals leaving"}}))
  TriggerEvent('core:getPlayerFromId', source, function(user)
   if(robbers[source])then
 	TriggerClientEvent('NRP-holdupbank:toofarlocal', source)
@@ -34,13 +36,15 @@ end)
 
 RegisterServerEvent('NRP-holdupbank:hackfail')
 AddEventHandler('NRP-holdupbank:hackfail', function()
-	AlertPolice('BANK ROBBERY :  Somebody is Attempting to Hack there way into the Principal Bank !! RED ALERT !!')
+	--AlertPolice('BANK ROBBERY :  Somebody is Attempting to Hack there way into the Principal Bank !! RED ALERT !!')
+	TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted an attempted door hack"}}))
 end)
 
 
 RegisterServerEvent('NRP-holdupbank:robfail')
 AddEventHandler('NRP-holdupbank:robfail', function()
-	AlertPolice('BANK ROBBERY :  Somebody Has Been Seen On Camera in the Vault of Principal Bank!! RED ALERT !!')
+	--AlertPolice('BANK ROBBERY :  Somebody Has Been Seen On Camera in the Vault of Principal Bank!! RED ALERT !!')
+	TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted an attempted vault breach"}}))
 end)
 
 RegisterServerEvent('NRP-holdupbank:rob')
@@ -57,12 +61,12 @@ AddEventHandler('NRP-holdupbank:rob', function(robb)
 	if rob == false then	
 		rob = true
 	  for i in pairs(players)do	
-	    AlertPolice('BANK ROBBERY :  Robbery in progress at Principal Bank :  RED ALERT!! ')
 		TriggerClientEvent('NRP-holdupbank:killblip', players[i])							
 		TriggerClientEvent('NRP-holdupbank:setblip', players[i], Banks[robb].position)
-		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "Robbery starterd"})
+		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "Robbery Started"})
 		Wait(3000)
-		AlertPolice('BANK ROBBERY : Get on Scene ASAP Robbery in progress at Principal Bank :  RED ALERT!! ')
+		--AlertPolice('BANK ROBBERY : Get on Scene ASAP Robbery in progress at Principal Bank :  RED ALERT!! ')
+		TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Vault alarm has been triggered"}}))
 		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "Vault alarm triggered"})
 		TriggerClientEvent('NRP-holdupbank:currentlyrobbing', source, robb)
 		Banks[robb].lastrobbed = os.time()
@@ -75,7 +79,8 @@ AddEventHandler('NRP-holdupbank:rob', function(robb)
 				TriggerClientEvent('NRP-holdupbank:robberycomplete', savedSource, job)
 				if(user)then
                   user.addDirtyMoney(bank.reward)  --- change
-				  AlertPolice('BANK ROBBERY :  Robbery at Principal Bank Has Ended ')
+				  --AlertPolice('BANK ROBBERY :  Robbery at Principal Bank Has Ended ')
+				  TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted the vault is clean"}}))
 				end
 			end
 		end)
@@ -114,7 +119,8 @@ AddEventHandler('NRP-holdupbank:plantbomb', function(robb)
 	 TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = 'Banks Been Robbed Recently!'})
         return
     end
-	AlertPolice('BANK ROBBERY : Bomb is Being Planted at Principal Bank : RED ALERT!!')
+	--AlertPolice('BANK ROBBERY : Bomb is Being Planted at Principal Bank : RED ALERT!!')
+	TriggerClientEvent('nrp:dispatch:notify', source, '10-90', json.encode({{robberyMessage="Cameras have spotted a bomb being planted"}}))
     TriggerClientEvent('NRP-holdupbank:plantingbomb', source, robb, Banks[robb])
     robbers[source] = robb
 	local savedSource = source
@@ -122,9 +128,6 @@ AddEventHandler('NRP-holdupbank:plantbomb', function(robb)
         if(robbers[savedSource])then
             rob = false
 		 TriggerClientEvent('NRP-holdupbank:plantbombcomplete', savedSource, Banks[robb])
-		 if(user)then
-			AlertPolice('BANK ROBBERY : Bomb Has Been Planted at Principal Bank : RED ALERT!!')
-		  end
 	    end
     end)
   end

@@ -262,12 +262,9 @@ AddEventHandler('onyx:beginHotwire', function(plate)
             local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(veh)))
             local vehicleColour = getVehicleColours(veh)
             local suspectSex = getSuspectSex()
-            local suspectLocation = getSuspectLocation()
+            local entPos = GetEntityCoords(veh)
 
-            TriggerServerEvent('dispatch:vehicle', suspectLocation, suspectSex, vehicleName, vehPlate, vehicleColour)
-            if DecorGetBool(GetPlayerPed(-1), "isOfficer") and DecorGetBool(GetPlayerPed(-1), "isInService") then
-                TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
-            end
+            TriggerEvent('nrp:dispatch:notify', '10-35', json.encode({{cartheftSex=suspectSex,cartheftModel=vehicleName,cartheftPlate=vehPlate,cartheftColour=vehicleColour}}))
         end
     end
 
@@ -389,19 +386,15 @@ Citizen.CreateThread(function()
                         Wait(400)
                         exports['NRP-notify']:DoHudText('inform', 'They do not hand over the keys')
                     else
-                        local plate = GetVehicleNumberPlateText(prevCar)
+                        local vehPlate = GetVehicleNumberPlateText(prevCar)
                         local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(prevCar)))
                         local vehicleColour = getVehicleColours(prevCar)
                         local suspectSex = getSuspectSex()
-                        local suspectLocation = getSuspectLocation()
-            
-                        TriggerServerEvent('dispatch:vehicle', suspectLocation, suspectSex, vehicleName, plate, vehicleColour)
-                        if DecorGetBool(GetPlayerPed(-1), "isOfficer") and DecorGetBool(GetPlayerPed(-1), "isInService") then
-                            TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
-                        end
+
+                        TriggerEvent('nrp:dispatch:notify', '10-35', json.encode({{cartheftSex=suspectSex,cartheftModel=vehicleName,cartheftPlate=vehPlate,cartheftColour=vehicleColour}}))
 
                         Wait(1000)
-                        givePlayerKeys(plate)
+                        givePlayerKeys(vehPlate)
                         exports['NRP-notify']:DoHudText('inform', 'You rob the keys')
                     end
                     SetBlockingOfNonTemporaryEvents(prevPed, false)
@@ -466,16 +459,16 @@ end
 
 function hasKeys(plate)
     local vehPlate = plate
-    for k, v in ipairs(vehicles) do
-        if v == vehPlate or v == vehPlate .. ' ' then
-            return true
-        end
-    end
     if exports['core']:HasKey(vehPlate) then
         return true
     end
     if DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
         return true
+    end
+    for k, v in ipairs(vehicles) do
+        if v == vehPlate or v == vehPlate .. ' ' then
+            return true
+        end
     end
     return false
 end
@@ -516,8 +509,8 @@ function getSuspectLocation()
     local pos = GetEntityCoords(GetPlayerPed(-1),  true)
     local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, pos.x, pos.y, pos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
     if s2 == 0 then 
-        return {street1 = GetStreetNameFromHashKey(s1), street2 = GetStreetNameFromHashKey(s2), both = false, pos = {x = pos.x, y = pos.y, z = pos.z}}
+     return {street1 = GetStreetNameFromHashKey(s1), street2 = GetStreetNameFromHashKey(s2), both = false, pos = {x = pos.x, y = pos.y, z = pos.z}}
     else 
-        return {street1 = GetStreetNameFromHashKey(s1), street2 = GetStreetNameFromHashKey(s2), both = true, pos = {x = pos.x, y = pos.y, z = pos.z}}
+     return {street1 = GetStreetNameFromHashKey(s1), street2 = GetStreetNameFromHashKey(s2), both = true, pos = {x = pos.x, y = pos.y, z = pos.z}}
     end
-end
+   end

@@ -732,14 +732,9 @@ Citizen.CreateThread(function()
  local currentItemIndex5 = 1
  local Test = 1
  local currentItemIndex7 = 1
- local dispatch = false
  while true do
   Wait(5)
   if WarMenu.IsMenuOpened('police_toolkit') then
-    if isInService then
-      TriggerEvent('dispatch:toggle', false)
-      dispatch = true
-    end
    if WarMenu.Button('Missions') then
     WarMenu.OpenMenu('police_missions')
    elseif WarMenu.Button('Escort') then
@@ -843,9 +838,11 @@ Citizen.CreateThread(function()
    elseif WarMenu.Button('Panic') then
     local pos = GetEntityCoords(GetPlayerPed(-1))
     TriggerServerEvent('police:triggerpanic', pos.x, pos.y, pos.z)
+    TriggerEvent('nrp:dispatch:notify', '10-33')
    elseif WarMenu.Button('10-20') then
     local pos = GetEntityCoords(GetPlayerPed(-1))
     TriggerServerEvent('police:1020', pos.x, pos.y, pos.z)
+    TriggerEvent('nrp:dispatch:notify', '10-20')
    elseif WarMenu.Button('Revive') then
     local t, distance = GetClosestPlayer()
     if(distance ~= -1 and distance < 5) then
@@ -916,11 +913,6 @@ Citizen.CreateThread(function()
       end
      end
    end
-  else
-    if isInService and dispatch then
-      TriggerEvent('dispatch:toggle', true)
-      dispatch = false
-    end
   end
   WarMenu.Display()
  end
@@ -1116,9 +1108,9 @@ AddEventHandler('police:handcuff', function()
   else
     TaskPlayAnim(GetPlayerPed(-1), "mp_arrest_paired", "crook_p2_back_right", 8.0, -8, -1, 48, 0, 0, 0, 0)
     Wait(3100)
-    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "VTheft", 0.5)
+    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "handcuff", 0.5)
     Wait(600)
-    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "VTheft", 0.5)
+    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "handcuff", 0.5)
    Wait(4000)
    if GetEntityModel(PlayerPedId()) == GetHashKey("mp_f_freemode_01") then prevFemaleVariation = GetPedDrawableVariation(PlayerPedId(), 7) SetPedComponentVariation(PlayerPedId(), 7, 25, 0, 0) elseif GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then prevMaleVariation = GetPedDrawableVariation(PlayerPedId(), 7) SetPedComponentVariation(PlayerPedId(), 7, 41, 0, 0) end
    SetEnableHandcuffs(PlayerPedId(), true)
@@ -1303,7 +1295,6 @@ end)
 RegisterNetEvent('police:panic')
 AddEventHandler('police:panic', function(x,y,z)
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
-  exports['NRP-notify']:DoLongHudText('error', "An Officer Is In Distress. All Availble Units Identify & Respond Code 3.")
   local transG = 250
   local location = AddBlipForCoord(x,y,z)
   SetBlipSprite(location,  161)
@@ -1385,7 +1376,6 @@ end)
 RegisterNetEvent('police:11020')
 AddEventHandler('police:11020', function(x,y,z)
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
-  exports['NRP-notify']:DoHudText('inform', "An Officer Dropped a New 10-20")
   local transG = 250
   local location = AddBlipForCoord(x,y,z)
   SetBlipSprite(location,  1)

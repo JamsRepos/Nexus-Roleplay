@@ -13,17 +13,12 @@ Citizen.CreateThread(function()
  local selectedmechanic = 1 
  local currentOption = 1
  local selectedOption = 1
- local dispatch = false
  while true do 
   Wait(2)
   if DecorGetBool(GetPlayerPed(-1), "isParamedic") then
    if isInService then if not IsPedInAnyVehicle(GetPlayerPed(-1)) then drawUI(0.514, 1.375, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) else drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) end end
    -- Main Menu
    if WarMenu.IsMenuOpened('ems_toolkit') then
-    if isInService and not dispatch then
-        TriggerEvent('dispatch:toggle', false)
-        dispatch = true
-      end
     if WarMenu.ComboBox('Revive', {"Player", "NPC"}, currentOption, selectedOption, function(option)
       currentOption = option selectedOption = option
      end) then
@@ -186,11 +181,6 @@ Citizen.CreateThread(function()
      end 
     end
     WarMenu.Display()
-  else
-    if isInService and dispatch then
-      TriggerEvent('dispatch:toggle', true)
-      dispatch = false
-    end
    end
   end
  end

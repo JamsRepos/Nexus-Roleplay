@@ -24,7 +24,8 @@ files {
 	'dispatch/html/css/style.css',
 	'dispatch/html/fonts/pricedown.ttf',
 	'dispatch/html/fonts/gta-ui.ttf',
-	'dispatch/html/js/app.js',
+	'dispatch/html/js/dispatch.js',
+	'dispatch/html/js/alerts.js',
 	'dispatch/html/index.html',
 }
 
