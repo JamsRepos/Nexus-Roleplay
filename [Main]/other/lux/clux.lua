@@ -460,6 +460,7 @@ Citizen.CreateThread(function()
 								end
 								
 							-- POWERCALL
+							--[[
 							elseif IsDisabledControlJustReleased(0, 172) then
 								if state_pwrcall[veh] == true then
 									PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
@@ -472,6 +473,7 @@ Citizen.CreateThread(function()
 										count_bcast_timer = delay_bcast_timer
 									end
 								end
+							--]]
 								
 							end
 							
