@@ -118,7 +118,7 @@ function OnDuty()
     Wait(0);
   end
   if (GetOnscreenKeyboardResult()) then
-   local result = tonumber(GetOnscreenKeyboardResult())
+   local result = GetOnscreenKeyboardResult()
    TriggerServerEvent('dispatch:duty', true, result)
    TriggerEvent("police:ondutynotification")
   end
