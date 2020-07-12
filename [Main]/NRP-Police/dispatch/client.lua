@@ -192,7 +192,7 @@ end)
 RegisterNetEvent("dispatch:cds")
 AddEventHandler("dispatch:cds", function()
  local suspectSex = getSuspectSex()
-  TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{drugsaleSex=suspectSex}}))
+  TriggerEvent('nrp:dispatch:notify', '10-60', json.encode({{drugsaleSex=suspectSex}}))
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'CDScomp', 0.05)
 end
