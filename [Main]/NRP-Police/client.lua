@@ -1231,6 +1231,7 @@ Citizen.CreateThread(function()
           DisableControlAction(0, 23, true) -- INPUT_ENTER
           DisableControlAction(0, 75, true) -- INPUT_VEH_EXIT
           DisableControlAction(0, 288, true)
+          DisableControlAction(0, 289, true)
           SetPedDropsWeapon(ped)
           if IsPedRunning(ped) then
            Wait(1000)
