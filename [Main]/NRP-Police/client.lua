@@ -732,6 +732,9 @@ Citizen.CreateThread(function()
  local currentItemIndex5 = 1
  local Test = 1
  local currentItemIndex7 = 1
+ local Cuffs = 1
+ local currentItemIndexCuffs = 1
+ local selectedItemIndexCuffs = 1
  while true do
   Wait(5)
   if WarMenu.IsMenuOpened('police_toolkit') then
@@ -744,28 +747,33 @@ Citizen.CreateThread(function()
       else 
         exports['NRP-notify']:DoHudText('inform',  "No Player Near")
       end
-   elseif WarMenu.Button('Handcuff') then
-    local t, distance = GetClosestPlayer()
-    if(distance ~= -1 and distance < 3) then 
-      if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then 
-        exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!") 
-      else
-        if not IsPedCuffed(GetPlayerPed(t)) then 
+    elseif WarMenu.ComboBox('Handcuffs', {'Cuff','Un-Cuff'}, currentItemIndexCuffs, Cuffs, function(selectedItemIndexCuffs)
+      currentItemIndexCuffs = selectedItemIndexCuffs Cuffs = selectedItemIndexCuffs
+      end) then
+      local t, distance = GetClosestPlayer()
+      if Cuffs == 1 then
+        if(distance ~= -1 and distance < 3) then
           RequestAnimDict('mp_arrest_paired')
           while not HasAnimDictLoaded('mp_arrest_paired') do
            Citizen.Wait(0)
           end
           TaskPlayAnim(GetPlayerPed(-1), "mp_arrest_paired", "cop_p2_back_right", 8.0, -8, -1, 48, 0, 0, 0, 0)
-          TriggerServerEvent('police:drag', GetPlayerServerId(t))
-        end
-        TriggerServerEvent('police:handcuff', GetPlayerServerId(t))
-        if AnimationComplete(GetPlayerPed(-1), "mp_arrest_paired", "cop_p2_back_right", 0.89, 300) then
-          ClearPedTasksImmediately(GetPlayerPed(-1))
+          TriggerServerEvent('police:handcuff:toggle', GetPlayerServerId(t), true)
+        else
+          exports['NRP-notify']:DoHudText('inform',  "No Player Near") 
         end
       end
-    else 
-      exports['NRP-notify']:DoHudText('inform',  "No Player Near")  
-   end
+
+      if Cuffs == 2 then
+        if(distance ~= -1 and distance < 5) then
+          TriggerServerEvent('police:handcuff:toggle', GetPlayerServerId(t), false)
+        else
+          exports['NRP-notify']:DoHudText('inform',  "No Player Near") 
+        end
+      end
+      if AnimationComplete(GetPlayerPed(-1), "mp_arrest_paired", "cop_p2_back_right", 0.89, 300) then
+        ClearPedTasksImmediately(GetPlayerPed(-1))
+      end
    elseif WarMenu.Button('Props Menu') then
     if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else WarMenu.OpenMenu('police_props') end
    elseif WarMenu.Button('Plate Check') then
@@ -928,6 +936,33 @@ RegisterCommand('escort', function(source, args, rawCommand)
    else exports['NRP-notify']:DoHudText('inform',  "No Player Near") 
    end
   end
+end)
+
+RegisterCommand("boat", function()
+  local b = ("predator")
+  if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
+      if IsEntityInWater(GetPlayerPed(-1)) then 
+          local boat = GetHashKey(b)
+  
+          RequestModel(boat)
+          while not HasModelLoaded(boat) do
+              RequestModel(boat)
+              Citizen.Wait(0)
+          end
+
+          local x,y,z = table.unpack(GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 8.0, 0.5))
+          local vehicle = CreateVehicle(boat, x, y, z, 0.0, true, false)
+          DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
+          DecorSetInt(vehicle, "_Fuel_Level", 100000)
+          SetEntityAsMissionEntity(vehicle, true, true)
+          exports['NRP-notify']:DoHudText('success', 'You have taken out a Police Predator')
+      else
+          exports['NRP-notify']:DoHudText('error', 'You are not in water')
+      end
+  else 
+      exports['NRP-notify']:DoHudText('error', 'You are not permitted to take out a boat')
+  end
+
 end)
 
 Citizen.CreateThread(function()
@@ -1117,6 +1152,36 @@ AddEventHandler('police:handcuff', function()
    TaskPlayAnim(PlayerPedId(), "mp_arresting", "idle", 8.0, -8, -1, 49, 0, 0, 0, 0)
   end
   cuffed = not cuffed
+  changed = true
+ end
+end)
+
+RegisterNetEvent('police:handcuff:toggle')
+AddEventHandler('police:handcuff:toggle', function(status)
+ RequestAnimDict("mp_arresting")
+ RequestAnimDict('mp_arrest_paired')
+ while not HasAnimDictLoaded("mp_arresting") or not HasAnimDictLoaded('mp_arrest_paired') do
+  Citizen.Wait(0)
+ end
+ if not IsPedInAnyVehicle(GetPlayerPed(-1)) then
+  if not status then
+   ClearPedTasks(PlayerPedId())
+   SetEnableHandcuffs(PlayerPedId(), false)
+   UncuffPed(PlayerPedId())
+   if GetEntityModel(PlayerPedId()) == GetHashKey("mp_f_freemode_01") then SetPedComponentVariation(PlayerPedId(), 7, prevFemaleVariation, 0, 0) elseif GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then SetPedComponentVariation(PlayerPedId(), 7, prevMaleVariation, 0, 0) end
+   cuffed = false
+  else
+    TaskPlayAnim(GetPlayerPed(-1), "mp_arrest_paired", "crook_p2_back_right", 8.0, -8, -1, 48, 0, 0, 0, 0)
+    Wait(3100)
+    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "handcuff", 0.5)
+    Wait(600)
+    TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 10, "handcuff", 0.5)
+   Wait(4000)
+   if GetEntityModel(PlayerPedId()) == GetHashKey("mp_f_freemode_01") then prevFemaleVariation = GetPedDrawableVariation(PlayerPedId(), 7) SetPedComponentVariation(PlayerPedId(), 7, 25, 0, 0) elseif GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01") then prevMaleVariation = GetPedDrawableVariation(PlayerPedId(), 7) SetPedComponentVariation(PlayerPedId(), 7, 41, 0, 0) end
+   SetEnableHandcuffs(PlayerPedId(), true)
+   TaskPlayAnim(PlayerPedId(), "mp_arresting", "idle", 8.0, -8, -1, 49, 0, 0, 0, 0)
+   cuffed = true
+  end
   changed = true
  end
 end)

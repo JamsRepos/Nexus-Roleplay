@@ -153,9 +153,15 @@ AddEventHandler('police:drag', function(target)
   local _source = source
   TriggerClientEvent('police:drag', target, _source)
 end)
+
 RegisterServerEvent('police:handcuff')
 AddEventHandler('police:handcuff', function(t)
  TriggerClientEvent('police:handcuff', t)
+end)
+
+RegisterServerEvent('police:handcuff:toggle')
+AddEventHandler('police:handcuff:toggle', function(t, status)
+ TriggerClientEvent('police:handcuff:toggle', t, status)
 end)
 
 RegisterServerEvent('police:hardcuff')
