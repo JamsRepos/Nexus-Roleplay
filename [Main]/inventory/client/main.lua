@@ -449,7 +449,7 @@ function use(item, meta)
        elseif item == 251 then
           TriggerEvent('items:cuff') 
         elseif item == 261 then
-            TriggerEvent('Radio.Toggle')  
+            TriggerEvent('ls-radio:use')
         elseif item == 288 then
             TriggerEvent('fishing:fishstart', _source)
         elseif item == 289 then

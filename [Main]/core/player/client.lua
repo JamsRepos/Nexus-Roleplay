@@ -6,6 +6,25 @@ local scopedWeapons = {
  3342088282, -- WEAPON_MARKSMANRIFLE
  317205821   -- WEAPON_AUTOSHOTGUN
 }
+
+local muteStockChat= true  -- this mutes normal GTA chat
+
+--Mute Normal Voice
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(10)
+		if muteStockChat then
+			local player = PlayerId()
+			DisableControlAction(0, 249, true) -- N key
+
+			if NetworkIsPlayerTalking(player) then
+				SetPlayerTalkingOverride(player, false)
+			end
+
+		end
+	end
+end)
+
 RegisterNetEvent('xz:getpoints')
 AddEventHandler('xz:getpoints',function(name,value)
   job = name
