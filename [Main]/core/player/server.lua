@@ -101,9 +101,9 @@ AddEventHandler('core:playerRevived', function()
 end)
 
 RegisterServerEvent('core:playerDropped')
-AddEventHandler('core:playerDropped', function(Source)
- local Source = tonumber(Source)
- TriggerEvent("core:getPlayerFromId", Source, function(user)
+AddEventHandler('core:playerDropped', function(source)
+ local source = tonumber(source)
+ TriggerEvent("core:getPlayerFromId", source, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
    ['@money'] = user.getMoney(),
@@ -123,14 +123,19 @@ AddEventHandler('core:playerDropped', function(Source)
   })
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET isOnline=@isonline, current_id=@cid WHERE identifier=@id",{['@id'] = user.getIdentifier(), ['@isonline'] = 0, ['@cid'] = 0})
   TriggerEvent('phone:removePhoneNumber', user.getPhoneNumber())
+  if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37  or user.getJob() == 90 or user.getJob() == 91 then
+	TriggerClientEvent("dutylog:dutyChange", source, "police", false)
+  elseif user.getJob() == 2 or user.getJob() == 50 or user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 or user.getJob() == 56 or user.getJob() == 57 then
+	TriggerClientEvent("dutylog:dutyChange", source, "ems", false)
+  end
  end)
- Users[Source] = nil
+ Users[source] = nil
 end)
 
 RegisterServerEvent('core:characterDisconnect')
 AddEventHandler('core:characterDisconnect', function()
  local source = tonumber(source)
- TriggerEvent("core:getPlayerFromId", Source, function(user)
+ TriggerEvent("core:getPlayerFromId", source, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank, dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
    ['@money'] = user.getMoney(),
@@ -149,6 +154,11 @@ AddEventHandler('core:characterDisconnect', function()
    ['@timers'] = json.encode(user.getTimers()),
   })
   TriggerClientEvent('NRP-Hud:Logout')
+  if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37  or user.getJob() == 90 or user.getJob() == 91 then
+	TriggerClientEvent("dutylog:dutyChange", source, "police", false)
+  elseif user.getJob() == 2 or user.getJob() == 50 or user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 or user.getJob() == 56 or user.getJob() == 57 then
+	TriggerClientEvent("dutylog:dutyChange", source, "ems", false)
+  end
  end)
  Users[source] = nil
 end)

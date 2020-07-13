@@ -10,6 +10,11 @@ local currentVehicle = nil
 local prisped = nil
 local inPDTrans = false
 
+RegisterNetEvent('dutylog:dutyChange')
+AddEventHandler('dutylog:dutyChange', function(job, status)
+  TriggerServerEvent("dutylog:dutyChange", job, status)
+end)
+
 RegisterCommand("policestop", function(source, args, rawCommand)
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
   

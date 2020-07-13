@@ -1,5 +1,108 @@
 local dispatchStatus = {}
 
+local dcname = "Shift Logger" -- bot's name
+local http = "https://discordapp.com/api/webhooks/732089486288224287/m-c36N3tKXKRvg1E_L5dKk2mGJcW_Ze--sOer-NnBozyDAqn7N-VrUe21tiYKJa6pJLq" -- webhook for police
+local http2 = "https://discordapp.com/api/webhooks/732090184287518802/a9jiRRH61alO_U7oK3ltgUVxeRyHL5Y7x5ns3U9i1ukFk2s2B36LrqDG89j_XFBvGrOo" -- webhook for ems (you can add as many as you want)
+
+local timers = { -- if you want more job shifts add table entry here same as the examples below
+    ems = {
+        {} -- don't edit inside
+    },
+    police = {
+        {} -- don't edit inside
+    },
+    -- fbi = {}
+}
+
+function DiscordLog(name, message, color, job)
+    local connect = {
+        {
+            ["color"] = color,
+            ["title"] = "**".. name .."**",
+            ["description"] = message,
+            ["footer"] = {
+                ["text"] = "Copyright © 2020 NexusGTA.com",
+            },
+        }
+    }
+    if job == "police" then
+        PerformHttpRequest(http, function(err, text, headers) end, 'POST', json.encode({username = dcname, embeds = connect}), { ['Content-Type'] = 'application/json' })
+    elseif job == "ems" then
+        PerformHttpRequest(http2, function(err, text, headers) end, 'POST', json.encode({username = dcname, embeds = connect}), { ['Content-Type'] = 'application/json' })
+    end
+end
+
+RegisterServerEvent("dutylog:dutyChange")
+AddEventHandler("dutylog:dutyChange", function(job, status) -- job is job name | if player gone off duty then you must pass it as false, if player gone on duty you must pass it as true
+    local id = source
+
+    if status == false then
+        for i = 1, #timers[job], 1 do
+            if timers[job][i].id == id then
+                local duration = os.time() - timers[job][i].time
+                local date = timers[job][i].date
+                local timetext, header, color
+
+                if job == "police" then
+                    header = "Police Shift"
+                    color = 3447003
+                elseif job == "ems" then
+                    header = "EMS Shift"
+                    color = 15158332
+                end
+                if duration > 0 and duration < 60 then
+                    timetext = tostring(math.floor(duration)).." seconds"
+                elseif duration >= 60 and duration < 3600 then
+                    timetext = tostring(math.floor(duration / 60)).." minutes"
+                elseif duration >= 3600 then
+                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600)) / 60)).." minutes"
+                end
+                DiscordLog(header, "Officer: **"..timers[job][i].name.."**\n Shift duration: **"..timetext.."**\n Start date: **"..date.."**\n End date: **"..os.date("%d/%m/%Y %X").."**", color, job)
+                table.remove(timers[job], i)
+                return
+            end
+        end
+    elseif status == true then
+        TriggerEvent('core:getPlayerFromId', source, function(user)
+            table.insert(timers[job], {id = id, name = user.getIdentity().fullname, time = os.time(), date = os.date("%d/%m/%Y %X")})
+        end)
+    end
+end)
+
+AddEventHandler('playerDropped', function()
+    local id = source
+    local header = nil
+    local color = nil
+
+    for k, v in pairs(timers) do
+        for n = 1, #timers[k], 1 do
+            if timers[k][n].id == id then
+                local duration = os.time() - timers[k][n].time
+                local date = timers[k][n].date
+                local timetext = nil
+
+                if k == "police" then
+                    header = "Police Shift"
+                    color = 3447003
+                elseif k == "ems" then
+                    header = "EMS Shift"
+                    color = 15158332
+                end
+                if duration > 0 and duration < 60 then
+                    timetext = tostring(math.floor(duration)).." seconds"
+                elseif duration >= 60 and duration < 3600 then
+                    timetext = tostring(math.floor(duration / 60)).." minutes"
+                elseif duration >= 3600 then
+                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600)) / 60)).." minutes"
+                end
+                DiscordLog(header, "Steam Name: **"..timers[k][n].name.."**\n Shift Duration: **"..timetext.."**\n Start Date: **"..date.."**\n End Date: **"..os.date("%d/%m/%Y %X").."**", color, k)
+                table.remove(timers[k], n)
+                return
+            end
+        end
+    end
+end)
+
 RegisterServerEvent('police:prisontrans')
 AddEventHandler('police:prisontrans', function(t)
  TriggerClientEvent('police:prisontrans', t)

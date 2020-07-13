@@ -120,6 +120,7 @@ function OnDuty()
   if (GetOnscreenKeyboardResult()) then
    local result = GetOnscreenKeyboardResult()
    TriggerServerEvent('dispatch:duty', true, result)
+   TriggerServerEvent("dutylog:dutyChange", "police", true)
    TriggerEvent("police:ondutynotification")
   end
 end
@@ -129,6 +130,7 @@ function OffDuty()
   TriggerServerEvent("blips:deactivate")
   TriggerServerEvent('police:duty', false)
   TriggerServerEvent('dispatch:duty', false)
+  TriggerServerEvent("dutylog:dutyChange", "police", false)
   if exports.tokovoip_script:isPlayerInChannel(1) then
     exports.tokovoip_script:removePlayerFromRadio(1)
   end
