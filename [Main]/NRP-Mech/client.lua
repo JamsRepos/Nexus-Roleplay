@@ -20,6 +20,29 @@ local currentStore = nil
 local nearPoint = false
 local onCollectionHigher = 0
 
+RegisterCommand("towtruck", function()
+  local t = ("towtruck")
+  if DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
+    local truck = GetHashKey(t)
+
+    RequestModel(truck)
+    while not HasModelLoaded(truck) do
+        RequestModel(truck)
+        Citizen.Wait(0)
+    end
+
+    local x,y,z = table.unpack(GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 8.0, 0.5))
+    local vehicle = CreateVehicle(truck, x, y, z, 0.0, true, false)
+    DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
+    DecorSetInt(vehicle, "_Fuel_Level", 100000)
+    SetEntityAsMissionEntity(vehicle, true, true)
+    exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+    exports['NRP-notify']:DoHudText('success', 'You have taken out a Tow Truck.')
+  else 
+      exports['NRP-notify']:DoHudText('error', 'You are not permitted to take out a Tow Truck.')
+  end
+
+end)
 
 RegisterNetEvent('mechanic:getstock')
 AddEventHandler('mechanic:getstock', function(results)
