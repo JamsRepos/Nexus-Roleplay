@@ -108,7 +108,7 @@ RegisterCommand('r', function(source, args, rawCommand)
                 TriggerEvent('core:getPlayers', function(Users)
                     for k,v in pairs(Users)do
                         local job = Users[k]:getJob()
-                        if job == 1 or job == 32 or job == 33 or job == 34 or job == 35 or job == 36 or job == 37 or job == 90 or job == 91 then
+                        if job == 1 or job == 32 or job == 33 or job == 34 or job == 35 or job == 36 or job == 37 or job == 90 or job == 91 or job == 2 or job == 50 or job == 51 or job == 52 or job == 53 or job == 54 or job == 55 or job == 56 or job == 57 then
                             TriggerClientEvent('chat:addMessage', k, {
                                 template = '<div style="padding: 0.5vw; background-color: rgba(200, 0, 0, 0.6); border-radius: 3px;"><i class="fa fa-taxi"></i> {0}:<br> {1}</div>',
                                 args = { fal, msg }
