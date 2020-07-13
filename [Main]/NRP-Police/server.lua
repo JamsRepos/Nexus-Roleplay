@@ -1,6 +1,6 @@
 local dispatchStatus = {}
 
-local dcname = "Shift Logger" -- bot's name
+local dcname = "Duty Rota" -- bot's name
 local http = "https://discordapp.com/api/webhooks/732089486288224287/m-c36N3tKXKRvg1E_L5dKk2mGJcW_Ze--sOer-NnBozyDAqn7N-VrUe21tiYKJa6pJLq" -- webhook for police
 local http2 = "https://discordapp.com/api/webhooks/732090184287518802/a9jiRRH61alO_U7oK3ltgUVxeRyHL5Y7x5ns3U9i1ukFk2s2B36LrqDG89j_XFBvGrOo" -- webhook for ems (you can add as many as you want)
 
