@@ -27,11 +27,12 @@ AddEventHandler('nrp:dispatch:notify', function(alertType, additionalInformation
     
     if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
         job = true
-        if alertType == "10-20" or alertType == "10-33" then
-          job = false
-        end
     elseif DecorGetBool(GetPlayerPed(-1), "isParamedic") then
         job = true
+    end
+
+    if alertType == "10-20" or alertType == "10-33" then
+      job = false
     end
 
     if not job then
