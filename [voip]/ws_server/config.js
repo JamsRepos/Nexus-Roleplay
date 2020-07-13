@@ -18,5 +18,5 @@ module.exports = {
   FivemServerPort: 30120,
 
   //-- [OPTIONAL] Enable connection/disconnection logs
-  enableLogs: true,
+  enableLogs: false,
 };
