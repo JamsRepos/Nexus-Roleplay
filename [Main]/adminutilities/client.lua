@@ -30,7 +30,7 @@ AddEventHandler('admin:spawnVehicle', function(v)
   DecorRegister("_Max_Fuel_Level", 3);
   DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
   DecorSetInt(vehicle, "_Fuel_Level", 100000)
-  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(veh))
  end
 end)
 
