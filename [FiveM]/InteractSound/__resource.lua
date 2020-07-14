@@ -34,6 +34,7 @@ files({
     'client/html/sounds/move_along_people.ogg',
     'client/html/sounds/this_is_the_lspd.ogg',
     'client/html/sounds/door.ogg',
+    'client/html/sounds/door_lock.ogg',
     'client/html/sounds/doorknock.ogg',
     'client/html/sounds/drinking.ogg',
     'client/html/sounds/eating.ogg',
