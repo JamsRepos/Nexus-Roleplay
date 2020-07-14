@@ -653,6 +653,7 @@ Citizen.CreateThread(function()
       elseif not dutyStatus then
        SetEntityAsMissionEntity(dutyVehicle, false, false)
        DeleteEntity(dutyVehicle)
+       RemoveJobBlip()
        ExecuteCommand('clothes')
        onJob = false 
       end
