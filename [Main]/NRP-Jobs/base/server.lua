@@ -1,7 +1,7 @@
 local Fish = {
- [1] = {name = 'Catfish', price = 200, item = 3},
- [2] = {name = 'Cod', price = 240, item = 4},
- [3] = {name = 'Salmon', price = 400, item = 5}
+ [1] = {name = 'Catfish', price = 100, item = 3},
+ [2] = {name = 'Cod', price = 120, item = 4},
+ [3] = {name = 'Salmon', price = 200, item = 5}
 }
 
 RegisterServerEvent('jobs:sellfish')

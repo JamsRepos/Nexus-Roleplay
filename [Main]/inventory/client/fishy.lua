@@ -1,7 +1,7 @@
 local Fish = {
-    [4] = {name = 'Catfish', price = 200, item = 3},
-    [5] = {name = 'Cod', price = 240, item = 4},
-    [7] = {name = 'Salmon', price = 400, item = 5}
+    [4] = {name = 'Catfish', price = 100, item = 3},
+    [5] = {name = 'Cod', price = 120, item = 4},
+    [7] = {name = 'Salmon', price = 200, item = 5}
    }
 
 RegisterNetEvent("inventory:sellFish")
