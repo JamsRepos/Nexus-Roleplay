@@ -36,10 +36,10 @@ AddEventHandler('gun:addLicense', function()
   if result[1] then
     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "You Already Have a Gun License"})
   else
-    if user.getBank() >= 4000 then
-    user.removeBank(4000)
+    if user.getBank() >= 2500 then
+    user.removeBank(2500)
     exports['GHMattiMySQL']:QueryAsync('INSERT INTO `gun_license` (char_id, fullname) VALUES (@char_id, @fullname)',{['@char_id'] = user.getCharacterID(), ['@fullname'] = user.getIdentity().fullname,})
-    TriggerClientEvent('chatMessage', source, "THE LAW", {66, 134, 244}, "You have been granted a Gun License ")
+    TriggerClientEvent('chatMessage', source, "THE LAW", {66, 134, 244}, " You have been granted a Gun License ")
     TriggerEvent("core:log", tostring("[GRANT] "..user.getIdentity().fullname.."("..source..") has granted a gun license."), "gun-license")
   else
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds in Bank"})
