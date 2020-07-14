@@ -590,6 +590,69 @@ end)
      end
     end)
 
+------ Ammunation
+
+      Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1)
+   if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 16.879, -1098.371, 29.834, true) < 10) then
+    DrawMarker(27, 16.879, -1098.371, 29.834-0.95, 0, 0, 0, 0, 0, 0, 0.8,0.8,0.5, 0, 82, 165, 240, 0, 0, 2, 0, 0, 0, 0)
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 16.879, -1098.371, 29.834, true) < 1.0) then
+     drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
+     if IsControlJustPressed(0, 38) then
+         Wait(250)
+         RequestModel(GetHashKey('s_m_m_marine_01'))
+         CreatePed(2, GetHashKey('s_m_m_marine_01'), 21.192, -1086.591, 29.796, false, false)
+         TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
+          SetPedCanRagdoll('s_m_m_marine_01', false)
+         SetEntityInvincible('s_m_m_marine_01', true)
+       end
+      end
+     end
+   end
+  end)
+
+      Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1)
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 10.405, -1096.011, 29.834, true) < 10) then
+    DrawMarker(27, 10.405, -1096.011, 29.834-0.95, 0, 0, 0, 0, 0, 0, 0.8,0.8,0.5, 0, 82, 165, 240, 0, 0, 2, 0, 0, 0, 0)
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 10.405, -1096.011, 29.834, true) < 1.0) then
+      drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
+      if IsControlJustPressed(0, 38) then
+          Wait(250)
+          RequestModel(GetHashKey('s_m_m_marine_01'))
+          CreatePed(2, GetHashKey('s_m_m_marine_01'), 14.540, -1083.591, 29.796, false, false)
+          TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
+          SetPedCanRagdoll('s_m_m_marine_01', false)
+          SetEntityInvincible('s_m_m_marine_01', true)
+          end
+          end
+        end
+      end
+    end)
+
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1)
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 13.485, -1097.411, 29.834, true) < 10) then
+    DrawMarker(27, 13.485, -1097.411, 29.834-0.95, 0, 0, 0, 0, 0, 0, 0.8,0.8,0.5, 0, 82, 165, 240, 0, 0, 2, 0, 0, 0, 0)
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),  13.485, -1097.411, 29.834, true) < 1.0) then
+      drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
+      if IsControlJustPressed(0, 38) then
+          Wait(250)
+          RequestModel(GetHashKey('s_m_m_marine_01'))
+          CreatePed(2, GetHashKey('s_m_m_marine_01'), 18.285, -1084.219, 29.796, false, false)
+          TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
+          SetPedCanRagdoll('s_m_m_marine_01', false)
+          SetEntityInvincible('s_m_m_marine_01', true)
+          end
+          end
+        end
+      end
+    end)
+
 
 --===========================================================================================================================--
 function API_CreateVehicle(model, x, y, z)

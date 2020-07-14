@@ -293,14 +293,16 @@ Citizen.CreateThread(function()
  while true do
   Citizen.Wait(60)
   if IsPedShooting(GetPlayerPed(-1)) then
-   if GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 317205821 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 883325847 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 101631238 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 911657153 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 1198879012 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= GetHashKey("WEAPON_BALL") then
-    if not IsSuppressed() and NearestNPC() then
-   local suspectSex = getSuspectSex()
-   local suspectLocation = getSuspectLocation()
-    TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{gunshotSex=suspectSex}}))
-  Wait(2500)
-   end
-  end
+    if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 13.360, -1097.651, 29.834, true) > 5 then
+      if GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 317205821 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 883325847 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 101631238 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 911657153 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 1198879012 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= GetHashKey("WEAPON_BALL") then
+        if not IsSuppressed() and NearestNPC() then
+       local suspectSex = getSuspectSex()
+       local suspectLocation = getSuspectLocation()
+        TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{gunshotSex=suspectSex}}))
+      Wait(2500)
+       end
+      end
+    end
  end
 end
 end)
