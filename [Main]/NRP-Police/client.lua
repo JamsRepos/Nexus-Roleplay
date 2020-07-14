@@ -887,23 +887,13 @@ Citizen.CreateThread(function()
     else
       exports['NRP-notify']:DoHudText('inform',  "No Player Near")
   end
-   elseif WarMenu.ComboBox('Mechanic', {"Remove", "Unlock"}, currentItemIndex4, selectedItemIndex4, function(currentIndex4, selectedIndex4)
+   elseif WarMenu.ComboBox('Mechanic', {"Tow", "Unlock"}, currentItemIndex4, selectedItemIndex4, function(currentIndex4, selectedIndex4)
      currentItemIndex4 = currentIndex4
      selectedItemIndex4 = selectedIndex4
     end) then
      if currentItemIndex4 == 1 then
-      if IsPedInAnyVehicle(GetPlayerPed(-1)) then
-    local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
-    SetEntityAsMissionEntity(veh,  false,  true)
-      DeleteVehicle(veh)
+      TriggerEvent("knb:tow")
       exports['NRP-notify']:DoHudText('success', 'Vehicle Sent To The Impound')
-    else
-      local coords = GetEntityCoords(GetPlayerPed(-1))
-      local veh = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
-    SetEntityAsMissionEntity(veh,  false,  true)
-    DeleteVehicle(veh)
-    exports['NRP-notify']:DoHudText('success', 'Vehicle Sent To The Impound')
-    end
    elseif currentItemIndex4 == 2 then
     local coords    = GetEntityCoords(GetPlayerPed(-1))
       if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then

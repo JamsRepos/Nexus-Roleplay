@@ -1,6 +1,6 @@
 -- C o n f i g s --
 
-companyName = "MLTowing" 
+companyName = "NRPTowing" 
 companyIcon = "CHAR_PROPERTY_TOWING_IMPOUND" -- https://wiki.gtanet.work/index.php?title=Notification_Pictures
                 
 spawnRadius = 500                            -- Default value: 500
