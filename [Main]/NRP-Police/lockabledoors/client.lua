@@ -1,4 +1,4 @@
-local nearObject = false 
+
 local isNearObject = false
 local objectLoc = {}
 local clostestProp = nil
@@ -30,13 +30,20 @@ local doorList = {
 
 Citizen.CreateThread(function()
  while true do
-  Citizen.Wait(10)
-  nearObject = false
+  Citizen.Wait(5)
   isNearObject = false   
   local myCoords = GetEntityCoords(GetPlayerPed(-1))
   for i = 1, #doorList do
-   if(GetDistanceBetweenCoords(myCoords, doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], true) < 1.3) then
-    clostestProp = GetClosestObjectOfType(myCoords.x, myCoords.y, myCoords.z, 3.5, GetHashKey(doorList[i]["obj"]), false, false)
+    if(GetDistanceBetweenCoords(myCoords, doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], true) < 50.0) then
+      local object = GetClosestObjectOfType(doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], 1.0, GetHashKey(doorList[i]["obj"]), false, false, false)
+      FreezeEntityPosition(object, doorList[i]["locked"])
+      if doorList[i]["locked"] then
+        SetEntityRotation(object, 0.0, 0.0, doorList[i]["rotation"], 2, true)
+      end
+    end
+
+   if(GetDistanceBetweenCoords(myCoords, doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], true) < 2.0) then
+    clostestProp = GetClosestObjectOfType(myCoords.x, myCoords.y, myCoords.z, 2.0, GetHashKey(doorList[i]["obj"]), false, false)
     if clostestProp ~= nil and clostestProp ~= 0 then
      local coords = GetEntityCoords(clostestProp)
      isNearObject = true
@@ -59,43 +66,21 @@ function DrawText3Ds(x,y,z, text)
   AddTextComponentString(text)
   DrawText(_x,_y)
 end
- --if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 18 or DecorGetInt(GetPlayerPed(-1), "Job") == 32 or DecorGetInt(GetPlayerPed(-1), "Job") == 33 or DecorGetInt(GetPlayerPed(-1), "Job") == 34 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 or DecorGetInt(GetPlayerPed(-1), "Job") == 90 or DecorGetInt(GetPlayerPed(-1), "Job") == 91 then
+
 Citizen.CreateThread(function()
   while true do
    Wait(5)
    if isNearObject then
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), objectLoc.x, objectLoc.y, objectLoc.z, true) < 2.0) then
      if objectLoc.locked then DrawText3Ds(objectLoc.x, objectLoc.y, objectLoc.z, '[E] Unlock Door') else DrawText3Ds(objectLoc.x, objectLoc.y, objectLoc.z,'[E] Lock Door') end
-      FreezeEntityPosition(objectLoc.object, objectLoc.locked)
      if IsControlJustPressed(0, 38) then
-      --playLockAnimation()
       if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
-      --if exports['core']:GetItemQuantity(253) >= 1 then 
        if objectLoc.locked then
-        --FreezeEntityPosition(objectLoc.object, false)
-        if objectLoc.id == 10 or objectLoc.id == 11 then
-         TriggerServerEvent('doorLock:LockDoor', 10, false)
-         TriggerServerEvent('doorLock:LockDoor', 11, false)
-      elseif objectLoc.id == 12 or objectLoc.id == 13 then
-         TriggerServerEvent('doorLock:LockDoor', 12, false)
-         TriggerServerEvent('doorLock:LockDoor', 13, false)
-      else
          TriggerServerEvent('doorLock:LockDoor', objectLoc.id, false)
-      end
        else
-        --Wait(2000)
-        FreezeEntityPosition(objectLoc.object, true)
-        SetEntityRotation(objectLoc.object, 0.0, 0.0, objectLoc.rotation, 2, true)
-        if objectLoc.id == 10 or objectLoc.id == 11 then
-         TriggerServerEvent('doorLock:LockDoor', 10, true)
-         TriggerServerEvent('doorLock:LockDoor', 11, true)
-        elseif objectLoc.id == 12 or objectLoc.id == 13 then
-         TriggerServerEvent('doorLock:LockDoor', 12, true)
-         TriggerServerEvent('doorLock:LockDoor', 13, true)
-        else
          TriggerServerEvent('doorLock:LockDoor', objectLoc.id, true)
-        end
        end
+       TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'door_lock', 0.075)
       end
      end
     end
@@ -112,13 +97,3 @@ RegisterNetEvent('doorLock:doors')
 AddEventHandler('doorLock:doors', function(doors)
  doorList = doors
 end)
-
-function playLockAnimation()
- RequestAnimDict('missheistfbisetup1')
- while not HasAnimDictLoaded('missheistfbisetup1') do
-  Citizen.Wait(10)
- end
- TaskPlayAnim(PlayerPedId(), "missheistfbisetup1", "unlock_enter_janitor", 8.0, 8.0, -1, 50, 0, false, false, false)
- Wait(2000)
- ClearPedTasks(PlayerPedId())
-end
