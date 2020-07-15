@@ -14,7 +14,7 @@ local hotelManagers = {
  [1] = {x = -96.456, y = 6324.320, z = 31.576, name = "DreamView", id=1},
 }
 
-local dailyPrice = 1000
+local dailyPrice = 500
 
 local hotelDoors = {
  [1] = {x = 312.868, y = -218.617, z = 54.226, address = "1 Hawick Ave", manager = 2}, 
