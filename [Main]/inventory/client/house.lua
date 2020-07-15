@@ -1,4 +1,5 @@
 local house_contents = nil
+local itemsTaken = {}
 
 RegisterNetEvent('housing:storage:updateitems')
 AddEventHandler('housing:storage:updateitems', function(inv, storage)
@@ -35,6 +36,7 @@ function setHouseItems(data)
                 data[key].usable = false
                 data[key].limit = -1
                 data[key].canRemove = false
+                itemsTaken[value.item] = 0
                 if data[key].meta == "This Item Contains No Meta Data" then data[key].desc = "" else data[key].desc = data[key].meta end
                 table.insert(items, data[key])
             end
@@ -107,7 +109,8 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-         if data.item.q >= data.number then
+         if (data.item.q - itemsTaken[data.item.item]) >= data.number then
+            itemsTaken[data.item.item] = itemsTaken[data.item.item] + data.number
             TriggerServerEvent('housing:storage:removeitems', house_contents, data.item.item, data.number, data.item.meta)
             TriggerServerEvent("core:log", tostring("[HOUSE] "..GetPlayerName(PlayerId()).."("..PlayerId()..") took "..data.number.."x "..data.item.name.." from the house: "..house_contents), "item")
          else

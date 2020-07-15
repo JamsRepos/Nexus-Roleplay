@@ -55,7 +55,7 @@ AddEventHandler("dutylog:dutyChange", function(job, status) -- job is job name |
                 elseif duration >= 60 and duration < 3600 then
                     timetext = tostring(math.floor(duration / 60)).." minutes"
                 elseif duration >= 3600 then
-                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600) + 0.5) / 60)).." minutes"
+                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600)) / 60)).." minutes"
                 end
                 DiscordLog(header, "Officer: **"..timers[job][i].name.."**\n Shift duration: **"..timetext.."**\n Start date: **"..date.."**\n End date: **"..os.date("%d/%m/%Y %X").."**", color, job)
                 table.remove(timers[job], i)
@@ -93,7 +93,7 @@ AddEventHandler('playerDropped', function()
                 elseif duration >= 60 and duration < 3600 then
                     timetext = tostring(math.floor(duration / 60)).." minutes"
                 elseif duration >= 3600 then
-                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600) + 0.5) / 60)).." minutes"
+                    timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600)) / 60)).." minutes"
                 end
                 DiscordLog(header, "Steam Name: **"..timers[k][n].name.."**\n Shift Duration: **"..timetext.."**\n Start Date: **"..date.."**\n End Date: **"..os.date("%d/%m/%Y %X").."**", color, k)
                 table.remove(timers[k], n)

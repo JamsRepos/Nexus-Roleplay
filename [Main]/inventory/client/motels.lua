@@ -1,5 +1,6 @@
 local motel_contents = nil
 local storage = 50
+local itemsTaken = {}
 
 RegisterNetEvent('motel:storage:updateitems')
 AddEventHandler('motel:storage:updateitems', function(inv)
@@ -37,6 +38,7 @@ function setMotelItems(data)
                 data[key].limit = -1
                 data[key].canRemove = false
                 if data[key].meta == "This Item Contains No Meta Data" then data[key].desc = "" else data[key].desc = data[key].meta end
+                itemsTaken[value.item] = 0
                 table.insert(items, data[key])
             end
         end
@@ -108,7 +110,8 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-         if data.item.q >= data.number then
+         if (data.item.q - itemsTaken[data.item.item]) >= data.number then
+            itemsTaken[data.item.item] = itemsTaken[data.item.item] + data.number
             TriggerServerEvent('motel:storage:removeitems', motel_contents, data.item.item, data.number, data.item.meta)
             TriggerServerEvent("core:log", tostring("[HOTEL] "..GetPlayerName(PlayerId()).."("..PlayerId()..") took "..data.number.."x "..data.item.name.." from the hotel: "..motel_contents), "item")
          else

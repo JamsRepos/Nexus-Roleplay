@@ -1,5 +1,6 @@
 local large_box_id = nil
 local storage = 160
+local itemsTaken = {}
 
 RegisterNetEvent('storage_box2:updateitems')
 AddEventHandler('storage_box2:updateitems', function(inv)
@@ -36,6 +37,7 @@ function setLBoxItems(data)
                 data[key].limit = -1
                 data[key].canRemove = false
                 if data[key].meta == "This Item Contains No Meta Data" then data[key].desc = "" else data[key].desc = data[key].meta end
+                itemsTaken[value.item] = 0
                 table.insert(items, data[key])
             end
         end
@@ -107,7 +109,8 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-         if data.item.q >= data.number then
+         if (data.item.q - itemsTaken[data.item.item]) >= data.number then
+            itemsTaken[data.item.item] = itemsTaken[data.item.item] + data.number
             TriggerServerEvent('storage_box2:removeitems', large_box_id, data.item.item, data.number, data.item.meta)
             TriggerServerEvent("core:log", tostring("[LARGE STORAGE BOX] "..GetPlayerName(PlayerId()).."("..PlayerId()..") took "..data.number.."x "..data.item.name.." from the box: "..large_box_id), "item")
          else

@@ -69,7 +69,7 @@ Citizen.CreateThread(function()
      if GetVehicleDoorLockStatus(vehicle) == 1 then
        local t, distance = GetClosestPlayer()
        if(distance ~= -1 and distance < 3) then
-        exports['NRP-notify']:DoHudText('error', 'Player Near, Tell Them To Move Back')
+        exports['NRP-notify']:DoHudText('error', 'Player near the trunk, tell them to move back.')
        else
          for k,v in pairs(fastResponse) do
            SetVehicleDoorOpen(vehFront, 5, false, false)

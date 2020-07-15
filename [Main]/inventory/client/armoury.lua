@@ -1,4 +1,5 @@
 local amour_contents = nil
+local itemsTaken = {}
 
 RegisterNetEvent('armoury:updateitems')
 AddEventHandler('armoury:updateitems', function(inv)
@@ -32,6 +33,7 @@ function setArmouryItems(data)
                 data[key].limit = -1
                 data[key].canRemove = false
                 if data[key].meta == "This Item Contains No Meta Data" then data[key].desc = "" else data[key].desc = data[key].meta end
+                itemsTaken[value.item] = 0
                 table.insert(items, data[key])
             end
         end
@@ -87,7 +89,8 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-         if data.item.q >= data.number then
+         if (data.item.q - itemsTaken[data.item.item]) >= data.number then
+            itemsTaken[data.item.item] = itemsTaken[data.item.item] + data.number
             TriggerServerEvent('armoury:removeitems', data.item.item, data.item.name, data.number, data.item.meta)
          else
             exports['NRP-notify']:DoHudText('inform', 'You can not take out more than what is in the box!')

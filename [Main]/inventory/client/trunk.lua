@@ -3,6 +3,7 @@ local veh_inventory = {}
 local vehicle_plate = nil
 local vehicleType = nil
 local totalAmount = 0
+local itemsTaken = {}
 
 local maxCapacity = {
     [0] = {["item"] = 20, ["weapons"] = 1}, --Compact
@@ -77,6 +78,7 @@ function setTrunkInventoryData(data)
                 data[key].limit = -1
                 data[key].canRemove = false
                 if data[key].meta == "This Item Contains No Meta Data" then data[key].desc = "" else data[key].desc = data[key].meta end
+                itemsTaken[value.item] = 0
                 table.insert(items, data[key])
             end
         end
@@ -148,8 +150,8 @@ RegisterNUICallback(
         end
 
         if type(data.number) == "number" and math.floor(data.number) == data.number then
-            print("Attempting to take "..data.number.." of ID: "..data.item.item.." from the vehicle plate: "..vehicle_plate.." with meta data as: "..data.item.meta)
-         if data.item.q >= data.number then
+         if (data.item.q - itemsTaken[data.item.item]) >= data.number then
+            itemsTaken[data.item.item] = itemsTaken[data.item.item] + data.number
             TriggerServerEvent('vehicle_inventory:removeitems', vehicle_plate, data.item.item, data.number, data.item.meta)
             TriggerServerEvent("core:log", tostring("[TRUNK] "..GetPlayerName(PlayerId()).."("..PlayerId()..") took "..data.number.."x "..data.item.name.." from the vehicle: "..vehicle_plate), "item")
          else

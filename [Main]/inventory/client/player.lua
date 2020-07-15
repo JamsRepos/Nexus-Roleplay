@@ -40,7 +40,6 @@ function setPlayerInventoryData(inventory)
                 inventory[key].limit = -1
                 inventory[key].canRemove = false
                 if inventory[key].meta == "This Item Contains No Meta Data" then inventory[key].desc = "" else inventory[key].desc = inventory[key].meta end
-                print(inventory[key].meta)
                 table.insert(items, inventory[key])
             end
         end
@@ -97,7 +96,7 @@ RegisterNUICallback(
         if type(data.number) == "number" and math.floor(data.number) == data.number then
             local count = tonumber(data.number)
             if data.item.id == 134 or data.item.id == 135 or data.item.id == 278 then
-             TriggerEvent('chatMessage', "INVENTORY", {255, 204, 0}, "You are not able to take this item from their inventory.")
+             TriggerEvent('chatMessage', "INVENTORY", {255, 204, 0}, " You are not able to take this item from their inventory.")
             else
              TriggerServerEvent("inventory:takeItem", targetPlayer, data.item.id, count, data.item.meta)
             end

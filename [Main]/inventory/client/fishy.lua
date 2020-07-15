@@ -36,7 +36,6 @@ RegisterNUICallback(
         if IsPedSittingInAnyVehicle(playerPed) then
             return
         end
-        print("This is running bitch")
         if type(data.number) == "number" and math.floor(data.number) == data.number then
         local count = tonumber(data.number)
          if data.item.q >= data.number then
