@@ -15,7 +15,7 @@ function DiscordLog(description, color, titlename)
             },
         }
     }
-    PerformHttpRequest(warranthook, function(err, text, headers) end, 'POST', json.encode({username = "Warrants", embeds = connect}), { ['Content-Type'] = 'application/json' })
+    PerformHttpRequest(warranthook, function(err, text, headers) end, 'POST', json.encode({username = "LSPD Warrants", embeds = connect}), { ['Content-Type'] = 'application/json' })
 end
 
 
@@ -50,7 +50,7 @@ AddEventHandler('mdt:newWarrant', function(data)
  TriggerEvent("core:getPlayerFromId", source, function(user)
   exports['GHMattiMySQL']:QueryAsync('INSERT INTO mdt_warrants (`name`, `charges`, `description`, `knownVehicles`, `issued`) VALUES (@name, @charges, @description, @knownVehicles, @issued)',{['@name'] = data.name, ['@charges'] = data.charges, ['@description'] = data.description, ["@knownVehicles"] = data.vehicles, ["@issued"] = user.getIdentity().fullname})        
   TriggerEvent('mdt:refreshWarrants')
-  DiscordLog("Name: **"..data.name.."**\n Charges: **"..data.charges.."**\n Description: **"..data.description.."**\n Vehicles: **"..data.vehicles.."**\n Issued by: **"..user.getIdentity().fullname.."**", 3447003, "**New Warrant**")
+  DiscordLog("Name: **"..data.name.."**\n Description: **"..data.description.."**\n Vehicles: **"..data.vehicles.."**\n Issued by: **"..user.getIdentity().fullname.."**".."\n Posted: **"..os.date("%d/%m/%Y %X").."**".."\n Charges: **"..data.charges.."**", 3447003, "**New Warrant**")
   policeMessage('^5[Police] ^3New Warrant Posted')
  end)
 end)
@@ -59,7 +59,12 @@ RegisterServerEvent('mdt:deleteWarrant')
 AddEventHandler('mdt:deleteWarrant', function(id)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-  exports['GHMattiMySQL']:QueryAsync('DELETE FROM mdt_warrants WHERE `id`=@id',{['@id'] = id}) 
+    ---local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants`")
+    local deletedwarrant = exports['GHMattiMySQL']:QueryResult("SELECT * FROM mdt_warrants WHERE `id`=@id",{['@id'] = id})
+    for i,v in pairs(deletedwarrant) do
+        DiscordLog("Name: **"..v.name.."**\n Description: **"..v.description.."**\n Vehicles: **"..v.knownVehicles.."**\n Issued by: **"..v.issued.."**".."\n Deleted: **"..os.date("%d/%m/%Y %X").."**".."\n Charges: **"..v.charges.."**", 15158332, "**Deleted Warrant**")
+    end
+    exports['GHMattiMySQL']:QueryAsync('DELETE FROM mdt_warrants WHERE `id`=@id',{['@id'] = id}) 
   TriggerClientEvent("pNotify:SendNotification", source, {text= "Warrant Deleted", timeout = 4000})  
   TriggerEvent('mdt:refreshWarrants')
  end)
