@@ -46,6 +46,11 @@ AddEventHandler('rental:bike', function(price, model)
     local bike = model
     TriggerClientEvent('rental:spawnbike', tonumber(sourcePlayer), bike)
     TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "I Will Come Collect The Bike At Sun Down"})
+  elseif user.getBank() >= price then
+      user.removeBank(price)
+      local bike = model
+      TriggerClientEvent('rental:spawnbike', tonumber(sourcePlayer), bike)
+      TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "I Will Come Collect The Bike At Sun Down"})
   else
     TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "You Don't Have Enough Money"})
   end
@@ -60,6 +65,10 @@ AddEventHandler('rental:boat', function(price, model)
     user.removeMoney(price)
     TriggerClientEvent('rental:spawnboat', tonumber(sourcePlayer), model)
     TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "I Will Come Collect The Boat At Sun Down"})
+  elseif user.getBank() >= price then
+    user.removeBank(price)
+    TriggerClientEvent('rental:spawnboat', tonumber(sourcePlayer), model)
+    TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "I Will Come Collect The Boat At Sun Down"})   
   else
     TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(sourcePlayer), { type = 'inform', text = "You Don't Have Enough Money"})
   end
