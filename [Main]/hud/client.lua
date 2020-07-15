@@ -160,6 +160,12 @@ Citizen.CreateThread(function()
   local ped = PlayerPedId()  
   local vehicle = GetVehiclePedIsIn(ped, false)
   local speed = math.floor(GetEntitySpeed(vehicle) * 2.236936)
+  local fueltitle = nil
+  if GetVehicleHighGear(vehicle) == 1 then
+    fueltitle = "CHARGE"
+  else
+    fueltitle = "FUEL"
+  end
   Citizen.Wait(5)
   if hud then
    if IsPedInAnyVehicle(ped) then
@@ -168,13 +174,13 @@ Citizen.CreateThread(function()
     local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")
     --drawUI(0.517, 1.302, 1.0, 1.0, 0.4, "MPH", 255, 255, 255, 255, false)
     if currentfuelraw >= 75000 then
-      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~g~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~g~"..fueltitle.." "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
     elseif currentfuelraw <= 75000 and currentfuelraw >= 50000 then
-      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~y~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~y~"..fueltitle.." "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
     elseif currentfuelraw <= 50000 and currentfuelraw >= 25000 then
-      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~o~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~o~"..fueltitle.." "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
     elseif currentfuelraw <= 25000 then
-      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~r~FUEL "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
+      drawUI(0.985, 1.475, 1.0, 1.0, 0.3,"~r~"..fueltitle.." "..round(currentfuel,1).."%", 255, 255, 255, 255, 0, 1)
     end
     --drawUI(0.517, 1.302, 1.0, 1.0, 0.4, "~g~MPH:~w~", 255, 255, 255, 255, false)
     -- Cruise
