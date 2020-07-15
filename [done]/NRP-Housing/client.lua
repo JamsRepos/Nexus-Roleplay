@@ -493,12 +493,49 @@ function GetClosestPlayer()
     return closestPlayer, closestDistance
 end
 
+function GetClosestInstancedPlayer()
+    local players = GetInstancedPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+    
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = Vdist(targetCoords["x"], targetCoords["y"], targetCoords["z"], plyCoords["x"], plyCoords["y"], plyCoords["z"])
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+    
+    return closestPlayer, closestDistance
+end
+
 function GetPlayers()
     local players = {}
 
     for i = 0, 255 do
         if NetworkIsPlayerActive(i) then
             table.insert(players, i)
+        end
+    end
+
+    return players
+end
+
+function GetInstancedPlayers()
+    local players = {}
+
+    for i = 0, 255 do
+        for _,p in pairs(instance.participants) do
+            instancePlayer = GetPlayerFromServerId(p)
+            if i == instancePlayer then
+              table.insert(players, i)
+            end
         end
     end
 
@@ -615,30 +652,6 @@ function GetPlayersInArea()
     end
   end
   table.insert(pedids, GetPlayerServerId(PlayerId()))
-  return pedids
-end
-
-function GetD8PlayersInArea()
-  local peds
-  local pedids = {}
-  
-  peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
-  
-  for id = 0, 255 do
-    local ped = GetPlayerPed(-1)
-    local rped = GetPlayerPed(id)
-    
-    if (NetworkIsPlayerActive(id) and rped ~= ped) then
-      local pos = GetEntityCoords(ped)
-      local rpos = GetEntityCoords(rped)
-      local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
-      
-      if (dist < 5 and DecorGetInt(rped, 'Faction') == 30) then
-        table.insert(pedids, GetPlayerServerId(id))
-        return pedids
-      end
-    end
-  end
   return pedids
 end
 

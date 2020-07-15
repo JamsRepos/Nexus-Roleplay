@@ -9,7 +9,12 @@ Citizen.CreateThread(function()
       if currentHouse.id == 1841 or currentHouse.id == 1842 or currentHouse.id == 1843 or currentHouse.id == 1844 or currentHouse.id == 1845 then
         exports['NRP-notify']:DoHudText('error', 'This is a show room, you cannot access this.')
       else
-        TriggerServerEvent("housing:storage:getInventory", currentHouse.id, lastipl.storage)
+        local t, distance = GetClosestInstancedPlayer()
+        if(distance ~= -1 and distance < 2) then
+          exports['NRP-notify']:DoHudText('error', 'Player near the storage, tell them to move back.')
+        else
+          TriggerServerEvent("housing:storage:getInventory", currentHouse.id, lastipl.storage)
+        end
       end
      end
     end
@@ -17,40 +22,6 @@ Citizen.CreateThread(function()
   end
  end
 end)
-
-function GetClosestPlayer()
-  local players = GetPlayers()
-  local closestDistance = -1
-  local closestPlayer = -1
-  local ply = GetPlayerPed(-1)
-  local plyCoords = GetEntityCoords(ply, 0)
-  
-  for index,value in ipairs(players) do
-      local target = GetPlayerPed(value)
-      if(target ~= ply) then
-          local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
-          local distance = Vdist(targetCoords["x"], targetCoords["y"], targetCoords["z"], plyCoords["x"], plyCoords["y"], plyCoords["z"])
-          if(closestDistance == -1 or closestDistance > distance) then
-              closestPlayer = value
-              closestDistance = distance
-          end
-      end
-  end
-  
-  return closestPlayer, closestDistance
-end
-
-function GetPlayers()
-  local players = {}
-
-  for i = 0, 255 do
-      if NetworkIsPlayerActive(i) then
-          table.insert(players, i)
-      end
-  end
-
-  return players
-end
 
 function DrawText3Ds(x,y,z, text)
   local onScreen,_x,_y=World3dToScreen2d(x,y,z)
