@@ -863,7 +863,7 @@ AddEventHandler('police:k9targetCheckInventory', function(target)
   if strResult == probs then
    strResult = user.getIdentity().fullname.." has no items"
   end
-  TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = strResult,duration = 20000})
+  TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = strResult,length = 20000})
   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = user.getIdentity().fullname.." has <span style='color:lime'>$</span><span style='color:white'>"..user.getDirtyMoney().."</span> in dirty money!"})
   TriggerClientEvent('NRP-notify:client:SendAlert', target, { type = 'inform', text = "You notice the dog sniffing around you.."})
  end)
