@@ -2,6 +2,23 @@ local chargeList = ''
 local warrantList = ''
 local weaponBrass = ''
 
+local warranthook = "https://discordapp.com/api/webhooks/732767906395586571/i5n4tbYVmCl8sHxjXDSPbZ7U0gFP78WaaJ--RUDUqwWZsabwZEjb8iTPcA3PWdSMqcwS"
+
+function DiscordLog(description, color, titlename)
+    local connect = {
+        {
+            ["color"] = color,
+            ["title"] = titlename,
+            ["description"] = description,
+            ["footer"] = {
+                ["text"] = "Copyright © 2020 NexusGTA.com",
+            },
+        }
+    }
+    PerformHttpRequest(warranthook, function(err, text, headers) end, 'POST', json.encode({username = "Warrants", embeds = connect}), { ['Content-Type'] = 'application/json' })
+end
+
+
 AddEventHandler('onResourceStart', function(resource)
  if resource == GetCurrentResourceName() then
   local charges = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `mdt_charges` ORDER BY `id` DESC")    
@@ -33,6 +50,7 @@ AddEventHandler('mdt:newWarrant', function(data)
  TriggerEvent("core:getPlayerFromId", source, function(user)
   exports['GHMattiMySQL']:QueryAsync('INSERT INTO mdt_warrants (`name`, `charges`, `description`, `knownVehicles`, `issued`) VALUES (@name, @charges, @description, @knownVehicles, @issued)',{['@name'] = data.name, ['@charges'] = data.charges, ['@description'] = data.description, ["@knownVehicles"] = data.vehicles, ["@issued"] = user.getIdentity().fullname})        
   TriggerEvent('mdt:refreshWarrants')
+  DiscordLog("Name: **"..data.name.."**\n Charges: **"..data.charges.."**\n Description: **"..data.description.."**\n Vehicles: **"..data.vehicles.."**\n Issued by: **"..user.getIdentity().fullname.."**", 3447003, "**New Warrant**")
   policeMessage('^5[Police] ^3New Warrant Posted')
  end)
 end)
