@@ -11,7 +11,7 @@ local garages = {
     [3] = {name="Public Garage", colour=1, x=1232.4792480469,y=2708.3212890625,z=38.005790710449, id=3, gname="[3] Route 68", cost=0, heading=0.0, maxslots=5, type='Public', hidden=false}, -- Public Sandy
     [4] = {name="Public Garage", colour=1, x=-294.412, y=6123.858, z=31.500, id=4, gname="[4] Great Ocean Highway", cost=0, heading=-90.0, maxslots=5, type='Public', hidden=false}, -- Public Paleto
     [5] = {name="Public Garage", colour=1, x=1737.714, y = 3719.109, z = 34.044,id=5, gname="[5] Mountain View", cost=0, heading=-90.0, maxslots=5, type='Public', hidden=false}, -- Public Paleto
-    [6] = {name="Public Garage", colour=1, x=50.107, y = -880.230, z = 30.30, id=6, gname="[6] Vespucci Garage", cost=0, heading=-90.0, maxslots=5, type='Public', hidden=false}, -- Public Legion
+    [6] = {name="Public Garage", colour=1, x=213.075, y = -795.764, z = 30.861, id=6, gname="[6] Legion Garage", cost=0, heading=342.95, maxslots=5, type='Public', hidden=false}, -- Public Legion
   }
 
 local repairprice = {
