@@ -142,11 +142,12 @@ Citizen.CreateThread(function()
    if WarMenu.Button('Transfer Vehicle') then
     WarMenu.OpenMenu('modify_garages_veh')
    end
-   if selectedgarage.id > 4 then
+   --[[if selectedgarage.id > 4 then
     if WarMenu.Button('Sell Garage', '~g~$'..selectedgarage.cost) then
      TriggerServerEvent("garage:sellgarage", selectedgarage.id)
     end
    end
+   --]]
    if selectedgarage.count ~= garages[selectedgarage.id].maxslots then
     if WarMenu.ComboBox('Increase Slots To ', slots, currentItemIndex, PurchasedSlots, function(currentIndex)
      currentItemIndex = currentIndex 
