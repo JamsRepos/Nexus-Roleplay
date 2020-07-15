@@ -85,20 +85,29 @@ AddEventHandler('hotel:rentRoom', function(id, address, days, price, management)
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   local identity = user.getIdentity()
+
+  local owned = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `owned_hotels`")    
+  for i,v in pairs(owned) do
+    if v.char_id == user.getCharacterID() then
+      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You already own a hotel room."})
+      return
+    end
+  end
+
   if user.getMoney() >= price then 
    user.removeMoney(price)
    exports['GHMattiMySQL']:QueryAsync('INSERT INTO `owned_hotels` (char_id, char_name, address, hotel_id, days_left, management_id) VALUES (@char_id, @char_name, @address, @hotel_id, @days, @management_id)',{['@char_id'] = user.getCharacterID(), ['@char_name'] = identity.fullname, ['@hotel_id'] = id, ['@days'] = days, ['@address'] = address, ['@management_id'] = management})
    TriggerEvent("core:moneylog", source, "Hotel Room Rented For "..days.." Days! > $"..price)
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Hotel Room Rented For "..days.." Days!"})
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "We hope you enjoy your stay! Remaining: "..days.." days."})
    TriggerEvent('hotels:update')
   elseif user.getBank() >= price then 
    user.removeBank(price)
    exports['GHMattiMySQL']:QueryAsync('INSERT INTO `owned_hotels` (char_id, char_name, address, hotel_id, days_left, management_id) VALUES (@char_id, @char_name, @address, @hotel_id, @days, @management_id)',{['@char_id'] = user.getCharacterID(), ['@char_name'] = identity.fullname, ['@hotel_id'] = id, ['@days'] = days, ['@address'] = address, ['@management_id'] = management})
    TriggerEvent("core:moneylog", source, "Hotel Room Rented For "..days.." Days! > $"..price)
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Hotel Room Rented For "..days.." Days!"})
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "We hope you enjoy your stay! Remaining: "..days.." days."})
    TriggerEvent('hotels:update')
   else 
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds"}) 
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "Insufficient funds."}) 
   end 
  end)
 end)
@@ -109,7 +118,7 @@ AddEventHandler('hotel:unrentHotel', function(id)
  TriggerEvent('core:getPlayerFromId', source, function(user)
    exports['GHMattiMySQL']:QueryAsync('DELETE FROM `owned_hotels` WHERE `hotel_id`=@hotel_id AND `char_id`=@char_id',{['@char_id'] = user.getCharacterID(), ['@hotel_id'] = id})
    TriggerEvent('hotels:update')
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Motel Successfully Unrented!"}) 
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "Thanks for staying with us."}) 
  end)
 end)
 
@@ -149,16 +158,16 @@ AddEventHandler('hotel:addExtraDays', function(id, days, price)
    local results = exports['GHMattiMySQL']:QueryResult("SELECT * FROM owned_hotels WHERE `hotel_id` = @id", {['@id'] = id})
    local finalDays = results[1].days_left + days
     if tonumber(finalDays) >= 15 then
-    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "You can not rent a hotel for more than 14 days at a time!"})
+    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "Sorry, we only allow a total of 14 days at a time!"})
    else
     user.removeMoney(price)
     exports['GHMattiMySQL']:QueryAsync('UPDATE `owned_hotels` SET `days_left`=@days_left WHERE `hotel_id`=@id',{['@days_left'] = finalDays, ['@id'] = id})
     TriggerEvent("core:moneylog", source, "Hotel Room Rented For Extra"..days.." Days! > $"..price)
-    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "Hotel Room Rented For Extra "..days.." Days!"})
+    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = "We hope you enjoy your stay! Remaining: "..days.." days."})
     TriggerEvent('hotels:update')
    end
   else 
-    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds"}) 
+    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "Insufficient funds."}) 
   end 
  end)
 end)
