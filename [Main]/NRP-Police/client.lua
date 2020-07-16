@@ -5,6 +5,7 @@ local currentEMS = 0
 local IsDragged = false
 local mission_list = {}
 local currentVehicle = nil
+local peds = {"s_f_y_baywatch_01","s_m_m_marine_01","s_m_y_marine_02","s_m_y_mime","s_m_y_prismuscl_01","u_m_y_staggrm_01","mp_f_execpa_01","mp_m_bogdangoon","u_m_y_zombie_01","csb_stripper_02"}
 
 --- In Dev
 local prisped = nil
@@ -592,6 +593,8 @@ end)
 
 ------ Ammunation
 
+
+
       Citizen.CreateThread(function()
   while true do
     Citizen.Wait(1)
@@ -600,12 +603,13 @@ end)
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 16.879, -1098.371, 29.834, true) < 1.0) then
      drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
      if IsControlJustPressed(0, 38) then
-         Wait(250)
-         RequestModel(GetHashKey('s_m_m_marine_01'))
-         CreatePed(2, GetHashKey('s_m_m_marine_01'), 21.192, -1086.591, 29.796, false, false)
-         TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
-          SetPedCanRagdoll('s_m_m_marine_01', false)
-         SetEntityInvincible('s_m_m_marine_01', true)
+        Wait(250)
+        local model = peds[math.random(1,10)]
+        RequestModel(GetHashKey(model))
+        local target = CreatePed(2, GetHashKey(model), 21.192, -1086.591, 29.796, false, false)
+        TaskStartScenarioInPlace(model, "WORLD_HUMAN_CLIPBOARD", 0, true)
+        SetPedCanRagdoll(model, false)
+        SetEntityInvincible(model, true)
        end
       end
      end
@@ -621,11 +625,12 @@ end)
       drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
       if IsControlJustPressed(0, 38) then
           Wait(250)
-          RequestModel(GetHashKey('s_m_m_marine_01'))
-          CreatePed(2, GetHashKey('s_m_m_marine_01'), 14.540, -1083.591, 29.796, false, false)
-          TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
-          SetPedCanRagdoll('s_m_m_marine_01', false)
-          SetEntityInvincible('s_m_m_marine_01', true)
+          local model = peds[math.random(1,10)]
+          RequestModel(GetHashKey(model))
+          local target1 = CreatePed(2, GetHashKey(model), 14.540, -1083.591, 29.796, false, false)
+          TaskStartScenarioInPlace(model, "WORLD_HUMAN_CLIPBOARD", 0, true)
+          SetPedCanRagdoll(model, false)
+          SetEntityInvincible(model, true)
           end
           end
         end
@@ -642,11 +647,12 @@ Citizen.CreateThread(function()
       drawTxt('~g~[E]~w~ To Spawn Peds To Shoot')
       if IsControlJustPressed(0, 38) then
           Wait(250)
-          RequestModel(GetHashKey('s_m_m_marine_01'))
-          CreatePed(2, GetHashKey('s_m_m_marine_01'), 18.285, -1084.219, 29.796, false, false)
-          TaskStartScenarioInPlace('s_m_m_marine_01', "WORLD_HUMAN_CLIPBOARD", 0, true)
-          SetPedCanRagdoll('s_m_m_marine_01', false)
-          SetEntityInvincible('s_m_m_marine_01', true)
+          local model = peds[math.random(1,10)]
+          RequestModel(GetHashKey(model))
+          local target2 = CreatePed(2, GetHashKey(model), 18.285, -1084.219, 29.796, false, false)
+          TaskStartScenarioInPlace(model, "WORLD_HUMAN_CLIPBOARD", 0, true)
+          SetPedCanRagdoll(model, false)
+          SetEntityInvincible(model, true)
           end
           end
         end
