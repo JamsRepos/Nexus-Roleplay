@@ -18,14 +18,6 @@ end)
 	end 	 	
 end)]]--
 
-RegisterCommand("ammo", function()
- local xzurv = exports['core']:GetItemQuantity(172)
-     if xzurv > 0 then
-     SetPedAmmo(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'),150)
-	 TriggerEvent("inventory:removeQty", 172, 1) 
-	 end 
-end)
-
 RegisterCommand("suppressor", function()
 	local suppressoritem = exports['core']:GetItemQuantity(170)
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL_MK2") and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL_MK2'), GetHashKey('COMPONENT_AT_PI_SUPP_02')) then
@@ -97,9 +89,9 @@ RegisterCommand("strap", function()
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATMG'), GetHashKey('COMPONENT_COMBATMG_VARMOD_LOWRIDER'))
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_SNIPERRIFLE'), GetHashKey('COMPONENT_SNIPERRIFLE_VARMOD_LUXE'))
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_MARKSMANRIFLE'), GetHashKey('COMPONENT_MARKSMANRIFLE_VARMOD_LUXE'))
-		exports['ML-notify']:DoHudText('inform',  "You have Pimped your strap.")
+		exports['NRP-notify']:DoHudText('inform',  "You have Pimped your strap.")
 	else
-		exports['ML-notify']:DoHudText('inform',  "You don't have a Trim Kit.")
+		exports['NRP-notify']:DoHudText('inform',  "You don't have a Trim Kit.")
 	end
 end)
 
@@ -130,7 +122,7 @@ RCCar.Start = function()
 			end
 		end
 	else
-		exports['ML-notify']:DoHudText('inform',  "You don't have an RC Car.")
+		exports['NRP-notify']:DoHudText('inform',  "You don't have an RC Car.")
 	end
 end
 
