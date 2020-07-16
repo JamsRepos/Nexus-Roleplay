@@ -49,7 +49,6 @@ local locations = {
        if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.exit.x, v.exit.y, v.exit.z+0.20, true) < 1.2) then
         drawTxt('~g~[E]~w~ Exit '..v.name)
         if IsControlJustPressed(0, 38) then
-         TriggerEvent('sync:insideInterior', false)
          Teleport(v.enter.x, v.enter.y, v.enter.z)
         end
        end
@@ -60,7 +59,6 @@ local locations = {
        if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.enter.x, v.enter.y, v.enter.z+0.20, true) < 1.2) then
         drawTxt('~g~[E]~w~ Enter '..v.name)
         if IsControlJustPressed(0, 38) then
-         TriggerEvent('sync:insideInterior', true)
          Teleport(v.exit.x, v.exit.y, v.exit.z)
         end
        end
@@ -72,7 +70,6 @@ local locations = {
        if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.exit.x, v.exit.y, v.exit.z, true) < 1.5) then
         drawTxt('~m~ [~g~E~m~] Exit '..v.name)
         if IsControlJustPressed(0, 38) then
-         TriggerEvent('sync:insideInterior', false)
          VehicleTeleport(v.enter.x, v.enter.y, v.enter.z)
         end
        end
@@ -83,7 +80,6 @@ local locations = {
        if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.enter.x, v.enter.y, v.enter.z, true) < 1.5) then
         drawTxt('~g~[E]~w~ Enter '..v.name)
         if IsControlJustPressed(0, 38) then
-         TriggerEvent('sync:insideInterior', true)
          VehicleTeleport(v.exit.x, v.exit.y, v.exit.z)
         end
        end
