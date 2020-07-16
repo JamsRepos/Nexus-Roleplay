@@ -208,6 +208,7 @@ local toolshop = {
  [16] = {name = 'Fishing Rod', price = 500, amount = 1, id = 288},
  [17] = {name = 'Fishing Bait x30', price = 15, amount = 30, id = 289},
  [18] = {name = 'Electrical Wire', price = 100, amount = 1, id = 55},
+ [19] = {name = 'Cleaning Kit x5', price = 400, amount = 5, id = 11},
  }
  
 local pharmacy = {
