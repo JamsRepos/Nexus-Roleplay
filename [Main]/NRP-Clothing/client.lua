@@ -30,8 +30,10 @@ local clothing_shops = {
   {x = -1195.640, y = -1577.690, z = 4.609}, -- Gym Clothing Station
   {x = -1619.689, y = -3020.379, z = -75.205}, -- The Palace
   {x = -207.208, y = -1337.971, z = 34.894, hidden= true}, --bennys
-  {x = 264.063, y = -1800.656, z = 26.914, hidden= true},-- ballas
-
+  {x = 264.063, y = -1800.656, z = 26.914, hidden= true}, --bennys
+  {x = -163.028, y = -303.305, z = 39.733},
+  {x = 75.884, y = -1392.938, z = 29.376},
+  {x = -1450.806, y = -236.949, z = 49.809}
 }
 
 Citizen.CreateThread(function()
