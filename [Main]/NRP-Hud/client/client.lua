@@ -193,11 +193,14 @@ Citizen.CreateThread(function()
     while true do
     Wait(100)
       if hunger < 20 or thirst < 20 then
-       SetEntityMaxSpeed(GetPlayerPed(-1), 5.00)
-       Wait(10000)
-       DoScreenFadeOut(1500)
-       Wait(1200)
-       DoScreenFadeIn(1500)
+        SetEntityMaxSpeed(GetPlayerPed(-1), 5.00)
+        Wait(10000)
+        DoScreenFadeOut(1500)
+        Wait(1200)
+        DoScreenFadeIn(1500)
+        if hunger < 5 or thirst < 5 then
+            ApplyDamageToPed(GetPlayerPed(-1), 5, false)
+        end
      else
        SetEntityMaxSpeed(GetPlayerPed(-1), 100.00)
      end
