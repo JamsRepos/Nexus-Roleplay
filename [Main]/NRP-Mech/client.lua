@@ -947,48 +947,161 @@ end)
   end
 end)
 
+ObjectInFront = function(ped, pos)
+	local entityWorld = GetOffsetFromEntityInWorldCoords(ped, 0.0, 1.5, 0.0)
+	local car = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 30, ped, 0)
+	local _, _, _, _, result = GetRaycastResult(car)
+	return result
+end
+  
+RegisterNetEvent('NRP-Mech:Repair')
+AddEventHandler('NRP-Mech:Repair', function()
+  local ped = PlayerPedId()
+  local coords = GetEntityCoords(ped)
+  local veh = ObjectInFront(ped, coords)
+
+  if DoesEntityExist(veh) then
+    if IsEntityAVehicle(veh) then
+      SetEntityAsMissionEntity(veh, true, true)
+      TriggerEvent('nk_repair:MettiCrick', ped, coords, veh)
+    else
+      exports['NRP-notify']:DoHudText('error', 'No Vehicle Near')
+    end
+  end
+end)
+
+RegisterNetEvent('nk_repair:MettiCrick')
+AddEventHandler('nk_repair:MettiCrick', function(ped, coords, veh)
+	local dict
+	local model = 'prop_carjack'
+	local offset = GetOffsetFromEntityInWorldCoords(ped, 0.0, -2.0, 0.0)
+	local headin = GetEntityHeading(ped)
+	local vehicle   = GetClosestVehicle()
+	FreezeEntityPosition(veh, true)
+	local vehpos = GetEntityCoords(veh)
+	dict = 'mp_car_bomb'
+	RequestAnimDict(dict)
+	RequestModel(model)
+	while not HasAnimDictLoaded(dict) or not HasModelLoaded(model) do
+		Citizen.Wait(1)
+	end
+	local vehjack = CreateObject(GetHashKey(model), vehpos.x, vehpos.y, vehpos.z - 0.5, true, true, true)
+  exports['pogressBar']:drawBar(9250, 'Jacking Vehicle')
+	AttachEntityToEntity(vehjack, veh, 0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, false, false, false, false, 0, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1250, 1, 0.0, 1, 1)
+	Citizen.Wait(1250)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.01, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.025, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.05, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.1, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.15, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.2, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.3, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	dict = 'move_crawl'
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.4, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.5, true, true, true)
+	SetEntityCollision(veh, false, false)
+	--TaskPedSlideToCoord(ped, offset, headin, 1000)
+	Citizen.Wait(1000)
+	RequestAnimDict(dict)
+	while not HasAnimDictLoaded(dict) do
+		Citizen.Wait(100)
+	end
+  exports['pogressBar']:drawBar(20000, 'Repairing Vehicle')
+	--TaskPlayAnimAdvanced(ped, dict, 'onback_bwd', coords, 0.0, 0.0, headin - 180, 1.0, 0.5, 3000, 1, 0.0, 1, 1)
+	dict = 'amb@world_human_vehicle_mechanic@male@base'
+	--Citizen.Wait(3000)
+	RequestAnimDict(dict)
+	while not HasAnimDictLoaded(dict) do
+		Citizen.Wait(1)
+  end
+  SetEntityHeading(ped, headin - 180.0)
+	TaskPlayAnim(ped, dict, 'base', 8.0, -8.0, 20000, 1, 0, false, false, false)
+	dict = 'move_crawl'
+	Citizen.Wait(20000)
+	local coords2 = GetEntityCoords(ped)
+	RequestAnimDict(dict)
+	while not HasAnimDictLoaded(dict) do
+		Citizen.Wait(1)
+	end
+	--TaskPlayAnimAdvanced(ped, dict, 'onback_fwd', coords2, 0.0, 0.0, headin - 180, 1.0, 0.5, 3000, 1, 0.0, 1, 1)
+	--Citizen.Wait(3000)
+	dict = 'mp_car_bomb'
+	RequestAnimDict(dict)
+	while not HasAnimDictLoaded(dict) do
+		Citizen.Wait(1)
+  end
+  if GetVehicleEngineHealth(veh) > 950.0 then
+    TriggerEvent("NRP-Mech:Service")
+  elseif GetVehicleEngineHealth(veh) > 900.0 then
+    TriggerEvent("NRP-Mech:SparkPlug")
+  elseif	GetVehicleEngineHealth(veh) > 800.0 then
+    TriggerEvent("NRP-Mech:AirFilter")
+  elseif	GetVehicleEngineHealth(veh) > 700.0 then
+    TriggerEvent("NRP-Mech:SparkPlug")
+  elseif	GetVehicleEngineHealth(veh) > 600.0 then
+    TriggerEvent("NRP-Mech:Exhuast")
+  elseif	GetVehicleEngineHealth(veh) > 500.0 then
+    TriggerEvent("NRP-Mech:CConverter")
+  elseif	GetVehicleEngineHealth(veh) > 400.0 then
+    TriggerEvent("NRP-Mech:Clutch")
+  elseif	GetVehicleEngineHealth(veh) > 300.0 then
+    TriggerEvent('NRP-Mech:Gearbox')
+  elseif	GetVehicleEngineHealth(veh) < 300.0 then
+    TriggerEvent('NRP-Mech:Engine')
+  end
+	ClearPedTasksImmediately(playerPed)
+  exports['pogressBar']:drawBar(9250, 'Lowering Vehicle')
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1250, 1, 0.0, 1, 1)
+	Citizen.Wait(1250)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.4, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.3, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.2, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.15, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.1, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.05, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.025, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	dict = 'move_crawl'
+	Citizen.Wait(1000)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z + 0.01, true, true, true)
+	TaskPlayAnimAdvanced(ped, dict, 'car_bomb_mechanic', coords, 0.0, 0.0, headin, 1.0, 0.5, 1000, 1, 0.25, 1, 1)
+	SetEntityCoordsNoOffset(veh, vehpos.x, vehpos.y, vehpos.z, true, true, true)
+	FreezeEntityPosition(veh, false)
+	DeleteObject(vehjack)
+	SetEntityCollision(veh, true, true)
+end)
+
 RegisterCommand('repair', function(source, args, rawCommand)
     if DecorGetInt(GetPlayerPed(-1), "Job") == 3 then	
-      local ped = GetPlayerPed(-1)
-      local coords = GetEntityCoords(ped)
-      if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
-        local vehicle = nil
-        if IsPedInAnyVehicle(ped, false) then
-          vehicle = GetVehiclePedIsIn(ped, false)
-        else
-          vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
-        end
-        if DoesEntityExist(vehicle) then
-          if GetVehicleEngineHealth(vehicle) > 950.0 then
-               TriggerEvent("NRP-Mech:Service")
-               exports['NRP-notify']:DoHudText('inform', 'Servicing Vehicle and Repairing Body Damage')
-          elseif GetVehicleEngineHealth(vehicle) > 900.0 then
-               TriggerEvent("NRP-Mech:SparkPlug")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Spark Plugs')
-          elseif	GetVehicleEngineHealth(vehicle) > 800.0 then
-               TriggerEvent("NRP-Mech:AirFilter")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Air Filter')
-          elseif	GetVehicleEngineHealth(vehicle) > 700.0 then
-               TriggerEvent("NRP-Mech:SparkPlug")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Radiator')
-          elseif	GetVehicleEngineHealth(vehicle) > 600.0 then
-               TriggerEvent("NRP-Mech:Exhuast")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Exhuast')
-          elseif	GetVehicleEngineHealth(vehicle) > 500.0 then
-               TriggerEvent("NRP-Mech:CConverter")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Catayltic Converter')
-          elseif	GetVehicleEngineHealth(vehicle) > 400.0 then
-               TriggerEvent("NRP-Mech:Clutch")
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Clutch')
-          elseif	GetVehicleEngineHealth(vehicle) > 300.0 then
-               TriggerEvent('NRP-Mech:Gearbox')
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Gearbox')
-          elseif	GetVehicleEngineHealth(vehicle) < 300.0 then
-               TriggerEvent('NRP-Mech:Engine')
-               exports['NRP-notify']:DoHudText('inform', 'Fitting New Engine ')
-          end
-        end		
-      end
+      TriggerEvent('NRP-Mech:Repair')
     else
       exports['NRP-notify']:DoHudText('error', 'You Need To Be a Mechanic To Use This Command')
     end	
@@ -1006,14 +1119,10 @@ AddEventHandler('NRP-Mech:Clutch', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-          Citizen.CreateThread(function()
-            Citizen.Wait(20000)
-            SetVehicleEngineHealth(vehicle, 501.0)
-            SetVehicleUndriveable(vehicle, false) 
-            ClearPedTasksImmediately(ped)
-            exports['NRP-notify']:DoHudText('success', 'New Clutch Fitted') 
-          end)
+          SetVehicleEngineHealth(vehicle, 501.0)
+          SetVehicleUndriveable(vehicle, false) 
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'New Clutch Fitted') 
         end
       end
 end)
@@ -1030,29 +1139,12 @@ AddEventHandler('NRP-Mech:Exhuast', function()
         vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
       end
       if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "exh_aust",
-             duration = 20000,
-             label = "Fitting New Exhaust",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 701.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Gearbox') 
-                end
-           end)
-        end
+        SetVehicleEngineHealth(vehicle, 701.0)
+        SetVehicleUndriveable(vehicle, false)
+        ClearPedTasksImmediately(ped)
+        exports['NRP-notify']:DoHudText('success', 'New Exhaust Fitted') 
       end
+    end
 end)
   
 RegisterNetEvent('NRP-Mech:Radiator')
@@ -1067,27 +1159,10 @@ AddEventHandler('NRP-Mech:Radiator', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "rad_iator",
-             duration = 20000,
-             label = "Fitting New Radiator",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 801.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Gearbox') 
-                end
-           end)
+          SetVehicleEngineHealth(vehicle, 801.0)
+          SetVehicleUndriveable(vehicle, false)
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'New Radiator Fitted')
         end
       end
 end)
@@ -1104,34 +1179,17 @@ AddEventHandler('NRP-Mech:Engine', function()
         vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
       end
       if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "eng_ine",
-             duration = 60000,
-             label = "Fitting New Engine",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 1000.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Gearbox') 
-                end
-           end)
-        end
+        SetVehicleEngineHealth(vehicle, 1000.0)
+        SetVehicleUndriveable(vehicle, false)
+        ClearPedTasksImmediately(ped)
+        exports['NRP-notify']:DoHudText('success', 'New Engine Fitted')
       end
+    end
 end)
   
 RegisterNetEvent('NRP-Mech:Gearbox')
 AddEventHandler('NRP-Mech:Gearbox', function()
-     local ped = GetPlayerPed(-1)
+    local ped = GetPlayerPed(-1)
     local coords = GetEntityCoords(ped)
     if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
       local vehicle = nil
@@ -1141,36 +1199,19 @@ AddEventHandler('NRP-Mech:Gearbox', function()
         vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
       end
       if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "gear_box",
-             duration = 20000,
-             label = "Fitting New Gearbox",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 401.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Gearbox') 
-                end
-           end)
-        end
+        SetVehicleEngineHealth(vehicle, 401.0)
+        SetVehicleUndriveable(vehicle, false)
+        ClearPedTasksImmediately(ped)
+        exports['NRP-notify']:DoHudText('success', 'New Gearbox Fitted')
       end
+    end
 end)
   
 RegisterNetEvent('NRP-Mech:Service')
 AddEventHandler('NRP-Mech:Service', function()
-      local ped = GetPlayerPed(-1)
-      local coords = GetEntityCoords(ped)
-      if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
+    local ped = GetPlayerPed(-1)
+    local coords = GetEntityCoords(ped)
+    if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
         local vehicle = nil
         if IsPedInAnyVehicle(ped, false) then
           vehicle = GetVehiclePedIsIn(ped, false)
@@ -1178,38 +1219,19 @@ AddEventHandler('NRP-Mech:Service', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-             TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-              exports['mythic_progbar']:Progress({
-                name = "engine_bodywork",
-                duration = 25000,
-                label = "Servicing Engine and Repairing Bodywork",
-                useWhileDead = false,
-                canCancel = true,
-                controlDisables = {
-                    disableMovement = true,
-                    disableCarMovement = true,
-                    disableMouse = false,
-                    disableCombat = true,
-                },
-            }, function(status)
-                  if not status then
-                    --SetVehicleEngineHealth(vehicle, 1000.0)
-                    --SetVehicleBodyHealth(vehicle, 1000.0)
-                    SetVehicleFixed(vehicle) 
-                    SetVehicleUndriveable(vehicle, false)
-                    ClearPedTasksImmediately(ped)
-                    --exports['NRP-notify']:DoHudText('success', 'Vehicle Has Been Serviced and Body Has Been Repaired') 
-                   end
-              end)
-           end
-      end
+          SetVehicleFixed(vehicle) 
+          SetVehicleUndriveable(vehicle, false)
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'Vehicle Serviced')
+        end
+    end
 end)
   
 RegisterNetEvent('NRP-Mech:SparkPlug')
 AddEventHandler('NRP-Mech:SparkPlug', function()
-      local ped = GetPlayerPed(-1)
-      local coords = GetEntityCoords(ped)
-      if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
+    local ped = GetPlayerPed(-1)
+    local coords = GetEntityCoords(ped)
+    if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
         local vehicle = nil
         if IsPedInAnyVehicle(ped, false) then
           vehicle = GetVehiclePedIsIn(ped, false)
@@ -1217,29 +1239,12 @@ AddEventHandler('NRP-Mech:SparkPlug', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "spark_plug",
-             duration = 20000,
-             label = "Fitting New Spark Plugs",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 951.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Spark Plugs') 
-                end
-           end)
+          SetVehicleEngineHealth(vehicle, 951.0)
+          SetVehicleUndriveable(vehicle, false)
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'New Spark Plugs Fitted')
         end
-      end
+    end
 end)
  
 RegisterNetEvent('NRP-Mech:AirFilter')
@@ -1254,29 +1259,12 @@ AddEventHandler('NRP-Mech:AirFilter', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "air_filter",
-             duration = 20000,
-             label = "Fitting New Air Filter",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 901.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 --exports['NRP-notify']:DoHudText('success', 'Fitting New Air Filter') 
-                end
-           end)
+          SetVehicleEngineHealth(vehicle, 901.0)
+          SetVehicleUndriveable(vehicle, false)
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'New Air Filter Fitted')
         end
-      end
+    end
 end)
   
 RegisterNetEvent('NRP-Mech:CConverter')
@@ -1291,27 +1279,10 @@ AddEventHandler('NRP-Mech:CConverter', function()
           vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
         end
         if DoesEntityExist(vehicle) then
-          TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-           exports['mythic_progbar']:Progress({
-             name = "cat_c",
-             duration = 20000,
-             label = "Fitting New Catyltic Converter",
-             useWhileDead = false,
-             canCancel = true,
-             controlDisables = {
-                 disableMovement = true,
-                 disableCarMovement = true,
-                 disableMouse = false,
-                 disableCombat = true,
-             },
-         }, function(status)
-               if not status then
-                 SetVehicleEngineHealth(vehicle, 601.0)
-                 SetVehicleUndriveable(vehicle, false)
-                 ClearPedTasksImmediately(ped)
-                 exports['NRP-notify']:DoHudText('success', 'Fitting New Catayltic Converter') 
-                end
-           end)
-        end
+          SetVehicleEngineHealth(vehicle, 601.0)
+          SetVehicleUndriveable(vehicle, false)
+          ClearPedTasksImmediately(ped)
+          exports['NRP-notify']:DoHudText('success', 'New Catalytic Converter Fitted')
       end
+    end
 end)
