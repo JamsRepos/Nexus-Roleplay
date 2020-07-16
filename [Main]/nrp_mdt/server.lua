@@ -59,10 +59,9 @@ RegisterServerEvent('mdt:deleteWarrant')
 AddEventHandler('mdt:deleteWarrant', function(id)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-    ---local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants`")
     local deletedwarrant = exports['GHMattiMySQL']:QueryResult("SELECT * FROM mdt_warrants WHERE `id`=@id",{['@id'] = id})
     for i,v in pairs(deletedwarrant) do
-        DiscordLog("Name: **"..v.name.."**\n Description: **"..v.description.."**\n Vehicles: **"..v.knownVehicles.."**\n Issued by: **"..v.issued.."**".."\n Deleted: **"..os.date("%d/%m/%Y %X").."**".."\n Charges: **"..v.charges.."**", 15158332, "**Deleted Warrant**")
+        DiscordLog("Name: **"..v.name.."**\n Description: **"..v.description.."**\n Vehicles: **"..v.knownVehicles.."**\n Issued by: **"..v.issued.."**".."\n Deleted: **"..os.date("%d/%m/%Y %X").."**".."\n Deleted by: **"..user.getIdentity().fullname.."**\n Charges: **"..v.charges.."**", 15158332, "**Deleted Warrant**")
     end
     exports['GHMattiMySQL']:QueryAsync('DELETE FROM mdt_warrants WHERE `id`=@id',{['@id'] = id}) 
   TriggerClientEvent("pNotify:SendNotification", source, {text= "Warrant Deleted", timeout = 4000})  
