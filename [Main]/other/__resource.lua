@@ -12,9 +12,3 @@ client_script 'handsup/client.lua'
 client_script 'client/client.lua'
 client_script 'teleports/client.lua'
 
-files {
-	'data/peds.meta'
-}
-
-data_file 'PED_METADATA_FILE' 'data/peds.meta'
-
