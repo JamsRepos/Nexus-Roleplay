@@ -73,10 +73,27 @@ end)
 
 RegisterServerEvent('core:characterloaded')
 AddEventHandler('core:characterloaded', function()
- TriggerEvent("core:getPlayers", function(users)
-  for _,v in pairs(users) do
-   TriggerClientEvent('hotels:update', v.getSource(), rentedHotels, v.getCharacterID())
-  end
+  local source = tonumber(source)
+  TriggerEvent("core:getPlayers", function(users)
+    for _,v in pairs(users) do
+    TriggerClientEvent('hotels:update', v.getSource(), rentedHotels, v.getCharacterID())
+    end
+  end)
+
+  TriggerEvent('core:getPlayerFromId', source, function(user)
+    local result = exports['GHMattiMySQL']:QueryScalar("SELECT hotel FROM `characters` WHERE id=@char_id",{['@char_id'] = user.getCharacterID()})
+    if result > 0 then
+      local hotelid = result
+      TriggerClientEvent("hotel:removefromhotel", source, hotelid)
+    end
+  end)
+end)
+
+RegisterServerEvent('hotel:updateHotel')
+AddEventHandler('hotel:updateHotel', function(hotelid)
+ local source = tonumber(source)
+ TriggerEvent("core:getPlayerFromId", source, function(user)
+    exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET hotel=@hotelid WHERE id=@id",{['@hotelid'] = hotelid, ['@id'] = user.getCharacterID()})
  end)
 end)
 
