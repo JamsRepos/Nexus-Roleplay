@@ -685,7 +685,7 @@ LSC_Config.prices = {
 ------Model Blacklist--------
 --Does'nt allow specific vehicles to be upgraded
 LSC_Config.ModelBlacklist = {
-	"centenario",
+	"lp770cop",
 }
 
 --Sets if garage will be locked if someone is inside it already
