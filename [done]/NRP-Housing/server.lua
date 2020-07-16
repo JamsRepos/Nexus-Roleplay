@@ -11,6 +11,12 @@ AddEventHandler('playerConnecting', function()
   end
 end)
 
+TriggerEvent('core:addGroupCommand', 'refreshhouses', "admin", function(source, args, user)
+  local source = tonumber(source)
+  TriggerEvent("housing:updateAll")
+  TriggerEvent('core:log', "[HOUSES] "..GetPlayerName(source).."("..source..") has refreshed all houses.", "staff") 
+end)
+
 AddEventHandler('onResourceStart', function(resource)
  if resource == GetCurrentResourceName() then
   local houses = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `houses`")    
@@ -49,6 +55,20 @@ AddEventHandler('core:characterloaded', function()
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   TriggerClientEvent('housing:update', source, allHouses, ownedHouses, user.getCharacterID())
+
+  local result = exports['GHMattiMySQL']:QueryScalar("SELECT house FROM `characters` WHERE id=@char_id",{['@char_id'] = user.getCharacterID()})
+  if result > 0 then
+    local houseid = result
+    TriggerClientEvent("housing:removefromhouse", source, houseid)
+  end
+ end)
+end)
+
+RegisterServerEvent('housing:updateHouse')
+AddEventHandler('housing:updateHouse', function(houseid)
+ local source = tonumber(source)
+ TriggerEvent("core:getPlayerFromId", source, function(user)
+    exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET house=@houseid WHERE id=@id",{['@houseid'] = houseid, ['@id'] = user.getCharacterID()})
  end)
 end)
 
