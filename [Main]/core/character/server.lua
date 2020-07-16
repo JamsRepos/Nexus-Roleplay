@@ -102,7 +102,7 @@ RegisterServerEvent('core:newcharacter')
 AddEventHandler('core:newcharacter', function()
     local source = tonumber(source)
     TriggerEvent("core:getPlayerFromId", source, function(user)
-        if user.getPlaytime() <= 60 then
+        if user.getPlaytime() <= 10 then
             TriggerClientEvent('core:starttutorial', source)
         end
     end)
