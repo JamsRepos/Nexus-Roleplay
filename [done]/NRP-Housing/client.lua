@@ -675,6 +675,31 @@ function GetPlayersInArea()
   return pedids
 end
 
+function GetD8PlayersInArea()
+  local peds
+  local pedids = {}
+  
+  peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
+  
+  for id = 0, 255 do
+    local ped = GetPlayerPed(-1)
+    local rped = GetPlayerPed(id)
+    
+    if (NetworkIsPlayerActive(id) and rped ~= ped) then
+      local pos = GetEntityCoords(ped)
+      local rpos = GetEntityCoords(rped)
+      local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
+      
+      if (dist < 5 and DecorGetInt(rped, 'Faction') == 30) then
+        table.insert(pedids, GetPlayerServerId(id))
+        return pedids
+      end
+    end
+  end
+  return pedids
+end
+
+
 function teleportToInterior(house)
   Citizen.CreateThread(function()
    lastipl = ipllist[allHouses[currentHouse.id].ipl]
