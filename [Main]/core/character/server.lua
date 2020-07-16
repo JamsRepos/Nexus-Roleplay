@@ -98,6 +98,16 @@ AddEventHandler("core:loadcharacter", function(data)
  TriggerEvent('timers:load', source)
 end)
 
+RegisterServerEvent('core:newcharacter')
+AddEventHandler('core:newcharacter', function()
+    local source = tonumber(source)
+    TriggerEvent("core:getPlayerFromId", source, function(user)
+        if user.getPlaytime() <= 10 then
+            TriggerClientEvent('core:starttutorial', source)
+        end
+    end)
+end)
+
 function GetActiveCharacterID(source)
  local identifier = GetPlayerIdentifier(source)
  return characters[identifier].char_id   

@@ -156,6 +156,22 @@ local Objects = {
   { ["x"] = 150.747, ["y"] = -1005.814, ["z"] = -99.00-0.95, ["h"] = 270.0, ["model"] = "prop_bin_10a" }
 }
 
+RegisterNetEvent('hotel:removefromhotel')
+AddEventHandler('hotel:removefromhotel', function(id)
+  for _, info in pairs(rentedHotels) do
+    if info.id == id then
+      local ped = GetPlayerPed(-1)
+      RequestCollisionAtCoord(hotelDoors[info.id].x, hotelDoors[info.id].y, hotelDoors[info.id].z)
+      while (not HasCollisionLoadedAroundEntity(ped)) do
+        RequestCollisionAtCoord(hotelDoors[info.id].x, hotelDoors[info.id].y, hotelDoors[info.id].z)
+        Wait(0)
+      end
+      SetEntityCoords(ped, hotelDoors[info.id].x, hotelDoors[info.id].y, hotelDoors[info.id].z)
+      TriggerServerEvent("hotel:updateHotel", 0)
+    end
+  end
+end)
+
 Citizen.CreateThread(function()
   for i = 1, #Objects, 1 do
       while not HasModelLoaded(GetHashKey(Objects[i]["model"])) do
@@ -198,6 +214,7 @@ Citizen.CreateThread(function()
         if IsControlJustPressed(0, 38) then
          currentHotel = {pos = v, id = id, days = rentedHotels[id].days_left}
          TriggerServerEvent("hotel:createInstance", currentHotel)
+         TriggerServerEvent("hotel:updateHotel", currentHotel.id)
          TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
         end
        elseif DecorGetBool(GetPlayerPed(-1), "Faction") == 12 then 
@@ -274,7 +291,7 @@ Citizen.CreateThread(function()
   WarMenu.Display()
   end
   if(GetDistanceBetweenCoords(coords, 151.428, -1007.758, -99.00, true) < 1.0 and inHotel) then 
-   DrawText3Ds(151.428, -1007.758, -99.00, "~g~[E]~w~ Leave Motel")
+   DrawText3Ds(151.428, -1007.758, -99.00, "~g~[E]~w~ Exit")
    if (IsControlJustReleased(1, 38)) then
     RequestCollisionAtCoord(currentHotel.pos.x, currentHotel.pos.y, currentHotel.pos.z)
     while not HasCollisionLoadedAroundEntity(GetPlayerPed(-1)) do
@@ -288,6 +305,7 @@ Citizen.CreateThread(function()
     instance.houseid = 0
 
     TriggerServerEvent("hotel:removeFromInstance", currentHotel)
+    TriggerServerEvent("hotel:updateHotel", 0)
     inHotel = false
     Wait(1250)
     DoScreenFadeIn(500)
@@ -318,7 +336,6 @@ RegisterNetEvent('hotels:update')
 AddEventHandler('hotels:update', function(hotels, id)
  rentedHotels = hotels 
  myCharacterID = id
- print(rentedHotels)
 end)
 
 RegisterNetEvent("hotel:sendToInstance")

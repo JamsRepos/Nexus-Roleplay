@@ -145,6 +145,23 @@ AddEventHandler('housing:update', function(all, owned, id)
   end
  end
 end)
+
+RegisterNetEvent('housing:removefromhouse')
+AddEventHandler('housing:removefromhouse', function(id)
+  for _, info in pairs(ownedHouses) do
+    if info.id == id then
+      local ped = GetPlayerPed(-1)
+      RequestCollisionAtCoord(allHouses[info.id].pos.x, allHouses[info.id].pos.y, allHouses[info.id].pos.z)
+      while (not HasCollisionLoadedAroundEntity(ped)) do
+        RequestCollisionAtCoord(allHouses[info.id].pos.x, allHouses[info.id].pos.y, allHouses[info.id].pos.z)
+        Wait(0)
+      end
+      SetEntityCoords(ped, allHouses[info.id].pos.x, allHouses[info.id].pos.y, allHouses[info.id].pos.z)
+      TriggerServerEvent("housing:updateHouse", 0)
+    end
+  end
+end)
+
 --- modify_garages
 Citizen.CreateThread(function()
   WarMenu.CreateLongMenu('garage_manage', "House Garage")
@@ -189,7 +206,8 @@ Citizen.CreateThread(function()
         elseif hasHouseKey(v.id) then
           DrawText3Ds(allHouses[v.id].pos.x, allHouses[v.id].pos.y, allHouses[v.id].pos.z,'~g~[E]~w~ Enter\n~g~'..allHouses[v.id].address)
           if IsControlJustPressed(0, 38) then
-           TriggerServerEvent("housing:createInstance", v) 
+           TriggerServerEvent("housing:createInstance", v)
+           TriggerServerEvent("housing:updateHouse", v.id)
            inhouse = true
            currentHouse = v
            TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
@@ -410,6 +428,7 @@ Citizen.CreateThread(function()
     local sellPrice = currentHouse.rent/2
     if currentHouse.rent_due == 0 and WarMenu.Button('Enter House')  then
      TriggerServerEvent("housing:createInstance", currentHouse)
+     TriggerServerEvent("housing:updateHouse", currentHouse.id)
      inhouse = true
      WarMenu.CloseMenu()
      TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
@@ -621,6 +640,7 @@ Citizen.CreateThread(function()
      disableInterior()
      instance.houseid = 0
      TriggerServerEvent("housing:removeFromInstance", currentHouse)
+     TriggerServerEvent("housing:updateHouse", 0)
      renderExitMarker = false
      inhouse = false
      currentHouse = nil
