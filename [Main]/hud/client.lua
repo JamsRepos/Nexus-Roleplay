@@ -160,15 +160,15 @@ Citizen.CreateThread(function()
   local ped = PlayerPedId()  
   local vehicle = GetVehiclePedIsIn(ped, false)
   local speed = math.floor(GetEntitySpeed(vehicle) * 2.236936)
-  local fueltitle = nil
-  if GetVehicleHighGear(vehicle) == 1 then
-    fueltitle = "CHARGE"
-  else
-    fueltitle = "FUEL"
-  end
   Citizen.Wait(5)
   if hud then
    if IsPedInAnyVehicle(ped) then
+    local fueltitle = nil
+    if GetVehicleHighGear(vehicle) == 1 then
+      fueltitle = "CHARGE"
+    else
+      fueltitle = "FUEL"
+    end
     -- Speed & Fuel
     local currentfuel = DecorGetInt(vehicle, "_Fuel_Level") * 0.001
     local currentfuelraw = DecorGetInt(vehicle, "_Fuel_Level")

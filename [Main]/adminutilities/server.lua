@@ -799,7 +799,7 @@ TriggerEvent('core:addGroupCommand', 'warn', "trainee", function(source, args, u
   reason = table.concat(reason, " ")
   StaffMessage("^5Warned: "..GetPlayerName(player).." | Admin: "..GetPlayerName(source).." | Reason: "..reason)
   TriggerEvent("core:log", tostring("[WARN] "..GetPlayerName(source).."("..source..") warned "..GetPlayerName(player).."("..player..") for "..reason), "staff")
-  TriggerClientEvent('NRP-notify:client:SendAlert', player, { type = 'error', text = "You Have Been Warned! Reason: "..reason.."",timeout = 20000})
+  TriggerClientEvent('NRP-notify:client:SendAlert', player, { type = 'error', text = "You Have Been Warned! Reason: "..reason.."",length = 20000})
   exports['GHMattiMySQL']:QueryAsync("INSERT INTO admin_history (`admin`, `user`, `action`, `when`) VALUES (@admin, @user, @action, @when)",{['@admin'] = GetPlayerIdentifier(source), ['@user'] = target.getIdentifier(), ['@action'] = "Warned: " .. reason, ['@when'] =  os.date("%d/%m/%Y %X")})
    end)
   end

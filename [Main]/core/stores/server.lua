@@ -165,7 +165,7 @@ AddEventHandler('weaponstore:takeBank', function(bank, id)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   ownedWeapons[id].bank = 0
   exports['GHMattiMySQL']:QueryAsync('UPDATE `owned_gunstores` SET bank=@fuel WHERE `id`=@id',{['@fuel'] = 0, ['@id'] = id})
-  TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(source), { type = 'inform', text = "Store Bank Deposited Into Your Account",timeout = 2500,layout = "centerRight"})
+  TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(source), { type = 'inform', text = "Store Bank Deposited Into Your Account",length = 2500,layout = "centerRight"})
   user.addBank(bank)
   TriggerEvent('weaponstores:updateStations')
  end)
@@ -182,7 +182,7 @@ AddEventHandler('weaponstore:purchase', function(id, price)
    TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(source), { type = 'inform', text = "You have purchased this weapon store", timeout = 2500,layout = "centerRight"})
    TriggerEvent('weaponstores:updateStations')
   else
-   TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(source), { type = 'inform', text = "Insufficient funds",timeout = 2500,layout = "centerRight"})
+   TriggerClientEvent('NRP-notify:client:SendAlert', tonumber(source), { type = 'inform', text = "Insufficient funds",length = 2500,layout = "centerRight"})
   end
  end)
 end)
