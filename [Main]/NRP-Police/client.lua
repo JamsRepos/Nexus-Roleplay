@@ -368,7 +368,7 @@ Citizen.CreateThread(function()
          Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
         else
          currentgarage = {x = v.x, y = v.y, z = v.z}
-         if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
+         if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 34 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
           SpawnVehicle('polmav')
          else 
           exports['NRP-notify']:DoHudText('inform', "You are not authorized to fly a helicopter.")

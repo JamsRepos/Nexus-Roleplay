@@ -191,7 +191,7 @@ Citizen.CreateThread(function()
 									ClearPedTasksImmediately(jobs.peds[1])
 									Citizen.InvokeNative(0xB736A491E64A32CF,Citizen.PointerValueIntInitialized(jobs.peds[1]))
 									jobs.peds[1] = nil
-									drawTxt("~r~The Client is not going with you~w~.~w~ Find anotherone.", 5000)
+									drawTxt("~r~The Client is not going with you~w~.~w~ Find another one.", 5000)
 									jobs.flag[1] = 0
 									jobs.flag[2] = 59+GetRandomIntInRange(1, 61)
 								else
