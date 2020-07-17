@@ -98,7 +98,7 @@ LSCMenu.config.pcontrol = false
 local function AddMod(mod,parent,header,name,info,stock)
 	local veh = myveh.vehicle
 	SetVehicleModKit(veh,0)	
-	if (GetNumVehicleMods(veh,mod) ~= nil and GetNumVehicleMods(veh,mod) > 0) or mod == 18 or mod == 22 then
+	if (GetNumVehicleMods(veh,mod) ~= nil and GetNumVehicleMods(veh,mod) > 0) or mod == 18 or mod == 22 or mod == 48 then
 		local m = parent:addSubMenu(header, name, info,true)
 		if stock then
 			local btn = m:addPurchase("Stock")
@@ -107,10 +107,13 @@ local function AddMod(mod,parent,header,name,info,stock)
 		end
 		if LSC_Config.prices.mods[mod].startprice then
 			local price = LSC_Config.prices.mods[mod].startprice
-			for i = 0,   tonumber(GetNumVehicleMods(veh,mod)) -1 do
-				local lbl = GetModTextLabel(veh,mod,i)
+			local submod = nil
+			if mod == 48 then submod = GetVehicleLiveryCount(veh) else submod = GetNumVehicleMods(veh,mod) end
+			for i = 0, tonumber(submod) -1 do
+				local lbl = nil
+				if mod == 48 then lbl = "Livery #"..i else lbl = GetLabelText(GetModTextLabel(veh,mod,i)) end
 				if lbl ~= nil then
-					local mname = tostring(GetLabelText(lbl))
+					local mname = tostring(lbl)
 					if mname ~= "NULL" then
 						local btn = m:addPurchase(mname,math.floor(price+customsVat))
 						btn.modtype = mod
@@ -243,6 +246,8 @@ local function DriveInGarage()
 			elseif i == 23 or i == 24 then
 				t.mod = GetVehicleMod(veh,i)
 				t.variation = GetVehicleModVariation(veh, i)
+			elseif i == 48 then
+				t.mod = GetVehicleLivery(veh)
 			else
 				t.mod = GetVehicleMod(veh,i)
 			end
@@ -335,7 +340,7 @@ local function DriveInGarage()
 		--AddMod(47, LSCMenu.categories, "UNK47", "unk47", "",true)
 		--AddMod(49, LSCMenu.categories, "UNK49", "unk49", "",true)
 		AddMod(38,LSCMenu.categories,"HYDRAULICS","Hydraulics","",true)
-		AddMod(48,LSCMenu.categories,"Liveries", "Liveries", "A selection of decals for your vehicle.",true)
+		AddMod(48,LSCMenu.categories,"Liveries", "Liveries", "A selection of decals for your vehicle.",false)
 		
 		if bumper then
 			LSCMenu.categories:addSubMenu("BUMPERS", "Bumpers", "Custom front and rear bumpers.",true)
@@ -635,7 +640,6 @@ Citizen.CreateThread(function()
 												garageID = i
 												if ownedCustoms[pos.id] then 
  												 customsVat = ownedCustoms[pos.id].vat
-												 print('Vat: $'..ownedCustoms[pos.id].vat)
 												end
 												DriveInGarage()
 											else
@@ -652,7 +656,6 @@ Citizen.CreateThread(function()
 											garageID = i
 											if ownedCustoms[pos.id] then 
  											 customsVat = ownedCustoms[pos.id].vat
-											 print('Vat: $'..ownedCustoms[pos.id].vat)
 											end
 											DriveInGarage()
 										else
@@ -669,7 +672,6 @@ Citizen.CreateThread(function()
 										garageID = i
 										if ownedCustoms[pos.id] then 
 											customsVat = ownedCustoms[pos.id].vat
-										 print('Vat: $'..ownedCustoms[pos.id].vat)
 										end
 										DriveInGarage()
 									else
@@ -740,7 +742,9 @@ function LSCMenu:onSelectedIndexChanged(name, button)
 	elseif m == "wheel color" then
 		SetVehicleExtraColours(veh,myveh.extracolor[1], button.colorindex)
 	elseif button.modtype and button.mod then
-		if button.modtype ~= 18 and button.modtype ~= 22 then
+		if button.modtype == 48 then
+			SetVehicleLivery(veh, button.mod)
+		elseif button.modtype ~= 18 and button.modtype ~= 22 then
 			if button.wtype then
 				SetVehicleWheelType(veh,button.wtype)
 			end
@@ -755,6 +759,8 @@ function LSCMenu:onSelectedIndexChanged(name, button)
 		SetVehicleNeonLightsColour(veh,button.neon[1], button.neon[2], button.neon[3])
 	elseif m == "windows" then
 		SetVehicleWindowTint(veh, button.tint)
+	elseif m == "liveries" then
+		SetVehicleLivery(veh, button.mod)
 	else
 	end
 	if m == "horn" then
@@ -810,7 +816,7 @@ AddEventHandler("LSC:buttonSelected", function(name, button, canpurchase)
 	elseif mname == "liveries" or mname == "hydraulics" or mname == "horn" or mname == "tank" or mname == "ornaments" or  mname == "arch cover" or mname == "aerials" or mname == "roof scoops" or mname == "doors" or mname == "roll cage" or mname == "engine block" or mname == "cam cover" or mname == "strut brace" or mname == "trim design" or mname == "ormnametns" or mname == "dashboard" or mname == "dials" or mname == "seats" or mname == "steering wheels" or mname == "plate holder" or mname == "vanity plates" or mname == "shifter leavers" or mname == "plaques" or mname == "speakers" or mname == "trunk" or mname == "armor" or mname == "suspension" or mname == "transmission" or mname == "brakes" or mname == "engine tunes" or mname == "roof" or mname == "hood" or mname == "grille" or mname == "roll cage" or mname == "exhausts" or mname == "skirts" or mname == "rear bumpers" or mname == "front bumpers" or mname == "spoiler" then
 		if button.name == "Stock" or button.purchased or CanPurchase(price, canpurchase)then
 			myveh.mods[button.modtype].mod = button.mod
-			SetVehicleMod(veh,button.modtype,button.mod)
+			if mname == "liveries" then SetVehicleLivery(veh, button.mod) else SetVehicleMod(veh,button.modtype,button.mod) end
 		end
 	elseif mname == "fenders" then
 		if button.name == "Stock" or button.purchased or CanPurchase(price, canpurchase)then
@@ -1247,6 +1253,8 @@ function UnfakeVeh()
 			ToggleVehicleMod(veh,i,m.mod)
 		elseif i == 23 or i == 24 then
 			SetVehicleMod(veh,i,m.mod,m.variation)
+		elseif i == 48 then
+			SetVehicleLivery(veh,m.mod)
 		else
 			SetVehicleMod(veh,i,m.mod)
 		end

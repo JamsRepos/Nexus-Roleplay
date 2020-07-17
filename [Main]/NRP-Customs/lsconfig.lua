@@ -401,7 +401,7 @@ LSC_Config.prices = {
 	
 ----------Liveries--------
 	[48] = {
-		startprice = 120  + customsVat,
+		startprice = 120 + customsVat,
 		increaseby = 250
 	},
 	

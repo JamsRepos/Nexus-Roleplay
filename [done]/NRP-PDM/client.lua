@@ -318,7 +318,7 @@ function GetVehProps(vehicle)
     modTrimB        = GetVehicleMod(vehicle, 44),
     modTank         = GetVehicleMod(vehicle, 45),
     modWindows        = GetVehicleMod(vehicle, 46),
-    modLivery       = GetVehicleMod(vehicle, 48),
+    modLivery       = GetVehicleLivery(vehicle),
 	maxFuelLevel = DecorGetInt(vehicle, "_Max_Fuel_Level")
 	
   }
@@ -600,7 +600,7 @@ function SetVehicleProperties(vehicle, props)
   end
 
   if props.modLivery ~= nil then
-    SetVehicleMod(vehicle, 48, props.modLivery , false)
+    SetVehicleLivery(vehicle, props.modLivery)
   end
   if props.customTires == 1 then
 	SetVehicleMod(vehicle, 23, GetVehicleMod(vehicle, 23), true)
