@@ -24,7 +24,6 @@ local blips = {
   --{title="Drive-Thru", colour=81, id=206, x = 145.572, y = -1460.359, z = 29.142}},
   {title="Vanilla Unicorn", colour=64, id=93, x = 130.070, y = -1300.662, z = 29.233},
   {title="Vangellico", colour=26, id=178, x = -621.978, y = -230.748, z = 38.057},
-  {title="Diamond Casino", colour=28, id=431, x = 924.36, y = 47.50, z = 81.1},
   {title="Time Trial", colour=46, id=127, x = -1659.968, y =-228.013, z = 54.972},
   {title="Mission Row", colour=77, id=60, x = 443.106, y = -997.062, z = 43.591},
   {title="Sandy Shores", colour=77, id=60, x = 1853.040, y = 3686.867, z = 34.267},
