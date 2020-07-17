@@ -10,37 +10,37 @@ Config.render_distance = 50 -- distance from render_center from which the cars w
 Config.cars = {
     -- RIGHT HAND SIDE
     {
-        model = "hcbr17", -- spawn name of car
-        label = "Honda CBR 1000RR", -- label to show in menu above car (set to nil to get name from model)
+        model = "a80", -- spawn name of car
+        label = "1998 Toyota Supra", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-49.014, -1093.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 136,
-        price = 150000
+        price = 130000
     },
     {
-        model = "FK8", -- spawn name of car
-        label = "Honda TypeR", -- label to show in menu above car (set to nil to get name from model)
+        model = "2013rs7", -- spawn name of car
+        label = "Audi RS7", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-44.014, -1095.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 136,
-        price = 120000
+        price = 175000
     },
     {
-        model = "urus", -- spawn name of car
-        label = "Lamborghini Urus", -- label to show in menu above car (set to nil to get name from model)
+        model = "rmodx6", -- spawn name of car
+        label = "BMW X6", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-39.014, -1097.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 136,
-        price = 200000
+        price = 165000
     },
     -- LEFT HAND SIDE
     {
-        model = "slingshot", -- spawn name of car
-        label = "Polaris Slingshot", -- label to show in menu above car (set to nil to get name from model)
+        model = "na1", -- spawn name of car
+        label = "Honda NSX R", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-46.214, -1101.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 4,
-        price = 90000
+        price = 200000
     },
     {
-        model = "teslax", -- spawn name of car
-        label = "Tesla Model X", -- label to show in menu above car (set to nil to get name from model)
+        model = "contss18", -- spawn name of car
+        label = "Bentley Continental GT", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-41.214, -1103.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 4,
         price = 200000
