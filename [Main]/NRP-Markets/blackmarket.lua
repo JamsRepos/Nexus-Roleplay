@@ -77,7 +77,7 @@ local blackmarket_weapons14 = {
 
 local blackmarket_weapons16 = { --- Mechanics Laptop
 [1] = {label = 'Repair Kit', name = 'Item', price = 3000, id = 6},
-[2] = {label = 'Advanced Lockpick', name = 'Item', price = 1250, id = 21},
+[2] = {label = 'Advanced Lockpick', name = 'Item', price = 2250, id = 21},
 }
 
 local blackmarket_weapons20 = { --- Pillbox Upper Meds
