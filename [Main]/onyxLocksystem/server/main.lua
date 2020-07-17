@@ -12,6 +12,13 @@ AddEventHandler('onyx:reqHotwiring', function(plate)
     TriggerClientEvent('onyx:beginHotwire', source, plate)
 end)
 
+
+RegisterServerEvent('onyx:reqAdvHotwiring')
+AddEventHandler('onyx:reqAdvHotwiring', function(plate)
+    local _source = source
+    TriggerClientEvent('onyx:beginAdvHotwire', source, plate)
+end)
+
 RegisterServerEvent("onyx:giveKey")
 AddEventHandler("onyx:giveKey", function(target, plate)
     local source = tonumber(source)

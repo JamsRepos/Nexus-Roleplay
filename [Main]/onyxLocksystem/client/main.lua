@@ -202,7 +202,9 @@ Citizen.CreateThread(function()
                     end
                     -- Hotwiring
                     if IsControlJustReleased(0, 74) and not isHotwiring then -- E
-                        if exports['core']:GetItemQuantity(7) >= 1 then
+                        if exports['core']:GetItemQuantity(21) >= 1 then
+                            TriggerServerEvent('onyx:reqAdvHotwiring', plate)
+                        elseif exports['core']:GetItemQuantity(7) >= 1 then
                             TriggerServerEvent('onyx:reqHotwiring', plate)
                             local rnd = math.random(1, 5)
                             if rnd == 1 then
@@ -302,6 +304,95 @@ AddEventHandler('onyx:beginHotwire', function(plate)
                     TriggerEvent("mythic_progbar:client:progress", {
                         name = "hotwiring_stage3",
                         duration = time,
+                        label = "Hotwiring [Stage 3]",
+                        useWhileDead = false,
+                        canCancel = false,
+                        controlDisables = {
+                            disableMovement = true,
+                            disableCarMovement = true,
+                            disableMouse = false,
+                            disableCombat = true,
+                        },
+                    }, function(status)
+                        if not status then
+                            table.insert(vehicles, vehPlate)
+                            StopAnimTask(PlayerPedId(), 'veh@std@ds@base', 'hotwire', 1.0)
+                            isHotwiring = false
+                            SetVehicleEngineOn(veh, true, true, false)
+                        end
+                    end)
+                end
+            end)
+        end
+    end)
+end)
+
+RegisterNetEvent('onyx:beginAdvHotwire')
+AddEventHandler('onyx:beginAdvHotwire', function(plate)
+    local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+    RequestAnimDict("veh@std@ds@base")
+
+    while not HasAnimDictLoaded("veh@std@ds@base") do
+        Citizen.Wait(100)
+	end
+    local time = 12500 -- in ms
+
+    local vehPlate = plate
+    isHotwiring = true
+
+    SetVehicleEngineOn(veh, false, true, true)
+    SetVehicleLights(veh, 0)
+    
+    if Config.HotwireAlarmEnabled then
+        local alarmChance = math.random(1, Config.HotwireAlarmChance)
+
+        if alarmChance == 1 then
+            SetVehicleAlarm(veh, true)
+            StartVehicleAlarm(veh)
+
+            local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(veh)))
+            local vehicleColour = getVehicleColours(veh)
+            local suspectSex = getSuspectSex()
+            local entPos = GetEntityCoords(veh)
+
+            TriggerEvent('nrp:dispatch:notify', '10-35', json.encode({{cartheftSex=suspectSex,cartheftModel=vehicleName,cartheftPlate=vehPlate,cartheftColour=vehicleColour}}))
+        end
+    end
+
+    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.3, true, true, true)
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "hotwiring_stage1",
+        duration = time,
+        label = "Hotwiring [Stage 1]",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+    }, function(status)
+        if not status then
+            TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.6, true, true, true)
+            TriggerEvent("mythic_progbar:client:progress", {
+                name = "hotwiring_stage2",
+                duration = time,
+                label = "Hotwiring [Stage 2]",
+                useWhileDead = false,
+                canCancel = false,
+                controlDisables = {
+                    disableMovement = true,
+                    disableCarMovement = true,
+                    disableMouse = false,
+                    disableCombat = true,
+                },
+            }, function(status)
+                if not status then
+                    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.4, true, true, true)
+                    TriggerEvent("mythic_progbar:client:progress", {
+                        name = "hotwiring_stage3",
+                        duration = 0,
                         label = "Hotwiring [Stage 3]",
                         useWhileDead = false,
                         canCancel = false,
