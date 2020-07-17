@@ -83,6 +83,51 @@ RegisterCommand('tweet', function(source, args, rawCommand)
     end)	
 end, false)	
 
+RegisterCommand('lspd', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
+            local msg = rawCommand:sub(5)	
+            local name = user.getIdentity()	
+            fal = "LSPD"
+            TriggerEvent("core:log", tostring("[LSPD ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            TriggerClientEvent('chat:addMessage', -1, {	
+                template = '<div style="padding: 0.5vw; background-color: rgba(28, 31, 77, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
+                args = { fal, msg }	
+            })	
+        end
+    end)	
+end, false)	
+
+RegisterCommand('bcso', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
+            local msg = rawCommand:sub(5)	
+            local name = user.getIdentity()	
+            fal = "BCSO"
+            TriggerEvent("core:log", tostring("[BCSO ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            TriggerClientEvent('chat:addMessage', -1, {	
+                template = '<div style="padding: 0.5vw; background-color: rgba(120, 70, 12, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
+                args = { fal, msg }	
+            })	
+        end
+    end)	
+end, false)	
+
+RegisterCommand('ems', function(source, args, rawCommand)
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        if user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 then
+            local msg = rawCommand:sub(5)	
+            local name = user.getIdentity()	
+            fal = "EMS"
+            TriggerEvent("core:log", tostring("[EMS ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            TriggerClientEvent('chat:addMessage', -1, {	
+                template = '<div style="padding: 0.5vw; background-color: rgba(163, 0, 79, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
+                args = { fal, msg }	
+            })	
+        end
+    end)	
+end, false)	
+
 RegisterCommand('anontweet', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         local msg = rawCommand:sub(11)	
