@@ -593,7 +593,7 @@ Citizen.CreateThread(function()
 		if playerPed then
 			currentPos = GetEntityCoords(playerPed, true)
 
-			if currentPos == prevPos then
+			if currentPos == prevPos and not IsPedDeadOrDying(playerPed) then
 				if time > 0 then
 					if kickWarning and time == math.ceil(secondsUntilKick / 4) then
 						TriggerEvent("chatMessage", "WARNING", {255, 0, 0}, "^1 You'll be kicked in " .. time .. " second(s) for being AFK!")
