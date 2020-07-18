@@ -889,6 +889,22 @@ Citizen.CreateThread(function()
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"))
       TriggerEvent('weapons:updateback')
     end
+
+    --CRT Sniper (304)
+    local hasCRTSniperitem = exports['core']:GetItemQuantity(304) >= 1
+    local hasCRTSniper = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), false)
+    if hasCRTSniperitem and not hasCRTSniper then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_HEAVYSNIPER_MK2_CLIP_FMJ"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SCOPE_MAX"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_SUPP_03"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_BARREL_02"))
+    end
+    if not hasCRTSniperitem and hasCRTSniper then
+      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"))
+      TriggerEvent('weapons:updateback')
+    end
+
     ---------------
     --[[local hasSnowBallitem = exports['core']:GetItemQuantity(285) >= 1
     local hasSnowBallAction = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SNOWBALL"), false)
