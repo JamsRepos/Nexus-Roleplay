@@ -620,15 +620,27 @@ Citizen.CreateThread(function()
       TriggerEvent('weapons:updateback')
     end
     ---------------
-
-    --Sniper Rifle (228)
+    --
     local hasSniperRifleitem = exports['core']:GetItemQuantity(228) >= 1
     local hasSniperRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), false)
-    if hasSniperRifleitem and not hasSniperRifle then
+    local HasServiceSniperItem = exports['core']:GetItemQuantity(304) >= 1
+    local HasServiceSniper = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), false)
+    if HasSniperRifleItem and not HasSniperRifle then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), 120, false, false)
     end
-    if not hasSniperRifleitem and hasSniperRifle then
+    if HasServiceSniperItem and not HasServiceSniper then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_SCOPE_MAX"))
+    end
+    if not HasSniperRifleItem and HasSniperRifle then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"))
+      TriggerEvent('weapons:updateback')
+    end
+    if not HasServiceSniperItem and HasServiceSniper then
+      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"))
+      RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_SIGHTS"))
+      RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_AR_FLSH"))
       TriggerEvent('weapons:updateback')
     end
     ---------------
@@ -890,20 +902,7 @@ Citizen.CreateThread(function()
       TriggerEvent('weapons:updateback')
     end
 
-    --CRT Sniper (304)
-    local hasCRTSniperitem = exports['core']:GetItemQuantity(304) >= 1
-    local hasCRTSniper = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), false)
-    if hasCRTSniperitem and not hasCRTSniper then
-      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), 120, false, false)
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_HEAVYSNIPER_MK2_CLIP_FMJ"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SCOPE_MAX"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_SUPP_03"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_BARREL_02"))
-    end
-    if not hasCRTSniperitem and hasCRTSniper then
-      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"))
-      TriggerEvent('weapons:updateback')
-    end
+
 
     ---------------
     --[[local hasSnowBallitem = exports['core']:GetItemQuantity(285) >= 1

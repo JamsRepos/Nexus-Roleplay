@@ -769,6 +769,7 @@ Citizen.CreateThread(function()
  end 
 end)
 
+
 Citizen.CreateThread(function()
  WarMenu.CreateLongMenu('police_missions', 'Missions')
  while true do 
@@ -792,6 +793,56 @@ Citizen.CreateThread(function()
   end
  end
 end)
+
+local isCRT = false
+
+RegisterCommand("crt", function(source, args, raw)
+  if DecorGetInt(PlayerPedId(), 'Faction') == 5 then
+      if isCRT then
+        if exports['core']:GetItemQuantity(301) >= 1 then
+          TriggerEvent("inventory:removeQty", 301, 1)
+        end
+        if exports['core']:GetItemQuantity(302) >= 1 then
+          TriggerEvent("inventory:removeQty", 302, 1)
+        end
+        if exports['core']:GetItemQuantity(304) >= 1 then
+          TriggerEvent("inventory:removeQty", 304, 1)
+        end
+        if exports['core']:GetItemQuantity(303) >= 1 then
+          TriggerEvent("inventory:removeQty", 303, 1)
+          TriggerEvent("inventory:addQty", 189, 1)
+        elseif not exports['core']:GetItemQuantity(189) >= 1 then
+          TriggerEvent("inventory:addQty", 189, 1)
+        end
+        ExecuteCommand('clothes')
+      else
+        if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then
+            return
+        else
+            SetPedComponentVariation(GetPlayerPed(-1), 1, 56,1, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 3, 17,0, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 4, 37,0, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 6, 25,0, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 8, 87,0, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 9, 5,0, 2)
+            SetPedComponentVariation(GetPlayerPed(-1), 11, 53,0, 2)
+            SetPedPropIndex(GetPlayerPed(-1), 0, 75, 0, true)
+            SetPedPropIndex(GetPlayerPed(-1), 1, 25, 1, true)
+
+            TriggerEvent("inventory:addQty", 301, 1)
+            TriggerEvent("inventory:addQty", 302, 1)
+            TriggerEvent("inventory:addQty", 304, 1)
+            if exports['core']:GetItemQuantity(189) >= 1 then
+                TriggerEvent("inventory:removeQty", 189, 1)
+                TriggerEvent("inventory:addQty", 303, 1)
+            else
+                TriggerEvent("inventory:addQty", 303, 1)
+            end
+        end
+      end
+    isCRT = not isCRT
+  end
+end, false)
 
 Citizen.CreateThread(function()
  WarMenu.CreateLongMenu('police_toolkit', 'Police')
