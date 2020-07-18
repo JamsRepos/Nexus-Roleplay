@@ -67,7 +67,7 @@
 -- * Mini SMG:                247           --
 -- * Auto Shotgun:            248           --
 -- * Double Action:           249           --
---                                          --
+-- * Tear Gas:                301           --
 ----------------------------------------------
 
 Citizen.CreateThread(function()
@@ -852,6 +852,19 @@ Citizen.CreateThread(function()
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_DOUBLEACTION"))
       TriggerEvent('weapons:updateback')
     end
+    ---------------
+
+    --Tear Gas (301)
+    local hasTearGasitem = exports['core']:GetItemQuantity(301) >= 1
+    local hasTearGas = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SMOKEGRENADE"), false)
+    if hasTearGasitem and not hasTearGas then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SMOKEGRENADE"), 120, false, false)
+    end
+    if not hasTearGasitem and hasTearGas then
+      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SMOKEGRENADE"))
+      TriggerEvent('weapons:updateback')
+    end
+
     ---------------
     --[[local hasSnowBallitem = exports['core']:GetItemQuantity(285) >= 1
     local hasSnowBallAction = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SNOWBALL"), false)
