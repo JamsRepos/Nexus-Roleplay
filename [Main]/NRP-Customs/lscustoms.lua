@@ -503,8 +503,6 @@ local function DriveInGarage()
 			end
 			
 		Citizen.CreateThread(function()
-			NetworkFadeOutEntity(veh, 1,1)
-			FadeOutLocalPlayer(1)
 			SetEntityCoordsNoOffset(veh,pos.drivein.x,pos.drivein.y,pos.drivein.z)
 			SetEntityHeading(veh,pos.drivein.heading)
 			SetVehicleOnGroundProperly(veh)
