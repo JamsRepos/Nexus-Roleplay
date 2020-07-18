@@ -154,6 +154,7 @@ Citizen.CreateThread(function()
     --Pistol Mk2 (188) & Service Pistol (189)
     local haspistolmk2item = exports['core']:GetItemQuantity(188) >= 1 
     local hasservicepistolitem = exports['core']:GetItemQuantity(189) >= 1
+    local hasCRTpistolitem = exports['core']:GetItemQuantity(303) >= 1
     local haspistolmk2 = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), false)
     if haspistolmk2item and not haspistolmk2 then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 120, false, false)
@@ -162,7 +163,13 @@ Citizen.CreateThread(function()
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 200, false, false)
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
     end
-    if not (haspistolmk2item or hasservicepistolitem) and haspistolmk2 then
+    if hasCRTpistolitem and not haspistolmk2 and not hasservicepistolitem then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 200, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+    end
+    if not (haspistolmk2item or hasservicepistolitem or hasCRTpistolitem) and haspistolmk2 then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"))
       RemoveWeaponComponentFromPed(GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
       TriggerEvent('weapons:updateback')
@@ -862,6 +869,39 @@ Citizen.CreateThread(function()
     end
     if not hasTearGasitem and hasTearGas then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SMOKEGRENADE"))
+      TriggerEvent('weapons:updateback')
+    end
+
+
+    --CRT RIFLE (302)
+    local hasCRTRifleitem = exports['core']:GetItemQuantity(302) >= 1
+    local hasCRTRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), false)
+    if hasCRTRifleitem and not hasCRTRifle then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_SPECIALCARBINE_MK2_CLIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_FLSH"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_SUPP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_AFGRIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_SC_BARREL_02"))
+    end
+    if not hasCRTRifleitem and hasCRTRifle then
+      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"))
+      TriggerEvent('weapons:updateback')
+    end
+
+    --CRT Sniper (304)
+    local hasCRTSniperitem = exports['core']:GetItemQuantity(304) >= 1
+    local hasCRTSniper = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), false)
+    if hasCRTSniperitem and not hasCRTSniper then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_HEAVYSNIPER_MK2_CLIP_FMJ"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SCOPE_MAX"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_SUPP_03"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"), GetHashKey("COMPONENT_AT_SR_BARREL_02"))
+    end
+    if not hasCRTSniperitem and hasCRTSniper then
+      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYSNIPER_MK2"))
       TriggerEvent('weapons:updateback')
     end
 
