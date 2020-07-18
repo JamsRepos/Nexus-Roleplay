@@ -87,10 +87,12 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
                 local veh = GetVehiclePedIsIn(GetPlayerPed(-1), false)
                 toggleLock(veh)
+                print("toss me off daddy")
             else
-                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 3.0, 0, 70)
+                local veh = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71) 
                 if DoesEntityExist(veh) then
                     toggleLock(veh)
+                    print("toss me off daddy uwu cunt")
                 end
             end
         end
