@@ -423,23 +423,6 @@ AddEventHandler("clothing:togglehelmet", function()
   helmet.status = not helmet.status
 end)
 
-RegisterCommand("crt", function(source, args, raw)
-    if DecorGetInt(PlayerPedId(), 'Faction') == 5 then
-        if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then  -- GIRL SKIN
-            return
-        else                             -- BOY SKIN
-            SetPedComponentVariation(GetPlayerPed(-1), 1, 56,1, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 3, 17,0, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 4, 37,0, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 6, 25,0, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 8, 87,0, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 9, 5,0, 2)
-            SetPedComponentVariation(GetPlayerPed(-1), 11, 53,0, 2)
-            SetPedPropIndex(GetPlayerPed(-1), 0, 75, 0, true)
-            SetPedPropIndex(GetPlayerPed(-1), 1, 25, 1, true)
-        end
-    end
-end, false)
 
 RegisterCommand("naked", function(source, args, raw)
     if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then  -- GIRL SKIN
