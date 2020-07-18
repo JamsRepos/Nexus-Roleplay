@@ -143,7 +143,7 @@ end, false)
 
 RegisterCommand('r', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)
-        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 or user.getJob() == 2 or user.getJob() == 50 or user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 or user.getJob() == 56 or user.getJob() == 57 then
+        if user.getJob() == 1 or user.getJob() == 31 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 or user.getJob() == 2 or user.getJob() == 50 or user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 or user.getJob() == 56 or user.getJob() == 57 then
             local msg = rawCommand:sub(3)
             local name = user.getIdentity()
             fal = name.firstname .. " " .. name.lastname
