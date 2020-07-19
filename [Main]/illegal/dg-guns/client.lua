@@ -620,7 +620,8 @@ Citizen.CreateThread(function()
       TriggerEvent('weapons:updateback')
     end
     ---------------
-    --
+
+    
     local hasSniperRifleitem = exports['core']:GetItemQuantity(228) >= 1
     local hasSniperRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), false)
     local HasServiceSniperItem = exports['core']:GetItemQuantity(304) >= 1
@@ -637,7 +638,7 @@ Citizen.CreateThread(function()
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"))
       TriggerEvent('weapons:updateback')
     end
-    if not HasServiceSniperItem and HasServiceSniper then
+    if not (HasServiceSniperItem or HasSniperRifleItem) and HasServiceSniper then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"))
       RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_SIGHTS"))
       RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SNIPERRIFLE"), GetHashKey("COMPONENT_AT_AR_FLSH"))
