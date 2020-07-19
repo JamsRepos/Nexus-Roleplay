@@ -265,4 +265,3 @@ vehicles = {
       {name = "Youga Classic", price = 30000, model = "Youga2"},
    },
 }
-
