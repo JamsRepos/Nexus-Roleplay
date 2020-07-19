@@ -86,11 +86,11 @@ Citizen.CreateThread( function()
 					
 			end
 			
-			DrawRect(0.508, 0.94, 0.196, 0.116, 0, 0, 0, 150)
-			DrawAdvancedText(0.591, 0.903, 0.005, 0.0028, 0.4, "Front Radar", 0, 191, 255, 255, 6, 0)
-			DrawAdvancedText(0.591, 0.953, 0.005, 0.0028, 0.4, "Rear Radar", 0, 191, 255, 255, 6, 0)
-			DrawAdvancedText(0.6, 0.928, 0.005, 0.0028, 0.4, radar.info, 255, 255, 255, 255, 6, 0)
-			DrawAdvancedText(0.6, 0.979, 0.005, 0.0028, 0.4, radar.info2, 255, 255, 255, 255, 6, 0)
+			DrawRect(0.508, 0.87, 0.196, 0.100, 0, 0, 0, 150)
+			DrawAdvancedText(0.595, 0.84, 0.005, 0.0028, 0.4, "Front Radar", 0, 191, 255, 255, 6, 0)
+			DrawAdvancedText(0.595, 0.885, 0.005, 0.0028, 0.4, "Rear Radar", 0, 191, 255, 255, 6, 0)
+			DrawAdvancedText(0.6, 0.86, 0.005, 0.0028, 0.4, radar.info, 255, 255, 255, 255, 6, 0)
+			DrawAdvancedText(0.6, 0.905, 0.005, 0.0028, 0.4, radar.info2, 255, 255, 255, 255, 6, 0)
 
 			
 		end
