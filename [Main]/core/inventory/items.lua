@@ -716,7 +716,6 @@ end)
 
 RegisterNetEvent('items:bulletproof_vest')
 AddEventHandler('items:bulletproof_vest', function()
-	SetPedComponentVariation(GetPlayerPed(-1), 9, 27, 9, 2)
 	AddArmourToPed(GetPlayerPed(-1), 100)
 	SetPedArmour(GetPlayerPed(-1), 100)
 end)
