@@ -338,7 +338,9 @@ function Respawn()
     local rctruck, gunkit = false
     if exports['core']:GetItemQuantity(134) >= 1 then rctruck = true end
     if exports['core']:GetItemQuantity(135) >= 1 then gunkit = true end
-    TriggerServerEvent('medical:wipeInventory', rctruck, gunkit)
+    if ems > 0 or cops > 0 then
+      TriggerServerEvent('medical:wipeInventory', rctruck, gunkit)
+    end
   end)
 end
 
