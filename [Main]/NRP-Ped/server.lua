@@ -149,6 +149,11 @@ AddEventHandler('carwash:removemoney', function(name, pay)
    TriggerClientEvent('carwash:washing', sourcePlayer)
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "$50 Paid To CarWashers.LS"})
    TriggerEvent("core:moneylog", source, "Detailed Their Vehicle For $50")
+  elseif user.getBank() >= 50 then
+    user.removeBank(50)
+    TriggerClientEvent('carwash:washing', sourcePlayer)
+    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "$50 Paid To CarWashers.LS"})
+    TriggerEvent("core:moneylog", source, "Detailed Their Vehicle For $50")
   else
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Not Enough Money"})
   end
