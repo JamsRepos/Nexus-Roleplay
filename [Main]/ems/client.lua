@@ -410,9 +410,9 @@ Citizen.CreateThread(function()
       end
 
       while timer <= 0 and IsDead do
-        drawTxt("~m~Press ~g~E ~m~ to take an airlift.")
+        drawTxt("~m~Press ~g~R ~m~ to take an airlift.")
         Citizen.Wait(0)
-        if IsControlPressed(0, 38) then
+        if IsControlPressed(0, 80) then
           SetEntityHealth(GetPlayerPed(-1), 200)
           IsDead = false
           Respawn()
