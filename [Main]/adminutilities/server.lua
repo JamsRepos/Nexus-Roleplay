@@ -214,12 +214,12 @@ TriggerEvent('core:addGroupCommand', 'unwatch', "mod", function(source, args, us
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'devtp', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'devtp', "mod", function(source, args, user)
  local source = tonumber(source)
  TriggerClientEvent('admin:teleport', source, {x = args[2], y = args[3], z = args[4]})
 end)
 
-TriggerEvent('core:addGroupCommand', 'givemoney', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'givemoney', "mod", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -229,7 +229,7 @@ TriggerEvent('core:addGroupCommand', 'givemoney', "admin", function(source, args
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'removemoney', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'removemoney', "mod", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -239,7 +239,7 @@ TriggerEvent('core:addGroupCommand', 'removemoney', "admin", function(source, ar
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'givedirtymoney', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'givedirtymoney', "mod", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -249,7 +249,7 @@ TriggerEvent('core:addGroupCommand', 'givedirtymoney', "admin", function(source,
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'removedirtymoney', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'removedirtymoney', "mod", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -350,12 +350,12 @@ TriggerEvent('core:addGroupCommand', 'ac', "trainee", function(source, args, use
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'gc', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'gc', "mod", function(source, args, user)
  table.remove(args, 1)
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
    TriggerEvent("core:getPlayerFromId", k, function(user)
-    if(user.getPermissions() > 70) then
+    if(user.getPermissions() > 65) then
      if user.isAdminEnabled() then 
       TriggerClientEvent('chatMessage', k, "^0[^6GOD^0] ^6" .. GetPlayerName(source) .. " ", {255, 128, 0}, table.concat(args, " "))
      end
