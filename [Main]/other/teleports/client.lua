@@ -29,6 +29,8 @@ local locations = {
     --[41] = {name = 'Garage Storage', enter = {x = 548.637, y = -172.505, z = 54.481-0.95}, exit = {x = 548.680, y = -169.883, z = 46.883-0.95}}, -- RJ Motors
     [43] = {name = 'Warehouse', enter = {x = 985.025, y = -125.260, z = 73.930-0.99}, exit = {x = 968.360, y = -2987.792, z = -39.647-0.99}}, --- Lost Mc
     [44] = {name = 'The Penthouse', enter = {x = 948.161, y = 50.895, z = 75.116-0.95}, exit = {x = 964.594, y = 58.744, z = 112.553-0.95}}, --- Penthouse
+    [45] = {name = 'The Growery', enter = {x = 346.744, y = 3405.745, z = 36.656-0.95}, exit = {x = 1065.888, y = -3183.452, z = -39.163-0.95}}, --- Weed Growery
+    [46] = {name = 'Warehouse', enter = {x = 285.01, y = -2945.04, z = 5.53-0.95}, exit = {x = 1088.71, y = -3187.68, z = -38.99-0.95}}, --- Cocaine
    }
    
    local vehicle_locations = {

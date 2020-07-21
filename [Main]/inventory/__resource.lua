@@ -343,4 +343,5 @@ files {
   "html/img/items/302.png",
   "html/img/items/303.png",
   "html/img/items/304.png",
+  "html/img/items/305.png",
 }

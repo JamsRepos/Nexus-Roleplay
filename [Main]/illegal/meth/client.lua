@@ -150,18 +150,18 @@ Citizen.CreateThread(function()
   end
 end)
 
-Citizen.CreateThread(function ()
+Citizen.CreateThread(function()
  while true do
   Citizen.Wait(5)
   local coords = GetEntityCoords(GetPlayerPed(-1))
-   if (GetDistanceBetweenCoords(coords, 2432.709, 4970.380, 42.348-0.95, true) > 30.0) and creationStage > 0 then
-    DrawText3Ds(2432.709, 4970.380, 42.348,'You have left your Meth cookup unattended for too long. It has failed and can no longer be used.')
+   if (GetDistanceBetweenCoords(coords, 1392.062, 3605.861, 38.941-0.95, true) > 30.0) and creationStage > 0 then
+    DrawText3Ds(1392.062, 3605.861, 38.941,'You have left your Meth cookup unattended for too long. It has failed and can no longer be used.')
     disableInventory = false
    	creationStage = 0
    end
-   if(GetDistanceBetweenCoords(coords, 2432.709, 4970.380, 42.348-0.95, true) < 10.0) and creationStage == 0 then
-    if(GetDistanceBetweenCoords(coords, 2432.709, 4970.380, 42.348-0.95, true) < 1.2) then
-      DrawText3Ds(2432.709, 4970.380, 42.348,'~g~[E]~w~ To Begin Cooking Meth')
+   if(GetDistanceBetweenCoords(coords, 1392.062, 3605.861, 38.941-0.95, true) < 10.0) and creationStage == 0 then
+    if(GetDistanceBetweenCoords(coords, 1392.062, 3605.861, 38.941-0.95, true) < 1.2) then
+      DrawText3Ds(1392.062, 3605.861, 38.941,'~g~[E]~w~ To Begin Cooking Meth')
      if IsControlJustPressed(0, 38) then
        if exports['core']:GetItemQuantity(90) >= 1 and exports['core']:GetItemQuantity(88) >= 1 and exports['core']:GetItemQuantity(44) >= 1 then
         disableInventory = true
@@ -198,9 +198,9 @@ Citizen.CreateThread(function ()
    	 end
    	end
    end
-   if(GetDistanceBetweenCoords(coords, 2432.683, 4972.119, 42.348-0.95, true) < 10.0) and creationStage == 1 then
-    if(GetDistanceBetweenCoords(coords, 2432.683, 4972.119, 42.348-0.95, true) < 1.2) then
-      DrawText3Ds(2432.683, 4972.119, 42.348,'~g~[E]~w~ To Crush Matches')
+   if(GetDistanceBetweenCoords(coords, 1394.421, 3601.834, 38.941-0.95, true) < 10.0) and creationStage == 1 then
+    if(GetDistanceBetweenCoords(coords, 1394.421, 3601.834, 38.941-0.95, true) < 1.2) then
+      DrawText3Ds(1394.421, 3601.834, 38.941,'~g~[E]~w~ To Crush Matches')
      if IsControlJustPressed(0, 38) then
       TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true)
       disableInventory = true
@@ -228,9 +228,9 @@ Citizen.CreateThread(function ()
      end
     end
    end
-   if(GetDistanceBetweenCoords(coords, 2434.305, 4969.443, 42.348-0.95, true) < 10.0) and creationStage == 2 then
-    if(GetDistanceBetweenCoords(coords, 2434.305, 4969.443, 42.348-0.95, true) < 1.2) then
-      DrawText3Ds(2434.305, 4969.443, 42.348,'~g~[E]~w~ To Mix Phosphorus, Cough Medicine And Ammonia')
+   if(GetDistanceBetweenCoords(coords, 1389.794, 3608.792, 38.941-0.95, true) < 10.0) and creationStage == 2 then
+    if(GetDistanceBetweenCoords(coords, 1389.794, 3608.792, 38.941-0.95, true) < 1.2) then
+      DrawText3Ds(1389.794, 3608.792, 38.941,'~g~[E]~w~ To Mix Phosphorus, Cough Medicine And Ammonia')
      if IsControlJustPressed(0, 38) then
       disableInventory = true
       TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true)

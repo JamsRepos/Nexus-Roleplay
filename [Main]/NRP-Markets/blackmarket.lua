@@ -551,7 +551,7 @@ function spawnGunman2()
     while not HasModelLoaded(GetHashKey('u_m_o_tramp_01')) do
      Wait(5)
     end 
-    heroin1 = CreatePed(2, GetHashKey('u_m_o_tramp_01'), -999.340, -3549.147, 1.947, 250.197, false, false)
+    heroin1 = CreatePed(2, GetHashKey('u_m_o_tramp_01'), 62.76, 6664.29, 31.79, 275.95, false, false)
     SetPedFleeAttributes(heroin1, 0, 0)
     SetPedDiesWhenInjured(heroin1, false)
     TaskStartScenarioInPlace(heroin1, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)
@@ -562,7 +562,7 @@ function spawnGunman2()
     while not HasModelLoaded(GetHashKey('u_m_o_tramp_01')) do
      Wait(5)
     end 
-    cocaine1 = CreatePed(2, GetHashKey('u_m_o_tramp_01'), -490.108, -2682.524, 21.745, -250.197, false, false)
+    cocaine1 = CreatePed(2, GetHashKey('u_m_o_tramp_01'), -2054.24, -1034.94, 5.88, 250.59, false, false)
     SetPedFleeAttributes(cocaine1, 0, 0)
     SetPedDiesWhenInjured(cocaine1, false)
     TaskStartScenarioInPlace(cocaine1, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)

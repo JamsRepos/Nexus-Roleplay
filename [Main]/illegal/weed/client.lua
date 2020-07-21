@@ -46,8 +46,8 @@ Citizen.CreateThread(function()
 
 RegisterCommand('plant', function(source, args, rawCommand)
  local ped = PlayerPedId()
- if IsEntityInZone(ped, 'GRAPES') then 
-  if not IsPedInAnyVehicle(ped, false) and not weedPlanted and GetInteriorFromEntity(PlayerPedId()) == 0 then 
+ if GetDistanceBetweenCoords(GetEntityCoords(ped), 1059.991, -3199.147, -39.154) <= 11 then 
+  if not IsPedInAnyVehicle(ped, false) and not weedPlanted then 
    if exports['core']:GetItemQuantity(118) > 0 then
     local pos = GetEntityCoords(ped)
     TaskStartScenarioInPlace(ped, "WORLD_HUMAN_GARDENER_PLANT", 0, true)
@@ -56,18 +56,18 @@ RegisterCommand('plant', function(source, args, rawCommand)
     Wait(10000)
     ClearPedTasks(ped)
    else 
-    TriggerEvent('chatMessage', "WEED", {27, 186, 0}, "You need at least 1x Weed Seed to begin the cultivating process")
+    TriggerEvent('chatMessage', "WEED", {27, 186, 0}, " You need a weed seed to start the cultivation process.")
    end 
   end
  else 
-  TriggerEvent('chatMessage', "WEED", {27, 186, 0}, "You need to be in the grapeseed area to plant a weed plant")
+  TriggerEvent('chatMessage', "WEED", {27, 186, 0}, " You need to be in the growery to plant a seed.")
  end
 end)
 
 RegisterCommand('plant2', function(source, args, rawCommand)
  local ped = PlayerPedId()
- if IsEntityInZone(ped, 'GRAPES') then 
-  if not IsPedInAnyVehicle(ped, false) and not weedPlanted2 and GetInteriorFromEntity(PlayerPedId()) == 0 then 
+ if GetDistanceBetweenCoords(GetEntityCoords(ped), 1059.991, -3199.147, -39.154) <= 11 then 
+  if not IsPedInAnyVehicle(ped, false) and not weedPlanted2 then 
    if exports['core']:GetItemQuantity(118) > 0 then
     local pos = GetEntityCoords(ped)
     TaskStartScenarioInPlace(ped, "WORLD_HUMAN_GARDENER_PLANT", 0, true)
@@ -76,11 +76,11 @@ RegisterCommand('plant2', function(source, args, rawCommand)
     Wait(10000)
     ClearPedTasks(ped)
    else 
-    TriggerEvent('chatMessage', "WEED", {27, 186, 0}, "You need at least 1x Weed Seed to begin the cultivating process")
+    TriggerEvent('chatMessage', "WEED", {27, 186, 0}, " You need a weed seed to start the cultivation process.")
    end 
   end
  else 
-  TriggerEvent('chatMessage', "WEED", {27, 186, 0}, "You need to be in the grapeseed area to plant a weed plant")
+  TriggerEvent('chatMessage', "WEED", {27, 186, 0}, " You need to be in the growery to plant a seed.")
  end
 end)
 
@@ -98,7 +98,7 @@ AddEventHandler('weed:plant', function(pos, ped)
   local coords = GetEntityCoords(ped)
   if not weedFertilized then 
     if GetDistanceBetweenCoords(coords, pos.x, pos.y, pos.z, true) < 1 then 
-      DrawText3Ds(pos.x, pos.y, pos.z,'~w~[~g~E~w~]Fertilize')
+      DrawText3Ds(pos.x, pos.y, pos.z,'~w~[~g~E~w~] Fertilize')
       if exports['core']:GetItemQuantity(16) > 0 then 
         if IsControlJustPressed(0, 38) then  
           weedFertilized = true
@@ -111,7 +111,7 @@ AddEventHandler('weed:plant', function(pos, ped)
   -- Water
   if weedFertilized and weedThirst < 75 and IsPedOnFoot(ped) then 
     if GetDistanceBetweenCoords(coords, pos.x, pos.y, pos.z, true) < 1 then 
-      DrawText3Ds(pos.x, pos.y, pos.z,'~w~[~g~E~w~]Water')
+      DrawText3Ds(pos.x, pos.y, pos.z,'~w~[~g~E~w~] Water')
     if exports['core']:GetItemQuantity(13) > 0 then 
      if IsControlJustPressed(0, 38) then 
       weedThirst = 100 
@@ -141,7 +141,7 @@ AddEventHandler('weed:plant', function(pos, ped)
      DrawText3Ds(pos.x, pos.y, pos.z,'~w~Water: ~g~'..weedThirst..'% ~w~| Growth: ~g~'..growthTimer..'%') 
     if weedThirst < 45 then 
      if GetDistanceBetweenCoords(coords, pos.x, pos.y, pos.z, true) < 1 and IsPedOnFoot(ped) then 
-      DrawText3Ds(pos.x, pos.y, pos.z-0.5,'~w~[~g~E~w~]Water')
+      DrawText3Ds(pos.x, pos.y, pos.z-0.5,'~w~[~g~E~w~] Water')
       if exports['core']:GetItemQuantity(13) > 0 then 
       if IsControlJustPressed(0, 38) then 
        weedThirst = weedThirst + 55 
@@ -324,13 +324,10 @@ end)
 local xzurvfarmerfucked = math.random(1,100)
 
 local tobacco = {
-  {x = 2216.431, y = 5578.511, z = 53.708},
-  {x = 2232.475, y = 5577.691, z = 53.883},
-  {x = 2230.854, y = 5575.537, z = 53.780},
-  {x = 2215.792, y = 5576.156, z = 53.581},
-  {x = 2218.678, y = 5576.140, z = 53.596},
-  {x = 2221.883, y = 5575.837, z = 53.621},
-  {x = 2225.695, y = 5577.826, z = 53.715},
+  {x = 2232.594, y = 5576.342, z = 54.043},
+  {x = 2230.081, y = 5576.63, z = 53.959},
+  {x = 2227.583, y = 5576.740, z = 53.883},
+  {x = 2225.287, y = 5576.852, z = 53.856},
 }
 
 local pickingTob = false
@@ -340,7 +337,7 @@ Citizen.CreateThread(function()
    Citizen.Wait(5)
    for _,v in pairs(tobacco) do
     if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 2 and not pickingTob then
-      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Pick')
+      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Pick Tobacco')
      if IsControlJustPressed(0, 38) then 
       pickingTob = true
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
@@ -357,7 +354,10 @@ Citizen.CreateThread(function()
 
  --[XZURV WEEDSEED PICKING SCRIPT]--
 local seeds = {
-  {x = -79.539, y = 1899.44, z = 198.43},
+  {x = 2222.878, y = 5577.190, z = 53.840},
+  {x = 2220.643, y = 5577.203, z = 53.846},
+  {x = 2218.552, y = 5577.349, z = 53.854},
+  {x = 2216.169, y = 5577.622, z = 53.842},
 }
 
 local pickingseeds = false
@@ -368,7 +368,7 @@ Citizen.CreateThread(function()
    Citizen.Wait(5)
    for _,v in pairs(seeds) do
     if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not pickingseeds then
-      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Search')
+      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Pick Weed Seed')
      if IsControlJustPressed(0, 38) then 
       pickingseeds = true 
       TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_GARDENER_PLANT", 0, true)
@@ -430,7 +430,7 @@ end)
 
 
 local ammonia = {
-  {x = 361.567, y = -570.587, z = 28.791},
+  {x = -549.789, y = -1688.444, z = 19.497},
 }
 
 local pickingammonia = false
@@ -501,9 +501,8 @@ Citizen.CreateThread(function()
 end)
 
 
-
 local cyclopentyl = {
-  {x = 254.424, y = -1342.75, z = 24.537}, ----- ketamine
+  {x = 3560.023, y = 3674.492, z = 28.121}, ----- ketamine
 }
 
 local pickingcyclopentyl = false
@@ -575,9 +574,8 @@ Citizen.CreateThread(function()
 end)
 
 
-
 local magnesium = {
-  {x = -183.272, y = 6158.673, z = 42.637}, ----- ketamine
+  {x = -84.610, y = 6230.592, z = 31.090}, ----- ketamine
 }
 
 local pickingmagnesium = false
@@ -649,7 +647,7 @@ Citizen.CreateThread(function()
 end)
 
 local methylamine = {
-  {x = 1442.335, y = 6331.8551, z = 23.959}, ----- ketamine
+  {x = 3535.116, y = 3662.923, z = 28.121}, ----- ketamine
 }
 
 local pickingmethylamine = false
@@ -720,8 +718,12 @@ Citizen.CreateThread(function()
   end
 end)
 
-local heroin = {
-  {x = -999.340, y = -3549.147, z = 1.947},
+local heroin_brick = {
+  {x = 62.76, y = 6664.29, z = 31.79},
+}
+
+local heroin_oz = {
+  {x = 1975.869, y = 3821.018, z = 33.450},
 }
 
 local pickingheroin = false
@@ -730,7 +732,7 @@ local heroincount = 0
 Citizen.CreateThread(function()
   while true do
    Citizen.Wait(5)
-   for _,v in pairs(heroin) do
+   for _,v in pairs(heroin_brick) do
     local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
     if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not pickingheroin and rep >= 1500 then
       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Retreive')
@@ -760,7 +762,7 @@ Citizen.CreateThread(function()
           if heroin_cooldowntimer < 9 and heroincount <= 1 then
             pickingheroin = false
             heroincount = heroincount + 1
-            TriggerEvent("inventory:addQty", 31, 3)
+            TriggerEvent("inventory:addQty", 305, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained heroin!", length = 5000})
             if heroincount == 1 then
               TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, 3600, cocaine_cooldowntimer)
@@ -769,6 +771,52 @@ Citizen.CreateThread(function()
             pickingheroin = false
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "I am out of stock right now. Come back in ".. heroin_cooldowntimer .. " seconds.", length = 5000})
           end
+         end
+        end
+      end)
+
+    end
+    end
+   end
+  end
+end)
+
+local craftingheroin = false
+
+Citizen.CreateThread(function()
+  while true do
+   Citizen.Wait(5)
+   for _,v in pairs(heroin_oz) do
+    local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
+    if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not craftingheroin and rep >= 1500 and exports['core']:GetItemQuantity(305) > 0 then
+      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Breakdown Brick')
+     if IsControlJustPressed(0, 38) then 
+      craftingheroin = true 
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+      FreezeEntityPosition(GetPlayerPed(-1), true)
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "break_heroin",
+        duration = 10000,
+        label = "Breaking Down Heroin",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+           disableMovement = true,
+           disableCarMovement = true,
+           disableMouse = false,
+           disableCombat = true,
+        },
+      }, function(status)
+       if not status then
+         FreezeEntityPosition(GetPlayerPed(-1), false)
+         ClearPedTasksImmediately(GetPlayerPed(-1))
+         if craftingheroin == true then
+            craftingheroin = false
+            TriggerEvent("inventory:removeQty", 305, 1)
+            TriggerEvent("inventory:addQty", 31, 3)
+            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of heroin.", length = 5000})
          end
         end
       end)
@@ -792,8 +840,12 @@ Citizen.CreateThread(function()
   end
 end)
 
-local cocaine = {
-  {x = -490.108, y = -2682.524, z = 21.745},
+local cocaine_brick = {
+  {x = -2054.24, y = -1034.94, z = 5.88},
+}
+
+local cocaine_oz = {
+  {x = 1093.171, y = -3196.666, z = -38.993},
 }
 
 local pickingcocaine = false
@@ -802,7 +854,7 @@ local cocainecount = 0
 Citizen.CreateThread(function()
   while true do
    Citizen.Wait(5)
-   for _,v in pairs(cocaine) do
+   for _,v in pairs(cocaine_brick) do
     local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
     if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not pickingcocaine and rep >= 2000 then
       DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Retreive')
@@ -832,7 +884,7 @@ Citizen.CreateThread(function()
           if cocaine_cooldowntimer < 9 and cocainecount <= 1 then
             pickingcocaine = false
             cocainecount = cocainecount + 1
-            TriggerEvent("inventory:addQty", 109, 3)
+            TriggerEvent("inventory:addQty", 107, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained cocaine!", length = 5000})
             if cocainecount == 1 then
               TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, 3600)
@@ -841,6 +893,52 @@ Citizen.CreateThread(function()
             pickingcocaine = false
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "I am out of stock right now. Come back in ".. cocaine_cooldowntimer .. " seconds.", length = 5000})
           end
+         end
+        end
+      end)
+
+    end
+    end
+   end
+  end
+end)
+
+local craftingcocaine = false
+
+Citizen.CreateThread(function()
+  while true do
+   Citizen.Wait(5)
+   for _,v in pairs(cocaine_oz) do
+    local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
+    if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not craftingcocaine and rep >= 2000 and exports['core']:GetItemQuantity(107) > 0 then
+      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Breakdown Brick')
+     if IsControlJustPressed(0, 38) then 
+      craftingcocaine = true
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+      FreezeEntityPosition(GetPlayerPed(-1), true)
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "break_cocaine",
+        duration = 10000,
+        label = "Breaking Down Cocaine",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+           disableMovement = true,
+           disableCarMovement = true,
+           disableMouse = false,
+           disableCombat = true,
+        },
+      }, function(status)
+       if not status then
+         FreezeEntityPosition(GetPlayerPed(-1), false)
+         ClearPedTasksImmediately(GetPlayerPed(-1))
+         if craftingcocaine == true then
+            craftingcocaine = false
+            TriggerEvent("inventory:removeQty", 107, 1)
+            TriggerEvent("inventory:addQty", 109, 3)
+            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of cocaine.", length = 5000})
          end
         end
       end)

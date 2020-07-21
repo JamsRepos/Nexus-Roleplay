@@ -28,6 +28,8 @@ local blips = {
   {title="Mission Row", colour=77, id=60, x = 443.106, y = -997.062, z = 43.591},
   {title="Sandy Shores", colour=77, id=60, x = 1853.040, y = 3686.867, z = 34.267},
   {title="Paleto Bay", colour=77, id=60, x = -446.265, y = 6012.102, z = 31.716},
+  {title="Weed Farm", colour=2, id=140, x = 2224.324, y = 5577.014, z = 53.852},
+  {title="Growery", colour=47, id=140, x = 346.615, y = 3405.761, z = 36.656},
 }
 
 Citizen.CreateThread(function()
