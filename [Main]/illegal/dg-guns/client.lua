@@ -215,6 +215,7 @@ Citizen.CreateThread(function()
     --Carbine Rifle Mk2 (193) & Service Rifle (194)
     local HasCarbineRifleMk2Item = exports['core']:GetItemQuantity(193) >= 1
     local HasServiceRifleItem = exports['core']:GetItemQuantity(194) >= 1
+    local HasCommandRifleItem = exports['core']:GetItemQuantity(306) >= 1
     local HasCarbineRifleMk2 = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), false)
     if HasCarbineRifleMk2Item and not HasCarbineRifleMk2 then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), 120, false, false)
@@ -227,7 +228,16 @@ Citizen.CreateThread(function()
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_MUZZLE_04"))
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_MUZZLE_04"))
     end
-    if not (HasCarbineRifleMk2Item or HasServiceRifleItem) and HasCarbineRifleMk2 then
+    if HasCommandRifleItem and not HasCarbineRifleMk2 then 
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_AR_AFGRIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_AR_FLSH"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_SIGHTS"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_AR_SUPP"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_CARBINERIFLE_MK2_CLIP_FMJ"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_CR_BARREL_02"))
+    end
+    if not (HasCarbineRifleMk2Item or HasServiceRifleItem or HasCommandRifleItem) and HasCarbineRifleMk2 then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"))
       RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_AR_AFGRIP_02"))
       RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE_MK2"), GetHashKey("COMPONENT_AT_AR_FLSH"))
