@@ -81,17 +81,12 @@ Citizen.CreateThread(function()
 
   -- Fisherman Menu
   if WarMenu.IsMenuOpened('fisherman_boss') then
-   if WarMenu.Button('Go On Duty') then
-    FishingBlips()
-  Notify("You Are Now On Duty As A Fisherman")
-   elseif WarMenu.Button('Go Off Duty') then
-  Notify("You Are Now Off Duty")
-   elseif WarMenu.Button('Hire Boat') then 
-    RequestModel("tug")
-    if vehicle ~= nil then
-      DeleteVehicle(vehicle)
-      vehicle = nil
-    end
+      if WarMenu.Button('Hire Boat') then 
+        RequestModel("tug")
+        if vehicle ~= nil then
+          DeleteVehicle(vehicle)
+          vehicle = nil
+        end
     vehicle = CreateVehicle("tug", 3866.848, 4484.227, 1.736, 115, 1, 0)
     TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
     --SetVehicleNumberPlateText(vehicle, 'JOB')
