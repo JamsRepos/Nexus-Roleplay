@@ -77,7 +77,6 @@ Citizen.CreateThread(function()
     if cooldowntimer > 0 then
       cooldowntimer = cooldowntimer - 1
       if cooldowntimer == 1 then
-        testdriving = false
       end
     end
   end
