@@ -43,6 +43,8 @@ RegisterCommand('pickup', function(source, args, rawCommand)
     end
   elseif setting == 'small' then
     TriggerEvent('admin:pickupSmall')
+  else
+    TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "Please ensure you specify size. <br> Example: /pickup large", length = 5000})
   end
 end)
 
