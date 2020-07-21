@@ -6,6 +6,8 @@ local BarAnimation = 0
 local PosX = 0.5
 local PosY = 0.2
 local TimerAnimation = 0.2
+local blipson = false
+local catch = nil
 local Fish = {
  [1] = {name = 'Catfish', price = 100, item = 3},
  [2] = {name = 'Catfish', price = 100, item = 3},
@@ -17,7 +19,7 @@ local Fish = {
 }
 
 local fishing_zones = {
- {x = 4240.930, y = 5164.693, z = 0.412, dist = 200, drawmarker = false, markerdist = 200},
+ {x = -2025.67, y = -1415.38, z = 1.61, dist = 100, drawmarker = false, markerdist = 200},
  {x = -1837.302, y = -1260.918, z = 8.616, dist = 1.1, drawmarker = true, markerdist = 20.0},
  {x = -1836.012, y = -1262.066, z = 8.616, dist = 1.1, drawmarker = true, markerdist = 20.0},
  {x = -1855.841, y = -1245.269, z = 8.615, dist = 1.1, drawmarker = true, markerdist = 20.0},
@@ -25,85 +27,87 @@ local fishing_zones = {
 }
 
 Citizen.CreateThread(function()
- WarMenu.CreateMenu('fisherman_boss', 'Fisherman')
- while true do
-  Citizen.Wait(0)
+  WarMenu.CreateMenu('fisherman_boss', 'Fisherman')
+  while true do
+    Citizen.Wait(0)
+    if DecorGetInt(GetPlayerPed(-1), "Job") == 5 and not blipson then FishingBlips() blipson = true end
+
+    -- Fishing Zone
+    for k,v in pairs(fishing_zones) do
+      if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.markerdist) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
+        if v.drawmarker then DrawMarker(27, v.x, v.y, v.z-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0) end
+          if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.dist) then
+          DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Start Fishing')
+          if IsControlJustPressed(0, 38) and not CFish and not IsPedInAnyBoat(GetPlayerPed(-1)) and not IsEntityInWater(GetPlayerPed(-1)) then
+            if exports['core']:GetItemQuantity(288) >= 1 and exports['core']:GetItemQuantity(289) >= 1 then
               if not v.drawmarker then catch = Fish[math.random(1,7)] else catch = Fish[math.random(3,7)] end
+              IsFishing = true
+              BarAnimation = 0
+            else
+              Notify("You need a fishing rod and bait to fish.")
+            end
+          end
+        end
+      end
+    end
+
     -- Fishing | Sell Point
-    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 50) then
-    DrawMarker(25, -245.244,-354.201, 29.985-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0)
-    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 2.0) then
-      DrawText3Ds(-245.244,-354.201, 29.985,'~g~[E]~w~ Sell Fish')
-      if IsControlJustPressed(0, 38) then
-      SuccessLimit = 0.175
-      TriggerEvent("inventory:sellFish")
-      --TriggerServerEvent('jobs:sellfish')
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 50) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
+      DrawMarker(25, -245.244,-354.201, 29.985-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0)
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 2.0) then
+        DrawText3Ds(-245.244,-354.201, 29.985,'~g~[E]~w~ Sell Fish')
+        if IsControlJustPressed(0, 38) then
+          SuccessLimit = 0.175
+          TriggerEvent("inventory:sellFish")
+        end
       end
     end
-    end
- if exports['core']:GetItemQuantity(288) >= 1 and exports['core']:GetItemQuantity(289) >= 1 then
-    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 3866.848, 4464.227, 1.736, true) < 40) and not IsPedInAnyBoat(GetPlayerPed(-1)) then
-      DrawMarker(25, 3866.848, 4464.227, 1.736, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
-      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 3866.848, 4464.227, 1.736, true) < 1.5) then
-        DrawText3Ds(3866.848, 4464.227, 1.736,'~g~[E]~w~ Hire A Boat')
-      if IsControlJustPressed(0, 38) then
-        WarMenu.OpenMenu('fisherman_boss')
-    end
-  end
 
-   elseif(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 3866.78, 4479.975, 0.923, true) < 50) and IsPedInAnyBoat(GetPlayerPed(-1)) then
-    DrawMarker(1, 3866.78, 4479.975, 0.943, 0, 0, 0, 0, 0, 0, 10.0, 10.0, 2.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
-    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 3866.78, 4479.975, 0.923, 1.736, true) < 25) then
-      DrawText3Ds(3866.78, 4479.975, 0.923,'~g~[E]~w~ Return The Boat')
-     if IsControlJustPressed(0, 38) then
-      local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
-    SetEntityAsMissionEntity(vehicle, true, true)
-    Citizen.InvokeNative( 0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
-      SetEntityCoords(GetPlayerPed(-1), 3866.848, 4464.227, 2.736)
-     end
-    end
-  end
-  -- Fishing Zone
-   for k,v in pairs(fishing_zones) do
-    if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.markerdist) then
-     if v.drawmarker then DrawMarker(27, v.x, v.y, v.z-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0) end
-     if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.dist) then
-      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Start Fishing')
-      if IsControlJustPressed(0, 38) and not CFish then
-       IsFishing = true
-       BarAnimation = 0
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 40) and IsPedInAnyBoat(GetPlayerPed(-1)) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
+      DrawMarker(1, -1789.140, -1239.789, 0.00, 0, 0, 0, 0, 0, 0, 10.0, 10.0, 2.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1789.140, -1239.789, 0.00, 1.736, true) < 25) then
+        DrawText3Ds(-1789.140, -1239.789, 0.00,'~g~[E]~w~ Return the Fishing Trawler')
+        if IsControlJustPressed(0, 38) then
+          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
+          SetEntityAsMissionEntity(vehicle, true, true)
+          Citizen.InvokeNative( 0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+          SetEntityCoords(GetPlayerPed(-1), -1803.316, -1229.755, 1.593)
+        end
       end
-     end
     end
-   end
-  end
+
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 40) and not IsPedInAnyBoat(GetPlayerPed(-1)) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
+      DrawMarker(25, -1800.174, -1225.530, 1.575-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 1.5) then
+        DrawText3Ds(-1800.174, -1225.530, 1.575,'~g~[E]~w~ Rent a Fishing Trawler')
+        if IsControlJustPressed(0, 38) then
+          WarMenu.OpenMenu('fisherman_boss')
+        end
+      end
+    end
 
 
-  -- Fisherman Menu
-  if WarMenu.IsMenuOpened('fisherman_boss') then
+    -- Fisherman Menu
+    if WarMenu.IsMenuOpened('fisherman_boss') then
       if WarMenu.Button('Hire Boat') then 
         RequestModel("tug")
         if vehicle ~= nil then
           DeleteVehicle(vehicle)
           vehicle = nil
         end
-    vehicle = CreateVehicle("tug", 3866.848, 4484.227, 1.736, 115, 1, 0)
-    TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
-    --SetVehicleNumberPlateText(vehicle, 'JOB')
-    Notify("Return The Boat Before Going Off Duty")
+        vehicle = CreateVehicle("tug", -1783.83, -1241.01, 1.58, 153.00, 1, 0)
+        TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
 
-    DecorRegister("_Fuel_Level", 3);
-    DecorRegister("_Max_Fuel_Level", 3);
-    DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
-    DecorSetInt(vehicle, "_Fuel_Level", 100000)
-    exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
-    WarMenu.CloseMenu()
-   end
-   WarMenu.Display()
+        DecorRegister("_Fuel_Level", 3);
+        DecorRegister("_Max_Fuel_Level", 3);
+        DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
+        DecorSetInt(vehicle, "_Fuel_Level", 100000)
+        exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+        WarMenu.CloseMenu()
+      end
+      WarMenu.Display()
+    end
   end
-
- 
-end
 end)
 
 -- Despawn vehicle if too far away
@@ -148,7 +152,6 @@ Citizen.CreateThread(function()
      ClearPedTasksImmediately(GetPlayerPed(-1))
      DeleteEntity(FishingRod)
      SuccessLimit = SuccessLimit+0.00025
-     local catch = Fish[math.random(1,7)]
      local chance = math.random(1,3)
      TriggerEvent("inventory:removeQty", 289, 1)
      if chance == 2 then 

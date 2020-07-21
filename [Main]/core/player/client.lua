@@ -613,51 +613,49 @@ Citizen.CreateThread(function()
 end)
 
 function DrawText3Ds(x,y,z, text)
-  local onScreen,_x,_y=World3dToScreen2d(x,y,z)
-  local px,py,pz=table.unpack(GetGameplayCamCoords())
-  SetTextScale(0.35, 0.35)
-  SetTextFont(4)
-  SetTextProportional(1)
-  SetTextColour(255, 255, 255, 215)
-  SetTextEntry("STRING")
-  SetTextCentre(1)
-  AddTextComponentString(text)
-  DrawText(_x,_y)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    SetTextScale(0.35, 0.35)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    DrawText(_x,_y)
 end
 
 function SetJobBlips(id)
- if id == 5 then 
-  SetWorkPlace(3866.848, 4464.227, 1.736)
- elseif id == 6 then
-  SetWorkPlace(-406.925, 6172.887, 31.497)
- elseif id == 7 then 
-  SetWorkPlace(-552.879, 5348.669, 73.743)
- elseif id == 4 then 
-  SetWorkPlace(895.376, -179.315, 73.710)
- elseif id == 10 then 
-  SetWorkPlace(-354.999, -1513.897, 27.717)
- elseif id == 11 then 
-  SetWorkPlace(1200.460, -1276.810, 35.369)
- elseif id == 14 then 
-  SetWorkPlace(736.634, 132.274, 80.710)
- elseif id == 42 then 
- SetWorkPlace(-1909.576, 2071.702, 140.389)
- elseif id == 43 then 
- SetWorkPlace(-1927.767, 2060.205, 140.837)
- elseif id == 60 then
-  SetWorkPlace(-95.22, 2809.865, 53.337)
- end
+    if id == 6 then
+        SetWorkPlace(-406.925, 6172.887, 31.497)
+    elseif id == 7 then 
+        SetWorkPlace(-552.879, 5348.669, 73.743)
+    elseif id == 4 then 
+        SetWorkPlace(895.376, -179.315, 73.710)
+    elseif id == 10 then 
+        SetWorkPlace(-354.999, -1513.897, 27.717)
+    elseif id == 11 then 
+        SetWorkPlace(1200.460, -1276.810, 35.369)
+    elseif id == 14 then 
+        SetWorkPlace(736.634, 132.274, 80.710)
+    elseif id == 42 then 
+        SetWorkPlace(-1909.576, 2071.702, 140.389)
+    elseif id == 43 then 
+        SetWorkPlace(-1927.767, 2060.205, 140.837)
+    elseif id == 60 then
+        SetWorkPlace(-95.22, 2809.865, 53.337)
+    end
 end
 
 function SetWorkPlace(x,y,z)
- if DoesBlipExist(blip) then RemoveBlip(blip) end
- blip = AddBlipForCoord(x, y, z)
- SetBlipSprite (blip, 408)
- SetBlipDisplay(blip, 4)
- SetBlipScale  (blip, 1.0)
- SetBlipColour (blip, 18)
- SetBlipAsShortRange(blip, true)
- BeginTextCommandSetBlipName("STRING")
- AddTextComponentString("Work Place")
- EndTextCommandSetBlipName(blip)
+    if DoesBlipExist(blip) then RemoveBlip(blip) end
+    blip = AddBlipForCoord(x, y, z)
+    SetBlipSprite (blip, 408)
+    SetBlipDisplay(blip, 4)
+    SetBlipScale  (blip, 1.0)
+    SetBlipColour (blip, 18)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString("Work Place")
+    EndTextCommandSetBlipName(blip)
 end 
