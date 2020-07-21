@@ -66,7 +66,7 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 40) and IsPedInAnyBoat(GetPlayerPed(-1)) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
       DrawMarker(1, -1789.140, -1239.789, 0.00, 0, 0, 0, 0, 0, 0, 10.0, 10.0, 2.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1789.140, -1239.789, 0.00, 1.736, true) < 25) then
-        DrawText3Ds(-1789.140, -1239.789, 0.00,'~g~[E]~w~ Return the Fishing Trawler')
+        DrawText3Ds(-1789.140, -1239.789, 0.00,'~g~[E]~w~ Return the Fishing Boat')
         if IsControlJustPressed(0, 38) then
           local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
           SetEntityAsMissionEntity(vehicle, true, true)
@@ -79,7 +79,7 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 40) and not IsPedInAnyBoat(GetPlayerPed(-1)) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
       DrawMarker(25, -1800.174, -1225.530, 1.575-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 100, 252, 255, 200, 0, 0, 2, 0, 0, 0, 0)
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1800.174, -1225.530, 1.575-0.95, true) < 1.5) then
-        DrawText3Ds(-1800.174, -1225.530, 1.575,'~g~[E]~w~ Rent a Fishing Trawler')
+        DrawText3Ds(-1800.174, -1225.530, 1.575,'~g~[E]~w~ Rent a Fishing Boat')
         if IsControlJustPressed(0, 38) then
           WarMenu.OpenMenu('fisherman_boss')
         end
