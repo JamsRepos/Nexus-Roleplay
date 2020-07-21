@@ -28,6 +28,7 @@ Citizen.CreateThread(function()
  WarMenu.CreateMenu('fisherman_boss', 'Fisherman')
  while true do
   Citizen.Wait(0)
+              if not v.drawmarker then catch = Fish[math.random(1,7)] else catch = Fish[math.random(3,7)] end
     -- Fishing | Sell Point
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 50) then
     DrawMarker(25, -245.244,-354.201, 29.985-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0)
