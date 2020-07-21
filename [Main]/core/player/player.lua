@@ -155,7 +155,7 @@ function CreatePlayer(source, data)
 	end
 
 	-- Inventory System
-	rTable.setInventory = function()
+	rTable.wipeInventory = function()
 		self.inventory = {}
 	end
 

@@ -335,8 +335,21 @@ function Respawn()
     Citizen.Wait(1000)
     SendNUIMessage({dead = false})
     TriggerEvent('ems:revive')
+    local rctruck, gunkit = false
+    if exports['core']:GetItemQuantity(134) >= 1 then rctruck = true end
+    if exports['core']:GetItemQuantity(135) >= 1 then gunkit = true end
+    if ems > 0 or cops > 0 then
+      TriggerServerEvent('medical:wipeInventory', rctruck, gunkit)
+    end
   end)
 end
+
+RegisterNetEvent('medical:giveWhitelisted')
+AddEventHandler('medical:giveWhitelisted', function(rctruck, gunkit)
+  print("giving back whitelisted items")
+  if rctruck then TriggerEvent("inventory:addQty", 134, 1) end
+  if gunkit then TriggerEvent("inventory:addQty", 135, 1) end
+end)
 
 -- String string
 function stringsplit(inputstr, sep)
@@ -397,9 +410,9 @@ Citizen.CreateThread(function()
       end
 
       while timer <= 0 and IsDead do
-        drawTxt("~m~Press ~g~E ~m~ to take an airlift.")
+        drawTxt("~m~Press ~g~R ~m~ to take an airlift.")
         Citizen.Wait(0)
-        if IsControlPressed(0, 38) then
+        if IsControlPressed(0, 80) then
           SetEntityHealth(GetPlayerPed(-1), 200)
           IsDead = false
           Respawn()
@@ -413,9 +426,9 @@ RegisterNetEvent('ems:count')
 AddEventHandler('ems:count', function(cops, ems)
  if not IsDead then
   if ems == 0 and cops == 0 then
-   timer = 4 * 60 * 1000
+   timer = 5 * 60 * 1000
   else
-   timer = 9 * 60 * 1000
+   timer = 10 * 60 * 1000
   end
  end
 end)

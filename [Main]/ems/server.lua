@@ -61,6 +61,17 @@ AddEventHandler('medical:getInventory', function()
  TriggerClientEvent("medical:openInventory", source)
 end)
 
+RegisterServerEvent('medical:wipeInventory')
+AddEventHandler('medical:wipeInventory', function(rctruck, gunkit)
+    local source = tonumber(source)
+    TriggerEvent('core:getPlayerFromId', source, function(user)
+        user.wipeInventory()
+        user.removeMoney(user.getMoney())
+    end)
+    TriggerClientEvent("medical:giveWhitelisted", source, rctruck, gunkit)
+end)
+
+
 RegisterServerEvent('medical:refresh')
 AddEventHandler('medical:refresh', function(source, id)
  local source = tonumber(source)
