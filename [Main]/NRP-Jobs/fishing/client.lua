@@ -20,6 +20,8 @@ local fishing_zones = {
  {x = 4240.930, y = 5164.693, z = 0.412, dist = 200, drawmarker = false, markerdist = 200},
  {x = -1837.302, y = -1260.918, z = 8.616, dist = 1.1, drawmarker = true, markerdist = 20.0},
  {x = -1836.012, y = -1262.066, z = 8.616, dist = 1.1, drawmarker = true, markerdist = 20.0},
+ {x = -1855.841, y = -1245.269, z = 8.615, dist = 1.1, drawmarker = true, markerdist = 20.0},
+ {x = -1854.607, y = -1246.343, z = 8.615, dist = 1.1, drawmarker = true, markerdist = 20.0},
 }
 
 Citizen.CreateThread(function()
