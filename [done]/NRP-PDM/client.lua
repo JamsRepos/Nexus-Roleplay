@@ -1,3 +1,5 @@
+local cooldowntimer = 0
+
 local locations = {
  {garage = {x=-35.001, y=-1101.657, z=26.422}, spawn = {x=-46.677, y=-1110.872, z=26.436, heading=70.008}, preview = {x=-32.89, y=-1090.53, z=26.42, heading=69.23}},
  --{garage = {x=1224.850, y=2727.356, z=38.004}, spawn = {x=1230.095, y=2717.908, z=37.502, heading=131.941}, preview = {x=1218.155, y=2717.167, z=37.501, heading=204.264}}
@@ -80,6 +82,47 @@ Citizen.CreateThread(function()
  end
 end)
 
+function disp_time(time)
+  local minutes = math.floor((time%3600)/60)
+  local seconds = math.floor((time%60))
+  return string.format("~g~%02d~w~m ~g~%02d~w~s", minutes, seconds)
+end
+
+function startTimer(timer)
+  Citizen.CreateThread(function()
+      Citizen.CreateThread(function()
+          while timer>0 do
+              Citizen.Wait(1000)
+              timer=timer-1
+          end
+      end)
+      while timer>0 do
+          Citizen.Wait(0)
+          SetTextFont(4)
+          SetTextScale(0.45, 0.45)
+          SetTextColour(255, 255, 255, 255)
+          SetTextDropshadow(0, 0, 0, 0, 255)
+          SetTextEdge(1, 0, 0, 0, 255)
+          SetTextDropShadow()
+          SetTextOutline()
+          BeginTextCommandDisplayText('STRING')
+          AddTextComponentSubstringPlayerName("Time Left on Test Drive: "..disp_time(timer))
+          EndTextCommandDisplayText(0.05, 0.55)
+      end
+  end)
+end
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1000)
+    if cooldowntimer > 0 then
+      cooldowntimer = cooldowntimer - 1
+      if cooldowntimer == 1 then
+      end
+    end
+  end
+end)
+
 Citizen.CreateThread(function()
  while true do
   Wait(0)
@@ -114,6 +157,7 @@ Citizen.CreateThread(function()
      menuOpen = false
      buyconfirmation = false
     end
+
    else
     if type(vehicles[menu]) == "table" then
      Menu.Title(menu)
@@ -129,6 +173,30 @@ Citizen.CreateThread(function()
        Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(demo.car, false))
       end
      end
+     if IsControlJustReleased(0, 246) then
+      if cooldowntimer <= 0 then
+          RequestModel(demo.model)
+          while not HasModelLoaded(demo.model) do
+          Citizen.Wait(10)
+          end
+          local vehicle = CreateVehicle(demo.model, -9.28, -1082.86, 26.7-0.85, 99.49, true, true)
+          SetVehicleNumberPlateText(vehicle, "DEALER")
+          DecorSetInt(vehicle, "_Fuel_Level", 100000)
+          TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
+          exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+          startTimer(120)
+          Wait(120*1000)
+          DoScreenFadeOut(500)
+          Wait(500)
+          DoScreenFadeIn(500)
+          cooldowntimer = 120
+          DeleteEntity(vehicle)
+          SetPedIntoVehicle(GetPlayerPed(-1), demo.car, -1)
+        else
+          exports['NRP-notify']:DoHudText('error', 'Please wait '..cooldowntimer..' seconds before test driving another vehicle')
+        end
+
+      end
      if DoesEntityExist(demo.car) then
       --local speed = exports['hud']:getMaxSpeed(demo.car) or 150
       local items = 80 
@@ -137,15 +205,17 @@ Citizen.CreateThread(function()
       if maxCapacity[GetVehicleClass(demo.car)] ~= nil then 
        items = maxCapacity[GetVehicleClass(demo.car)].item 
       end
-      DrawRect(0.090, 0.59, 0.145, 0.10, 40, 40, 40, 200)
-      drawUI(0.524, 1.050, 1.0, 1.0, 0.475, "~g~Price: ~w~$"..demo.price, 255, 255, 255, 255, false)
-      drawUI(0.524, 1.080, 1.0, 1.0, 0.475, "~g~Max Items: ~w~"..items.." Items", 255, 255, 255, 255, false)
+      DrawRect(0.090, 0.59, 0.145, 0.11, 40, 40, 40, 200)
+      drawUI(0.524, 1.042, 1.0, 1.0, 0.475, "~g~Price: ~w~$"..demo.price, 255, 255, 255, 255, false)
+      drawUI(0.524, 1.072, 1.0, 1.0, 0.475, "~g~Max Items: ~w~"..items.." Items", 255, 255, 255, 255, false)
+      drawUI(0.524, 1.102, 1.0, 1.0, 0.475, "~w~Press ~r~[Y] ~w~to test drive", 255, 255, 255, 255, false)
      end
     end
    end
   end
  end
 end)
+
 
 function spawnMenu(option)
  if Menu.Option(option, true) then
