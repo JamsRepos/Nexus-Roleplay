@@ -95,7 +95,7 @@ Citizen.CreateThread(function()
           DeleteVehicle(vehicle)
           vehicle = nil
         end
-        vehicle = CreateVehicle("tug", -1783.83, -1241.01, 1.58, 153.00, 1, 0)
+        vehicle = CreateVehicle("suntrap", -1783.83, -1241.01, 1.58, 153.00, 1, 0)
         TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
 
         DecorRegister("_Fuel_Level", 3);
