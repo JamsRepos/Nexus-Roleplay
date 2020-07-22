@@ -650,6 +650,10 @@ local methylamine = {
   {x = 3535.116, y = 3662.923, z = 28.121}, ----- ketamine
 }
 
+local ketamine_craft = {
+  {x = 975.46, y = -2358.08, z = 31.82},
+}
+
 local pickingmethylamine = false
 local methylaminecount = 0
 
@@ -695,6 +699,53 @@ Citizen.CreateThread(function()
             pickingmethylamine = false
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "Looks like the barrel is empty. Come back in ".. methylamine_cooldowntimer .. " seconds.", length = 5000})
           end
+         end
+        end
+      end)
+
+    end
+    end
+   end
+  end
+end)
+
+local craftingketamine = false
+
+Citizen.CreateThread(function()
+  while true do
+   Citizen.Wait(5)
+   for _,v in pairs(ketamine_craft) do
+    local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
+    if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and not craftingketamine and rep >= 1000 and exports['core']:GetItemQuantity(19) > 0 and exports['core']:GetItemQuantity(20) > 0 then
+      DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Create Ketamine')
+     if IsControlJustPressed(0, 38) then 
+      craftingketamine = true 
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+      FreezeEntityPosition(GetPlayerPed(-1), true)
+      TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+
+      TriggerEvent("mythic_progbar:client:progress", {
+        name = "cooking_ketamine",
+        duration = 10000,
+        label = "Cooking Ketamine",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+           disableMovement = true,
+           disableCarMovement = true,
+           disableMouse = false,
+           disableCombat = true,
+        },
+      }, function(status)
+       if not status then
+         FreezeEntityPosition(GetPlayerPed(-1), false)
+         ClearPedTasksImmediately(GetPlayerPed(-1))
+         if craftingketamine == true then
+            craftingketamine = false
+            TriggerEvent("inventory:removeQty", 19, 1)
+            TriggerEvent("inventory:removeQty", 20, 1) 
+            TriggerEvent("inventory:addQty", 49, 1)
+            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You made 1 ounce of Ketamine.", length = 5000})
          end
         end
       end)

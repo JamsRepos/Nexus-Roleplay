@@ -25,6 +25,7 @@ local gun26 = nil
 local gun27 = nil
 local gun28 = nil
 local gun31 = nil
+local ketamine1 = nil
 local heroin1 = nil
 local cocaine1 = nil
 local moneywash2 = nil
@@ -522,6 +523,8 @@ function spawnGunman()
     gun27 = nil
     DeletePed(gun28)
     gun28 = nil
+    DeletePed(ketamine1)
+    ketamine1 = nil
     DeletePed(heroin1)
     heroin1 = nil
     DeletePed(cocaine1)
@@ -546,6 +549,17 @@ function spawnGunman2()
 
   local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
 
+  if ketamine1 == nil and rep >= 1000 then
+    RequestModel(GetHashKey('u_m_o_tramp_01'))
+    while not HasModelLoaded(GetHashKey('u_m_o_tramp_01')) do
+     Wait(5)
+    end 
+    ketamine1 = CreatePed(2, GetHashKey('u_m_o_tramp_01'), 975.46, -2358.08, 31.82, 181.47, false, false)
+    SetPedFleeAttributes(ketamine1, 0, 0)
+    SetPedDiesWhenInjured(ketamine1, false)
+    TaskStartScenarioInPlace(ketamine1, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)
+    SetPedKeepTask(ketamine1, true)
+  end
   if heroin1 == nil and rep >= 1500 then
     RequestModel(GetHashKey('u_m_o_tramp_01'))
     while not HasModelLoaded(GetHashKey('u_m_o_tramp_01')) do

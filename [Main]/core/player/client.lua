@@ -535,7 +535,6 @@ end)
 local jobLocations = {
   {x =-265.036, y=-963.630, z=30.223, id= 1},
   {x = -1195.370, y = -900.547, z = 13.995-0.95, id= 2},
-  {x = -1170.221, y = -1570.822, z = 4.664-0.95, id= 3},
 }
 
 local jobCenter = nil
@@ -568,8 +567,6 @@ Citizen.CreateThread(function()
       DrawText3Ds(v.x, v.y, v.z+0.95,'~g~[E]~w~ Job Center')
      elseif v.id == 2 then  
       DrawText3Ds(v.x, v.y, v.z+0.95,'~g~[E]~w~ Fast Food Jobs')
-    elseif v.id == 3 then  
-        DrawText3Ds(v.x, v.y, v.z+0.95,'~g~[E]~w~ Smoke On The Water Jobs')
      end 
      if IsControlPressed(0, 38) then
       jobCenter = v.id
