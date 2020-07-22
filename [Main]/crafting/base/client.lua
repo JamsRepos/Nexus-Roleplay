@@ -11,11 +11,10 @@ local recipies = {
     [9] = {id = 7, name = "Grams of Weed", amount = 28, requirements = "1 x Bundle of Baggies, 1 x Oz of Weed , 1 x Digital Scales", rep = 0},
     [10] = {id = 13, name = "Grams of Crystal Meth", amount = 28, requirements = "1 x Oz of Crystal Meth, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 500},
     [11] = {id = 4, name = "Ketone", amount = 1, requirements = "1 x Magnesium, 1 x Cyclopentyl, 1 x Chemistry Set, 1 x Bunson Burner", rep = 1000},
-    [12] = {id = 5, name = "Oz of Ketamine", amount = 1, requirements = "1 x Ketone, 1 x Liquid Methylamine, 1 x Chemistry Set, 1 x Bunson Burner", rep = 1000},
-    [13] = {id = 6, name = "Grams of Ketamine", amount = 28, requirements = "1 x Oz of Ketamine, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 1000},
-    [14] = {id = 14, name = "Grams of Heroin", amount = 28, requirements = "1 x Oz of Heroin, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 1500},
-    [15] = {id = 1, name = "Grams of Cocaine", amount = 28, requirements = "1 x Oz of Cocaine, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 2000},
-    [16] = {id = 18, name = "C4 Bomb", amount = 1, requirements = "1 x Electrical Wire, 1 x Calculator, 1 x Tape, 1 x Wire Cutters", rep = 1500},
+    [12] = {id = 6, name = "Grams of Ketamine", amount = 28, requirements = "1 x Oz of Ketamine, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 1000},
+    [13] = {id = 14, name = "Grams of Heroin", amount = 28, requirements = "1 x Oz of Heroin, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 1500},
+    [14] = {id = 1, name = "Grams of Cocaine", amount = 28, requirements = "1 x Oz of Cocaine, 1 x Bundle of Baggies, 1 x Digital Scales", rep = 2000},
+    [15] = {id = 18, name = "C4 Bomb", amount = 1, requirements = "1 x Electrical Wire, 1 x Calculator, 1 x Tape, 1 x Wire Cutters", rep = 1500},
 }
 
 function EnableGui(enable, chars)

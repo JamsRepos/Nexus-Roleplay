@@ -175,28 +175,12 @@ AddEventHandler("crafting:trigger:4", function()
   TriggerEvent("inventory:removeQty", 17, 1)
   TriggerEvent("inventory:removeQty", 18, 1)
   TriggerEvent("inventory:addQty", 19, 1)
-  TriggerEvent('chatMessage', "SUCCESS", {0, 173, 66}, "You have combined your ingredients and made ketone")
+  TriggerEvent('chatMessage', "SUCCESS", {0, 173, 66}, "You have combined your ingredients and made ketone.")
  else
   TriggerEvent('chatMessage', "ERROR", {255, 28, 28}, "You do not have the correct materials to use your chemistry set!")
  end
 end)
 
---ketone x liquid methlamine > 1 x Oz of Ketamine
-RegisterNetEvent("crafting:trigger:5")              -- ketamine
-AddEventHandler("crafting:trigger:5", function()
-    if math.floor(exports['core']:getQuantity() + 1) > 120 then
-        TriggerEvent('chatMessage', "ERROR", {255, 28, 28}, " You do not have enough space for this.")
-        return
-     end
- if exports['core']:GetItemQuantity(19) >= 1 and exports['core']:GetItemQuantity(20) >= 1 and exports['core']:GetItemQuantity(47) >= 1  and exports['core']:GetItemQuantity(48) >= 1 then
-  TriggerEvent("inventory:removeQty", 19, 1)
-  TriggerEvent("inventory:removeQty", 20, 1) 
-  TriggerEvent("inventory:addQty", 49, 1)
-  TriggerEvent('chatMessage', "SUCCESS", {0, 173, 66}, "You have successfully crafted 1 x Oz of Ketamine")
- else
-  TriggerEvent('chatMessage', "ERROR", {255, 28, 28}, "You do not have the correct materials to craft this item!")
- end
-end)
 --1 x Oz of Ketamine -- 28  x grams
 RegisterNetEvent("crafting:trigger:6")              -- ketamine
 AddEventHandler("crafting:trigger:6", function()
