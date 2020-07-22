@@ -40,7 +40,7 @@ Citizen.CreateThread(function()
           DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Start Fishing')
           if IsControlJustPressed(0, 38) and not CFish and not IsPedInAnyBoat(GetPlayerPed(-1)) and not IsEntityInWater(GetPlayerPed(-1)) then
             if exports['core']:GetItemQuantity(288) >= 1 and exports['core']:GetItemQuantity(289) >= 1 then
-              if not v.drawmarker then catch = Fish[math.random(1,7)] else catch = Fish[math.random(5,7)] end
+              if not v.drawmarker then catch = Fish[math.random(5,7)] else catch = Fish[math.random(3,7)] end
               IsFishing = true
               BarAnimation = 0
             else
