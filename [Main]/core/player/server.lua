@@ -37,7 +37,7 @@ AddEventHandler('core:loadplayer', function(source)
  exports['GHMattiMySQL']:QueryResultAsync('SELECT * FROM users WHERE `identifier`=@identifier OR `discord`=@discord;', {['@identifier'] = GetPlayerIdentifier(Source), ['@discord'] = getIdentifiers(Source).discord}, function(user)
   exports['GHMattiMySQL']:QueryResultAsync("SELECT * FROM characters WHERE `id` = @id", {['@id'] = GetActiveCharacterID(Source)}, function(character)
    if user[1] and character[1] then
-	if user[1].discord == "" then
+	if user[1].discord == "" or user[1].discord == nil then
 		user[1].discord = getIdentifiers(source).discord
 	end
     Users[Source] = CreatePlayer(Source, {
