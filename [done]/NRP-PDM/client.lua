@@ -208,7 +208,7 @@ Citizen.CreateThread(function()
       DrawRect(0.090, 0.59, 0.145, 0.11, 40, 40, 40, 200)
       drawUI(0.524, 1.042, 1.0, 1.0, 0.475, "~g~Price: ~w~$"..demo.price, 255, 255, 255, 255, false)
       drawUI(0.524, 1.072, 1.0, 1.0, 0.475, "~g~Max Items: ~w~"..items.." Items", 255, 255, 255, 255, false)
-      drawUI(0.524, 1.102, 1.0, 1.0, 0.475, "~w~Press ~r~[Y] ~w~to test drive", 255, 255, 255, 255, false)
+      drawUI(0.524, 1.102, 1.0, 1.0, 0.475, "~w~Press ~g~[Y] ~w~to test drive", 255, 255, 255, 255, false)
      end
     end
    end
@@ -316,6 +316,7 @@ AddEventHandler("carshop:bought",function(data, plate)
  SetEntityAsMissionEntity(spawned, true, true)
  SetVehicleIsConsideredByPlayer(spawned, true)
  TaskWarpPedIntoVehicle(GetPlayerPed(-1), spawned, -1)
+ TriggerEvent('persistent-vehicles/register-vehicle', spawned)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(spawned))
 end)
 

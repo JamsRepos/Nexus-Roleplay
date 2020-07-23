@@ -341,6 +341,7 @@ function StoreVehicle()
     enginedamage = (maxvehhp - GetVehicleEngineHealth(vehicle))
     local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
     TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
+    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
     SetEntityAsMissionEntity(vehicle, true, true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
     exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
@@ -376,7 +377,7 @@ function SpawnVehicle(data)
  SetVehicleEngineOn(vehicle, true)
  SetVehicleHasBeenOwnedByPlayer(vehicle, true)
  SetEntityAsMissionEntity(vehicle, true, true)
- 
+ TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
 end
 

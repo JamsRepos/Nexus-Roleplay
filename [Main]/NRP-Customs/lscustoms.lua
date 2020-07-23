@@ -595,7 +595,7 @@ local function DriveOutOfGarage(pos)
 		garageID = 0
 		DisplayRadar(true)
 		SetPlayerControl(PlayerId(),true)
-		
+		TriggerEvent('persistent-vehicles/update-vehicle', veh)
 	end)
 end
 

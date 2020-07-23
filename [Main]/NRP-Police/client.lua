@@ -316,6 +316,7 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
+         TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
          SetEntityAsMissionEntity(vehicle, true, true)
          Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
         else
