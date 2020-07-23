@@ -1,4 +1,4 @@
-
+currentPolice = 0
 
 Citizen.CreateThread(function()
  while true do
@@ -228,8 +228,12 @@ Citizen.CreateThread(function()
         Wait(10)
         currentTarget = t
        if DecorGetBool(GetPlayerPed(t), "Handsup") == 1 then
-        TriggerServerEvent('rob:getPlayerInventory', GetPlayerServerId(t))
-        ExecuteCommand('me searching someones pockets')
+        if currentPolice >= 2 then
+            TriggerServerEvent('rob:getPlayerInventory', GetPlayerServerId(t))
+            ExecuteCommand('me searching someones pockets')
+        else
+            exports['NRP-notify']:DoHudText('inform',  "Not Enough Police In Town")
+        end
        end
     end
    end    
@@ -249,8 +253,12 @@ Citizen.CreateThread(function()
                     Wait(10)
                     currentTarget = t
                    if DecorGetBool(GetPlayerPed(t), "Handsup") == 1 then
-                    TriggerServerEvent('rob:getPlayerCash', GetPlayerServerId(t))
-                    ExecuteCommand('me searching someones wallet')
+                    if currentPolice >= 2 then
+                        TriggerServerEvent('rob:getPlayerCash', GetPlayerServerId(t))
+                        ExecuteCommand('me searching someones wallet')
+                    else
+                        exports['NRP-notify']:DoHudText('inform',  "Not Enough Police In Town")
+                    end
                    end
                 end
                end
