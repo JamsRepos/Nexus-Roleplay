@@ -9,11 +9,11 @@ RegisterServerEvent('core:checkuser')
 AddEventHandler('core:checkuser', function()
  local source = tonumber(source)
  local identifier = getIdentifiers(source)
- exports['GHMattiMySQL']:QueryResultAsync('SELECT * FROM users WHERE `identifier`=@identifier;', {identifier = identifier.steam}, function(users)
+ exports['GHMattiMySQL']:QueryResultAsync('SELECT * FROM users WHERE `identifier`=@identifier OR `discord`=@discord;', {identifier = identifier.steam, discord = identifier.discord}, function(users)
   if users[1] then
    TriggerEvent('core:playerDropped', source)
   else
-   exports['GHMattiMySQL']:QueryAsync('INSERT INTO users (`identifier`, `name`, `license`, `ip`, `permission_level`, `group`) VALUES (@identifier, @name, @license, @ip, @permission_level, @group);', {['@identifier'] = identifier.steam, ['@name'] = GetPlayerName(source), ['@license'] = identifier.license, ['@ip'] = identifier.ip, ['@permission_level'] = 0, ['@group'] = 'user'})
+   exports['GHMattiMySQL']:QueryAsync('INSERT INTO users (`identifier`, `discord`, `name`, `license`, `ip`, `permission_level`, `group`) VALUES (@identifier, @discord, @name, @license, @ip, @permission_level, @group);', {['@identifier'] = identifier.steam, ['@discord'] = identifier.discord, ['@name'] = GetPlayerName(source), ['@license'] = identifier.license, ['@ip'] = identifier.ip, ['@permission_level'] = 0, ['@group'] = 'user'})
    TriggerEvent('core:playerDropped', source)
   end
  end)
@@ -34,13 +34,17 @@ end)
 RegisterServerEvent('core:loadplayer')
 AddEventHandler('core:loadplayer', function(source)
  local Source = tonumber(source)
- exports['GHMattiMySQL']:QueryResultAsync('SELECT * FROM users WHERE `identifier`=@identifier;', {['@identifier'] = GetPlayerIdentifier(Source)}, function(user)
+ exports['GHMattiMySQL']:QueryResultAsync('SELECT * FROM users WHERE `identifier`=@identifier OR `discord`=@discord;', {['@identifier'] = GetPlayerIdentifier(Source), ['@discord'] = getIdentifiers(Source).discord}, function(user)
   exports['GHMattiMySQL']:QueryResultAsync("SELECT * FROM characters WHERE `id` = @id", {['@id'] = GetActiveCharacterID(Source)}, function(character)
    if user[1] and character[1] then
+	if user[1].discord == "" then
+		user[1].discord = getIdentifiers(source).discord
+	end
     Users[Source] = CreatePlayer(Source, {
      -- Player Data
      permission_level = user[1].permission_level, 
      identifier = user[1].identifier,
+     discord = user[1].discord,
      license = user[1].license,
      group = user[1].group,
      watched = user[1].watched,
@@ -66,7 +70,7 @@ AddEventHandler('core:loadplayer', function(source)
      reputation = character[1].reputation,
      playtime = character[1].playtime,
     })
-    exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET character_id=@character_id, isOnline=@isonline, character_name=@character, current_id=@cid WHERE identifier=@id",{['@character_id'] = GetActiveCharacterID(Source), ['@id'] = user[1].identifier, ['@isonline'] = 1, ['@character'] = character[1].firstname.." "..character[1].lastname, ['@cid'] = Source})
+    exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET discord=@discord, character_id=@character_id, isOnline=@isonline, character_name=@character, current_id=@cid WHERE identifier=@id",{['@discord'] = user[1].discord, ['@character_id'] = GetActiveCharacterID(Source), ['@id'] = user[1].identifier, ['@isonline'] = 1, ['@character'] = character[1].firstname.." "..character[1].lastname, ['@cid'] = Source})
     Users[Source].setSessionVar('idType', 'identifier')
     TriggerEvent('core:playerLoaded', Source, Users[Source])
     TriggerClientEvent('core:setPlayerDecorator', Source, 'rank', Users[Source]:getPermissions())
@@ -104,8 +108,9 @@ RegisterServerEvent('core:playerDropped')
 AddEventHandler('core:playerDropped', function(source)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
+  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET discord=@discord, money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
+   ['@discord'] = user.getDiscordID(),
    ['@money'] = user.getMoney(),
    ['@bank'] = user.getBank(),
    --['@dirtybank'] = user.getDirtybank(),
@@ -351,9 +356,11 @@ function getIdentifiers(source)
    steam = v
   elseif string.sub(v, 1, string.len("ip:")) == "ip:" then
    ip = v
+  elseif string.sub(v, 1, string.len("discord:")) == "discord:" then
+   discord = v
   end
  end
- return {license = license, steam = steam, ip = ip}
+ return {license = license, steam = steam, ip = ip, discord = discord}
 end
 
 

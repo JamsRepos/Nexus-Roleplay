@@ -8,6 +8,7 @@ function CreatePlayer(source, data)
 
 	self.source = source
 	self.identifier = data.identifier
+	self.discord = data.discord
 	self.license = data.license
 	self.permission_level = data.permission_level
 	self.group = data.group
@@ -49,6 +50,10 @@ function CreatePlayer(source, data)
 	
 	rTable.getCharacterID = function()
 		return self.character_id
+	end
+	
+	rTable.getDiscordID = function()
+		return self.discord
 	end
 
 	rTable.getIdentity = function()
