@@ -108,9 +108,8 @@ RegisterServerEvent('core:playerDropped')
 AddEventHandler('core:playerDropped', function(source)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET discord=@discord, money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
+  exports['GHMattiMySQL']:QueryAsync("UPDATE `characters` SET money=@money, bank=@bank,dirty_money=@dirty_money, position=@position, job=@job, faction=@faction, inventory=@inventory, vehicles=@vehicles, garages=@garages, outfit=@outfit, vitals=@vitals, reputation=@reputation, timers=@timers WHERE id = @id", {
    ['@id'] = user.getCharacterID(),
-   ['@discord'] = user.getDiscordID(),
    ['@money'] = user.getMoney(),
    ['@bank'] = user.getBank(),
    --['@dirtybank'] = user.getDirtybank(),
