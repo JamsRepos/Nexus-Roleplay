@@ -15,7 +15,7 @@ Config = {
 -- This experimental feature increases the total number of vehicles you can spawn on the map at any one time. 
 -- It works by removing vehicles no one is close to. Persistent vehicles will then respawn when someone is closeby.
 -- this will remove distance, which is an added benefit as it will remove ghost vehicles.
-Config.entityManagement = true
+Config.entityManagement = false
 
 -- the distance a player needs to be from the Config.respawnDistance for a vehicle's entity to be deleted 
 local deletionDistance = 100 -- (100-1000)
