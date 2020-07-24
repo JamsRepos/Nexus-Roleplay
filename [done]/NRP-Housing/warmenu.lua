@@ -843,6 +843,7 @@ function GetVehProps(vehicle)
     end
   
     if props.modLivery ~= nil then
+      SetVehicleMod(vehicle, 48, props.modLivery, false)
       SetVehicleLivery(vehicle, props.modLivery)
     end
     if props.customTires == 1 then

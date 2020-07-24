@@ -404,6 +404,11 @@ LSC_Config.prices = {
 		startprice = 120 + customsVat,
 		increaseby = 250
 	},
+
+	[49] = {
+		startprice = 120 + customsVat,
+		increaseby = 250
+	},
 	
 ----------Windows--------
 	[46] = {
