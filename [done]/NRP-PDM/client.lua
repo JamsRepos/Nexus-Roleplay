@@ -70,8 +70,9 @@ Citizen.CreateThread(function()
       DrawText3Ds(-45.357, -1082.406, 26.207,'~g~[E]~w~ Sell Vehicle For 50% Of The Purchase Price')
     end
     if IsControlJustPressed(0, 38) and sellconfirmation then
-     TriggerServerEvent('carshop:sell', GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false)))
-     sellconfirmation = false
+      local plate = exports['core']:TrimPlate(GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false)))
+      TriggerServerEvent('carshop:sell', plate)
+      sellconfirmation = false
     elseif IsControlJustPressed(0, 38) and not sellconfirmation then
       sellconfirmation = true
     end
