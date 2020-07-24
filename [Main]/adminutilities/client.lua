@@ -224,13 +224,14 @@ AddEventHandler('admin:dv', function()
   local pos = GetEntityCoords(ped)
   if IsPedSittingInAnyVehicle(ped) then 
    local vehicle = GetVehiclePedIsIn(ped, false)
+   TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
    SetEntityAsMissionEntity(vehicle, true, true)
    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
   else
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 5.0, 0, 71)
    if DoesEntityExist(vehicle) then 
-    TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
+    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
     SetEntityAsMissionEntity(vehicle, true, true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
    else 
