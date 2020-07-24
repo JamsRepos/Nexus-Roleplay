@@ -236,9 +236,7 @@ function PV.ForgetAllVehicles()
   local num = PV.Tablelength(PV.vehicles)
   PV.vehicles = {}
   PV.SavedPlayerVehiclesToFile()
-  if self.debugging then
-    print('Persistent Vehicles: Forgotten '..num..' vehicles. No vehicles are now persistent.')
-  end
+  print('Persistent Vehicles: Forgotten '..num..' vehicles. No vehicles are now persistent.')
 end
 
 function PV.SavedPlayerVehiclesToFile()
