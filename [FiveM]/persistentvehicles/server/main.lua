@@ -188,7 +188,6 @@ function PV.GetClosestPlayerToCoords(coords)
 end
 
 function PV.RegisterVehicle(netId, props)
-  if PV.vehicles[props.plate] ~= nil then return end
   -- don't register the vehicle immediately incase it is deleted straight away
   Citizen.SetTimeout(1500, function ()
     local entity = PV.GetVehicleEntityFromNetId(netId)
@@ -244,7 +243,7 @@ end
 
 function PV.SavedPlayerVehiclesToFile()
   SaveResourceFile(GetCurrentResourceName(), "vehicle-data.json", json.encode(PV.vehicles), -1)
-  print('Persistent Vehicles: '.. PV.Tablelength(PV.vehicles) .. ' vehicles saved to file')
+  --print('Persistent Vehicles: '.. PV.Tablelength(PV.vehicles) .. ' vehicles saved to file')
 end
 
 function PV:LoadVehiclesFromFile()

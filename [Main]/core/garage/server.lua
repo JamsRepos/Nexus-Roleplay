@@ -11,7 +11,7 @@ AddEventHandler("core:characterloaded", function()
   for _,v in pairs(result) do 
    insured[v.plate] = {insurance = v.insurance, insurance_due = v.insurance_due}
   end
-  user.setAllVehicleState(true)
+  TriggerEvent("garage:update", source)
  end)
 end)
 

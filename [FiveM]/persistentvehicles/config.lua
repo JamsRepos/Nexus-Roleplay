@@ -1,7 +1,7 @@
 Config = {
 
   -- repopulate the map with vehicles that were lost when the server rebooted
-  populateOnReboot = false, 
+  populateOnReboot = true, 
 
   -- how close a player needs to get to a deleted persistent vehicle before it is respawned
   respawnDistance = 400, -- 300+
