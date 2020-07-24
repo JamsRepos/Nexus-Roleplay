@@ -319,7 +319,7 @@ function StoreVehicle()
  local components = GetVehProps(vehicle)
  local fuel = DecorGetInt(vehicle, "_Fuel_Level") --- change this bozo
  for i = 1, #user_vehicles do
-  components.plate = components.plate:gsub('[%p%c%s]', '') -- We do this to fix custom plates for some odd reason
+  components.plate = TrimPlate(components.plate) -- We do this to fix custom plates for some odd reason
   if tostring(components.plate) == tostring(user_vehicles[i].plate) then
    local count = 0
    for a = 1,#user_vehicles do
@@ -416,10 +416,18 @@ RegisterNetEvent("garage:store")
 AddEventHandler("garage:store", function(data)
  StoreVehicle()
 end)
+
+function TrimPlate(plate)
+	if plate then
+		return (string.gsub(plate, "^%s*(.-)%s*$", "%1"))
+	else
+		return nil
+	end
+end
  
 function HasKey(plate)
  for i=1,#user_vehicles do
-  plate = plate:gsub('[%p%c%s]', '')
+  plate = TrimPlate(plate)
   if plate == user_vehicles[i].plate then
    return true 
   end
