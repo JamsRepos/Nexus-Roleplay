@@ -61,7 +61,7 @@ Citizen.CreateThread(function()
 
         local ped = GetPlayerPed(-1)
 
-        if (DoesEntityExist(ped) and not IsEntityDead(ped)) then 
+        if (DoesEntityExist(ped) and not IsEntityDead(ped)) and not IsPedInAnyVehicle(ped, false) then 
             DisableControlAction(0, 36, true) -- INPUT_DUCK  
 
             if (not IsPauseMenuActive()) then 
