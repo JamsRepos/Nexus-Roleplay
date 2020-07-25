@@ -110,6 +110,7 @@ function OnDuty()
   SetAudioFlag("WantedMusicDisabled", false)
   SetAudioFlag("AllowScoreAndRadio", true)
   exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
+  exports["mumble-voip"]:SetRadioChannel(1)
   
   TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
   DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
@@ -132,6 +133,7 @@ function OffDuty()
   TriggerServerEvent('dispatch:duty', false)
   TriggerServerEvent("dutylog:dutyChange", "police", false)
   exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
+  exports["mumble-voip"]:SetRadioChannel(0)
 end
 
 -- Nearest Players
