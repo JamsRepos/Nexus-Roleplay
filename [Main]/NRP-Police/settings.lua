@@ -96,7 +96,6 @@ function SpawnVehicle(vehicle2)
   DecorRegister("_Max_Fuel_Level", 3);
   DecorSetInt(vehicle, "_Max_Fuel_Level", 150000)
   DecorSetInt(vehicle, "_Fuel_Level", 150000)
-  TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
   exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
 end
 
