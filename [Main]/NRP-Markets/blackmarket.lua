@@ -29,6 +29,7 @@ local ketamine1 = nil
 local heroin1 = nil
 local cocaine1 = nil
 local moneywash2 = nil
+local getbait = nil
 
 local blackmarket2 = {[1] = {x = -154.658, y = -1643.478, z = 36.851}} --heading = 178.829},  Forum Dr //Moved
 local blackmarket9 = {[1] = {x = 152.607, y = 6504.867, z = 31.669}}  --heading = 48.373},   Paleto Burgers/Water Non Blackmarket 
@@ -531,6 +532,8 @@ function spawnGunman()
     cocaine1 = nil
     DeletePed(moneywash2)
     moneywash2 = nil
+    DeletePed(getbait)
+    getbait = nil
   end
 end
 
@@ -593,6 +596,18 @@ function spawnGunman2()
     SetPedDiesWhenInjured(moneywash2, false)
     TaskStartScenarioInPlace(moneywash2, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)
     SetPedKeepTask(moneywash2, true)
+  end
+
+  if getbait == nil then
+    RequestModel(GetHashKey('g_m_m_chicold_01'))
+    while not HasModelLoaded(GetHashKey('g_m_m_chicold_01')) do
+     Wait(5)
+    end 
+    getbait = CreatePed(2, GetHashKey('g_m_m_chicold_01'), 3611.800, 5026.807, 11.350, -100.197, false, false)
+    SetPedFleeAttributes(getbait, 0, 0)
+    SetPedDiesWhenInjured(getbait, false)
+    TaskStartScenarioInPlace(getbait, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)
+    SetPedKeepTask(getbait, true)
   end
 end
 

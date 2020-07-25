@@ -48,6 +48,9 @@ window.addEventListener("message", function (event) {
         } else if (type === "fish") {
             $(".info-div").show();
             $("#noSecondInventoryMessage").html("Drag Items Here To Sell");
+        } else if (type === "turtle") {
+            $(".info-div").show();
+            $("#noSecondInventoryMessage").html("Drag Items Here To Sell");
         }
 
         $(".ui").fadeIn();
@@ -431,6 +434,12 @@ $(document).ready(function () {
             } else if (type === "pawn" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://inventory/SellToPawnShop", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "turtle" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://inventory/SellToTurtleStore", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));

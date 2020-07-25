@@ -38,6 +38,8 @@ AddEventHandler('nrp:svNotify', function(pData, suspectLocation)
 				TriggerClientEvent('dispatch:cdsPos', -1, suspectLocation)
 			elseif pData.dispatchCode == "10-31B" then
 				TriggerClientEvent('dispatch:robberyPos', -1, suspectLocation)
+			elseif pData.dispatchCode == "10-45" then
+				TriggerClientEvent('dispatch:poachingPos', -1, suspectLocation)	
 			end
         end
     end

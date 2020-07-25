@@ -43,6 +43,10 @@ $('document').ready(function() {
             extra = '\
             <i class="fa fa-user"></i>' + array[0].drugsaleSex + '\
             <br>';
+        } else if (array[0].poachingSex != null) {
+            extra = '\
+            <i class="fa fa-user"></i>' + array[0].poachingSex + '\
+            <br>';
         } else if (array[0].civrobSex != null) {
             extra = '\
             <i class="fa fa-user"></i>' + array[0].civrobSex + '\

@@ -3,6 +3,7 @@ local chopshopBlip = nil
 local moonshineBlip = nil
 local weedBlip = nil
 local LaundretteBlip = nil
+
 DecorRegister('Reputation', 3)
 
 RegisterNetEvent("repuation:set")
@@ -40,6 +41,7 @@ function updateBlips(rep)
     EndTextCommandSetBlipName(moonshineBlip)
   end
  end
+
  --[[if rep > 410 then 
   if not weedBlip then
     weedBlip = AddBlipForCoord(1320.486, 4314.610, 38.142)

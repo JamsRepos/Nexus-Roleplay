@@ -4,6 +4,10 @@ local Fish = {
  [3] = {name = 'Salmon', price = 200, item = 5}
 }
 
+local Turtle = {
+  [1] = {name = 'Turtle', price = 1000, item = 292},
+ }
+
 RegisterServerEvent('jobs:sellfish')
 AddEventHandler('jobs:sellfish', function()
  local source = tonumber(source)
@@ -17,6 +21,27 @@ AddEventHandler('jobs:sellfish', function()
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = Fish[i].name.." Sold For $"..pay})
      user.removeQuantity(Fish[i].item, quantity)
      TriggerEvent("core:moneylog", source, 'Fish Payment: $'..pay)
+    else
+     TriggerEvent('anticheat:message', source, pay)
+    end
+   end
+  end
+ end)
+end) 
+
+RegisterServerEvent('jobs:sellturtle')
+AddEventHandler('jobs:sellturtle', function()
+ local source = tonumber(source)
+ TriggerEvent('core:getPlayerFromId', source, function(user)
+  for i = 1, #Turtle do
+    local quantity = user.getQuantity(Turtle[i].item)
+   if quantity > 0 then
+    local pay = math.floor(quantity*Turtle[i].price*exports['core']:getVat(3))
+    if pay < 100000 then
+     user.addDirtyMoney(pay)
+     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = Turtle[i].name.." Sold For $"..pay})
+     user.removeQuantity(Turtle[i].item, quantity)
+     TriggerEvent("core:moneylog", source, '[DIRTY] Turtle Payment: $'..pay)
     else
      TriggerEvent('anticheat:message', source, pay)
     end

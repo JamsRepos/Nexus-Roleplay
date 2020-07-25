@@ -20,7 +20,8 @@ client_scripts {
   "client/property.lua",
   "client/player.lua",
   "client/office.lua",
-  "config.lua"
+  "config.lua",
+  "client/turtle.lua"
 }
 
 server_scripts {
