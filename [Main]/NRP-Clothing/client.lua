@@ -15,7 +15,7 @@ local clothing_shops = {
 	{x=259.89224243164, y=-1003.932434082, z=-99.008613586426, hidden= true}, -- Low End Apartment
 	{x=351.310577392, y=-993.736145019, z=-99.1961746215, hidden= true},  -- Med End Apartment
 	{x = -899.36334228516, y = -433.00628662109, z = 89.264610290527, hidden= true},  -- High End Apartment
-	{x = 309.260, y = -602.738, z = 43.292}, -- Hospital
+	{x = 305.778, y = -597.380, z = 43.284}, -- Hospital
 	{x = 150.950, y = -1000.679, z = -99.000, hidden= true}, -- Motel
 	{x=1397.905, y=1164.010, z=114.293}, -- La Fuerte Blanca
   {x = 105.045, y = -1303.050, z = 28.769}, -- Stripclub

@@ -1,4 +1,4 @@
-local hospitalCheckin = { x = 307.776, y = -595.331, z = 43.292, h = 199.806 }
+local hospitalCheckin = { x = 308.829, y = -592.296, z = 43.284, h = 199.806 }
 local pillboxTeleports = {
     { x = 325.48892211914, y = -598.75372314453, z = 43.291839599609, h = 64.513374328613, text = 'Press ~INPUT_CONTEXT~ ~s~to go to lower Pillbox Entrance' },
     { x = 355.47183227539, y = -596.26495361328, z = 28.773477554321, h = 245.85662841797, text = 'Press ~INPUT_CONTEXT~ ~s~to enter Pillbox Hospital' },
