@@ -169,7 +169,7 @@ function spawnHospitalWorkers()
    Wait(1)
   end
 
-  nurseWho = CreatePed(2, GetHashKey('s_f_y_scrubs_01'), 326.211, -582.833, 43.317, 340.769, false, false)
+  nurseWho = CreatePed(2, GetHashKey('s_f_y_scrubs_01'), 312.78, -594.5, 43.28, 3.49, false, false)
   SetPedFleeAttributes(nurseWho, 0, 0)
   SetPedDiesWhenInjured(nurseWho, false)
   SetPedKeepTask(nurseWho, true)
