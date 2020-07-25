@@ -25,11 +25,11 @@ Citizen.CreateThread(function()
      if selectedOption == 1 then
       local t, distance = GetClosestPlayer()
       if(distance ~= -1 and distance < 3) then 
-       ProgressBar('Reviving', 55)
-       TaskStartScenarioInPlace(GetPlayerPed(-1), 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-       Citizen.Wait(13000)
-       ClearPedTasks(GetPlayerPed(-1))
-       TriggerServerEvent('ems:revive', GetPlayerServerId(t))
+        TaskStartScenarioInPlace(GetPlayerPed(-1), 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+        exports['pogressBar']:drawBar(13000, 'Reviving', function()
+          ClearPedTasks(GetPlayerPed(-1))
+          TriggerServerEvent('ems:revive', GetPlayerServerId(t))
+        end)
       else
        exports['NRP-notify']:DoHudText('error', 'No Player Near')
       end
@@ -49,11 +49,11 @@ Citizen.CreateThread(function()
     elseif WarMenu.Button('Examine') then 
      local t, distance = GetClosestPlayer()
      if(distance ~= -1 and distance < 3) then 
-      ProgressBar('Examining', 35)
       TaskStartScenarioInPlace(GetPlayerPed(-1), 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-      Citizen.Wait(5000)
-      ClearPedTasks(GetPlayerPed(-1))
-      TriggerServerEvent('ems:damage', GetPlayerServerId(t))
+      exports['pogressBar']:drawBar(5000, 'Examining', function()
+        ClearPedTasks(GetPlayerPed(-1))
+        TriggerServerEvent('ems:damage', GetPlayerServerId(t))
+      end)
      else
       exports['NRP-notify']:DoHudText('error', 'No Player Near')
      end
