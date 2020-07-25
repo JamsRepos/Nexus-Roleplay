@@ -12,42 +12,28 @@ Citizen.CreateThread(function()
      TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
      FreezeEntityPosition(GetPlayerPed(-1), true)
 
-     TriggerEvent("mythic_progbar:client:progress", {
-        name = "crafting_item",
-        duration = 10000,
-        label = "Trading Cash",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
-            local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
-            if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
-                showLoadingPrompt("Enter Quantity", 3)
-                DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
-                while (UpdateOnscreenKeyboard() == 0) do
-                DisableAllControlActions(0);
-                Wait(0);
-                end
-                if (GetOnscreenKeyboardResult()) then
-                local option = tonumber(GetOnscreenKeyboardResult())
-                if(option ~= nil and option ~= 0) then
-                amount = ""..option
-                end
-                end
+     exports['pogressBar']:drawBar(10000, 'Trading Cash', function()
+        local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
+        if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
+            showLoadingPrompt("Enter Quantity", 3)
+            DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
+            while (UpdateOnscreenKeyboard() == 0) do
+            DisableAllControlActions(0);
+            Wait(0);
             end
-            stopLoadingPrompt()
-            if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
-                TriggerServerEvent('illegal:washmoney', amount)
+            if (GetOnscreenKeyboardResult()) then
+            local option = tonumber(GetOnscreenKeyboardResult())
+            if(option ~= nil and option ~= 0) then
+            amount = ""..option
             end
-         FreezeEntityPosition(GetPlayerPed(-1), false)
+            end
         end
-    end)
+        if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
+            TriggerServerEvent('illegal:washmoney', amount)
+        end
+        stopLoadingPrompt()
+        FreezeEntityPosition(GetPlayerPed(-1), false)
+  end)
 
     end
    end
@@ -66,42 +52,28 @@ Citizen.CreateThread(function()
      TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
      FreezeEntityPosition(GetPlayerPed(-1), true)
 
-     TriggerEvent("mythic_progbar:client:progress", {
-        name = "crafting_item",
-        duration = 10000,
-        label = "Trading Cash",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
-            local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
-            if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
-                showLoadingPrompt("Enter Quantity", 3)
-                DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
-                while (UpdateOnscreenKeyboard() == 0) do
-                DisableAllControlActions(0);
-                Wait(0);
-                end
-                if (GetOnscreenKeyboardResult()) then
-                local option = tonumber(GetOnscreenKeyboardResult())
-                if(option ~= nil and option ~= 0) then
-                amount = ""..option
-                end
-                end
+     exports['pogressBar']:drawBar(10000, 'Trading Cash', function()
+        local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
+        if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
+            showLoadingPrompt("Enter Quantity", 3)
+            DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
+            while (UpdateOnscreenKeyboard() == 0) do
+            DisableAllControlActions(0);
+            Wait(0);
             end
-            stopLoadingPrompt()
-            if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
-                TriggerServerEvent('illegal:washmoney2', amount)
+            if (GetOnscreenKeyboardResult()) then
+            local option = tonumber(GetOnscreenKeyboardResult())
+            if(option ~= nil and option ~= 0) then
+            amount = ""..option
             end
-         FreezeEntityPosition(GetPlayerPed(-1), false)
+            end
         end
-    end)
+        if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
+            TriggerServerEvent('illegal:washmoney2', amount)
+        end
+        stopLoadingPrompt()
+        FreezeEntityPosition(GetPlayerPed(-1), false)
+  end)
 
     end
    end
@@ -119,20 +91,7 @@ Citizen.CreateThread(function()
      TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
      FreezeEntityPosition(GetPlayerPed(-1), true)
 
-     TriggerEvent("mythic_progbar:client:progress", {
-        name = "crafting_item",
-        duration = 10000,
-        label = "Trading Cash",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
+     exports['pogressBar']:drawBar(10000, 'Trading Cash', function()
             local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
             if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
                 showLoadingPrompt("Enter Quantity", 3)
@@ -148,13 +107,12 @@ Citizen.CreateThread(function()
                 end
                 end
             end
-            stopLoadingPrompt()
             if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
                 TriggerServerEvent('illegal:washmoney3', amount)
             end
-         FreezeEntityPosition(GetPlayerPed(-1), false)
-        end
-    end)
+            stopLoadingPrompt()
+            FreezeEntityPosition(GetPlayerPed(-1), false)
+      end)
 
     end
    end
