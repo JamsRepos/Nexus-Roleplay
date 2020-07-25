@@ -286,15 +286,15 @@ local function DriveInGarage()
 		AddMod(7,LSCMenu.categories,"HOOD", "Hood", "Enhance car engine cooling.",true)
 		AddMod(8,LSCMenu.categories,"FENDERS", "Fenders", "Enhance body paneling with custom fenders.",true)
 		AddMod(10,LSCMenu.categories,"ROOF", "Roof", "Lower your center of gravity with lightweight roof panels.",true)
-		AddMod(12,LSCMenu.categories,"BRAKES", "Brakes", "Increase stopping power and eliminate brake fade.",true)
+		--AddMod(12,LSCMenu.categories,"BRAKES", "Brakes", "Increase stopping power and eliminate brake fade.",true)
 		if GetVehicleHighGear(veh) ~= 1 then
-			AddMod(13,LSCMenu.categories,"TRANSMISSION", "Transmission", "Improved acceleration with close ratio transmission.",true)
+			--AddMod(13,LSCMenu.categories,"TRANSMISSION", "Transmission", "Improved acceleration with close ratio transmission.",true)
 		end
 		AddMod(14,LSCMenu.categories,"HORN", "Horn", "Custom air horns.",true)
-		AddMod(15,LSCMenu.categories,"SUSPENSION","Suspension","Upgrade to a sports oriented suspension setup.",true)
-		AddMod(16,LSCMenu.categories,"ARMOR","Armor","Protect your car's occupants with military spec composite body panels.",true)
-		AddMod(18, LSCMenu.categories, "TURBO", "Turbo", "Reduced lag turbocharger.",false)
-		
+		--AddMod(15,LSCMenu.categories,"SUSPENSION","Suspension","Upgrade to a sports oriented suspension setup.",true)
+		--AddMod(16,LSCMenu.categories,"ARMOR","Armor","Protect your car's occupants with military spec composite body panels.",true)
+		--AddMod(18, LSCMenu.categories, "TURBO", "Turbo", "Reduced lag turbocharger.",false)
+		--[[
 		if chassis then
 			LSCMenu.categories:addSubMenu("CHASSIS", "Chassis",nil, true)
 			AddMod(42, LSCMenu.categories.Chassis, "ARCH COVER", "Arch cover", "",true) --headlight trim
@@ -304,12 +304,12 @@ local function DriveInGarage()
 			AddMod(46, LSCMenu.categories.Chassis, "DOORS", "Doors", "",true)-- windows
 			AddMod(5,LSCMenu.categories.Chassis,"ROLL CAGE", "Roll cage", "Stiffen your chassis with a rollcage.",true)
 		end
-		
-		LSCMenu.categories:addSubMenu("ENGINE", "Engine",nil, true)
+		--]]
+		--[[LSCMenu.categories:addSubMenu("ENGINE", "Engine",nil, true)
 		AddMod(39, LSCMenu.categories.Engine, "ENGINE BLOCK", "Engine Block", "Custom engine block casings.",true)
 		AddMod(40, LSCMenu.categories.Engine, "CAM COVER", "Cam Cover", "Optional cam covers.",true)
 		AddMod(41, LSCMenu.categories.Engine, "STRUT BRACE", "Strut Brace", "A selection of support struts.",true)
-		AddMod(11,LSCMenu.categories.Engine,"ENGINE TUNES", "Engine Tunes", "Increases horsepower.",true)
+		AddMod(11,LSCMenu.categories.Engine,"ENGINE TUNES", "Engine Tunes", "Increases horsepower.",true)--]]
 		
 		if interior then
 			LSCMenu.categories:addSubMenu("INTERIOR", "Interior","Products for maximum style and comfort.", true)
@@ -339,9 +339,9 @@ local function DriveInGarage()
 		AddMod(26, LSCMenu.categories.Plates, "Vanity plates", "Vanity plates", "",true) --
 		--AddMod(47, LSCMenu.categories, "UNK47", "unk47", "",true)
 		--AddMod(49, LSCMenu.categories, "UNK49", "unk49", "",true)
-		AddMod(38,LSCMenu.categories,"HYDRAULICS","Hydraulics","",true)
-		AddMod(48,LSCMenu.categories,"Liveries", "Liveries", "A selection of decals for your vehicle.",true)
-		AddMod(49,LSCMenu.categories,"Additional Liveries", "Additional Liveries", "A selection of decals for your vehicle.",false)
+		--AddMod(38,LSCMenu.categories,"HYDRAULICS","Hydraulics","",true)
+		--AddMod(48,LSCMenu.categories,"Liveries", "Liveries", "A selection of decals for your vehicle.",true)
+		--AddMod(49,LSCMenu.categories,"Additional Liveries", "Additional Liveries", "A selection of decals for your vehicle.",false)
 		
 		if bumper then
 			LSCMenu.categories:addSubMenu("BUMPERS", "Bumpers", "Custom front and rear bumpers.",true)
@@ -355,7 +355,7 @@ local function DriveInGarage()
 		
 		local m = LSCMenu.categories:addSubMenu("LIGHTS", "Lights", "Improved night time visibility.",true)
 		AddMod(22,LSCMenu.categories.Lights,"HEADLIGHTS", "Headlights", nil, false)
-		if not IsThisModelABike(GetEntityModel(veh)) then
+		--[[if not IsThisModelABike(GetEntityModel(veh)) then
 			m = m:addSubMenu("NEON KITS", "Neon kits", nil, true)
 				m:addSubMenu("NEON LAYOUT", "Neon layout", nil, true)
 					local btn = m["Neon layout"]:addPurchase("None")
@@ -367,10 +367,10 @@ local function DriveInGarage()
 				for n, mod in pairs(LSC_Config.prices.neoncolor) do
 					local btn = m:addPurchase(mod.name,math.floor(mod.price+customsVat))btn.neon = mod.neon
 				end
-		end
+		end--]]
 
 		
-		respray = LSCMenu.categories:addSubMenu("RESPRAY", "Respray", "Transforms vehicle appearance.",true)
+		--[[respray = LSCMenu.categories:addSubMenu("RESPRAY", "Respray", "Transforms vehicle appearance.",true)
 			pcol = respray:addSubMenu("PRIMARY COLORS", "Primary color",  nil,true)
 				pcol:addSubMenu("CHROME", "Chrome", nil,true)
 				for n, c in pairs(LSC_Config.prices.chrome.colors) do
@@ -443,9 +443,10 @@ local function DriveInGarage()
 						btn.purchased = true
 					end
 				end
+		--]]
 		
 		
-		LSCMenu.categories:addSubMenu("WHEELS", "Wheels", "Custom rims, tires and colors.",true)
+		--[[LSCMenu.categories:addSubMenu("WHEELS", "Wheels", "Custom rims, tires and colors.",true)
 			wtype = LSCMenu.categories.Wheels:addSubMenu("WHEEL TYPE", "Wheel type", "Custom rims in all styles and sizes.",true)
 				if IsThisModelABike(GetEntityModel(veh)) then
 					fwheels = wtype:addSubMenu("FRONT WHEEL", "Front wheel", nil,true)
@@ -496,7 +497,7 @@ local function DriveInGarage()
 			for n, mod in pairs(LSC_Config.prices.wheelaccessories) do
 				local btn = m:addPurchase(mod.name,math.floor(mod.price+customsVat))btn.smokecolor = mod.smokecolor
 			end
-		
+		--]]
 		m = LSCMenu.categories:addSubMenu("WINDOWS", "Windows", "A selection of tinted windows.",true)	
 			btn = m:addPurchase("None")btn.tint = false
 			for n, tint in pairs(LSC_Config.prices.windowtint) do
