@@ -125,15 +125,13 @@ end)
 RegisterNetEvent("dispatch:robbery")
 AddEventHandler("dispatch:robbery", function()
  local suspectSex = getSuspectSex()
- TriggerEvent('core:getPlayers', function(players)
-  for i in pairs(players)do
-    TriggerEvent('nrp:dispatch:notify', '10-31B', json.encode({{civrobSex=suspectSex}}))
-  end 
-end)
+  TriggerEvent('nrp:dispatch:notify', '10-31B', json.encode({{civrobSex=suspectSex}}))
  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'CDScomp', 0.05)
 end
 end)
+
+
 
 RegisterNetEvent('dispatch:robberyPos')
 AddEventHandler('dispatch:robberyPos', function(pos)
@@ -145,7 +143,7 @@ AddEventHandler('dispatch:robberyPos', function(pos)
 		SetBlipAlpha(gunshotBlip,  transG)
 		SetBlipAsShortRange(gunshotBlip,  1)
 		while transG ~= 0 do
-			Wait(25 * 6)
+			Wait(250)
 			transG = transG - 1
 			SetBlipAlpha(gunshotBlip,  transG)
 			if transG == 0 then
@@ -177,7 +175,7 @@ AddEventHandler('dispatch:hospitalPos', function(pos)
 		SetBlipAlpha(gunshotBlip,  transG)
 		SetBlipAsShortRange(gunshotBlip,  1)
 		while transG ~= 0 do
-			Wait(25 * 6)
+			Wait(250)
 			transG = transG - 1
 			SetBlipAlpha(gunshotBlip,  transG)
 			if transG == 0 then
@@ -209,7 +207,7 @@ AddEventHandler('dispatch:cdsPos', function(pos)
 		SetBlipAlpha(gunshotBlip,  transG)
 		SetBlipAsShortRange(gunshotBlip,  1)
 		while transG ~= 0 do
-			Wait(25 * 6)
+			Wait(250)
 			transG = transG - 1
 			SetBlipAlpha(gunshotBlip,  transG)
 			if transG == 0 then
@@ -220,6 +218,33 @@ AddEventHandler('dispatch:cdsPos', function(pos)
 	end
 end)
 
+--== CDS Reports
+RegisterNetEvent("dispatch:poaching")
+AddEventHandler("dispatch:poaching", function()
+ local suspectSex = getSuspectSex()
+  TriggerEvent('nrp:dispatch:notify', '10-45', json.encode({{poachingSex=suspectSex}}))
+end)
+
+RegisterNetEvent('dispatch:poachingPos')
+AddEventHandler('dispatch:poachingPos', function(pos)
+	if isInService then
+		local transG = 250
+		local poachingBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+		SetBlipSprite(poachingBlip,  1)
+		SetBlipColour(poachingBlip,  25)
+		SetBlipAlpha(poachingBlip,  transG)
+		SetBlipAsShortRange(poachingBlip,  1)
+		while transG ~= 0 do
+			Wait(250)
+			transG = transG - 1
+			SetBlipAlpha(poachingBlip,  transG)
+			if transG == 0 then
+				SetBlipSprite(poachingBlip,  2)
+				return
+			end
+		end
+	end
+end)
 
 --== Melee Reports
 RegisterNetEvent('dispatch:vehiclePos')

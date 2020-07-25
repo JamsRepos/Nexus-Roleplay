@@ -785,6 +785,15 @@ function CreatePlayer(source, data)
 		   end
 	   end
    
+	   rTable.newTimer = function(name, value)
+			if self.timers ~= nil then
+				table.insert(self.timers, {name = name, value = value})
+			else
+				self.timers = {}
+				table.insert(self.timers, {name = name, value = value})
+			end
+		end
+
 	   rTable.removeTimer = function(name, value)
 		   for i = 1, #self.timers do
 			   if self.timers[i] ~= nil then

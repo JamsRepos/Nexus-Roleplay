@@ -23,6 +23,8 @@ client_script "dg-guns/client.lua"
 --golf
 client_script 'golf/client.lua'
 
+client_script 'turtles/client.lua'
+server_script 'turtles/server.lua'
 -- Pawn Shop
 client_script 'pawnshop/client.lua'
 server_script 'pawnshop/server.lua'
