@@ -49,6 +49,12 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- Remove sirens and ambient sounds
+
+Citizen.CreateThread(function()
+	StartAudioScene("CHARACTER_CHANGE_IN_SKY_SCENE")
+end)	
+
 ------------------------------------------------------
 ---------------------- Crouching -------------------
 ------------------------------------------------------
