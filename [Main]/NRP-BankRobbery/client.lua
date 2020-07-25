@@ -853,11 +853,11 @@ Citizen.CreateThread(function()
 		 root = true
 		 TriggerEvent("inventory:removeQty", 271, 1)
 		 TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
-		 API_ProgressBar('        Rooting Phone', 300)
-		 Citizen.Wait(30000)
-		 TriggerEvent("inventory:addQty", 272, 1)
-		 ClearPedTasksImmediately(GetPlayerPed(-1))
-		 root = false
+		 exports['pogressBar']:drawBar(30000, 'Rooting Phone', function()
+			TriggerEvent("inventory:addQty", 272, 1)
+			ClearPedTasksImmediately(GetPlayerPed(-1))
+			root = false
+		  end)
 		end
 	   end
 	  end
