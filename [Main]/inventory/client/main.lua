@@ -77,6 +77,15 @@ local Keys = {
     ["N9"] = 118
 }
 
+local currentPolice = 0
+local currentEMS = 0
+
+RegisterNetEvent('hud:updatepresence')
+AddEventHandler('hud:updatepresence', function(copss, emss)
+ currentPolice = copss
+ currentEMS = emss
+end)
+
 isInInventory = false
 
 Citizen.CreateThread(
@@ -330,8 +339,12 @@ function use(item, meta)
         removeQty(item,1)
         TriggerEvent('ML:items:medkit')
        elseif item == 145 then
-        removeQty(item,1)
-        TriggerEvent('ems:medkit')
+        if currentEMS > 0 then
+            TriggerEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You cannot do this when EMS are on duty."})
+        else
+            removeQty(item,1)
+            TriggerEvent('ems:medkit')
+        end
        elseif item == 147 then
         TriggerEvent('ML:items:vicodin')
         removeQty(item,1)  

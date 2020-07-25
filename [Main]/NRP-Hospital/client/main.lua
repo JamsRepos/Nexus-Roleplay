@@ -16,6 +16,15 @@ local inBedAnim = "ko_front"
 local getOutDict = 'switch@franklin@bed'
 local getOutAnim = 'sleep_getup_rubeyes'
 
+local currentPolice = 0
+local currentEMS = 0
+
+RegisterNetEvent('hud:updatepresence')
+AddEventHandler('hud:updatepresence', function(copss, emss)
+ currentPolice = copss
+ currentEMS = emss
+end)
+
 function PrintHelpText(message)
     SetTextComponentFormat("STRING")
     AddTextComponentString(message)
@@ -183,7 +192,11 @@ Citizen.CreateThread(function()
                                 },
                             }, function(status)
                                 if not status then
-                                    TriggerServerEvent('NRP-hospital:server:RequestBed')
+                                    if currentEMS > 0 then
+                                        TriggerEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You cannot do this when EMS are on duty."})
+                                    else
+                                        TriggerServerEvent('NRP-hospital:server:RequestBed')
+                                    end
                                 end
                             end)
                         else
