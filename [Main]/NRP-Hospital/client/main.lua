@@ -157,7 +157,7 @@ Citizen.CreateThread(function()
             DrawMarker(27, hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z - 0.99, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1.0, 255, 255, 0, 155, false, false, 2, false, false, false, false)
 
             if not IsPedInAnyVehicle(PlayerPedId(), true) then
-                if distance < 3 then
+                if distance < 1 then
                     PrintHelpText('Press ~INPUT_CONTEXT~ ~s~to check in')
                     if IsControlJustReleased(0, 54) then
                         if (GetEntityHealth(PlayerPedId()) < 200) or (IsInjuredOrBleeding()) then
@@ -193,7 +193,7 @@ Citizen.CreateThread(function()
                             }, function(status)
                                 if not status then
                                     if currentEMS > 0 then
-                                        TriggerEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = "You cannot do this when EMS are on duty."})
+                                        exports['NRP-notify']:DoHudText('error', 'You cannot do this when EMS are on duty.')
                                     else
                                         TriggerServerEvent('NRP-hospital:server:RequestBed')
                                     end
