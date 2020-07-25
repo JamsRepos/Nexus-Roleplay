@@ -1,5 +1,5 @@
 local Radio = {
-    Has = true,
+    Has = false,
     Open = false,
     On = false,
     Enabled = true,
@@ -29,7 +29,7 @@ Radio.Labels = {
 }
 Radio.Commands = {
     {
-        Enabled = true, -- Add a command to be able to open/close the radio
+        Enabled = false, -- Add a command to be able to open/close the radio
         Name = "radio", -- Command name
         Help = "Toggle hand radio", -- Command help shown in chatbox when typing the command
         Params = {},
@@ -37,10 +37,11 @@ Radio.Commands = {
             local playerPed = PlayerPedId()
             local isFalling = IsPedFalling(playerPed)
             local isDead = IsEntityDead(playerPed)
+            local isCuffed = IsPedCuffed(playerPed)
 
-            if not isFalling and Radio.Enabled and Radio.Has and not isDead then
+            if not isFalling and Radio.Enabled and Radio.Has and not isDead and not isCuffed then
                 Radio:Toggle(not Radio.Open)
-            elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
+            elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead or isCuffed) then
                 Radio:Toggle(false)
                 Radio.On = false
                 Radio:Remove()
@@ -454,6 +455,7 @@ Citizen.CreateThread(function()
         local isSecondaryPressed = (radioConfig.Controls.Secondary.Enabled == false and true or IsControlPressed(0, radioConfig.Controls.Secondary.Key))
         local isFalling = IsPedFalling(playerPed)
         local isDead = IsEntityDead(playerPed)
+        local isCuffed = IsPedCuffed(playerPed)
         local minFrequency = radioConfig.Frequency.List[1]
         local broadcastType = 3 + (radioConfig.AllowRadioWhenClosed and 1 or 0) + ((Radio.Open and radioConfig.AllowRadioWhenClosed) and -1 or 0)
         local broadcastDictionary = Radio.Dictionary[broadcastType]
@@ -462,9 +464,9 @@ Citizen.CreateThread(function()
         local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
 
         -- Open radio settings
-        if isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and not isDead then
+        if isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and not isDead and not isCuffed then
             Radio:Toggle(not Radio.Open)
-        elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
+        elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead or isCuffed) then
             Radio:Remove()
             exports["mumble-voip"]:SetMumbleProperty("radioEnabled", false)
             Radio:Toggle(false)
@@ -661,13 +663,31 @@ Citizen.CreateThread(function()
 	end
 end)
 
+local status = false
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(500)
+        if (status and exports['core']:GetItemQuantity(261) < 1) then
+            status = false
+            Radio.Enabled = false
+            Radio.Has = false
+            exports['NRP-notify']:DoHudText('error', 'Radio Connection Lost.')
+        end
+    end
+  end)
+
 RegisterNetEvent("Radio.Toggle")
 AddEventHandler("Radio.Toggle", function()
     local playerPed = PlayerPedId()
     local isFalling = IsPedFalling(playerPed)
     local isDead = IsEntityDead(playerPed)
+    local isCuffed = IsPedCuffed(playerPed)
+    Radio.Enabled = true
+    Radio.Has = true
     
-    if not isFalling and not isDead and Radio.Enabled and Radio.Has then
+    if not isFalling and not isDead and not isCuffed and Radio.Enabled and Radio.Has then
+        status = not status
         Radio:Toggle(not Radio.Open)
     end
 end)

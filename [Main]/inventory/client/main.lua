@@ -447,9 +447,9 @@ function use(item, meta)
        elseif item == 250 then
           TriggerEvent('items:cuff')
        elseif item == 251 then
-          TriggerEvent('items:cuff') 
+          TriggerEvent('items:cuff')
         elseif item == 261 then
-            TriggerEvent('Radio.Toggle')  
+            TriggerEvent('Radio.Toggle')
         elseif item == 288 then
             TriggerEvent('fishing:fishstart', _source)
         elseif item == 289 then
