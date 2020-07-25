@@ -109,7 +109,7 @@ function OnDuty()
   SetAudioFlag("PoliceScannerDisabled", false)
   SetAudioFlag("WantedMusicDisabled", false)
   SetAudioFlag("AllowScoreAndRadio", true)
-  exports.tokovoip_script:addPlayerToRadio(1, true)
+  exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
   
   TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
   DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
@@ -131,9 +131,7 @@ function OffDuty()
   TriggerServerEvent('police:duty', false)
   TriggerServerEvent('dispatch:duty', false)
   TriggerServerEvent("dutylog:dutyChange", "police", false)
-  if exports.tokovoip_script:isPlayerInChannel(1) then
-    exports.tokovoip_script:removePlayerFromRadio(1)
-  end
+  exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
 end
 
 -- Nearest Players

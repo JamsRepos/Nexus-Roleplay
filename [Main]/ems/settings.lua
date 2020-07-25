@@ -143,7 +143,7 @@ function OnDuty()
   TriggerEvent("inventory:removeQty", 198, 1)
   TriggerEvent("inventory:addQty", 198, 1)
   TriggerServerEvent('blips:activate', 'ems')
-  exports.tokovoip_script:addPlayerToRadio(1, true)
+  exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
 
   TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
   DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
@@ -167,9 +167,7 @@ function OffDuty()
   TriggerServerEvent('blips:deactivate')
   TriggerServerEvent('dispatch:duty', false)
   TriggerServerEvent("dutylog:dutyChange", "ems", false)
-  if exports.tokovoip_script:isPlayerInChannel(1) then
-    exports.tokovoip_script:removePlayerFromRadio(1)
-  end
+  exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
 end
 
 -- Nearest Players

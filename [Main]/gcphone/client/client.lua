@@ -24,8 +24,6 @@ local ignoreFocus = false
 local takePhoto = false
 local hasFocus = false
 
-local TokoVoipID = nil
-
 local PhoneInCall = {}
 local currentPlaySound = false
 local soundDistanceMax = 8.0
@@ -327,9 +325,7 @@ RegisterNetEvent("gcPhone:acceptCall")
 AddEventHandler("gcPhone:acceptCall", function(infoCall, initiator)
   if inCall == false and USE_RTC == false then
     inCall = true
-    TokoVoipID = infoCall.id + 1000
-    exports['tokovoip_script']:setPlayerData(GetPlayerName(PlayerId()), "call:channel", TokoVoipID, true)
-    exports.tokovoip_script:addPlayerToRadio(TokoVoipID, false)
+    exports["mumble-voip"]:SetCallChannel(infoCall.id + 1)
     --NetworkSetVoiceChannel(infoCall.id + 1)
     --NetworkSetTalkerProximity(0.0)
   end
@@ -346,10 +342,9 @@ RegisterNetEvent("gcPhone:rejectCall")
 AddEventHandler("gcPhone:rejectCall", function(infoCall)
   if inCall == true then
     inCall = false
-    Citizen.InvokeNative(0xE036A705F989E049)
-    exports['tokovoip_script']:setPlayerData(GetPlayerName(PlayerId()), "call:channel", 'nil', true)
-    exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
-    TokoVoipID = nil
+    exports["mumble-voip"]:SetCallChannel(0)
+    --Citizen.InvokeNative(0xE036A705F989E049)
+    --NetworkSetTalkerProximity(7.0)
   end
   PhonePlayText()
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
@@ -419,8 +414,7 @@ RegisterNUICallback('notififyUseRTC', function (use, cb)
   if USE_RTC == true and inCall == true then
     inCall = false
     Citizen.InvokeNative(0xE036A705F989E049)
-    exports.tokovoip_script:removePlayerFromRadio(TokoVoipID)
-    TokoVoipID = nil
+    NetworkSetTalkerProximity(0.0)
   end
   cb()
 end)
