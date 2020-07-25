@@ -736,7 +736,7 @@ TriggerEvent('core:addGroupCommand', 'dutyveh', 'user', function(source, args, u
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'dutyboat', 'user', function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'boat', 'user', function(source, args, user)
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
