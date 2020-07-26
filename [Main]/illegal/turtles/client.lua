@@ -9,7 +9,7 @@ local get_the_bait = {
 local bait_timer = 0
 
 turtle_zones = {
-  {x = 3851.525, y = 3753.588, z = 0.830, dist = 100, drawmarker = false, markerdist = 200.0},
+  {x = 3851.525, y = 3753.588, z = 0.830, dist = 25, drawmarker = false, markerdist = 50.0},
   {x = -700.228, y = -3436.810, z = 1.110, dist = 75, drawmarker = false, markerdist = 100.0},
   {x = 2343.579, y = -2285.579, z = 0.794, dist = 50, drawmarker = false, markerdist = 75.0},
   {x = 2639.362, y = -1431.073, z = 0.473, dist = 75, drawmarker = false, markerdist = 100.0},
