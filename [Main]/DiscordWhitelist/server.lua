@@ -11,6 +11,7 @@ whitelistRoles = { -- Role nickname(s) needed to pass the whitelist
     "301805463081713664", -- Lead Admin
     "715722762412359702", -- Admin
     "726550042282033232", -- Developer
+    "737043327152554105", -- Beta Tester
 }
 
 --- Code ---
