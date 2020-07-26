@@ -3,115 +3,149 @@ local y = 1.000
 
 local hunger = 50
 local thirst = 50
-local inCar = false
 local showUi = false
-local prevVelocity = {x = 0.0, y = 0.0, z = 0.0}
-local voice = {default = 7.0, shout = 14.0, whisper = 1.0, current = 0, level = nil}
+local showVehicle = false
 
---[[ =========================================================================================================================== ]]--
---[[ =========================================================================================================================== ]]--
---[[ =========================================================================================================================== ]]--
---[[ =========================================================================================================================== ]]--
---[[ =========================================================================================================================== ]]--
+local isTokovoip = false
 
-function CalculateTimeToDisplay()
-	hour = GetClockHours()
-    minute = GetClockMinutes()
-    
-    local obj = {}
+--General UI Updates
+Citizen.CreateThread(function()
 
-    if hour <= 12 then
-        obj.ampm = 'AM'
-    elseif hour >= 13 then
-        obj.ampm = 'PM'
-        hour = hour - 12
+    local x, y, z = table.unpack(GetEntityCoords(PlayerPedId(), true))
+    local currentStreetHash, intersectStreetHash = GetStreetNameAtCoord(x, y, z, currentStreetHash, intersectStreetHash)
+    currentStreetName = GetStreetNameFromHashKey(currentStreetHash)
+    intersectStreetName = GetStreetNameFromHashKey(intersectStreetHash)
+    zone = tostring(GetNameOfZone(x, y, z))
+    local area = GetLabelText(zone)
+    playerStreetsLocation = area
+
+    if not zone then
+        zone = "UNKNOWN"
     end
-    
-	if minute <= 9 then
-		minute = "0" .. minute
+
+    if intersectStreetName ~= nil and intersectStreetName ~= "" then
+        playerStreetsLocation = currentStreetName .. " | " .. intersectStreetName .. " | [" .. area .. "]"
+    elseif currentStreetName ~= nil and currentStreetName ~= "" then
+        playerStreetsLocation = currentStreetName .. " | [" .. area .. "]"
+    else
+        playerStreetsLocation = "[" .. area .. "]"
     end
-    
-    obj.hour = hour
-    obj.minute = minute
 
-    return obj
-end
+    while true do
+        local player = PlayerPedId()
 
-function round(num, numDecimalPlaces)
-	local mult = 10^(numDecimalPlaces or 0)
-	return math.floor(num * mult + 0.5) / mult
-end
+        local x, y, z = table.unpack(GetEntityCoords(player, true))
+        local currentStreetHash, intersectStreetHash = GetStreetNameAtCoord(x, y, z, currentStreetHash, intersectStreetHash)
+        currentStreetName = GetStreetNameFromHashKey(currentStreetHash)
+        intersectStreetName = GetStreetNameFromHashKey(intersectStreetHash)
+        zone = tostring(GetNameOfZone(x, y, z))
+        local area = GetLabelText(zone)
+        playerStreetsLocation = area
 
-function getCardinalDirectionFromHeading(heading)
-    if ((heading >= 0 and heading < 45) or (heading >= 315 and heading < 360)) then
-        return "Northbound" -- North
-    elseif (heading >= 45 and heading < 135) then
-        return "Eastbound" -- East
-    elseif (heading >=135 and heading < 225) then
-        return "Southbound" -- South
-    elseif (heading >= 225 and heading < 315) then
-        return "Westbound" -- West
+        if not zone then
+            zone = "UNKNOWN"
+        end
+
+        if intersectStreetName ~= nil and intersectStreetName ~= "" then
+            playerStreetsLocation = currentStreetName .. " | " .. intersectStreetName .. " | [" .. area .. "]"
+        elseif currentStreetName ~= nil and currentStreetName ~= "" then
+            playerStreetsLocation = currentStreetName .. " | [" .. area .. "]"
+        else
+            playerStreetsLocation = "[".. area .. "]"
+        end
+
+        if not showVehicle and IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) then
+            showVehicle = true
+            SendNUIMessage({
+                action = 'vehicle-hud-on'
+            })
+        else 
+            showVehicle = false
+        end
+
+        SendNUIMessage({
+            action = 'vehicle-hud-update',
+            direction = math.floor(calcHeading(-GetEntityHeading(player) % 360)),
+            street = playerStreetsLocation,
+        })
+
+        SendNUIMessage({
+            action = 'tick',
+            show = IsPauseMenuActive(),
+            health = (GetEntityHealth(player) - 100),
+            armor = GetPedArmour(player),
+            stamina = 100 - GetPlayerSprintStaminaRemaining(PlayerId()),
+            --stamina = 25 + GetPlayerUnderwaterTimeRemaining(PlayerId()),
+        })
+        Citizen.Wait(10)
     end
-end
-
-AddEventHandler('onClientMapStart', function()
-    if voice.current == 0 then
-      NetworkSetTalkerProximity(voice.default)
-    elseif voice.current == 1 then
-      NetworkSetTalkerProximity(voice.shout)
-    elseif voice.current == 2 then
-      NetworkSetTalkerProximity(voice.whisper)
-    end   
 end)
 
-function UIStuff()
-    Citizen.CreateThread(function()
-        while showUi do
+--Network Talking Updates
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(50)
+        if isTokovoip then
             SendNUIMessage({
-                action = 'tick',
-                show = IsPauseMenuActive(),
-                health = (GetEntityHealth(GetPlayerPed(-1))-100),
-                armor = (GetPedArmour(GetPlayerPed(-1))),
-                stamina = 100 - GetPlayerSprintStaminaRemaining(PlayerId()),
+                action = 'voice-color',
+                isTalking = exports.tokovoip_script:getPlayerData(GetPlayerServerId(PlayerId()), 'voip:talking')
             })
-          
-            local time = CalculateTimeToDisplay()
-
+        else
             SendNUIMessage({
-                action = 'update-clock',
-                time = time.hour .. ':' .. time.minute,
-                ampm = time.ampm
+                action = 'voice-color',
+                isTalking = NetworkIsPlayerTalking(PlayerId())
             })
-
-            if NetworkIsPlayerTalking(PlayerId(-1)) then
-                SendNUIMessage({
-                    action = 'voice-color',
-                    isTalking = true
-                })
-            else
-                SendNUIMessage({
-                    action = 'voice-color',
-                    isTalking = false
-                })
-            end
-
-            local heading = getCardinalDirectionFromHeading(GetEntityHeading(GetPlayerPed(-1)))
-            local pos = GetEntityCoords(PlayerPedId())
-            local var1, var2 = GetStreetNameAtCoord(pos.x, pos.y, pos.z, Citizen.ResultAsInteger(), Citizen.ResultAsInteger())
-            local current_zone = GetLabelText(GetNameOfZone(pos.x, pos.y, pos.z))
-
-            SendNUIMessage({
-                action = 'update-position',
-                direction = heading,
-                street1 = GetStreetNameFromHashKey(var1),
-                street2 = GetStreetNameFromHashKey(var2),
-                area = current_zone
-            })
-
-            Citizen.Wait(200)
         end
-    end)
-    
+    end
+end)
+
+Citizen.CreateThread(function()
+    local currLevel = 1
+    while true do
+        Citizen.Wait(0)
+        if IsControlJustReleased(1, 74) then
+            if isTokovoip == true then
+                currLevel =  exports.tokovoip_script:getPlayerData(GetPlayerServerId(PlayerId()), 'voip:mode')
+                if currLevel == 1 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 100
+                    })
+                elseif currLevel == 2 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 100
+                    })
+                elseif currLevel == 3 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 100
+                    })
+                end
+            else
+                currLevel = (currLevel + 1) % 3
+                if currLevel == 0 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 50
+                    })
+                elseif currLevel == 1 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 100
+                    })
+                elseif currLevel == 2 then
+                    SendNUIMessage({
+                        action = 'set-voice',
+                        value = 25
+                    })
+                end
+            end
+        end
+    end
+end)
+
+function UIStuff()  
     Citizen.CreateThread(function()
         while showUi do
             Wait(10)
@@ -122,30 +156,6 @@ function UIStuff()
             HideHudComponentThisFrame( 13 ) -- Cash 
             --changesSetPedHelmet(GetPlayerPed(-1), false)
             SetPedHelmet(GetPlayerPed(-1), false)
-
-            
-            if IsControlJustPressed(1, 74) and IsControlPressed(1, 21) then
-                voice.current = (voice.current + 1) % 3
-                if voice.current == 0 then
-                    NetworkSetTalkerProximity(voice.default)
-                    SendNUIMessage({
-                        action = 'set-voice',
-                        value = 66
-                    })
-                elseif voice.current == 1 then
-                    NetworkSetTalkerProximity(voice.shout)
-                    SendNUIMessage({
-                        action = 'set-voice',
-                        value = 100
-                    })
-                elseif voice.current == 2 then
-                    NetworkSetTalkerProximity(voice.whisper)
-                    SendNUIMessage({
-                        action = 'set-voice',
-                        value = 33
-                    })
-                end
-            end
         end
     end)
     
@@ -227,32 +237,51 @@ AddEventHandler('NRP-Hud:Logout', function()
         action = 'hideui'
     })
     showUi = false 
-end) 
-
-RegisterNetEvent('NRP-Hud:DisplayMoneyChange')
-AddEventHandler('NRP-Hud:DisplayMoneyChange', function(accounts, amount)
-    local type = nil
-
-    if amount < 0 then
-        type = 'negative'
-    else
-        type = 'positive'
-    end
-
-    SendNUIMessage({
-        action = 'change',
-        type = type,
-        accounts = data.accounts,
-        amount = amount
-    })
 end)
 
-function loadAnimDict( dict )
-    while ( not HasAnimDictLoaded( dict ) ) do
-      RequestAnimDict( dict )
-      Citizen.Wait( 0 )
+local imageWidth = 100
+local containerWidth = 100
+
+local width =  0;
+local south = (-imageWidth) + width
+local west = (-imageWidth * 2) + width
+local north = (-imageWidth * 3) + width
+local east = (-imageWidth * 4) + width
+local south2 = (-imageWidth * 5) + width
+ 
+function calcHeading(direction)
+    if (direction < 90) then
+        return lerp(north, east, direction / 90)
+    elseif (direction < 180) then
+        return lerp(east, south2, rangePercent(90, 180, direction))
+    elseif (direction < 270) then
+        return lerp(south, west, rangePercent(180, 270, direction))
+    elseif (direction <= 360) then
+        return lerp(west, north, rangePercent(270, 360, direction))
     end
 end
+
+function rangePercent(min, max, amt)
+    return (((amt - min) * 100) / (max - min)) / 100
+end
+
+function lerp(min, max, amt)
+    return (1 - amt) * min + amt * max
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 RegisterNetEvent('food:coffee')
 AddEventHandler('food:coffee', function()
@@ -360,8 +389,6 @@ AddEventHandler('food:donut', function()
   updateStatus(hunger, thirst)
   end)
 end)
-
-
 
 RegisterNetEvent('food:cheeseburger')
 AddEventHandler('food:cheeseburger', function()
