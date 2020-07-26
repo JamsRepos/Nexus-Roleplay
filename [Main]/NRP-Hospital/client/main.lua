@@ -161,42 +161,15 @@ Citizen.CreateThread(function()
                     PrintHelpText('Press ~INPUT_CONTEXT~ ~s~to check in')
                     if IsControlJustReleased(0, 54) then
                         if (GetEntityHealth(PlayerPedId()) < 200) or (IsInjuredOrBleeding()) then
-                            exports['mythic_progbar']:Progress({
-                                name = "hospital_action",
-                                duration = 10500,
-                                label = "Checking In",
-                                useWhileDead = true,
-                                canCancel = true,
-                                controlDisables = {
-                                    disableMovement = true,
-                                    disableCarMovement = true,
-                                    disableMouse = false,
-                                    disableCombat = true,
-                                },
-                                animation = {
-                                    animDict = "missheistdockssetup1clipboard@base",
-                                    anim = "base",
-                                    flags = 49,
-                                },
-                                prop = {
-                                    model = "p_amb_clipboard_01",
-                                    bone = 18905,
-                                    coords = { x = 0.10, y = 0.02, z = 0.08 },
-                                    rotation = { x = -80.0, y = 0.0, z = 0.0 },
-                                },
-                                propTwo = {
-                                    model = "prop_pencil_01",
-                                    bone = 58866,
-                                    coords = { x = 0.12, y = 0.0, z = 0.001 },
-                                    rotation = { x = -150.0, y = 0.0, z = 0.0 },
-                                },
-                            }, function(status)
-                                if not status then
-                                    if currentEMS > 0 then
-                                        exports['NRP-notify']:DoHudText('error', 'You cannot do this when EMS are on duty.')
-                                    else
-                                        TriggerServerEvent('NRP-hospital:server:RequestBed')
-                                    end
+                            FreezeEntityPosition(GetPlayerPed(-1), true)
+                            TaskStartScenarioInPlace(GetPlayerPed(-1), 'WORLD_HUMAN_CLIPBOARD', 0, true)
+                            exports['pogressBar']:drawBar(10000, 'Checking In', function()
+                                ClearPedTasks(GetPlayerPed(-1))
+                                if currentEMS > 0 then
+                                    exports['NRP-notify']:DoHudText('error', 'You cannot do this when EMS are on duty.')
+                                else
+                                    FreezeEntityPosition(GetPlayerPed(-1), false)
+                                    TriggerServerEvent('NRP-hospital:server:RequestBed')
                                 end
                             end)
                         else
