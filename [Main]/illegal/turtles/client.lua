@@ -85,7 +85,7 @@ Citizen.CreateThread(function()
             FishingRod = AttachEntityToPed('prop_fishing_rod_01',60309, 0,0,0, 0,0,0)
             PlayAnim(GetPlayerPed(-1),'amb@world_human_stand_fishing@idle_a','idle_c',1,0)
             poaching=true
-            exports['pogressBar']:drawBar(30000, 'Poaching', function()
+            exports['pogressBar']:drawBar(45000, 'Poaching', function()
               local chance = math.random(1, 6)
               if chance > 3 then
                 local police_chance = math.random(1,10)
