@@ -333,42 +333,13 @@ Citizen.CreateThread(function()
 
     if IsControlJustPressed(0, 29) and speed < 60 then 
      if DecorGetBool(GetPlayerPed(-1), 'Seatbelt') == false then
-      TriggerEvent("mythic_progbar:client:progress", {
-         name = "seatbelt",
-         duration = 2500,
-         label = "Buckling Seatbelt",
-         useWhileDead = false,
-         canCancel = false,
-         controlDisables = {
-            disableMovement = false,
-            disableCarMovement = false,
-            disableMouse = false,
-            disableCombat = true,
-         },
-       }, function(status)
-        if not status then
-          DecorSetBool(GetPlayerPed(-1), 'Seatbelt', true)
-          
-          end
-       end)
+      exports['pogressBar']:drawBar(2500, 'Buckling Seatbelt', function()
+        DecorSetBool(GetPlayerPed(-1), 'Seatbelt', true)
+      end)
     else
-      TriggerEvent("mythic_progbar:client:progress", {
-         name = "seatbelt",
-         duration = 1500,
-         label = "Unbuckling Seatbelt",
-         useWhileDead = false,
-         canCancel = false,
-         controlDisables = {
-            disableMovement = false,
-            disableCarMovement = false,
-            disableMouse = false,
-            disableCombat = true,
-         },
-       }, function(status)
-        if not status then
-          DecorSetBool(GetPlayerPed(-1), 'Seatbelt', false)
-          end
-       end)   
+      exports['pogressBar']:drawBar(2500, 'Buckling Seatbelt', function()
+        DecorSetBool(GetPlayerPed(-1), 'Seatbelt', false)
+      end)
      end 
     end
    elseif wasInCar then
