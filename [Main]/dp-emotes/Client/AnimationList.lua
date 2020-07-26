@@ -1795,4 +1795,59 @@ DP.PropEmotes = {
        EmoteMoving = true,
        EmoteLoop = true
    }},
+   ["smallbag"] = {"missheistdockssetup1clipboard@idle_a", "idle_a", "Small Bag", AnimationOptions =
+   {
+       Prop = 'prop_paper_bag_small',
+       PropBone = 18905,
+       PropPlacement = {0.1, 0.02, 0.05, 10.0, 0.0, 0.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["firstaid"] = {"missheistdockssetup1clipboard@idle_a", "idle_a", "First Aid", AnimationOptions =
+   {
+       Prop = 'prop_stat_pack_01',
+       PropBone = 18905,
+       PropPlacement = {0.1, 0.02, 0.05, 10.0, 0.0, 0.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["medkit"] = {"missheistdockssetup1clipboard@idle_a", "idle_a", "Medkit", AnimationOptions =
+   {
+       Prop = 'prop_ld_health_pack',
+       PropBone = 18905,
+       PropPlacement = {0.1, 0.02, 0.05, 10.0, 0.0, 0.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["medkit"] = {"missheistdockssetup1clipboard@idle_a", "idle_a", "Medkit", AnimationOptions =
+   {
+       Prop = 'prop_ld_health_pack',
+       PropBone = 18905,
+       PropPlacement = {0.1, 0.02, 0.05, 10.0, 0.0, 0.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["painkillers"] = {"mp_suicide", "pill", "Painkillers", AnimationOptions =
+   {
+       Prop = 'prop_cs_pills',
+       PropBone = 18905,
+       PropPlacement = {0.1, 0.02, 0.05, 10.0, 0.0, 0.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
 }
