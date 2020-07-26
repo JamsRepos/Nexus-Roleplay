@@ -59,7 +59,10 @@ Citizen.CreateThread(function()
             SendNUIMessage({
                 action = 'vehicle-hud-on'
             })
-        else 
+        elseif showVehicle and not IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) then
+            SendNUIMessage({
+                action = 'vehicle-hud-off'
+            })
             showVehicle = false
         end
 
