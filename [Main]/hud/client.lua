@@ -337,7 +337,7 @@ Citizen.CreateThread(function()
         DecorSetBool(GetPlayerPed(-1), 'Seatbelt', true)
       end)
     else
-      exports['pogressBar']:drawBar(2500, 'Buckling Seatbelt', function()
+      exports['pogressBar']:drawBar(1500, 'Unbuckling Seatbelt', function()
         DecorSetBool(GetPlayerPed(-1), 'Seatbelt', false)
       end)
      end 
