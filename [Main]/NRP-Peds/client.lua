@@ -149,6 +149,9 @@ end)
 -- Hospital Peds
 local doctorWho = nil
 local nurseWho = nil
+local surgeon1 = nil
+local surgeon2 = nil
+local surgeon3 = nil
 
 function spawnHospitalWorkers()
  if doctorWho == nil then
@@ -157,12 +160,13 @@ function spawnHospitalWorkers()
    Wait(1)
   end
 
-  doctorWho = CreatePed(2, GetHashKey('s_m_m_doctor_01'), 308.236, -596.602, 43.292, 13.582, false, false)
+  doctorWho = CreatePed(2, GetHashKey('s_m_m_doctor_01'), 309.59, -593.78, 43.28, 23.53, false, false)
   SetPedFleeAttributes(doctorWho, 0, 0)
   SetPedDiesWhenInjured(doctorWho, false)
   TaskStartScenarioInPlace(doctorWho, "WORLD_HUMAN_CLIPBOARD", 0, true)
   SetPedKeepTask(doctorWho, true)
  end
+
  if nurseWho == nil then 
   RequestModel(GetHashKey('s_f_y_scrubs_01'))
   while not HasModelLoaded(GetHashKey('s_f_y_scrubs_01')) do
@@ -173,6 +177,42 @@ function spawnHospitalWorkers()
   SetPedFleeAttributes(nurseWho, 0, 0)
   SetPedDiesWhenInjured(nurseWho, false)
   SetPedKeepTask(nurseWho, true)
+ end
+
+ if surgeon1 == nil then 
+  RequestModel(GetHashKey('s_m_y_autopsy_01'))
+  while not HasModelLoaded(GetHashKey('s_m_y_autopsy_01')) do
+   Wait(1)
+  end
+
+  surgeon1 = CreatePed(2, GetHashKey('s_m_y_autopsy_01'), 314.727, -568.193, 43.284, 160.44, false, false)
+  SetPedFleeAttributes(surgeon1, 0, 0)
+  SetPedDiesWhenInjured(surgeon1, false)
+  SetPedKeepTask(surgeon1, true)
+ end
+
+ if surgeon2 == nil then 
+  RequestModel(GetHashKey('s_m_y_autopsy_01'))
+  while not HasModelLoaded(GetHashKey('s_m_y_autopsy_01')) do
+   Wait(1)
+  end
+
+  surgeon2 = CreatePed(2, GetHashKey('s_m_y_autopsy_01'), 320.36, -570.32, 43.284, 160.44, false, false)
+  SetPedFleeAttributes(surgeon2, 0, 0)
+  SetPedDiesWhenInjured(surgeon2, false)
+  SetPedKeepTask(surgeon2, true)
+ end
+
+ if surgeon3 == nil then 
+  RequestModel(GetHashKey('s_m_y_autopsy_01'))
+  while not HasModelLoaded(GetHashKey('s_m_y_autopsy_01')) do
+   Wait(1)
+  end
+
+  surgeon3 = CreatePed(2, GetHashKey('s_m_y_autopsy_01'), 325.97, -573.13, 43.284, 160.44, false, false)
+  SetPedFleeAttributes(surgeon3, 0, 0)
+  SetPedDiesWhenInjured(surgeon3, false)
+  SetPedKeepTask(surgeon3, true)
  end
 end
 

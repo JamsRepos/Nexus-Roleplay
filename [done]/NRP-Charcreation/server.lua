@@ -18,3 +18,14 @@ AddEventHandler('skinCreation:load', function(gender)
   end
  end)
 end)
+
+RegisterServerEvent('skinCreation:surgery')
+AddEventHandler('skinCreation:surgery', function()
+ local source = tonumber(source)
+ TriggerEvent('core:getPlayerFromId', source, function(user)
+  local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM characters WHERE id = @id", {['@id'] = user.getCharacterID()})
+  if result[1].gender then
+   TriggerClientEvent('skin:surgery', source, result[1].gender)
+  end
+ end)
+end)

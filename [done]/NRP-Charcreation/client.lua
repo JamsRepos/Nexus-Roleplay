@@ -2,6 +2,26 @@ local _charPool = nil
 local isCreatingCharacter = false
 skinData = {['Mother'] = 0, ['Father'] = 0, ['skinTone'] = 0, ['Resembalance'] = 0, ['Eye Colour'] = 0, ['Aging'] = 0, ['Aging Opacity'] = 0.0, ['Hair'] = 1, ['Hair Colour 1'] = 0, ['Hair Colour 2'] = 0, ['Eyebrows'] = 0, ['Eyebrow Colour'] = 0, ['Beard'] = 0, ['Beard Colour'] = 0, ['Beard Opacity'] = 0.5, ['Skin Blemishes'] = 0, ['Skin Blemishes Opacity'] = 0.5, ['Freckles'] = 0, ['Freckles Opacity'] = 0.5, ['Eye Makeup'] = 0, ['EyeMakeup Colour'] = 0, ['Eye Makeup Opacity'] = 0.5, ['Lipstick'] = 0, ['Lipstick Color'] = 0, ['Lipstick Opacity'] = 0.5, ['Chest Hair'] = 0, ['Chest Hair Colour'] = 0, ['Chest Hair Opacity'] = 0.5, ['Blusher'] = 0, ['Blusher Opacity'] = 0, ['Blusher Colour'] = 0.5, ['Nose Width'] = 100, ['Nose Bottom Height'] = 100, ['Nose Tip Length'] = 100, ['Nose Bridge Depth'] = 100, ['Nose Tip Height'] = 100, ['Nose Broken'] = 100, ['Brow Height'] = 100, ['Brow Depth'] = 100, ['Cheekbone Height'] = 100, ['Cheekbone Width'] = 100, ['Cheek Width'] = 100, ['Eyes Opening'] = 100, ['Lips Thickness'] = 100, ['Jaw Width'] = 100, ['Jaw Shape'] = 100, ['Chin Height'] = 100, ['Chin Width'] = 100, ['Chin Indent'] = 100, ['Neck Width'] = 100}
 
+local surgeons = {
+  [1] = {x = 314.727, y = -568.193, z = 43.284},
+  [2] = {x = 320.36, y = -570.32, z = 43.284},
+  [3] = {x = 325.97, y = -573.13, z = 43.284},
+}
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(5)
+    for k,v in pairs(surgeons) do
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < 1.2) then
+        DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ to perform plastic surgery')
+        if IsControlPressed(0, 38) then
+          TriggerServerEvent('skinCreation:surgery')
+        end
+      end
+    end
+  end
+end)
+
 Citizen.CreateThread(function()
  while true do
   Wait(5)
@@ -30,7 +50,7 @@ Citizen.CreateThread(function()
 end)
 
 
-function EnterCharacterCreator(gender)
+function EnterCharacterCreator(gender, firstTime)
  cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
  while not DoesCamExist(cam) do
   Citizen.Wait(250)
@@ -69,14 +89,16 @@ function EnterCharacterCreator(gender)
  --SetEntityHeading(PlayerPedId(), 180.0)
 
  _charPool = NativeUI.CreatePool()
- charMenu = NativeUI.CreateMenu("Character Creation")
+ local title = nil
+ if firstTime then title = "Character Creation" else title = "Plastic Surgeon" end
+ charMenu = NativeUI.CreateMenu(title)
  _charPool:Add(charMenu)
- DisplayCharacterCreatorMenu(charMenu)
+ DisplayCharacterCreatorMenu(charMenu, firstTime)
  _charPool:RefreshIndex()
  isCreatingCharacter = true
 end
 
-function DisplayCharacterCreatorMenu(menu)
+function DisplayCharacterCreatorMenu(menu, firstTime)
  AddHeritageSelection(menu)
  AddAppearanceSelection(menu)
  AddFeaturesSelection(menu)
@@ -86,40 +108,61 @@ function DisplayCharacterCreatorMenu(menu)
   if item == saveItem then
    DoScreenFadeOut(0)
    TriggerServerEvent('skinCreation:save', json.encode(skinData))
-   if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then
-    SetPedComponentVariation(GetPlayerPed(-1), 8, 0, 240, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 3, 14, 0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 11, 14, math.random(1,15), 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 4, 23, 8, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 6, 1, 0, 2)
-   else
-    SetPedComponentVariation(GetPlayerPed(-1), 8, 1,0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 3, 0,0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 11, 1, math.random(3,8), 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 4, 1, 1, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 6, 1, 1, 2)
-   end
+   if firstTime then
+    if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then
+      SetPedComponentVariation(GetPlayerPed(-1), 8, 0, 240, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 3, 14, 0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 11, 14, math.random(1,15), 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 4, 23, 8, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 6, 1, 0, 2)
+    else
+      SetPedComponentVariation(GetPlayerPed(-1), 8, 1,0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 3, 0,0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 11, 1, math.random(3,8), 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 4, 1, 1, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 6, 1, 1, 2)
+    end
+  else
+    if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then
+      SetPedComponentVariation(GetPlayerPed(-1), 4, 112, 5, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 11, 286, 20, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 5, 14, 0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 6, 35, 0, 2)
+    else
+      SetPedComponentVariation(GetPlayerPed(-1), 4, 3, 3, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 11, 47, 0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 5, 0, 0, 2)
+      SetPedComponentVariation(GetPlayerPed(-1), 6, 6, 0, 2)
+    end
+  end
    if DoesCamExist(cam) then
     RenderScriptCams(false, false, 3000, 1, 0, 0)
     FreezeEntityPosition(PlayerPedId(), false)
     menu:Visible(not menu:Visible())
     DestroyCam(cam, true)
    end
-    SetEntityCoords(PlayerPedId(), -220.744, -1053.473, 29.540-1.0)
-    SetEntityHeading(PlayerPedId(), 328.147)                     
+    if firstTime then
+      SetEntityCoords(PlayerPedId(), -220.744, -1053.473, 29.540-1.0)
+      SetEntityHeading(PlayerPedId(), 328.147)
+    else
+      SetEntityCoords(PlayerPedId(), 323.60, -585.05, 43.28-1.0)
+      SetEntityHeading(PlayerPedId(), 69.39)   
+    end                  
     while not HasCollisionLoadedAroundEntity(PlayerPedId()) do
      Wait(1)
     end
     Wait(750)
     DoScreenFadeIn(500)
     _charPool:Remove()
-    Wait(1000)
-    TriggerEvent('clothing:save')
-    Wait(500)
-    ExecuteCommand('clothes')
+    if firstTime then
+      Wait(1000)
+      TriggerEvent('clothing:save')
+      Wait(500)
+      ExecuteCommand('clothes')
+      Wait(500)
+      TriggerEvent('core:starttutorial', false)
+    end
     isCreatingCharacter = false
-    
-    TriggerEvent('clothing:open')
   end
  end
 end
@@ -656,6 +699,22 @@ AddEventHandler('skinCreation:load', function(skin)
  TriggerServerEvent('core:checkjob')
 end)
 
+RegisterNetEvent('skin:surgery')
+AddEventHandler('skin:surgery', function(gender)
+  while IsPlayerSwitchInProgress() do 
+    Wait(100)
+   end
+   local ped = GetPlayerPed(-1)
+   TriggerEvent("core:stopSkyCamera")
+   SetEntityCoords(ped, 402.65, -996.281, -100.100)
+   SetEntityHeading(ped, 180.0)
+   FreezeEntityPosition(ped, true)
+   while (IsPlayerTeleportActive()) do
+    Citizen.Wait(5)
+   end
+  EnterCharacterCreator(gender, false) 
+end)
+
 RegisterNetEvent('skin:noskin')
 AddEventHandler('skin:noskin', function(gender)
   while IsPlayerSwitchInProgress() do 
@@ -669,7 +728,7 @@ AddEventHandler('skin:noskin', function(gender)
    while (IsPlayerTeleportActive()) do
     Citizen.Wait(5)
    end
-   EnterCharacterCreator(gender) 
+   EnterCharacterCreator(gender, true) 
 end)
 
 RegisterNetEvent('skinCreation:new')
@@ -688,5 +747,19 @@ AddEventHandler('skinCreation:new', function(gender)
  while (IsPlayerTeleportActive()) do
   Citizen.Wait(5)
  end
- EnterCharacterCreator(gender)
+ EnterCharacterCreator(gender, true)
 end)
+
+function DrawText3Ds(x,y,z, text)
+  local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+  local px,py,pz=table.unpack(GetGameplayCamCoords())
+  
+  SetTextScale(0.35, 0.35)
+  SetTextFont(4)
+  SetTextProportional(1)
+  SetTextColour(255, 255, 255, 215)
+  SetTextEntry("STRING")
+  SetTextCentre(1)
+  AddTextComponentString(text)
+  DrawText(_x,_y)
+end
