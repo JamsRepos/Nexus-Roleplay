@@ -839,7 +839,7 @@ LSC_Config.prices = {
 		{ name = "Front bumper 22", mod = 21, price = 2250},
 		{ name = "Front bumper 23", mod = 22, price = 2300},
 		{ name = "Front bumper 24", mod = 23, price = 2350},
-		{ name = "Front bumper 25", mod = 24, price = 2400},
+		{ name = "Front bumper 25", mod = 24, price = 2400}, 
 		{ name = "Front bumper 26", mod = 25, price = 2450},
 		{ name = "Front bumper 27", mod = 26, price = 2500},
 		{ name = "Front bumper 28", mod = 27, price = 2550},
