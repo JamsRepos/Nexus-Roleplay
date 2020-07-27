@@ -28,7 +28,7 @@
 #wrapper .container {
   position: absolute;
   left: calc(50vw - 4px - 350px / 2);
-  top: calc(50vh + 290px - 10px / 2);
+  top: calc(50vh + 340px - 10px / 2);
   height: 43px;
   width: 350px;
   background-color: rgba(58,58,58, 0.5);
