@@ -145,6 +145,7 @@ function OnDuty()
   TriggerServerEvent('blips:activate', 'ems')
   exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 2, 3)
   exports["mumble-voip"]:SetRadioChannel(1)
+  exports["mumble-voip"]:SetMumbleProperty("radioEnabled", true)
 
   TriggerEvent("NRP-notify:client:SendAlert", { type = "success", text = "Please enter your callsign.", length = 5000})
   DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 32)
