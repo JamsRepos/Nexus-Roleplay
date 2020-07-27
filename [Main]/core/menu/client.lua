@@ -90,9 +90,9 @@ Citizen.CreateThread(function()
      currentItemIndex3 = currentIndex3
      selectedItemIndex3 = currentItemIndex3
     end) then
-    if selectedItemIndex3 == 2 then
+    if selectedItemIndex3 == 1 then
      ToggleBoat()
-    elseif selectedItemIndex3 == 1 then
+    elseif selectedItemIndex3 == 2 then
      unToggleBoat()
    elseif WarMenu.MenuButton('Back', 'playermenu') then
    end
@@ -296,7 +296,7 @@ function ToggleBoat()
    exports['NRP-notify']:DoHudText('inform', "Anchoring Boat")
    Citizen.Wait(5000)
    ClearPedTasks(ped)
-   exports['NRP-notify']:DoHudText('succes', "Boat Anchored")
+   exports['NRP-notify']:DoHudText('success', "Boat Anchored")
 end
 end
 
