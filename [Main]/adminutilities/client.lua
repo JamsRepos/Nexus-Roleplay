@@ -28,9 +28,8 @@ AddEventHandler('admin:spawnVehicle', function(v)
   SetVehicleEngineOn(veh, true)
   DecorRegister("_Fuel_Level", 3);
   DecorRegister("_Max_Fuel_Level", 3);
-  DecorSetInt(veh, "_Max_Fuel_Level", 100000)
-  DecorSetInt(veh, "_Fuel_Level", 100000)
-  TriggerEvent('persistent-vehicles/register-vehicle', veh)
+  DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
+  DecorSetInt(vehicle, "_Fuel_Level", 100000)
   exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(veh))
  end
 end)
@@ -231,7 +230,10 @@ AddEventHandler('admin:dv', function()
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
    if DoesEntityExist(vehicle) then 
+<<<<<<< HEAD
     TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
+=======
+>>>>>>> parent of 96c937b... Fixed vehicles instancing/despawning upon rejoin.
     SetEntityAsMissionEntity(vehicle, true, true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
    else 
