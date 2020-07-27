@@ -205,6 +205,7 @@ vehicles = {
       {name = "Coquette Classic", price = 140000, model = "Coquette2"},
       {name = "Coquette BlackFin", price = 150000, model = "Coquette3"},
       {name = "Mamba", price = 120000, model = "Mamba"},
+      {name = "Karin 190z", price = 70000, model = "z190"},
       {name = "Manana", price = 70000, model = "Manana"},
       {name = "Monroe", price = 105000, model = "Monroe"},
       {name = "Peyote", price = 75000, model = "Peyote"},
