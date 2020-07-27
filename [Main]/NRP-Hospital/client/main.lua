@@ -165,10 +165,10 @@ Citizen.CreateThread(function()
                             TaskStartScenarioInPlace(GetPlayerPed(-1), 'WORLD_HUMAN_CLIPBOARD', 0, true)
                             exports['pogressBar']:drawBar(10000, 'Checking In', function()
                                 ClearPedTasks(GetPlayerPed(-1))
+                                FreezeEntityPosition(GetPlayerPed(-1), false)
                                 if currentEMS > 0 then
                                     exports['NRP-notify']:DoHudText('error', 'You cannot do this when EMS are on duty.')
                                 else
-                                    FreezeEntityPosition(GetPlayerPed(-1), false)
                                     TriggerServerEvent('NRP-hospital:server:RequestBed')
                                 end
                             end)
