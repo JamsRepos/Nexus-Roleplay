@@ -312,8 +312,9 @@ Citizen.CreateThread(function()
   while true do
    Wait(5)
    local coords = GetEntityCoords(GetPlayerPed(-1))
+   local inveh = IsPedInAnyVehicle(GetPlayerPed(-1), false)
 
-    if GetDistanceBetweenCoords(coords, 2748.304, 3472.706, 55.675, true) < 50 then
+    if GetDistanceBetweenCoords(coords, 2748.304, 3472.706, 55.675, true) < 50 and not inveh then
      DrawMarker(27, 2748.304, 3472.706, 55.675-0.98, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 100, 0, 0, 2, 0, 0, 0, 0)
      if GetDistanceBetweenCoords(coords, 2748.304, 3472.706, 55.675, true) < 1.2 then
       DrawText3Ds(2748.304, 3472.706, 55.675+0.5,'~g~[E]~w~ ToolStore')
