@@ -35,7 +35,7 @@ local colors = {
 {name = "Straw Brown", colorindex = 99},{name = "Sandy Brown", colorindex = 105},
 {name = "Bleached Brown", colorindex = 106},{name = "Schafter Purple", colorindex = 71},
 {name = "Spinnaker Purple", colorindex = 72},{name = "Midnight Purple", colorindex = 142},
-{name = "Bright Purple", colorindex = 11750},{name = "Cream", colorindex = 107},
+{name = "Bright Purple", colorindex = 145},{name = "Cream", colorindex = 107},
 {name = "Ice White", colorindex = 111},{name = "Frost White", colorindex = 112}}
 local metalcolors = {
 {name = "Brushed Steel",colorindex = 117},
