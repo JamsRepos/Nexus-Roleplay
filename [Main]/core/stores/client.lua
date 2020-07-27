@@ -181,10 +181,11 @@ local items = {
  [3] = {name = 'Cigarette', price = 2, amount = 2, id = 15},
  [4] = {name = 'Rolling Papers', price = 2, amount = 1, id = 160},
  [5] = {name = 'Jerry Can', price = 500, amount = 1, id = 205},
- [7] = {name = 'Mobile Phone', price = 1000, amount = 1, id = 104},
- [8] = {name = 'Radio', price = 250, amount = 1, id = 261},	 [8] = {name = 'GoPro', price = 10000, amount = 1, id = 300},
- [9] = {name = 'GoPro', price = 10000, amount = 1, id = 300},	 [9] = {name = 'Bottle of Water', price = 8, amount = 1, id = 13},
- [10] = {name = 'Bottle of Water', price = 8, amount = 1, id = 13},	 [10] = {name = 'Cheese Burger', price = 16, amount = 1, id = 14},
+ [7] = {name = 'Mobile Phone', price = 500, amount = 1, id = 104},
+ [8] = {name = 'Radio', price = 250, amount = 1, id = 261},
+ [9] = {name = 'GoPro', price = 10000, amount = 1, id = 300},
+ [10] = {name = 'Bottle of Water', price = 8, amount = 1, id = 13},
+ [11] = {name = 'Cheese Burger', price = 16, amount = 1, id = 14},
 }
 
 local toolshop = {
