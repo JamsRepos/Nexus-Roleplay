@@ -147,20 +147,31 @@ function DrawTattoo(collection, name)
 end
 
 function GetNaked()
-	  if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then  -- GIRL SKIN
-     SetPedComponentVariation(GetPlayerPed(-1), 8, 34,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 3, 15,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 11, 101,1, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 4, 56,1, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 6, 35,0, 2)
+	if(GetEntityModel(GetPlayerPed(-1)) == -1667301416) then  -- GIRL SKIN
+        SetPedComponentVariation(GetPlayerPed(-1), 8, 15,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 3, 15,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 11, 101,1, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 4, 56,1, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 6, 35,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 7, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 1, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 9, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 10, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 5, 0,0, 2)
     else                             -- BOY SKIN
-     SetPedComponentVariation(GetPlayerPed(-1), 8, 15,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 3, 15,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 11, 91,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 4, 21,0, 2)
-     SetPedComponentVariation(GetPlayerPed(-1), 6, 34,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 8, 15,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 3, 15,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 11, 91,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 4, 21,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 6, 34,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 1, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 7, 15,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 9, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 10, 0,0, 2)
+        SetPedComponentVariation(GetPlayerPed(-1), 5, 0,0, 2)
 	end
 	TriggerServerEvent("tattoo:activateTattooShop")
+	Citizen.Wait(500)
 end
 
 function ResetSkin() ----- CHANGE THIS
@@ -215,8 +226,8 @@ end
 
 function BuyTattoo(collection, name, label, price)
 	tattoos = currentTattoos, {collection = collection, nameHash = name, Count = opacity}
-	TriggerServerEvent("fl_tattoo:purchase",  tattoos ,price, name, GetLabelText(label))
 	table.insert(currentTattoos, {collection = collection, nameHash = name, Count = opacity})
+	TriggerServerEvent("fl_tattoo:purchase",  tattoos ,price, name, GetLabelText(label))
 end
 
 

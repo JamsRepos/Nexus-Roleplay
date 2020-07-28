@@ -40,47 +40,13 @@ print(tattooList, price, tattoo, tattooName)
 end)
 
 
-RegisterServerEvent('SmallTattoos:PurchaseTattoo')
-AddEventHandler('SmallTattoos:PurchaseTattoo', function(tattooList, price, tattoo, tattooName)
-	local source = tonumber(source)
- TriggerEvent('core:getPlayerFromId', source, function(user)
-   print(tattooList, price, tattoo, tattooName)
-	if user.getMoney() >= tonumber(price) then
-		user.removeMoney(price)
-		--table.insert(tattooList, tattoo)
-    
-		exports['GHMattiMySQL']:QueryAsync('UPDATE characters SET tattoos = @tattoos WHERE id = @id', {
-			['@tattoos'] = json.encode(tattooList),
-			['@id'] = user.getCharacterID()
-		})
-		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text ="You have bought the " .. tattooName .. " tattoo for $" .. price}) 
-		TriggerClientEvent('buytat')
-    elseif user.getBank() >= tonumber(price) then
-		user.removeBank(price)
-		table.insert(tattooList, tattoo)
-    
-		exports['GHMattiMySQL']:QueryAsync('UPDATE characters SET tattoos = @tattoos WHERE id = @id', {
-			['@tattoos'] = json.encode(tattooList),
-			['@id'] = user.getCharacterID()
-		})
-		TriggerClientEvent('buytat')
-		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text ="You have bought the " .. tattooName .. " tattoo for $" .. price}) 
-		
-	else
-		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text ="You do not have enough money for this tattoo"}) 
-		
-	end
- end)
-end)
-
-
 
 RegisterServerEvent('SmallTattoos:RemoveTattoo')
 AddEventHandler('SmallTattoos:RemoveTattoo', function (tattooList)
 	local source = tonumber(source)
     TriggerEvent('core:getPlayerFromId', source, function(user)
 
-		exports['GHMattiMySQL']:QueryAsync('UPDATE tattoos FROM `characters` = @tattoos WHERE id = @id', {
+		exports['GHMattiMySQL']:QueryAsync('UPDATE `characters` SET tattoos=@tattoos WHERE id=@id', {
 		['@tattoos'] = json.encode(tattooList),
 		['@id'] = user.getCharacterID()
 	})
