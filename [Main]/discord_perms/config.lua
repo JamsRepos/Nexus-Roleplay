@@ -13,6 +13,7 @@ Config = {
 		["Helper"] = "715258665132752946", -- This would be checked by doing exports.discord_perms:IsRolePresent(user, "TestRole")
 		["Nitro Booster"] = "715656360120942623", -- This would be checked by doing exports.discord_perms:IsRolePresent(user, "TestRole")
 		["Beta Tester"] = "737043327152554105", -- This would be checked by doing exports.discord_perms:IsRolePresent(user, "TestRole")
+		["LSPD Training"] = "737724913863098478", -- This would be checked by doing exports.discord_perms:IsRolePresent(user, "TestRole")
 		["Civilian"] = "713169411930062971" -- This would be checked by doing exports.discord_perms:IsRolePresent(user, "TestRole")
 	}
 }
