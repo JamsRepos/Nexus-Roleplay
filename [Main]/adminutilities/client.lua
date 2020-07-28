@@ -230,10 +230,6 @@ AddEventHandler('admin:dv', function()
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
    if DoesEntityExist(vehicle) then 
-<<<<<<< HEAD
-    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
-=======
->>>>>>> parent of 96c937b... Fixed vehicles instancing/despawning upon rejoin.
     SetEntityAsMissionEntity(vehicle, true, true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
    else 
