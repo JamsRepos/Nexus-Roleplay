@@ -281,6 +281,24 @@ AddEventHandler('anticheat:kick', function()
 	end)
 end)
 
+RegisterServerEvent('anticheat:warn')
+AddEventHandler('anticheat:warn', function()
+	local source = tonumber(source)
+	TriggerEvent("core:getPlayerFromId", source, function(user)
+		TriggerEvent("core:getPlayers", function(pl)
+			for k,v in pairs(pl) do
+				TriggerEvent("core:getPlayerFromId", k, function(user)
+					if(user.getPermissions() < 50 and k ~= source)then
+						TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(source).."^0 has been given an illegal weapon by a modder!")
+					end
+				end)
+			end
+		end)
+		exports['GHMattiMySQL']:QueryAsync("INSERT INTO admin_history (`admin`, `user`, `action`) VALUES (@admin, @user, @action)",
+		{['@admin'] = 'Anti-Cheat System', ['@user'] = GetPlayerIdentifier(source), ['@action'] = 'Warned: (Anti-Cheat): Obtained Illegal Weapon'})
+	end)
+end)
+
 for i, eventName in ipairs(ForbiddenEvents) do
 	RegisterNetEvent(eventName)
 	AddEventHandler(
