@@ -164,7 +164,7 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    while true do
+    while true do 
         Citizen.Wait(5000)
         local handle, object = FindFirstObject()
         local finished = false
