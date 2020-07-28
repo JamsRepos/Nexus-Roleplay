@@ -22,21 +22,23 @@ end)
 
 RegisterServerEvent("fl_tattoo:purchase")
 AddEventHandler("fl_tattoo:purchase", function(tattooList, price, tattoo, tattooName)
-local source = tonumber(source)
-print(tattooList, price, tattoo, tattooName)
- TriggerEvent("core:getPlayerFromId", source, function(user)
-  if (tattooList) then
-	print(tattooList, price, tattoo, tattooName)
-    if user.getMoney() >= tonumber(price) then
-	 user.removeMoney(price)
-	 exports['GHMattiMySQL']:QueryAsync('UPDATE characters SET `tattoos`=@tattoos WHERE id = @id',{['@id'] = user.getCharacterID(), ['@tattoos'] = json.encode(tattooList)})
-	 TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text ="You have bought the " .. tattooName .. " tattoo for $" .. price}) 
-
-	else
-		TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text ="You do not have enough money for this tattoo"}) 
-	end
-   end
- end)
+  local source = tonumber(source)
+  print(tattooList, price, tattoo, tattooName)
+  TriggerEvent("core:getPlayerFromId", source, function(user)
+    if (tattooList) then
+      if user.getMoney() >= tonumber(price) then
+        user.removeMoney(price)
+        exports['GHMattiMySQL']:QueryAsync('UPDATE characters SET `tattoos`=@tattoos WHERE id = @id',{['@id'] = user.getCharacterID(), ['@tattoos'] = json.encode(tattooList)})
+        TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text ="You have bought the " .. tattooName .. " tattoo for $" .. price}) 
+      elseif user.getBank() >= tonumber(price) then
+        user.removeBank(price)
+        exports['GHMattiMySQL']:QueryAsync('UPDATE characters SET `tattoos`=@tattoos WHERE id = @id',{['@id'] = user.getCharacterID(), ['@tattoos'] = json.encode(tattooList)})
+        TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text ="You have bought the " .. tattooName .. " tattoo for $" .. price}) 
+	    else
+		    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text ="You do not have enough money for this tattoo"}) 
+	    end
+    end
+  end)
 end)
 
 
