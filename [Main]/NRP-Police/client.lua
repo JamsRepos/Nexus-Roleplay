@@ -705,7 +705,7 @@ Citizen.CreateThread(function()
  while true do
   Wait(5)
   if WarMenu.IsMenuOpened('police_garage') then
-    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'Centenario', '2018 Charger', 'Explorer', 'Tahoe', 'Crownvick', 'Impala', 'Prison Bus', 'Motorbike','BCSO Explorer', 'BCSO Charger', 'BCSO Tahoe', 'BCSO Crown Vic', 'BCSO Taurus', 'Bearcat'}, currentveh, selectedveh, function(veh)
+    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'Centenario', '2018 Charger', 'Explorer', 'Tahoe', 'Crownvick', 'Impala', 'Prison Bus', 'Motorbike', 'Bearcat'}, currentveh, selectedveh, function(veh)
       currentveh = veh
       selectedveh = currentveh
       if currentveh == 1 then vehicle = 'lp770cop'
@@ -716,12 +716,7 @@ Citizen.CreateThread(function()
       elseif currentveh == 6 then vehicle = 'police8'
       elseif currentveh == 7 then vehicle = 'pbus'
       elseif currentveh == 8 then vehicle = 'polthrust'
-      elseif currentveh == 9 then vehicle = '16exp'
-      elseif currentveh == 10 then vehicle = '18charger'
-      elseif currentveh == 11 then vehicle = '19hoe'
-      elseif currentveh == 12 then vehicle = 'cvpi'
-      elseif currentveh == 13 then vehicle = 'tau'
-      elseif currentveh == 14 then vehicle = 'bearcat'
+      elseif currentveh == 9 then vehicle = 'bearcat'
       end
      end) then
    elseif WarMenu.Button('Confirm') then
