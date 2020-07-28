@@ -5,7 +5,7 @@ local Fish = {
 }
 
 local Turtle = {
-  [1] = {name = 'Turtle', price = 1000, item = 292},
+  [1] = {name = 'Turtle', price = 1250, item = 292},
  }
 
 RegisterServerEvent('jobs:sellfish')

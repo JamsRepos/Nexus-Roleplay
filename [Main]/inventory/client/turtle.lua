@@ -1,5 +1,5 @@
 local Turtle = {
-    [4] = {name = 'Turtle', price = 1000, item = 292},
+    [4] = {name = 'Turtle', price = 1250, item = 292},
    }
 
 RegisterNetEvent("inventory:sellTurtle")
