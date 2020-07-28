@@ -20,17 +20,19 @@ end)
 
 Citizen.CreateThread(function()
   while true do
-   local ped = PlayerPedId()
-   local pos = GetEntityCoords(ped)
-   Citizen.Wait(5)
-   if hud then
-    if IsPedInAnyVehicle(ped) then
-     DisplayRadar(true) 
+    local ped = PlayerPedId()
+    local pos = GetEntityCoords(ped)
+    Citizen.Wait(5)
+    if hud then
+      if IsPedInAnyVehicle(ped) then
+        DisplayRadar(true)
+      elseif DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
+        DisplayRadar(true)
+      end
     else 
-     DisplayRadar(false)
+      DisplayRadar(false)
     end
-   end
-  end     
+  end    
 end)
 
 Citizen.CreateThread(function()

@@ -769,8 +769,8 @@ Citizen.CreateThread(function()
  WarMenu.CreateLongMenu('police_missions', 'Missions')
  while true do 
   Wait(5)
-  if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
-  if not IsPedInAnyVehicle(GetPlayerPed(-1)) then drawUI(0.514, 1.395, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) else drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) end
+  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
+  drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false)
    if WarMenu.IsMenuOpened('police_missions') then
     for i,v in pairs(mission_list) do
      if v.name ~= "Finish Mission" then
