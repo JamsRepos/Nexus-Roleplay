@@ -54,12 +54,12 @@ Citizen.CreateThread(function()
             playerStreetsLocation = "[".. area .. "]"
         end
 
-        if not showVehicle and IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) then
+        if not showVehicle and IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) or DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
             showVehicle = true
             SendNUIMessage({
                 action = 'vehicle-hud-on'
             })
-        elseif showVehicle and not IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) then
+        elseif showVehicle and not IsVehicleEngineOn(GetVehiclePedIsIn(player, false)) and not DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
             SendNUIMessage({
                 action = 'vehicle-hud-off'
             })
