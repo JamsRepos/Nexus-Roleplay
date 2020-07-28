@@ -15,8 +15,8 @@ Citizen.CreateThread(function()
  local selectedOption = 1
  while true do 
   Wait(2)
-  if DecorGetBool(GetPlayerPed(-1), "isParamedic") then
-   if isInService then if not IsPedInAnyVehicle(GetPlayerPed(-1)) then drawUI(0.514, 1.375, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) else drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false) end end
+  if DecorGetBool(GetPlayerPed(-1), "isParamedic") and isInService then
+   drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false)
    -- Main Menu
    if WarMenu.IsMenuOpened('ems_toolkit') then
     if WarMenu.ComboBox('Revive', {"Player", "NPC"}, currentOption, selectedOption, function(option)
