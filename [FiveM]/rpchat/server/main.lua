@@ -21,6 +21,17 @@ RegisterCommand('me', function(source, args, user)
     end)
 end)
 
+RegisterCommand('roll', function(source, args, user)
+    TriggerEvent("core:getPlayerFromId", source, function(user)
+        local name = user.getIdentity()
+        fal = name.firstname .. " " .. name.lastname
+        local rolled = "rolled a "..math.random(1, 6).." and a "..math.random(1, 6).."."
+        TriggerEvent("core:log", tostring("[DICE] " .. fal .. "(".. source ..") rolled: " .. rolled), "chat")
+        TriggerClientEvent("NRP-Games:roll", source)
+        TriggerClientEvent("sendProximityMessageDice", -1, source, fal, rolled)
+    end)
+end)
+
 RegisterCommand('ad', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)
         local msg = rawCommand:sub(4)
