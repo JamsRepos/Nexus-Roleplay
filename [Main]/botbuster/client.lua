@@ -127,7 +127,7 @@ Citizen.CreateThread(function()
                 if HasPedGotWeapon(GetPlayerPed(-1), weapon, false) then
                     if not banned then
                         banned = true
-                        TriggerServerEvent('anticheat:kick')
+                        TriggerServerEvent('anticheat:warn')
                     end
                 end
             end
