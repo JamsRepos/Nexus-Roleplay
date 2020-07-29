@@ -152,16 +152,6 @@ function ReqAndDelete(object, detach)
 	end
 end
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        SetVehicleModelIsSuppressed(GetHashKey("blimp"), true) 
-        SetVehicleModelIsSuppressed(GetHashKey("rubble"), true)
-        SetVehicleModelIsSuppressed(GetHashKey("taco"), true)
-        SetVehicleModelIsSuppressed(GetHashKey("biff"), true)
-        end
-    end
-end)
 
 Citizen.CreateThread(function()
     while true do 

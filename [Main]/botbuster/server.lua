@@ -225,6 +225,9 @@
 	"esx_society:putVehicleDFWMInGarage"
   }
 
+local blockedItems = {
+    [`blimp`] = true
+}
 
 RegisterServerEvent('anticheat:ban')
 AddEventHandler('anticheat:ban', function()
@@ -321,6 +324,15 @@ for i, eventName in ipairs(ForbiddenEvents) do
 	  end
 	)
   end
+
+
+
+AddEventHandler('entityCreating', function(entity)
+    local model = GetEntityModel(entity)
+    if blockedItems[model] then
+        CancelEvent()
+    end
+end)
 
 
 local commandBlacklist = {
