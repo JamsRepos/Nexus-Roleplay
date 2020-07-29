@@ -226,7 +226,7 @@
   }
 
 local blockedItems = {
-    [`blimp`] = true
+    ['blimp'] = true
 }
 
 RegisterServerEvent('anticheat:ban')
