@@ -1,12 +1,12 @@
 RegisterServerEvent("fakeids:create")
-AddEventHandler("fakeids:create",function(cityid, newname, newjob, newdob, newgender)
- local source = tonumber(cityid)
- TriggerEvent('core:getPlayerFromId', source, function(user)
-  if user.getMoney() >= 80000 then 
-   user.removeMoney(80000)
-   print(cityid.." "..newname.." "..newjob.." "..newdob)
-   exports['GHMattiMySQL']:QueryAsync('INSERT INTO `fakeids` (char_id, newname, newjob, newdob, gender) VALUES (@char_id, @newname, @newjob, @newdob, @gender)',{['@char_id'] = user.getCharacterID(), ['@newname'] = newname, ['@newjob'] = newjob, ['@newdob'] = newdob, ['@gender'] = newgender})
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "New Fake Identity Purchased and Registered"}) 
+AddEventHandler("fakeids:create",function(newname, newjob, newdob, newgender)
+  local source = tonumber(source)
+  TriggerEvent('core:getPlayerFromId', source, function(user)
+  if user.getMoney() >= 20000 then 
+    user.removeMoney(20000)
+    print(source.." "..newname.." "..newjob.." "..newdob)
+    exports['GHMattiMySQL']:QueryAsync('INSERT INTO `fakeids` (char_id, newname, newjob, newdob, gender) VALUES (@char_id, @newname, @newjob, @newdob, @gender)',{['@char_id'] = user.getCharacterID(), ['@newname'] = newname, ['@newjob'] = newjob, ['@newdob'] = newdob, ['@gender'] = newgender})
+    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "New Fake Identity Purchased and Registered"}) 
   else
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds in Bank"}) 
   end

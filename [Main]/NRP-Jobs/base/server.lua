@@ -5,24 +5,25 @@ local Fish = {
 }
 
 local Turtle = {
-  [1] = {name = 'Turtle', price = 1250, item = 292},
+  [1] = {name = 'Turtle', price = 1000, item = 292},
  }
 
 RegisterServerEvent('jobs:sellfish')
 AddEventHandler('jobs:sellfish', function()
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
-  for i = 1, #Fish do
-    local quantity = user.getQuantity(Fish[i].item)
-   if quantity > 0 then
-    local pay = math.floor(quantity*Fish[i].price*exports['core']:getVat(3))
-    if pay < 50000 then
-     user.addBank(pay)
-     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = Fish[i].name.." Sold For $"..pay})
-     user.removeQuantity(Fish[i].item, quantity)
-     TriggerEvent("core:moneylog", source, 'Fish Payment: $'..pay)
-    else
-     TriggerEvent('anticheat:message', source, pay)
+  for i,v in pairs(Fish) do
+    local quantity = user.getQuantity(v.item)
+    print(quantity)
+    if quantity > 0 then
+    local pay = math.floor(quantity*v.price*exports['core']:getVat(3))
+      if pay < 50000 then
+      user.addBank(pay)
+      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = v.name.." Sold For $"..pay})
+      user.removeQuantity(v.item, quantity)
+      TriggerEvent("core:moneylog", source, 'Fish Payment: $'..pay)
+      else
+      TriggerEvent('anticheat:message', source, pay)
     end
    end
   end
