@@ -3,7 +3,7 @@ local policeID = {}
 local policeTarget = nil
 
 RegisterNUICallback('confirmsale', function(data, cb) 
-  TriggerServerEvent('fakeids:create', data.cityid, data.newname, data.newjob, data.newdob, data.newgender)
+  TriggerServerEvent('fakeids:create', data.newname, data.newjob, data.newdob, data.newgender)
   _GuiEnabled = false
   SetNuiFocus(false)
   SendNUIMessage({open = false})
