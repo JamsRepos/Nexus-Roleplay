@@ -119,27 +119,7 @@ RegisterCommand("dutyveh", function(source, args, rawCommand)
 end)
 
 function OnDuty()
---[[  
-  if GetEntityModel(GetPlayerPed(-1)) == -1667301416 then
-    -- Female
-    SetPedComponentVariation(GetPlayerPed(-1), 3, 109, 0, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 4, 6, 2, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 6, 72, 0, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 7, 97, 0, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 8, 159, 0, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 10, 66, 0, 0)
-    SetPedComponentVariation(GetPlayerPed(-1), 11, 258, 0, 0)
-  else
-    -- Male
-    SetPedComponentVariation(GetPlayerPed(-1), 3, 85, 0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 4, 96, 0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 6, 12, 6, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 10, 58, 0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 8, 129, 0, 2)
-    SetPedComponentVariation(GetPlayerPed(-1), 11, 250, 0, 2)
-  end
---]]
-  --GiveWeaponToPed(GetPlayerPed(-1), GetHashKey('WEAPON_STUNGUN'), 1000, false, true)
+  TriggerServerEvent('ems:duty', true)
   TriggerEvent("inventory:removeQty", 198, 1)
   TriggerEvent("inventory:addQty", 198, 1)
   TriggerServerEvent('blips:activate', 'ems')
@@ -161,6 +141,7 @@ function OnDuty()
 end
 
 function OffDuty()
+  TriggerServerEvent('ems:duty', false)
   TriggerServerEvent('skin:load')
   SetPedComponentVariation(GetPlayerPed(-1), 10, 0, 0, 2) -- Decals
   SetPedComponentVariation(GetPlayerPed(-1), 7, 0, 0, 2) -- Chains

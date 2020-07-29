@@ -1,5 +1,12 @@
 local inServiceEMS = {}
 
+RegisterServerEvent('ems:duty')
+AddEventHandler('ems:duty', function(status)
+ TriggerEvent('core:getPlayerFromId', source, function(user)
+  user.setOnDuty(status)
+ end)
+end)
+
 RegisterServerEvent('ems:revive')
 AddEventHandler('ems:revive', function(target)
   TriggerClientEvent('ems:revive', target)

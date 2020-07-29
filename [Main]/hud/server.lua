@@ -45,7 +45,9 @@ local function policeCheck()
          cops = cops + 1
         end
        elseif Users[k]:getJob() == 2 or Users[k]:getJob() == 50 or Users[k]:getJob() == 51 or Users[k]:getJob() == 52 or Users[k]:getJob() == 53 or Users[k]:getJob() == 54 or Users[k]:getJob() == 55 or Users[k]:getJob() == 56 or Users[k]:getJob() == 57 then
-        ems = ems + 1
+        if Users[k]:isOnDuty() then
+            ems = ems + 1
+        end
        elseif Users[k]:getJob() == 3 then
         mech = mech + 1
        end
