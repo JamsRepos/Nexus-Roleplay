@@ -4,7 +4,7 @@ prefix = Config.Displays.Prefix;
 currentConnectors = 0;
 maxConnectors = Config.AllowedPerTick;
 hostname = GetConvar("sv_hostname")
-slots = GetConvarInt('sv_maxclients', 32)
+slots = GetConvarInt('sv_maxclients', 40)
 
 StopResource('hardcap')
 
