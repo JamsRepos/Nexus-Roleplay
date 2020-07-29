@@ -13,7 +13,8 @@ local foodPeds = {
   { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=-706.153, y=-913.464, z=19.216, a=82.056},
   { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=-1820.230, y=794.369, z=138.089, a=130.327},
   { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=2555.474, y=380.909, z=108.623, a=355.737},
-  { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=1728.614, y=6416.729, z=35.037, a=247.369}
+  { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=1728.614, y=6416.729, z=35.037, a=247.369},
+  { model="mp_m_shopkeep_01", voice="SHOPASSISTANT", x=2749.95, y=3483.67, z=55.66, a=68.14}
 }
 
 

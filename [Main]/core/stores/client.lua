@@ -300,7 +300,7 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-   local blip = AddBlipForCoord(2748.304, 3472.706, 55.675)
+   local blip = AddBlipForCoord(2747.885, 3484.236, 55.671)
    SetBlipSprite (blip, 446)
    SetBlipDisplay(blip, 4)
    SetBlipScale (blip, 0.8)
@@ -315,10 +315,10 @@ Citizen.CreateThread(function()
    local coords = GetEntityCoords(GetPlayerPed(-1))
    local inveh = IsPedInAnyVehicle(GetPlayerPed(-1), false)
 
-    if GetDistanceBetweenCoords(coords, 2748.304, 3472.706, 55.675, true) < 50 and not inveh then
-     DrawMarker(27, 2748.304, 3472.706, 55.675-0.98, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 100, 0, 0, 2, 0, 0, 0, 0)
-     if GetDistanceBetweenCoords(coords, 2748.304, 3472.706, 55.675, true) < 1.2 then
-      DrawText3Ds(2748.304, 3472.706, 55.675+0.5,'~g~[E]~w~ ToolStore')
+    if GetDistanceBetweenCoords(coords, 2747.885, 3484.236, 55.671, true) < 50 and not inveh then
+     DrawMarker(27, 2747.885, 3484.236, 55.671-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 100, 0, 0, 2, 0, 0, 0, 0)
+     if GetDistanceBetweenCoords(coords, 2747.885, 3484.236, 55.671, true) < 1.2 then
+      DrawText3Ds(2747.885, 3484.236, 55.671, '~g~[E]~w~ Browse Goods')
       if IsControlJustPressed(0, 38) then
        WarMenu.OpenMenu('tools')
       end
