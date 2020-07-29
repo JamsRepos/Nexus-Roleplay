@@ -436,7 +436,7 @@ end
 
 RegisterCommand('giftcar', function(source, args, rawCommand)
  local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), false)
- local plate = GetVehicleNumberPlateText(vehicle)
+ local plate = exports['core']:TrimPlate(GetVehicleNumberPlateText(vehicle))
  TriggerServerEvent('garage:transfervehicle', args[1], plate)
 end)
 
