@@ -1,3 +1,6 @@
+fx_version 'adamant'
+game 'gta5'
+
 --[[
  _   _                                                    
 | | | |                                                   
@@ -6,7 +9,9 @@
 | | | | |_| | |_) | | | | (_) | | | |  __/ | | | | | (_| |
 \_| |_/\__, | .__/|_| |_|\___/|_| |_|\___|_| |_| |_|\__,_|
         __/ | |                                           
-       |___/|_|  
+       |___/|_|                                           
+
+Version: 1.8.7.58112
 
 ]]--
 
@@ -30,11 +35,9 @@ hypnonema_logging_enabled 'false'
 -- The sync interval in ms
 hypnonema_sync_interval '5000'
 
+--------------------------------------------
+--------------------------------------------
 
---------------------------------------------
---------------------------------------------
-fx_version 'bodacious'
-game 'gta5'
 
 ui_page 'client/html/index.html'
 client_script 'client/Hypnonema.Client.net.dll'
@@ -48,7 +51,3 @@ files {
     'client/html/bg.png',
     'client/html/*.js'
 }
-
-author 'simpled-dev'
-version '1.8.12.7753'
-description 'a Cinema Resource for FiveM'
