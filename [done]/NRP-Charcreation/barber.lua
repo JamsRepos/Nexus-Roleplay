@@ -44,18 +44,21 @@ end)
 
 function showBarberMenu(menu)
  local hairstyles = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45}
+ local chesthairstyles = {} for i = 0, 17 do chesthairstyles[i] = GetLabelText("CC_BODY_1_"..i) end
  local eyebrowstyles = {} for i = 0, 33 do eyebrowstyles[i] = GetLabelText("CC_EYEBRW_"..i) end
  local brusherstyles = {} for i = 0, 6 do brusherstyles[i] = GetLabelText("CC_BLUSH_"..i) end
+ local makeupstyles = {} for i = 0, 71 do makeupstyles[i] = GetLabelText("CC_MKUP_"..i) end
+ local lipstickstyles = {} for i = 0, 9 do lipstickstyles[i] = GetLabelText("CC_LIPSTICK_"..i) end
  local hairColors = {{15,15,15},{55,47,40},{93,70,56},{116,69,46},{114,53,28},{148,71,36},{161,85,48},{157,93,57},{169,112,74},{172,120,81},{184,135,89},{195,152,101},{231,190,115},{235,195,129},{245,214,155},{168,115,73},{166,92,61},{156,55,36},{126,21,17},{141,26,20},{169,29,20},{204,56,31},{234,92,36},{213,105,57},{213,76,35},{125,100,82},{164,138,118},{222,199,179},{235,214,195},{124,85,103},{141,89,115},{172,74,105},{254,85,218},{254,95,159},{246,153,162},{9,160,146},{8,136,148},{8,87,139},{106,176,98},{44,135,88},{42,124,101},{185,189,44},{158,183,19},{99,173,35},{229,184,83},{241,192,14},{249,170,20},{251,143,27},{247,116,39},{257,102,20},{246,101,47},{243,49,15},{190,11,14},{166,9,13},{30,19,17},{69,41,31},{89,48,33},{74,40,30},{75,41,28},{57,35,28},{31,27,24},{223,179,122},{194,152,111}}
 
  local HairItem = NativeUI.CreateListItem('Hair', hairstyles, 1)
- local ChestHairItem = NativeUI.CreateListItem('Chest Hair', {'None', 'Natural', 'The Strip', 'The Tree','The Tree 2', 'Hairy', 'Grisly', 'Ape', 'Groomed Ape', 'Bikini', 'Lightning Bolt', 'Reverse Lightning', 'Love Heart', 'Chestache', 'Happy Face', 'Skull', 'Snail Trail', 'Slug and Nips', 'Hairy Arms'}, 1)
+ local ChestHairItem = NativeUI.CreateListItem('Chest Hair', chesthairstyles, 1)
  local EyebrowsItem = NativeUI.CreateListItem('Eyebrows', eyebrowstyles, 1)
  local BeardItem = NativeUI.CreateListItem('Beard', {'Clean Shaven','Light Stubble','Mustache','Trimmed Beard','Stubble','Thin Circle Beard','Horseshoe','Pencil & Chops','Chin Strap Beard','Balbo & Sideburns','Mutton Chops','Scruffy Beard','Balbo','Circle Beard','Goatee','Chin','Chin Fuzz','Pencil Chin Strap','Scruffy','Musketeer','1','2','3','4','5','6'}, 1)
  local BlemishesItem = NativeUI.CreateListItem('Skin Blemishes', {'Measles', 'Pimples', 'Spots', 'Break Out', 'Blackheads', 'Build Up', 'Pustules', 'Zits', 'Full Acne', 'Acne', 'Cheek Rash', 'Face Rash', 'Picker', 'Puberty', 'Eyesore', 'Chin Rash', 'Two Face', 'T Zone', 'Greasy', 'Marked', 'Acne Scarring', 'Full Acne Scarring', 'Cold Sores', 'Impetigo'}, 1)
  local FrecklesItem = NativeUI.CreateListItem('Moles & Freckles', {'Cherub', 'All Over', 'Irregular', 'Dot Dash', 'Over the Bridge', 'Baby Doll', 'Pixie', 'Sun Kissed', 'Beauty Marks', 'Line Up', 'Modelesque', 'Occasional', 'Speckled', 'Rain Drops', 'Double Dip', 'One Sided', 'Pairs', 'Growth'}, 1)
- local EyeMakeupItem = NativeUI.CreateListItem('Eye Makeup', {'Smoky Black', 'Bronze', 'Soft Gray', 'Retro Glam', 'Natural Look', 'Cat Eyes', 'Chola', 'Vamp', 'Vinewood Glamour', 'Bubblegum', 'Aqua Dream', 'Pin Up', 'Purple Passion', 'Smoky Cat Eye', 'Smoldering Ruby', 'Pop Princess'}, 1)
- local LipstickItem = NativeUI.CreateListItem('Lipstick', {'Color Matte', 'Color Gloss', 'Lined Matte', 'Lined Gloss', 'Heavy Lined Matte', 'Heavy Lined Gloss', 'Lined Nude Matte', 'Liner Nude Gloss', 'Smudged', 'Geisha'}, 1)
+ local EyeMakeupItem = NativeUI.CreateListItem('Eye Makeup', makeupstyles, 1)
+ local LipstickItem = NativeUI.CreateListItem('Lipstick', lipstickstyles, 1)
  local BlusherItem = NativeUI.CreateListItem('Blusher', brusherstyles, 1)
 
  menu:AddItem(HairItem)
