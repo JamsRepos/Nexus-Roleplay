@@ -4,7 +4,7 @@ prefix = Config.Displays.Prefix;
 currentConnectors = 0;
 maxConnectors = Config.AllowedPerTick;
 hostname = GetConvar("sv_hostname")
-slots = GetConvarInt('sv_maxclients', 32)
+slots = GetConvarInt('sv_maxclients', 40)
 
 StopResource('hardcap')
 
@@ -23,7 +23,7 @@ Citizen.CreateThread(function()
     --print("Queue:GetMax() is set to: " .. tostring(Queue:GetMax())); 
     if Config.HostDisplayQueue then 
       if hostname ~= "default FXServer" and Queue:GetMax() > 0 then 
-        SetConvar("sv_hostname", "[" .. Queue:GetMax() .. "/" .. (Queue:GetMax() + 1) .. "] " .. hostname);
+        SetConvar("sv_hostname", "[" .. Queue:GetMax() .. "] " .. hostname);
         --print(prefix .. " Set server title: '" .. "[" .. "1" .. "/" .. (Queue:GetMax() + 1) .. "] " .. hostname .. "'")
       end
       if hostname ~= "default FXServer" and Queue:GetMax() == 0 then 
