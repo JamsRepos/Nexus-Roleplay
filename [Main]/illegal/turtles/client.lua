@@ -10,10 +10,13 @@ local bait_timer = 0
 
 turtle_zones = {
   {x = 3851.525, y = 3753.588, z = 0.830, dist = 25, drawmarker = false, markerdist = 50.0},
+  {x =  3012.879, y = 1103.91, z = 0.830, dist = 25, drawmarker = false, markerdist = 50.0},
   {x = -700.228, y = -3436.810, z = 1.110, dist = 75, drawmarker = false, markerdist = 100.0},
   {x = 2343.579, y = -2285.579, z = 0.794, dist = 50, drawmarker = false, markerdist = 75.0},
   {x = 2639.362, y = -1431.073, z = 0.473, dist = 75, drawmarker = false, markerdist = 100.0},
   {x = -2050.154, y = -1036.570, z = 5.883, dist = 2.0, drawmarker = true, markerdist = 50.0},
+  {x = 1299.269, y = -3326.054, z = 6.003, dist = 2.0, drawmarker = true, markerdist = 50.0},
+
 }
 
 function AttachEntityToPed(prop,bone_ID,x,y,z,RotX,RotY,RotZ)
@@ -85,7 +88,7 @@ Citizen.CreateThread(function()
             FishingRod = AttachEntityToPed('prop_fishing_rod_01',60309, 0,0,0, 0,0,0)
             PlayAnim(GetPlayerPed(-1),'amb@world_human_stand_fishing@idle_a','idle_c',1,0)
             poaching=true
-            exports['pogressBar']:drawBar(45000, 'Poaching', function()
+            exports['pogressBar']:drawBar(30000, 'Poaching', function()
               local chance = math.random(1, 6)
               if chance > 3 then
                 local police_chance = math.random(1,10)
