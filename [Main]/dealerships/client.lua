@@ -1,6 +1,9 @@
 local spawnedCars = {}
 local testdriving = false
-local cooldowntimer = nil
+local gotrack = false
+local cooldowntimer = 0
+local vehicle = nil
+local closest_car = nil
 
 function getCarId(cartbl)
     for _,v in ipairs(Config.cars) do if v==cartbl then return _ end end
@@ -11,7 +14,7 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.render_center, false)<=Config.render_distance then
-            local closest_car = nil
+            closest_car = nil
             for k,v in ipairs(Config.cars) do
                 if spawnedCars[k]==nil or (not DoesEntityExist(spawnedCars[k][2]) and spawnedCars[k]~="spawning") then
                     spawnedCars[k]="spawning"
@@ -46,20 +49,27 @@ Citizen.CreateThread(function()
                 while not HasModelLoaded(closest_car.model) do
                  Citizen.Wait(10)
                 end
-                local vehicle = CreateVehicle(closest_car.model, Config.test_point.pos, Config.test_point.heading, true, true)
+                vehicle = CreateVehicle(closest_car.model, Config.test_point.pos, Config.test_point.heading, true, true)
                 SetVehicleNumberPlateText(vehicle, "DEALER")
                 DecorSetInt(vehicle, "_Fuel_Level", 100000)
+                DoScreenFadeOut(500)
+                SetEntityCoords(GetPlayerPed(-1),Config.test_point.pos,0,0,0,false)
+                Wait(500)
                 TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
                 exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+                Wait(500)
+                DoScreenFadeIn(500)
                 startTimer(Config.test_drive_time)
                 testdriving = true
+                gotrack = true
                 cooldowntimer = 300
                 Wait(Config.test_drive_time*1000)
+                gotrack = false
                 DoScreenFadeOut(500)
                 Wait(500)
                 DoScreenFadeIn(500)
                 DeleteEntity(vehicle)
-                SetEntityCoords(GetPlayerPed(-1),Config.test_point.pos,0,0,0,false)
+                SetEntityCoords(GetPlayerPed(-1),Config.return_point.pos,0,0,0,false)
             end
         else
             for k,v in ipairs(spawnedCars) do
@@ -68,6 +78,31 @@ Citizen.CreateThread(function()
             end
         end
     end
+end)
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(0)
+    if gotrack then
+      Citizen.Wait(3000)
+      if gotrack then
+        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.track_area, false) > 240 then
+          DoScreenFadeOut(500)
+          Wait(500)
+          print(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.track_area, false))
+          DeleteEntity(vehicle)
+          vehicle = CreateVehicle(closest_car.model, Config.test_point.pos, Config.test_point.heading, true, true)
+          SetVehicleNumberPlateText(vehicle, "DEALER")
+          DecorSetInt(vehicle, "_Fuel_Level", 100000)
+          TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
+          exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+          DoScreenFadeIn(500)
+        end
+      end
+    else
+      print("not testing")
+    end
+  end
 end)
 
 -- Timer countdown
