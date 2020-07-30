@@ -123,7 +123,7 @@ Citizen.CreateThread(function()
                 exports['NRP-notify']:DoHudText('error', 'You caught nothing')
               end
               print(chance)
-              poaching = false
+              poaching = false 
               FreezeEntityPosition(GetPlayerPed(-1), false)
               ClearPedTasksImmediately(GetPlayerPed(-1))
               DeleteEntity(FishingRod)
