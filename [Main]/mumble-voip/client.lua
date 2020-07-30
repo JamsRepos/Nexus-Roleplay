@@ -284,11 +284,11 @@ Citizen.CreateThread(function()
 			end
 
 			if muteList[j].radio > 0 and muteList[j].radio == playerRadio and muteList[j].radioActive then
-				muteList[j].volume = 1.0
+				muteList[j].volume = 0.50
 			end
 
 			if muteList[j].call > 0 and muteList[j].call == playerCall then
-				muteList[j].volume = 1.2
+				muteList[j].volume = 0.75
 			end
 			
 			MumbleSetVolumeOverride(muteList[j].player, muteList[j].volume)
