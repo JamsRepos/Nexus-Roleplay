@@ -253,7 +253,7 @@ AddEventHandler('anticheat:ban', function()
 		TriggerEvent("core:getPlayers", function(pl)
 			for k,v in pairs(pl) do
 				TriggerEvent("core:getPlayerFromId", k, function(user)
-					if(user.getPermissions() < 50 and k ~= source)then
+					if(user.getPermissions() >= 50 and k ~= source)then
 						TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(source).."^0 Has Been Banned")
 					end
 				end)
@@ -272,7 +272,7 @@ AddEventHandler('anticheat:kick', function()
 		TriggerEvent("core:getPlayers", function(pl)
 			for k,v in pairs(pl) do
 				TriggerEvent("core:getPlayerFromId", k, function(user)
-					if(user.getPermissions() < 50 and k ~= source)then
+					if(user.getPermissions() >= 50 and k ~= source)then
 						TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(source).."^0 Has Been Kicked")
 					end
 				end)
@@ -291,7 +291,7 @@ AddEventHandler('anticheat:warn', function()
 		TriggerEvent("core:getPlayers", function(pl)
 			for k,v in pairs(pl) do
 				TriggerEvent("core:getPlayerFromId", k, function(user)
-					if(user.getPermissions() < 50 and k ~= source)then
+					if(user.getPermissions() >= 50 and k ~= source)then
 						TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(source).."^0 has been given an illegal weapon by a modder!")
 					end
 				end)
@@ -312,7 +312,7 @@ for i, eventName in ipairs(ForbiddenEvents) do
 		TriggerEvent("core:getPlayers", function(pl)
 			for k,v in pairs(pl) do
 				TriggerEvent("core:getPlayerFromId", k, function(user)
-					if(user.getPermissions() < 50 and k ~= _source)then
+					if(user.getPermissions() >= 50 and k ~= _source)then
 						TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(_source).."^0 Has Been Banned")
 					end
 				end)
@@ -353,7 +353,7 @@ AddEventHandler("checkMyCommandList", function(givenList)
 			TriggerEvent("core:getPlayers", function(pl)
 				for k,v in pairs(pl) do
 					TriggerEvent("core:getPlayerFromId", k, function(user)
-						if(user.getPermissions() < 50 and k ~= _source)then
+						if(user.getPermissions() >= 50 and k ~= _source)then
 							TriggerClientEvent('chatMessage', k, "ANTI-CHEAT", {255, 0, 0}, GetPlayerName(_source).."^0 Has Been Banned")
 						end
 					end)
