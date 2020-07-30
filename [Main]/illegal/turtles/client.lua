@@ -114,9 +114,7 @@ Citizen.CreateThread(function()
                   TriggerEvent("inventory:addQty", find, math.random(1, 2))
                 elseif chance2 == 1 then
                   exports['NRP-notify']:DoHudText('inform', 'You found something shiny!')
-                  local shiny = {66, 128, 129}
-                  local find_shiny = shiny[math.random(1,3)]
-                  TriggerEvent("inventory:addQty", find_shiny, 1)
+                  TriggerEvent("inventory:addQty", 127, 1)
                   TriggerEvent("inventory:removeQty", 290, 1)
                 end
               else
