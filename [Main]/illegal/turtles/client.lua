@@ -17,6 +17,7 @@ turtle_zones = {
   {x = -2050.154, y = -1036.570, z = 5.883, dist = 2.0, drawmarker = true, markerdist = 50.0},
   {x = 1299.269, y = -3326.054, z = 6.003, dist = 2.0, drawmarker = true, markerdist = 50.0},
 
+
 }
 
 function AttachEntityToPed(prop,bone_ID,x,y,z,RotX,RotY,RotZ)
@@ -89,10 +90,10 @@ Citizen.CreateThread(function()
             PlayAnim(GetPlayerPed(-1),'amb@world_human_stand_fishing@idle_a','idle_c',1,0)
             poaching=true
             exports['pogressBar']:drawBar(30000, 'Poaching', function()
-              local chance = math.random(1, 6)
+              local chance = math.random(1, 7)
               if chance > 3 then
                 local police_chance = math.random(1,10)
-                if police_chance < 7 then
+                if police_chance < 6 then
                   exports['NRP-notify']:DoHudText('success', 'You caught a turtle!')
                 else
                   TriggerEvent('dispatch:poaching')
@@ -105,8 +106,7 @@ Citizen.CreateThread(function()
               elseif chance == 1 then
                 local chance2 = math.random(1, 10)
                 if chance2 >= 7 then
-                  TriggerEvent('dispatch:poaching')
-                  exports['NRP-notify']:DoHudText('error', 'You caught nothing & someone has spotted you poaching!')
+                  exports['NRP-notify']:DoHudText('error', 'You caught nothing')
                 elseif chance2 >= 2 and chance < 7 then
                   exports['NRP-notify']:DoHudText('inform', 'You found some scrap')
                   local scrap = {81, 114, 82}
@@ -149,6 +149,7 @@ end)
        if IsControlJustPressed(0, 38) then
         collecting = true
         if bait_timer <= 0 then
+          TriggerServerEvent("turtle:timer")
           TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_DRUG_DEALER", 0, true)
           FreezeEntityPosition(GetPlayerPed(-1), true)
           TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_DRUG_DEALER", 0, true)
