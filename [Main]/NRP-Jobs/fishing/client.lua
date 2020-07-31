@@ -5,7 +5,6 @@ local CFish = false
 local BarAnimation = 0
 local PosX = 0.5
 local PosY = 0.2
-local TimerAnimation = 0.2
 local blipson = false
 local catch = nil
 local Fish = {
@@ -44,7 +43,7 @@ Citizen.CreateThread(function()
               IsFishing = true
               BarAnimation = 0
             else
-              Notify("You need a fishing rod and bait to fish.")
+              exports['NRP-notify']:DoHudText('error', 'You need a fishing rod and fish bait to fish.')
             end
           end
         end
@@ -118,7 +117,7 @@ Citizen.CreateThread(function()
       SetEntityAsMissionEntity(vehicle, false, false)
       DeleteVehicle(vehicle)
       vehicle = nil
-      Notify("Your work vehicle was removed because you were too far away.")
+      exports['NRP-notify']:DoHudText('error', 'Your work vehicle was removed because you were too far away.')
     end
   end
 end)
@@ -134,75 +133,29 @@ Citizen.CreateThread(function()
    CFish = true
    IsFishing = false
   end
+
   while CFish do
    Citizen.Wait(0)
-   FishGUI()
-   if TimerAnimation <= 0 then
+   local finished = exports["skillbar"]:taskBar(2500,math.random(5,15))
+   if finished ~= 100 then
     CFish = false
-    TimerAnimation = 0.2
     ClearPedTasksImmediately(GetPlayerPed(-1))
     DeleteEntity(FishingRod)
-    print('No Time Left')
-   end
-   if IsControlJustPressed(1, 38) then
-    if BarAnimation >= SuccessLimit then
-     Wait(10)
-     CFish = false
-     TimerAnimation = 0.2
-     ClearPedTasksImmediately(GetPlayerPed(-1))
-     DeleteEntity(FishingRod)
-     SuccessLimit = SuccessLimit+0.00025
-     local chance = math.random(1,3)
-     TriggerEvent("inventory:removeQty", 289, 1)
-     if chance == 2 then 
-      Notify('You Have Successfully Caught 1x '..catch.name)
-      TriggerEvent("inventory:addQty", catch.item, 1)
-     end
-    else
-     CFish = false
-     TimerAnimation = 0.2
-     ClearPedTasksImmediately(GetPlayerPed(-1))
-     DeleteEntity(FishingRod)
-     print('Fail')
+   else
+    Wait(10)
+    CFish = false
+    ClearPedTasksImmediately(GetPlayerPed(-1))
+    DeleteEntity(FishingRod)
+    local chance = math.random(1,3)
+    TriggerEvent("inventory:removeQty", 289, 1)
+    if chance == 2 then 
+     exports['NRP-notify']:DoHudText('success', 'You have successfully caught 1x '..catch.name)
+     TriggerEvent("inventory:addQty", catch.item, 1)
     end
-   end  
+   end
   end
  end 
 end)
-
-function FishGUI()
-    DrawRect(PosX,PosY+0.030,TimerAnimation,0.008,255,255,0,255)
-    DrawRect(PosX,PosY,0.2,0.05,0,0,0,255)
-    SetTextFont(0)
-    SetTextProportional(0)
-    SetTextScale(0.32, 0.32)
-    SetTextColour(0, 255, 255, 255)
-    SetTextDropShadow(0, 0, 0, 0, 255)
-    SetTextEdge(1, 0, 0, 0, 255)
-    SetTextDropShadow()
-    SetTextOutline()
-    SetTextCentre(1)
-    SetTextEntry("STRING")
-    AddTextComponentString("~w~Press ~g~[E] ~w~to Reel")
-    DrawText(PosX, PosY-0.0125)
-    TimerAnimation = TimerAnimation - 0.00050
-    if BarAnimation >= SuccessLimit then
-        DrawRect(PosX,PosY,BarAnimation,0.05,102,255,102,150)
-    else
-        DrawRect(PosX,PosY,BarAnimation,0.05,255,51,51,150)
-    end
-    if BarAnimation <= 0 then
-        up = true
-    end
-    if BarAnimation >= PosY then
-        up = false
-    end
-    if not up then
-        BarAnimation = BarAnimation - 0.0015
-    else
-        BarAnimation = BarAnimation + 0.0015
-    end
-end
 
 function FishingBlips()
   for k,v in pairs(fishing_zones) do
