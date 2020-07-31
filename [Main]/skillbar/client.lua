@@ -4,7 +4,6 @@ local skillGap = 20
 function openGui(sentLength,taskID,namesent,chancesent,skillGapSent)
     guiEnabled = true
     SetNuiFocus(guiEnabled,false)
-    print("taskbar started")
     SendNUIMessage({runProgress = true, Length = sentLength, Task = taskID, name = namesent, chance = chancesent, skillGap = skillGapSent})
 end
 function updateGui(sentLength,taskID,namesent,chancesent,skillGapSent)
