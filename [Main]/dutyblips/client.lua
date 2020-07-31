@@ -11,15 +11,13 @@ function enableBlips(service)
   local localIdCops = {}
   local localidService = {}
   local localidName = {}
-  for id = 0, 255 do
-    if(NetworkIsPlayerActive(id)) then
-      for i,c in pairs(blips_server) do
-        if(i == GetPlayerServerId(id)) then
-          localIdCops[id] = c.id
-          localidService[id] = c.service
-          localidName[id] = c.name
-          break
-        end
+  for _, player in ipairs(GetActivePlayers()) do
+    for i,c in pairs(blips_server) do
+      if(i == GetPlayerServerId(player)) then
+        localIdCops[player] = c.id
+        localidService[player] = c.service
+        localidName[player] = c.name
+        break
       end
     end
   end

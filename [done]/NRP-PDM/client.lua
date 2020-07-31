@@ -129,9 +129,9 @@ Citizen.CreateThread(function()
   Wait(0)
   if menuOpen then
    local ped = GetPlayerPed(-1)
-   for i=0, 255, 1 do
-    if i ~= PlayerId() then
-     local otherPlayerPed = GetPlayerPed(i)
+   for _, player in ipairs(GetActivePlayers()) do
+    if player ~= PlayerId() then
+     local otherPlayerPed = GetPlayerPed(player)
      SetEntityLocallyInvisible(otherPlayerPed)
      SetEntityNoCollisionEntity(ped, otherPlayerPed, true)
     end

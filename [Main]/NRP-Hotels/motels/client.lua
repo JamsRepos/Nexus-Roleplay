@@ -369,16 +369,16 @@ Citizen.CreateThread(function()
     DisablePlayerFiring(GetPlayerPed(-1), true)
     DisableControlAction(0, 21)
     if instance.hotelid then
-      for i=0, 255, 1 do
-          local otherPlayerPed = GetPlayerPed(i)
+      for _, player in ipairs(GetActivePlayers()) do
+          local otherPlayerPed = GetPlayerPed(player)
           if otherPlayerPed ~= GetPlayerPed(-1) then
            SetEntityLocallyInvisible(otherPlayerPed)
            SetEntityNoCollisionEntity(playerPed, otherPlayerPed, true)
           end
       end
     else
-      for i=0, 255, 1 do
-          local otherPlayerPed = GetPlayerPed(i)
+      for _, player in ipairs(GetActivePlayers()) do
+          local otherPlayerPed = GetPlayerPed(player)
           if otherPlayerPed ~= GetPlayerPed(-1) then
             SetEntityLocallyInvisible(otherPlayerPed)
             SetEntityNoCollisionEntity(playerPed, otherPlayerPed, true)
@@ -396,17 +396,17 @@ function GetPlayersInArea()
   
   peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
   
-  for id = 0, 255 do
+  for _, player in ipairs(GetActivePlayers()) do
     local ped = GetPlayerPed(-1)
-    local rped = GetPlayerPed(id)
+    local rped = GetPlayerPed(player)
     
-    if (NetworkIsPlayerActive(id) and rped ~= ped) then
+    if rped ~= ped then
       local pos = GetEntityCoords(ped)
       local rpos = GetEntityCoords(rped)
       local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
       
       if (dist < 5) then
-        table.insert(pedids, GetPlayerServerId(id))
+        table.insert(pedids, GetPlayerServerId(player))
       end
     end
   end
