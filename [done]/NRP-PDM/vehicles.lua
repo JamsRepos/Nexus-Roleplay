@@ -112,6 +112,7 @@ vehicles = {
       {name = "Sandking XL", price = 100000, model = "Sandking"},
       {name = "Trophy Truck", price = 110000, model = "TrophyTruck"},
       {name = "Desert Raid", price = 150000, model = "TrophyTruck2"},
+      {name = "Street Blazer", price = 20000, model = "blazer4"},
    },
    ["SUVs"] = {
       {name = "BeeJay XL", price = 55000, model = "BJXL"},
