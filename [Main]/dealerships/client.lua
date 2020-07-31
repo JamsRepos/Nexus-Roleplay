@@ -99,8 +99,6 @@ Citizen.CreateThread(function()
           DoScreenFadeIn(500)
         end
       end
-    else
-      print("not testing")
     end
   end
 end)
