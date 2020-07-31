@@ -33,7 +33,7 @@ vehicles = {
       {name = "Bati 801RR", price = 90000, model = "Bati2"},
       {name = "Bati 801", price = 80000, model = "Bati"},
       {name = "BF400", price = 55000, model = "BF400"},
-      {name = "Street Blazer", price = 70000, model = "Blazer4"},
+      {name = "Street Blazer", price = 35000, model = "Blazer4"},
       {name = "Carbon RS", price = 65000, model = "CarbonRS"},
       {name = "Chimera", price = 65000, model = "Chimera"},
       {name = "Cliffhanger", price = 50000, model = "Cliffhanger"},
@@ -112,7 +112,6 @@ vehicles = {
       {name = "Sandking XL", price = 100000, model = "Sandking"},
       {name = "Trophy Truck", price = 110000, model = "TrophyTruck"},
       {name = "Desert Raid", price = 150000, model = "TrophyTruck2"},
-      {name = "Street Blazer", price = 20000, model = "blazer4"},
    },
    ["SUVs"] = {
       {name = "BeeJay XL", price = 55000, model = "BJXL"},

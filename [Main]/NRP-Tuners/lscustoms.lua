@@ -626,7 +626,7 @@ Citizen.CreateThread(function()
 			local ped = LocalPed()
 			if IsPedSittingInAnyVehicle(ped) then
 				local veh = GetVehiclePedIsUsing(ped)
-				if DoesEntityExist(veh) and GetPedInVehicleSeat(veh, -1) == ped and (IsThisModelACar(GetEntityModel(veh)) or IsThisModelABike(GetEntityModel(veh)))  then
+				if DoesEntityExist(veh) and GetPedInVehicleSeat(veh, -1) == ped and (IsThisModelACar(GetEntityModel(veh)) or IsThisModelABike(GetEntityModel(veh))) or IsThisModelAQuadbike(GetEntityModel(veh)) then
 					for i,pos in ipairs(garages) do
 						outside = pos.drivein	
 						if LSC_Config.oldenter then			

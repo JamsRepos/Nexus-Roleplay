@@ -20,6 +20,15 @@ turtle_zones = {
 
 }
 
+local currentPolice = 0
+local currentEMS = 0
+
+RegisterNetEvent('hud:updatepresence')
+AddEventHandler('hud:updatepresence', function(copss, emss)
+ currentPolice = copss
+ currentEMS = emss
+end)
+
 function AttachEntityToPed(prop,bone_ID,x,y,z,RotX,RotY,RotZ)
     if DoesEntityExist(FishingRod) then DeleteEntity(FishingRod) end
   BoneID = GetPedBoneIndex(GetPlayerPed(-1), bone_ID)
@@ -84,7 +93,7 @@ Citizen.CreateThread(function()
         if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.dist) then
           DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Start Poaching')
          if IsControlJustPressed(0, 38) then
-          if exports['core']:GetItemQuantity(288) >= 1 and exports['core']:GetItemQuantity(290) >= 1 then
+          if exports['core']:GetItemQuantity(288) >= 1 and exports['core']:GetItemQuantity(290) >= 1 and currentPolice >= 1 then
             FreezeEntityPosition(GetPlayerPed(-1), true)
             FishingRod = AttachEntityToPed('prop_fishing_rod_01',60309, 0,0,0, 0,0,0)
             PlayAnim(GetPlayerPed(-1),'amb@world_human_stand_fishing@idle_a','idle_c',1,0)
