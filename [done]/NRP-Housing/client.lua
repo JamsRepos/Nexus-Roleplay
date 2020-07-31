@@ -375,7 +375,7 @@ if tostring(components.plate) == tostring(user_vehicles[i].plate) and model == t
  if count <= actualslots then
    TriggerServerEvent("garage:store", components, currentHouse.id, fuel)
    SetEntityAsMissionEntity(vehicle, true, true)
-   Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+   DeleteVehicle(vehicle)
    exports['NRP-notify']:DoHudText('success', 'Vehicle Stored')
  else
   exports['NRP-notify']:DoHudText('error', 'Garage Full, You can buy more slots at the vehicle shop!')

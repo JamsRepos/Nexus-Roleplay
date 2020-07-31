@@ -342,7 +342,7 @@ function StoreVehicle()
     local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
     TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
     SetEntityAsMissionEntity(vehicle, true, true)
-    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+    DeleteVehicle(vehicle)
     exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
    else
     exports['NRP-notify']:DoHudText('error', 'Garage Full, You can buy more slots at the vehicle shop!')

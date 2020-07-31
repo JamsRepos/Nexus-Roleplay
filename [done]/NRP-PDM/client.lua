@@ -171,7 +171,7 @@ Citizen.CreateThread(function()
       menu = nil
       if demo.car ~= nil then
        SetEntityCoords(GetPlayerPed(-1), garage.garage.x, garage.garage.y, garage.garage.z-0.95)
-       Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(demo.car, false))
+       DeleteVehicle(demo.car)
       end
      end
      if IsControlJustReleased(0, 246) then
@@ -223,7 +223,7 @@ function spawnMenu(option)
   menu = option
   if demo.car ~= nil then
    SetEntityCoords(GetPlayerPed(-1), garage.garage.x, garage.garage.y, garage.garage.z)
-   Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(demo.car, false))
+   DeleteVehicle(demo.car)
    SetEntityAsNoLongerNeeded(demo.car)
    SetModelAsNoLongerNeeded(GetHashKey(demo.car))
   end
@@ -234,7 +234,7 @@ end
 function spawnCar(option, model, price)
  if vehicles[menu][currentOption] ~= nil and demo.model ~= vehicles[menu][currentOption].model then
   buyconfirmation = false
-  Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(demo.car, false))
+  DeleteVehicle(demo.car)
   SetEntityAsNoLongerNeeded(demo.car)
   SetModelAsNoLongerNeeded(GetHashKey(demo.car))
 
@@ -264,7 +264,7 @@ function spawnCar(option, model, price)
       Wait(100)
       local vehicleProps = GetVehProps(GetVehiclePedIsIn(GetPlayerPed(-1), false))
       local model = GetDisplayNameFromVehicleModel(vehicleProps.model)
-      Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(demo.car, false))
+      DeleteVehicle(demo.car)
       TriggerServerEvent('carshop:buy', vehicleProps, demo.price, model, menu, currentOption)
     else
       TriggerEvent('NRP-notify:client:SendAlert', { type = 'inform', text = "Press Enter again to confirm your purchase.", timeout=5000})

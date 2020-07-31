@@ -125,7 +125,7 @@ Citizen.CreateThread(function()
       RemoveJobBlip()
       local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
       SetEntityAsMissionEntity(vehicle, true, true)
-      Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+      DeleteVehicle(vehicle)
 
       if bunDelivery == 2 then
        TriggerServerEvent('fastfood:addstock', 2, 93, math.random(30,50))

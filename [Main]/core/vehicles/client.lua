@@ -584,7 +584,7 @@ end
 
 local vehicle_price = 0
 function CloseCreator()
-	Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(fakecar.car))
+	DeleteVehicle(fakecar.car)
 	Citizen.CreateThread(function()
 		local ped = GetPlayerPed(-1)
 		if not boughtcar then
@@ -714,7 +714,7 @@ Citizen.CreateThread(function()
 						if selected then
 							if fakecar.model ~= button.model then
 								if DoesEntityExist(fakecar.car) then
-									Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(fakecar.car))
+									DeleteVehicle(fakecar.car)
 								end
 								local pos = currentlocation.inside
 								local hash = GetHashKey(button.model)
@@ -898,7 +898,7 @@ function Back()
 		CloseCreator()
 	elseif vehshop.currentmenu == "compacts" or vehshop.currentmenu == "coupes" or vehshop.currentmenu == "sedans" or vehshop.currentmenu == "sports" or vehshop.currentmenu == "sportsclassics" or vehshop.currentmenu == "super" or vehshop.currentmenu == "muscle" or vehshop.currentmenu == "offroad" or vehshop.currentmenu == "suvs" or vehshop.currentmenu == "vans" or vehshop.currentmenu == "industrial" or vehshop.currentmenu == "cycles" or vehshop.currentmenu == "motorcycles" or vehshop.currentmenu == "toyota" or vehshop.currentmenu == "nissan" or vehshop.currentmenu == "audi" or vehshop.currentmenu == "mercedes" or vehshop.currentmenu == "bmw" or vehshop.currentmenu == "volkswagen" or vehshop.currentmenu == "vauxhall" or vehshop.currentmenu == "peugeot" or vehshop.currentmenu == "mazda" or vehshop.currentmenu == "honda" or vehshop.currentmenu == "citroen" or vehshop.currentmenu == "ford" or vehshop.currentmenu == "chevrolet" or vehshop.currentmenu == "dodge" or vehshop.currentmenu == "porsche" or vehshop.currentmenu == "ferrari" or vehshop.currentmenu == "lamborghini" or vehshop.currentmenu == "mclaren" or vehshop.currentmenu == "bugatti" or vehshop.currentmenu == "others"then
 		if DoesEntityExist(fakecar.car) then
-			Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(fakecar.car))
+			DeleteVehicle(fakecar.car)
 		end
 		fakecar = {model = '', car = nil}
 		OpenMenu(vehshop.lastmenu)

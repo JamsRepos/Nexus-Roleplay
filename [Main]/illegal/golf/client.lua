@@ -140,7 +140,7 @@ function startGolf()
 				end
 			end
 		end
-		Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(spawned_car))
+		DeleteVehicle(spawned_car)
 	end)
 end
 

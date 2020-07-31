@@ -317,7 +317,7 @@ Citizen.CreateThread(function()
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
          SetEntityAsMissionEntity(vehicle, true, true)
-         Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+         DeleteVehicle(vehicle)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          WarMenu.OpenMenu('police_garage')
@@ -339,7 +339,7 @@ Citizen.CreateThread(function()
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
          SetEntityAsMissionEntity(vehicle, true, true)
-         Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+         DeleteVehicle(vehicle)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          if  DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
@@ -365,7 +365,7 @@ Citizen.CreateThread(function()
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
          SetEntityAsMissionEntity(vehicle, true, true)
-         Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+         DeleteVehicle(vehicle)
         else
          currentgarage = {x = v.x, y = v.y, z = v.z}
          if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 34 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then

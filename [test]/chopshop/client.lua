@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
           if not v.chopped then  
            TriggerServerEvent('chopshop:scrap', id, GetVehicleNumberPlateText(vehicle))
            SetEntityAsMissionEntity(vehicle, true, true)
-           Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+           DeleteVehicle(vehicle)
            DeleteVehicle(vehicle)
            ExecuteCommand('dv')
            if ProgressBar('Chopping Vehicle', 55) then

@@ -225,13 +225,13 @@ AddEventHandler('admin:dv', function()
    local vehicle = GetVehiclePedIsIn(ped, false)
    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
    SetEntityAsMissionEntity(vehicle, true, true)
-   Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+   DeleteVehicle(vehicle)
   else
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
    if DoesEntityExist(vehicle) then 
     SetEntityAsMissionEntity(vehicle, true, true)
-    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+    DeleteVehicle(vehicle)
    else 
     exports['NRP-notify']:DoHudText('error', 'No Vehicle Near You')
    end 

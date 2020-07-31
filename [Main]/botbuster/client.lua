@@ -93,7 +93,7 @@ Citizen.CreateThread(function()
                     if GetEntityModel(veh) == vehicle then
                         if not banned then
                             SetEntityAsMissionEntity(veh, true, true)
-                            Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))
+                            DeleteVehicle(veh)
                             if not vehicle == 'baller' then
                                 banned = true
                                 TriggerServerEvent('anticheat:ban')
@@ -104,12 +104,12 @@ Citizen.CreateThread(function()
 
                 if IsPedInAnyPlane(GetPlayerPed(-1)) or IsPedInAnyHeli(GetPlayerPed(-1)) and not DecorGetBool(GetPlayerPed(-1), "isOfficer") and not DecorGetBool(GetPlayerPed(-1), "isParamedic") then
                     SetEntityAsMissionEntity(veh, true, true)
-                    Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))     
+                    DeleteVehicle(veh)
                 end
 
                 if GetVehicleNumberPlateText(veh) == 'FIVE M' or GetVehicleNumberPlateText(veh) == 'FiveM' then 
                 	SetEntityAsMissionEntity(veh, true, true)
-               		Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(veh))
+                    DeleteVehicle(veh)
                 	TriggerServerEvent('anticheat:ban')
                 end
             end 

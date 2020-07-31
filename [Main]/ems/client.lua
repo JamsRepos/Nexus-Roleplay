@@ -237,7 +237,7 @@ Citizen.CreateThread(function()
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
          SetEntityAsMissionEntity(vehicle, true, true)
-         Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+         DeleteVehicle(vehicle)
         else
          currentgarage = {x=v.x, y=v.y, z=v.z}
          WarMenu.OpenMenu('ems_garage')

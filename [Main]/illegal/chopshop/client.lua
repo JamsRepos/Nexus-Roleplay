@@ -164,7 +164,7 @@ end
 function DeleteVehicle()
   local car = GetVehiclePedIsIn(GetPlayerPed(-1), false )
   SetEntityAsMissionEntity(car, true, true)
-  Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(car))
+  DeleteVehicle(car)
 end
 
 function EnableGui(enable, txt)

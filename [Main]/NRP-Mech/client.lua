@@ -154,7 +154,7 @@ end)
 
       local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
       SetEntityAsMissionEntity(vehicle, true, true)
-      Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle))
+      DeleteVehicle(vehicle)
 
       if onCollection == 2 then
        TriggerServerEvent('fastfood:addstock', 3, 96, math.random(5,11))
