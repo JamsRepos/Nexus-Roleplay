@@ -493,9 +493,9 @@ Citizen.CreateThread(function()
    azimuthAngleDeg = azimuthAngleDeg + yMagnitude * 10;
    polarAngleDeg = polarAngleDeg + xMagnitude * 10;
    
-   for i=0, 255, 1 do
-    if i ~= PlayerId() then
-     local otherPlayerPed = GetPlayerPed(i)
+   for _, player in ipairs(GetActivePlayers()) do
+    if player ~= PlayerId() then
+     local otherPlayerPed = GetPlayerPed(player)
      SetEntityNoCollisionEntity(playerPed,  otherPlayerPed,  true)
     end
    end

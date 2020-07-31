@@ -180,10 +180,8 @@ end
 function GetPlayers()
     local players = {}
 
-    for i = 0, 255 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, i)
-        end
+    for _, player in ipairs(GetActivePlayers()) do
+      table.insert(players, player)
     end
 
     return players
@@ -361,19 +359,17 @@ function enableEMSBlips()
   blipsCops = {}
   
   local localIdCops = {}
-  for id = 0, 255 do
-    if(NetworkIsPlayerActive(id)) then
-      for i,c in pairs(allServiceEMS) do
-        if(i == GetPlayerServerId(id)) then
-          localIdCops[id] = c
-          break
-        end
+  for _, player in ipairs(GetActivePlayers()) do
+    for i,c in pairs(allServiceEMS) do
+      if(i == GetPlayerServerId(player)) then
+        localIdCops[player] = c
+        break
       end
     end
   end
   
-  for id, c in pairs(localIdCops) do
-    local ped = GetPlayerPed(id)
+  for player, c in pairs(localIdCops) do
+    local ped = GetPlayerPed(player)
     local blip = GetBlipFromEntity(ped)
     
     if not DoesBlipExist( blip ) then
@@ -387,7 +383,7 @@ function enableEMSBlips()
       SetBlipAlpha(blip, 255)
       SetBlipColour(blip, 49)
       BeginTextCommandSetBlipName("STRING")
-      AddTextComponentString('Unit ID: '..GetPlayerServerId(id))
+      AddTextComponentString('Unit ID: '..GetPlayerServerId(player))
       EndTextCommandSetBlipName(blip)
       
       table.insert(blipsCops, blip)
@@ -405,7 +401,7 @@ function enableEMSBlips()
       SetBlipAlpha(blip, 255)
       SetBlipColour(blip, 49)
       BeginTextCommandSetBlipName("STRING")
-      AddTextComponentString('Unit ID: '..GetPlayerServerId(id))
+      AddTextComponentString('Unit ID: '..GetPlayerServerId(player))
       EndTextCommandSetBlipName(blip)
       
       table.insert(blipsCops, blip)

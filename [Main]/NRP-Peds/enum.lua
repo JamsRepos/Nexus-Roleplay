@@ -46,15 +46,15 @@ local function EnumerateEntities(initFunc, moveFunc, disposeFunc)
     setmetatable(enum, entityEnumerator)
     
     local next = true
-	local player
+	local player2
     repeat
-	  player = false
-      for i = 0, 255 do
-          if (id == GetPlayerPed(i)) then
+	  player2 = false
+      for _, player in ipairs(GetActivePlayers()) do
+          if (id == GetPlayerPed(player)) then
             player = true
           end
       end
-	  if not player then
+	  if not player2 then
         coroutine.yield(id)
 	  end
       next, id = moveFunc(iter)

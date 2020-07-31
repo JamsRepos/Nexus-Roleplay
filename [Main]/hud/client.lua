@@ -249,35 +249,33 @@ local enableids = true
 local enablemarkers = true
 
 Citizen.CreateThread(function()
- AddTextEntry('FE_THDR_GTAO', 'Nexus Roleplay')
- while true do
-  Citizen.Wait(1)
-  if hud then
-   for i=0,99 do N_0x31698aa80e0223f8(i) end
-   for id = 0, 255 do
-    if (NetworkIsPlayerActive(id)) then
-     ped = GetPlayerPed(id)
-     x1, y1, z1 = table.unpack(GetEntityCoords(GetPlayerPed( -1 ), true ))
-     x2, y2, z2 = table.unpack(GetEntityCoords(GetPlayerPed( id ), true ))
-     distance = math.floor(GetDistanceBetweenCoords(x1,  y1,  z1,  x2,  y2,  z2,  true))
-     local phone = DecorGetFloat(ped, 'Phone')
-     local loggingOut = DecorGetBool(ped, 'isLoggingOut')
+  AddTextEntry('FE_THDR_GTAO', 'Nexus Roleplay')
+  while true do
+    Citizen.Wait(1)
+    if hud then
+      for i=0,99 do N_0x31698aa80e0223f8(i) end
+      for _, player in ipairs(GetActivePlayers()) do
+        ped = GetPlayerPed(player)
+        x1, y1, z1 = table.unpack(GetEntityCoords(GetPlayerPed( -1 ), true ))
+        x2, y2, z2 = table.unpack(GetEntityCoords(GetPlayerPed( player ), true ))
+        distance = math.floor(GetDistanceBetweenCoords(x1,  y1,  z1,  x2,  y2,  z2,  true))
+        local phone = DecorGetFloat(ped, 'Phone')
+        local loggingOut = DecorGetBool(ped, 'isLoggingOut')
 
-     if ((distance < 30)) and IsEntityVisible(ped) and HasEntityClearLosToEntity(PlayerPedId(), ped, 17) and enableids then
-      if loggingOut == 1 then 
-       DrawText3D(x2, y2, z2+1.2, 'Logging Out', false)
-      else
-       if NetworkIsPlayerTalking(id) then
-        DrawText3D(x2, y2, z2+1.2, GetPlayerServerId(id), true)
-       else
-        DrawText3D(x2, y2, z2+1.2, GetPlayerServerId(id), false)
-       end
+        if ((distance < 30)) and IsEntityVisible(ped) and HasEntityClearLosToEntity(PlayerPedId(), ped, 17) and enableids then
+          if loggingOut == 1 then 
+            DrawText3D(x2, y2, z2+1.2, 'Logging Out', false)
+          else
+            if NetworkIsPlayerTalking(player) then
+              DrawText3D(x2, y2, z2+1.2, GetPlayerServerId(player), true)
+            else
+              DrawText3D(x2, y2, z2+1.2, GetPlayerServerId(player), false)
+            end
+          end
+        end
       end
-     end
     end
-   end
   end
- end
 end)
 
 function DrawText3D(x,y,z, text, talking)
@@ -465,11 +463,8 @@ Citizen.CreateThread(function()
     WarMenu.Display()
    elseif WarMenu.IsMenuOpened('player_list2') then
      enableids = true 
-    for i = 0, 255 do
-     if NetworkIsPlayerActive( i ) then
-      if WarMenu.Button(GetPlayerName(i), GetPlayerServerId(i)) then
-      end
-     end
+     for _, player in ipairs(GetActivePlayers()) do
+      if WarMenu.Button(GetPlayerName(player), GetPlayerServerId(player)) then end
     end
     WarMenu.Display()
    elseif enableids then
@@ -480,10 +475,8 @@ Citizen.CreateThread(function()
      players = {} 
      WarMenu.OpenMenu('player_list')
      ExecuteCommand('me is looking into your soul')
-     for i = 0, 255 do
-      if NetworkIsPlayerActive( i ) then
-       table.insert( players, i )
-      end
+     for _, player in ipairs(GetActivePlayers()) do
+       table.insert( players, player )
      end
     else
       WarMenu.CloseMenu('player_list')

@@ -537,10 +537,8 @@ end
 function GetPlayers()
     local players = {}
 
-    for i = 0, 255 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, i)
-        end
+    for _, player in ipairs(GetActivePlayers()) do
+      table.insert(players, player)
     end
 
     return players
@@ -549,11 +547,11 @@ end
 function GetInstancedPlayers()
     local players = {}
 
-    for i = 0, 255 do
+    for _, player in ipairs(GetActivePlayers()) do
         for _,p in pairs(instance.participants) do
             instancePlayer = GetPlayerFromServerId(p)
             if i == instancePlayer then
-              table.insert(players, i)
+              table.insert(players, player)
             end
         end
     end
@@ -592,31 +590,31 @@ Citizen.CreateThread(function()
     DisablePlayerFiring(GetPlayerPed(-1), true)
     DisableControlAction(0, 21)
     if instance.houseid then
-      for i=0, 255, 1 do
+      for _, player in ipairs(GetActivePlayers()) do
         local found = false
         for _,p in pairs(instance.participants) do
           instancePlayer = GetPlayerFromServerId(p)
-          if i == instancePlayer then
+          if player == instancePlayer then
             found = true
           end
         end
         if not found then
-          local otherPlayerPed = GetPlayerPed(i)
+          local otherPlayerPed = GetPlayerPed(player)
           SetEntityLocallyInvisible(otherPlayerPed)
           SetEntityNoCollisionEntity(playerPed, otherPlayerPed, true)
         end
       end
     else
-      for i=0, 255, 1 do
+      for _, player in ipairs(GetActivePlayers()) do
         local found = false
         for _,p in pairs(instance.participants) do
          instancePlayer = GetPlayerFromServerId(p)
-         if i == instancePlayer then
+         if player == instancePlayer then
           found = true
          end
         end
         if found then
-         local otherPlayerPed = GetPlayerPed(i)
+         local otherPlayerPed = GetPlayerPed(player)
          SetEntityLocallyInvisible(otherPlayerPed)
          SetEntityNoCollisionEntity(playerPed, otherPlayerPed, true)
         end
@@ -657,17 +655,17 @@ function GetPlayersInArea()
   
   peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
   
-  for id = 0, 255 do
+  for _, player in ipairs(GetActivePlayers()) do
     local ped = GetPlayerPed(-1)
-    local rped = GetPlayerPed(id)
+    local rped = GetPlayerPed(player)
     
-    if (NetworkIsPlayerActive(id) and rped ~= ped) then
+    if rped ~= ped then
       local pos = GetEntityCoords(ped)
       local rpos = GetEntityCoords(rped)
       local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
       
       if (dist < 5) then
-        table.insert(pedids, GetPlayerServerId(id))
+        table.insert(pedids, GetPlayerServerId(player))
       end
     end
   end
@@ -681,17 +679,17 @@ function GetD8PlayersInArea()
   
   peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
   
-  for id = 0, 255 do
+  for _, player in ipairs(GetActivePlayers()) do
     local ped = GetPlayerPed(-1)
-    local rped = GetPlayerPed(id)
+    local rped = GetPlayerPed(player)
     
-    if (NetworkIsPlayerActive(id) and rped ~= ped) then
+    if rped ~= ped then
       local pos = GetEntityCoords(ped)
       local rpos = GetEntityCoords(rped)
       local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
       
       if (dist < 5 and DecorGetInt(rped, 'Faction') == 30) then
-        table.insert(pedids, GetPlayerServerId(id))
+        table.insert(pedids, GetPlayerServerId(player))
         return pedids
       end
     end
