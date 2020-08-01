@@ -171,6 +171,7 @@ Citizen.CreateThread(function()
   end
 end)
 --]]
+
 local targetInventory = nil
 local targetMoney = nil
 local targetPlayer = nil
@@ -179,7 +180,7 @@ Citizen.CreateThread(function()
  while true do
   Wait(0)
   if xzurv then
-   if IsControlJustPressed(0, 311) and not IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+   if IsControlJustPressed(0, 311) and not IsPedInAnyVehicle(GetPlayerPed(-1), false) and not DecorGetBool(GetPlayerPed(-1), "Handsup") then
     local t, distance = GetClosestPlayer()
     if(distance ~= -1 and distance < 2) then  
         currentTarget = nil
@@ -187,8 +188,13 @@ Citizen.CreateThread(function()
         currentTarget = t
        if DecorGetBool(GetPlayerPed(t), "Handsup") == 1 then
         if currentPolice >= 2 then
-            TriggerServerEvent('rob:getPlayerInventory', GetPlayerServerId(t))
-            ExecuteCommand('me searching someones pockets')
+            local pedids = GetPlayersInArea()
+            if (pedids and #pedids > 1) then
+                exports['NRP-notify']:DoHudText('error', 'Another player near, tell them to move back.')
+            else
+                TriggerServerEvent('rob:getPlayerInventory', GetPlayerServerId(t))
+                ExecuteCommand('me searching someones pockets')
+            end
         else
             exports['NRP-notify']:DoHudText('inform',  "Not Enough Police In Town")
         end
@@ -204,23 +210,27 @@ Citizen.CreateThread(function()
     while true do
         Wait(0)
         if xzurv then
-            if IsControlJustPressed(0, 51) and not IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+            if IsControlJustPressed(0, 51) and not IsPedInAnyVehicle(GetPlayerPed(-1), false) and not DecorGetBool(GetPlayerPed(-1), "Handsup") then
                 local t, distance = GetClosestPlayer()
                 if(distance ~= -1 and distance < 2) then
-                    currentTarget = nil
-                    Wait(10)
-                    currentTarget = t
                    if DecorGetBool(GetPlayerPed(t), "Handsup") == 1 then
-                    if currentPolice >= 2 then
-                        TriggerServerEvent('rob:getPlayerCash', GetPlayerServerId(t))
-                        ExecuteCommand('me searching someones wallet')
-                    else
-                        exports['NRP-notify']:DoHudText('inform',  "Not Enough Police In Town")
-                    end
+                        if currentPolice >= 0 then
+                            local pedids = GetPlayersInArea()
+                            if (pedids and #pedids > 1) then
+                                exports['NRP-notify']:DoHudText('error', 'Another player near, tell them to move back.')
+                            else
+                                TriggerServerEvent('rob:getPlayerCash', GetPlayerServerId(t))
+                                ExecuteCommand('me searching someones wallet')
+                            end
+                        else
+                            exports['NRP-notify']:DoHudText('inform',  "Not Enough Police In Town")
+                        end
                    end
                 end
                end
                if WarMenu.IsMenuOpened('rob') then
+                local t, distance = GetClosestPlayer()
+                if (distance ~= -1 and distance > 2) then WarMenu.CloseMenu('rob') end
                 local inventory = targetInventory
                 if WarMenu.Button('Money: ~g~$'..targetMoney) then 
                  takeMoney(targetMoney)
@@ -343,6 +353,29 @@ function takedirtyMoney(cash)
      end
     end
 end
+
+function GetPlayersInArea()
+    local peds
+    local pedids = {}
+    
+    peds = GetPedNearbyPeds(GetPlayerPed(-1), -1)
+    
+    for _, player in ipairs(GetActivePlayers()) do
+      local ped = GetPlayerPed(-1)
+      local rped = GetPlayerPed(player)
+      
+      if rped ~= ped then
+        local pos = GetEntityCoords(ped)
+        local rpos = GetEntityCoords(rped)
+        local dist = Vdist(pos.x, pos.y, pos.z, rpos.x, rpos.y, rpos.z)
+        
+        if (dist < 3) then
+          table.insert(pedids, GetPlayerServerId(player))
+        end
+      end
+    end
+    return pedids
+  end
 
 --[[RegisterCommand('robcash', function(source, args, rawCommand)
     WarMenu.CreateLongMenu('rob', 'Robbing') 

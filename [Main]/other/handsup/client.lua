@@ -47,11 +47,11 @@ Citizen.CreateThread(function()
 						if not handsup then
 							handsup = true
 							TaskPlayAnim(lPed, "random@mugging3", "handsup_standing_base", 3.0, 2.5, -1, 49, 0, 0, 0, 0)
-              				DecorSetBool(GetPlayerPed(-1), "Handsup", true)
+							  DecorSetBool(GetPlayerPed(-1), "Handsup", true)
 						end   
 					end)
 				end
-		      end	
+		      end
 			end
 		end
 		if IsControlReleased(1, 73) then	
@@ -65,7 +65,8 @@ Citizen.CreateThread(function()
 					if handsup then
 						handsup = false
 						ClearPedSecondaryTask(lPed)
-           				DecorSetBool(GetPlayerPed(-1), "Handsup", false)
+						DecorSetBool(GetPlayerPed(-1), "Handsup", false)
+						DecorSetBool(GetPlayerPed(-1), "BeingRobbed", false)
 					end
 				end)
 			end
