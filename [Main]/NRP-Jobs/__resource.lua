@@ -19,6 +19,7 @@ server_script 'lumberjack/server.lua'
 
 -- Fishing 
 client_script 'fishing/client.lua'
+server_script 'fishing/server.lua'
 
 -- trucking
 client_script 'trucking/trucking.lua'

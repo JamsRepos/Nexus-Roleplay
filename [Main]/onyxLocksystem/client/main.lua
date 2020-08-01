@@ -214,7 +214,7 @@ Citizen.CreateThread(function()
                         else
                             exports['NRP-notify']:DoHudText('error', 'You do not have a lockpick.')
                         end
-                    end
+                    end 
                 else
                     --SetVehicleEngineOn(veh, true, true, false)
                 end
