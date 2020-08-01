@@ -28,6 +28,7 @@ local fishing_zones = {
 Citizen.CreateThread(function()
   WarMenu.CreateMenu('fisherman_boss', 'Fisherman')
   while true do
+    local inveh = IsPedInAnyVehicle(GetPlayerPed(-1), false)
     Citizen.Wait(0)
     if DecorGetInt(GetPlayerPed(-1), "Job") == 5 and not blipson then FishingBlips() blipson = true end
 
@@ -51,7 +52,8 @@ Citizen.CreateThread(function()
     end
 
     -- Fishing | Sell Point
-    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 50) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 then
+    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 50) and DecorGetInt(GetPlayerPed(-1), "Job") == 5 and not inveh then
+      
       DrawMarker(25, -245.244,-354.201, 29.985-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0)
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 2.0) then
         DrawText3Ds(-245.244,-354.201, 29.985,'~g~[E]~w~ Sell Fish')
