@@ -632,6 +632,11 @@ LSC_Config.prices = {
 		{name = "Stock Lights", mod = 0, price = 0},
 		{name = "Xenon Lights", mod = 1000, price = 75},
 	},
+
+	[50] = {
+		startprice = 75,
+		increaseby = 25
+	},
 	
 ----------Turbo---------
 	[18] = {
