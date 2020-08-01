@@ -55,10 +55,25 @@ Citizen.CreateThread(function()
       DrawMarker(25, -245.244,-354.201, 29.985-0.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 3.0, 50, 102, 255, 200, 0, 0, 2, 0, 0, 0, 0)
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -245.244,-354.201, 29.985, true) < 2.0) then
         DrawText3Ds(-245.244,-354.201, 29.985,'~g~[E]~w~ Sell Fish')
-        if IsControlJustPressed(0, 38) then
-          SuccessLimit = 0.175
-          TriggerEvent("inventory:sellFish")
-        end
+          if IsControlJustPressed(0, 38) then
+            SuccessLimit = 0.175
+            local catfish = (exports['core']:GetItemQuantity(3))--*100
+            local cod = (exports['core']:GetItemQuantity(4))--*100
+            local salmon = (exports['core']:GetItemQuantity(5))--*200
+  
+            TriggerEvent("inventory:removeQty", 3, catfish)
+            TriggerEvent("inventory:removeQty", 4, cod)
+            TriggerEvent("inventory:removeQty", 5, salmon)
+            local fishcount = catfish+cod+salmon
+            local payout = catfish*100+cod*120+salmon*200
+            print(payout)
+            if payout > 0 then
+              TriggerServerEvent("fishing:sellfish", payout)
+              exports['NRP-notify']:DoHudText('success', 'You have sold '..fishcount..' fish for $'..payout)
+            else
+              exports['NRP-notify']:DoHudText('error', 'You do not have any fish to sell.')
+            end
+          end
       end
     end
 
