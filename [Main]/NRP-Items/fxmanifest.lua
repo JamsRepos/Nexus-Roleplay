@@ -2,11 +2,11 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'NRP-GoPro'
+description 'NRP-Items'
 
-client_scripts {
-	'client.lua'
-}
+client_script 'client.lua'
+
+server_script 'server.lua'
 
 ui_page {
 	'html/index.html',
