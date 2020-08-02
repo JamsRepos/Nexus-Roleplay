@@ -89,6 +89,9 @@ RegisterCommand("strap", function()
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATMG'), GetHashKey('COMPONENT_COMBATMG_VARMOD_LOWRIDER'))
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_SNIPERRIFLE'), GetHashKey('COMPONENT_SNIPERRIFLE_VARMOD_LUXE'))
 		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_MARKSMANRIFLE'), GetHashKey('COMPONENT_MARKSMANRIFLE_VARMOD_LUXE'))
+
+		GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYREVOLVER'), GetHashKey('COMPONENT_REVOLVER_VARMOD_BOSS'))
+		
 		exports['NRP-notify']:DoHudText('inform',  "You have Pimped your strap.")
 	else
 		exports['NRP-notify']:DoHudText('inform',  "You don't have a Trim Kit.")
