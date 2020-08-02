@@ -28,6 +28,7 @@ local repairprice = {
   [10] = 15, --Industrial
   [11] = 15, --Utility
   [12] = 15, --Vans
+  [13] = 5, --Bikes
   [17] = 15, --Service
   [18] = 15, --Emergency
   [20] = 15, --Commercial
@@ -250,7 +251,8 @@ Citizen.CreateThread(function()
       local enginedamage = 0
       damage = (maxvehhp - GetVehicleBodyHealth(veh))/100
       enginedamage = (maxvehhp - GetVehicleEngineHealth(veh))
-     DrawText3Ds(v.x, v.y, v.z+0.35,'~g~[ENTER]~w~ Store Vehicle\n~g~Repair Costs: ~w~$'..round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0))
+      local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
+     DrawText3Ds(v.x, v.y, v.z+0.35,'~g~[ENTER]~w~ Store Vehicle\n~g~Repair Costs: ~w~$'..price)
      if IsControlJustPressed(0, 176) then
       currentgarage = garages[k]
       SetVehicleForwardSpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false), 0)
