@@ -225,6 +225,7 @@ AddEventHandler('admin:dv', function()
   if IsPedSittingInAnyVehicle(ped) then 
    local vehicle = GetVehiclePedIsIn(ped, false)
    SetEntityAsMissionEntity(vehicle, true, true)
+   TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
    DeleteVehicle(vehicle)
   else
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
