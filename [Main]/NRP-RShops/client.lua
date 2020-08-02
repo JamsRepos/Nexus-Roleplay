@@ -155,61 +155,49 @@ function robNpc(targetPed)
   robbingNPC = true
   TaskPlayAnim(targetPed, "random@mugging3", "handsup_standing_base", 8.0, -8, -1, 12, 1, 0, 0, 0)
 
-  TriggerEvent("mythic_progbar:client:progress", {
-    name = "holdupcivilian",
-    duration = 10000,
-    label = "Holding Up Civilian",
-    useWhileDead = false,
-    canCancel = true,
-    controlDisables = {
-        disableMovement = false,
-        disableCarMovement = false,
-        disableMouse = false,
-        disableCombat = false,
-    },
-    }, function(status)
-        if not status then
-          local random = math.random(1,8) 
-          if random == 1 then    
-           exports['NRP-notify']:DoHudText('inform', 'You Got Nothing')
-          elseif random == 2 then
-           exports['NRP-notify']:DoHudText('inform', 'You Stole Some Cigarettes & A Lighter')
-           TriggerEvent("inventory:addQty", 15, 5)
-           TriggerEvent("inventory:addQty", 146, 1)
-          elseif random == 3 then    
-           local cunt = math.random(30,120)
-           exports['NRP-notify']:DoHudText('inform', "You Found $"..cunt.." In Their Pockets")
-           TriggerServerEvent('jobs:paytheplayer', cunt, 'Robbery: Civillian Pockets')
-          elseif random == 4 then
-           exports['NRP-notify']:DoHudText('inform', 'You Got An Empty Wallet')
-          elseif random == 5 then
-           exports['NRP-notify']:DoHudText('inform', 'You Suck At This, Empty Handed')
-          elseif random == 6 then
-           exports['NRP-notify']:DoHudText('inform', 'You Stole 2 Cans Of Redbull')
-           TriggerEvent("inventory:addQty", 26, 2)
-          elseif random == 7 then
-           exports['NRP-notify']:DoHudText('inform', 'You Stole A Lighter')
-           TriggerEvent("inventory:addQty", 146, 1)
-           elseif random == 8 then
-           exports['NRP-notify']:DoHudText('inform', 'You Stole A Phone')
-           TriggerEvent("inventory:addQty", 271, 1)
-          end
-         Citizen.CreateThread(function()
-           RequestAnimDict('random@mugging3')
-           while not HasAnimDictLoaded('random@mugging3') do
-            Citizen.Wait(100)
-           end
-       
-          if math.random(1,10) > 5 then TriggerEvent("dispatch:robbery") end
-           SetPedFleeAttributes(targetPed, 0, 0)
-           ClearPedTasks(targetPed)
-           --TriggerServerEvent('addReputation', 2)
-           Wait(120000)
-           robbedRecently = false
-           robbingNPC = false
-        end)
+  exports['pogressBar']:drawBar(10000, 'Holding Up Civilian', function(status)
+      if not status then
+        local random = math.random(1,8) 
+        if random == 1 then    
+         exports['NRP-notify']:DoHudText('inform', 'You Got Nothing')
+        elseif random == 2 then
+         exports['NRP-notify']:DoHudText('inform', 'You Stole Some Cigarettes & A Lighter')
+         TriggerEvent("inventory:addQty", 15, 5)
+         TriggerEvent("inventory:addQty", 146, 1)
+        elseif random == 3 then    
+         local cunt = math.random(30,120)
+         exports['NRP-notify']:DoHudText('inform', "You Found $"..cunt.." In Their Pockets")
+         TriggerServerEvent('jobs:paytheplayer', cunt, 'Robbery: Civillian Pockets')
+        elseif random == 4 then
+         exports['NRP-notify']:DoHudText('inform', 'You Got An Empty Wallet')
+        elseif random == 5 then
+         exports['NRP-notify']:DoHudText('inform', 'You Suck At This, Empty Handed')
+        elseif random == 6 then
+         exports['NRP-notify']:DoHudText('inform', 'You Stole 2 Cans Of Redbull')
+         TriggerEvent("inventory:addQty", 26, 2)
+        elseif random == 7 then
+         exports['NRP-notify']:DoHudText('inform', 'You Stole A Lighter')
+         TriggerEvent("inventory:addQty", 146, 1)
+         elseif random == 8 then
+         exports['NRP-notify']:DoHudText('inform', 'You Stole A Phone')
+         TriggerEvent("inventory:addQty", 271, 1)
         end
-    end)
+       Citizen.CreateThread(function()
+         RequestAnimDict('random@mugging3')
+         while not HasAnimDictLoaded('random@mugging3') do
+          Citizen.Wait(100)
+         end
+     
+        if math.random(1,10) > 5 then TriggerEvent("dispatch:robbery") end
+         SetPedFleeAttributes(targetPed, 0, 0)
+         ClearPedTasks(targetPed)
+         --TriggerServerEvent('addReputation', 2)
+         Wait(120000)
+         robbedRecently = false
+         robbingNPC = false
+      end)
+      end
+  end)
 end
 
 
