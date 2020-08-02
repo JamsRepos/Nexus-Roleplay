@@ -343,6 +343,7 @@ function StoreVehicle()
     TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
     if DoesEntityExist(vehicle) then 
       SetEntityAsMissionEntity(vehicle, true, true)
+      TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
       DeleteVehicle(vehicle)
       exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
     else
@@ -383,7 +384,7 @@ function SpawnVehicle(data)
  TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
  SetVehicleEngineOn(vehicle, true)
  TriggerServerEvent("garage:out", data)
- 
+ TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
  Citizen.Wait(800)
  netid = NetworkGetNetworkIdFromEntity(vehicle)

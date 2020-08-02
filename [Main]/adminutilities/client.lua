@@ -28,8 +28,9 @@ AddEventHandler('admin:spawnVehicle', function(v)
   SetVehicleEngineOn(veh, true)
   DecorRegister("_Fuel_Level", 3);
   DecorRegister("_Max_Fuel_Level", 3);
-  DecorSetInt(vehicle, "_Max_Fuel_Level", 100000)
-  DecorSetInt(vehicle, "_Fuel_Level", 100000)
+  DecorSetInt(veh, "_Max_Fuel_Level", 100000)
+  DecorSetInt(veh, "_Fuel_Level", 100000)
+  TriggerEvent('persistent-vehicles/register-vehicle', veh)
   exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(veh))
  end
 end)
@@ -223,7 +224,6 @@ AddEventHandler('admin:dv', function()
   local pos = GetEntityCoords(ped)
   if IsPedSittingInAnyVehicle(ped) then 
    local vehicle = GetVehiclePedIsIn(ped, false)
-   TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
    SetEntityAsMissionEntity(vehicle, true, true)
    DeleteVehicle(vehicle)
   else
@@ -231,6 +231,7 @@ AddEventHandler('admin:dv', function()
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
    if DoesEntityExist(vehicle) then 
     SetEntityAsMissionEntity(vehicle, true, true)
+    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
     DeleteVehicle(vehicle)
    else 
     exports['NRP-notify']:DoHudText('error', 'No Vehicle Near You')
