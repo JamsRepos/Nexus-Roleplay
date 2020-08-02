@@ -371,7 +371,7 @@ function SpawnVehicle(data)
   DecorSetInt(vehicle, "_Fuel_Level", data.fuel)
  end
  SetVehicleProperties(vehicle, data.components)
- SetEntityAsMissionEntity(vehicle, true, false)
+ SetEntityAsMissionEntity(vehicle, true, true)
  SetVehicleHasBeenOwnedByPlayer(vehicle, true)
  SetVehicleNeedsToBeHotwired(vehicle, false)
  SetModelAsNoLongerNeeded(data.components.model)
@@ -381,6 +381,10 @@ function SpawnVehicle(data)
  TriggerServerEvent("garage:out", data)
  
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+ Citizen.Wait(800)
+ netid = NetworkGetNetworkIdFromEntity(vehicle)
+ SetNetworkIdCanMigrate(netid, true)
+ NetworkRegisterEntityAsNetworked(VehToNet(vehicle))
 end
 
 function addGarageBlips()
@@ -525,9 +529,7 @@ RegisterNetEvent('vehstore:delete')
 AddEventHandler('vehstore:delete', function()
  local ped = GetPlayerPed(-1)
  local vehicle = GetVehiclePedIsIn(ped, false)
- SetEntityAsMissionEntity(vehicle, true, true)
- DeleteVehicle(vehicle)
- DeleteEntity(vehicle)
+ if DoesEntityExist(vehicle) then DeleteEntity(vehicle) end
 end)
 
 function SetVehicleProperties(vehicle, props)
