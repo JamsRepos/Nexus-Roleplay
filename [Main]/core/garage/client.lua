@@ -341,9 +341,13 @@ function StoreVehicle()
     enginedamage = (maxvehhp - GetVehicleEngineHealth(vehicle))
     local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
     TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
-    SetEntityAsNoLongerNeeded(vehicle)
-    DeleteVehicle(vehicle)
-    exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
+    if DoesEntityExist(vehicle) then 
+      SetEntityAsMissionEntity(vehicle, true, true)
+      DeleteVehicle(vehicle)
+      exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
+    else
+      exports['NRP-notify']:DoHudText('error', 'You are not near a vehicle.')
+    end
    else
     exports['NRP-notify']:DoHudText('error', 'Garage Full, You can buy more slots at the vehicle shop!')
    end
