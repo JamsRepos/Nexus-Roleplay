@@ -1,0 +1,6 @@
+RegisterServerEvent('item:blindfold:victim')
+AddEventHandler('item:blindfold:victim', function(target)
+    local source = tonumber(source)
+    local target = tonumber(target)
+    TriggerClientEvent("items:blindfold:toggle", target)
+end)

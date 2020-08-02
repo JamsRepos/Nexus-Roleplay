@@ -294,6 +294,8 @@ function use(item, meta)
        elseif item == 61 then 
         removeQty(item,1)
         TriggerEvent('illness:cureChlam')
+       elseif item == 76 then 
+        TriggerEvent('items:blindfold')
        --elseif item == 74 then
        elseif item == 85 then
         removeQty(item,1)
