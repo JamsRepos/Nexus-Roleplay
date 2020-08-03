@@ -724,7 +724,18 @@ Citizen.CreateThread(function()
  while true do
  Wait(5)
   if oxygenTank then
-   drawUI(0.514, 1.376, 1.0, 1.0, 0.42, "~o~OXYGEN LEVEL: ~w~"..oxygenCapacity, 255, 255, 255, 255, false)
+   drawUI(0.514, 1.251, 1.0, 1.0, 0.42, "~o~OXYGEN LEVEL: ~w~"..oxygenCapacity, 255, 255, 255, 255, false)
+   drawUI(0.514, 1.276, 1.0, 1.0, 0.42, "~o~Press ~w~[~o~Y~w~] ~o~to take off", 255, 255, 255, 255, false)
+   if IsControlJustPressed(0,246) then
+	oxygenTank = false
+	SetPedDiesInWater(GetPlayerPed(-1), true)
+	DeleteObject(tank)
+	DeleteObject(mask)
+	ClearPedSecondaryTask(GetPlayerPed(-1))
+	if oxygenCapacity == 100 then 
+		TriggerEvent("inventory:addQty", 41, 1)
+	end
+  end
   end
  end    
 end)
@@ -732,7 +743,7 @@ end)
 Citizen.CreateThread(function()
  while true do
   Wait(2500)
-  if oxygenTank then 
+  if oxygenTank and IsPedSwimmingUnderWater(GetPlayerPed(-1)) then 
    oxygenCapacity = oxygenCapacity-1
    if oxygenCapacity == 1 then 
     oxygenTank = false 
