@@ -1635,11 +1635,11 @@ DP.PropEmotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
-   ["cup"] = {"amb@world_human_drinking@coffee@male@idle_a", "idle_c", "Cup", AnimationOptions =
+   ["cup"] = {"mp_player_inteat@burger", "mp_player_int_eat_burger", "Cup", AnimationOptions =
    {
        Prop = 'prop_plastic_cup_02',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       PropBone = 18905,
+       PropPlacement = {0.15, 0.03, 0.03, -120.0, 0.0, -10.0},
        EmoteLoop = true,
        EmoteMoving = true,
    }},
@@ -1667,11 +1667,11 @@ DP.PropEmotes = {
        EmoteMoving = true,
        EmoteDuration = 4500
    }},
-   ["soda"] = {"amb@world_human_drinking@coffee@male@idle_a", "idle_c", "Soda", AnimationOptions =
+   ["soda"] = {"mp_player_inteat@burger", "mp_player_int_eat_burger", "Soda", AnimationOptions =
    {
        Prop = 'prop_ecola_can',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 130.0},
+       PropBone = 18905,
+       PropPlacement = {0.15, 0.03, 0.03, -120.0, 0.0, -10.0},
        EmoteLoop = true,
        EmoteMoving = true,
    }},
