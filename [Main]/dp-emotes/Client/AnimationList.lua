@@ -1850,4 +1850,15 @@ DP.PropEmotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
+   ["fishing"] = {"amb@world_human_stand_fishing@idle_a", "idle_c", "Fishing", AnimationOptions =
+   {
+       Prop = 'prop_fishing_rod_01',
+       PropBone = 36029,
+       PropPlacement = {0.08, -0.06, 0.125, -120.0, -50.0, 20.0},
+       -- EmoteLoop is used for emotes that should loop, its as simple as that.
+       -- Then EmoteMoving is used for emotes that should only play on the upperbody.
+       -- The code then checks both values and sets the MovementType to the correct one
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
 }

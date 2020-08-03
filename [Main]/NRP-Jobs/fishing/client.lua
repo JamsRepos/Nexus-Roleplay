@@ -7,6 +7,8 @@ local PosX = 0.5
 local PosY = 0.2
 local blipson = false
 local catch = nil
+local isInAnimation = false
+
 local Fish = {
  [1] = {name = 'Catfish', price = 100, item = 3},
  [2] = {name = 'Catfish', price = 100, item = 3},
@@ -143,12 +145,10 @@ Citizen.CreateThread(function()
  while true do
   Citizen.Wait(0)
   while IsFishing do
-   local time = 4*3000
-   TaskStandStill(GetPlayerPed(-1), time+7000)
-   FishingRod = AttachEntityToPed('prop_fishing_rod_01',60309, 0,0,0, 0,0,0)
-   PlayAnim(GetPlayerPed(-1),'amb@world_human_stand_fishing@idle_a','idle_c',1,0)
+   ExecuteCommand("e fishing")
    CFish = true
    IsFishing = false
+   isInAnimation = false
   end
 
   while CFish do
@@ -156,13 +156,13 @@ Citizen.CreateThread(function()
    local finished = exports["skillbar"]:taskBar(2500,math.random(5,15))
    if finished ~= 100 then
     CFish = false
-    ClearPedTasksImmediately(GetPlayerPed(-1))
-    DeleteEntity(FishingRod)
+    isInAnimation = false
+    ExecuteCommand("e c")
    else
     Wait(10)
     CFish = false
-    ClearPedTasksImmediately(GetPlayerPed(-1))
-    DeleteEntity(FishingRod)
+    isInAnimation = false
+    ExecuteCommand("e c")
     local chance = math.random(1,3)
     TriggerEvent("inventory:removeQty", 289, 1)
     if chance == 2 then 
@@ -197,29 +197,19 @@ function FishingBlips()
   AddTextComponentString("Fish Sell Point")
   EndTextCommandSetBlipName(blip2)
 end
-
-function AttachEntityToPed(prop,bone_ID,x,y,z,RotX,RotY,RotZ)
-    if DoesEntityExist(FishingRod) then DeleteEntity(FishingRod) end
-  BoneID = GetPedBoneIndex(GetPlayerPed(-1), bone_ID)
-  obj = CreateObject(GetHashKey(prop),  1729.73,  6403.90,  34.56,  true,  true,  true)
-  AttachEntityToEntity(obj, GetPlayerPed(-1), BoneID, x,y,z, RotX,RotY,RotZ,  false, false, false, false, 2, true)
-  return obj
-end
-
-function PlayAnim(ped,base,sub,nr,time) 
-  Citizen.CreateThread(function() 
-    RequestAnimDict(base) 
-    while not HasAnimDictLoaded(base) do 
-      Citizen.Wait(1) 
-    end
-    if IsEntityPlayingAnim(ped, base, sub, 3) then
-      ClearPedSecondaryTask(ped) 
-    else 
-      for i = 1,nr do 
-        TaskPlayAnim(ped, base, sub, 4.0, -1, -1, 50, 0, false, false, false)
-        Citizen.Wait(time) 
-      end 
-    end 
-  end) 
-end
  
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1)
+    if isInAnimation then
+      DisableControlAction(0, 245, true) -- T
+      DisableControlAction(0, 73, true) -- X
+      DisableControlAction(0, 168, true) -- F7
+      DisableControlAction(0, 37, true) -- TAB
+      DisableControlAction(0, 24, true) -- Attack
+      DisableControlAction(0, 257, true) -- Attack 2
+      DisableControlAction(0, 25, true) -- Aim
+      DisableControlAction(0, 263, true) -- Melee Attack 1
+    end
+  end
+end)
