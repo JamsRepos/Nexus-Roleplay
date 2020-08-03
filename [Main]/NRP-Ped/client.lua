@@ -868,18 +868,6 @@ AddEventHandler('carwash:washing', function()
     end)
 end)
 --------Commands
-local autodrive = false
-RegisterCommand("autodrive", function(source, args, rawCommand)
- autodrive = not autodrive
- if autodrive then
-  dx, dy, dz = table.unpack(Citizen.InvokeNative(0xFA7C7F0AADF25D09, GetFirstBlipInfoId(8), Citizen.ResultAsVector()))
-  TaskVehicleDriveToCoordLongrange(GetPlayerPed(-1), GetVehiclePedIsIn(GetPlayerPed(-1), false), dx, dy, z, 25.0, 411, 30.0)
-  exports['NRP-notify']:DoHudText('success', 'AutoDrive')
- else
-  ClearPedTasks(GetPlayerPed(-1))
-  exports['NRP-notify']:DoHudText('error', 'AutoDrive: OFF!')
- end
-end, false) 
 
 RegisterCommand("helmet2", function(source, args, raw)                         
   if args[1] == '1' then

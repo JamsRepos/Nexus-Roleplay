@@ -1635,11 +1635,11 @@ DP.PropEmotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
-   ["cup"] = {"amb@world_human_drinking@coffee@male@idle_a", "idle_c", "Cup", AnimationOptions =
+   ["cup"] = {"mp_player_inteat@burger", "mp_player_int_eat_burger", "Cup", AnimationOptions =
    {
        Prop = 'prop_plastic_cup_02',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       PropBone = 18905,
+       PropPlacement = {0.15, 0.03, 0.03, -120.0, 0.0, -10.0},
        EmoteLoop = true,
        EmoteMoving = true,
    }},
@@ -1667,11 +1667,11 @@ DP.PropEmotes = {
        EmoteMoving = true,
        EmoteDuration = 4500
    }},
-   ["soda"] = {"amb@world_human_drinking@coffee@male@idle_a", "idle_c", "Soda", AnimationOptions =
+   ["soda"] = {"mp_player_inteat@burger", "mp_player_int_eat_burger", "Soda", AnimationOptions =
    {
        Prop = 'prop_ecola_can',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 130.0},
+       PropBone = 18905,
+       PropPlacement = {0.15, 0.03, 0.03, -120.0, 0.0, -10.0},
        EmoteLoop = true,
        EmoteMoving = true,
    }},
@@ -1760,6 +1760,22 @@ DP.PropEmotes = {
        Prop = 'prop_novel_01',
        PropBone = 6286,
        PropPlacement = {0.15, 0.03, -0.065, 0.0, 180.0, 90.0}, -- This positioning isnt too great, was to much of a hassle
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["cellphone"] = {"cellphone@", "cellphone_text_read_base", "Cellphone", AnimationOptions =
+   {
+       Prop = 'prop_amb_phone',
+       PropBone = 57005,
+       PropPlacement = {0.10, 0.0, -0.015, 87.0, -10.0, 90.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["cellphone-call"] = {"cellphone@first_person", "cellphone_call_listen_base", "Cellphone Call", AnimationOptions =
+   {
+       Prop = 'prop_amb_phone',
+       PropBone = 57005,
+       PropPlacement = {0.10, 0.0, -0.015, 87.0, -10.0, 90.0},
        EmoteMoving = true,
        EmoteLoop = true
    }},
@@ -1854,7 +1870,7 @@ DP.PropEmotes = {
    {
        Prop = 'prop_fishing_rod_01',
        PropBone = 36029,
-       PropPlacement = {0.08, -0.06, 0.125, -120.0, -50.0, 20.0},
+       PropPlacement = {0.13, 0.15, 0.0, -100.0, 0.0, -20.0},
        -- EmoteLoop is used for emotes that should loop, its as simple as that.
        -- Then EmoteMoving is used for emotes that should only play on the upperbody.
        -- The code then checks both values and sets the MovementType to the correct one

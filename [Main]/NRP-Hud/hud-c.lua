@@ -288,96 +288,53 @@ end
 
 RegisterNetEvent('food:coffee')
 AddEventHandler('food:coffee', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  prop = CreateObject(GetHashKey('p_ing_coffeecup_01'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.13, 0.003, 0.019, 301.0, 112.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_intdrink')
-  while not HasAnimDictLoaded('mp_player_intdrink') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
-  TaskPlayAnim(ped, 'mp_player_intdrink', 'loop_bottle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
+  ExecuteCommand('e cup')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
   Wait(2000)
   thirst = 100
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst)
  end)
 end)
 
 RegisterNetEvent('food:eCola')
 AddEventHandler('food:eCola', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  prop = CreateObject(GetHashKey('ng_proc_sodacan_01a'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.08, -0.070, 0.040, 301.0, 112.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_intdrink')
-  while not HasAnimDictLoaded('mp_player_intdrink') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
-  TaskPlayAnim(ped, 'mp_player_intdrink', 'loop_bottle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
+  ExecuteCommand('e soda')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
   Wait(2000)
   thirst = 100
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst)
  end)
 end)
 
 RegisterNetEvent('food:sprunk')
 AddEventHandler('food:sprunk', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  prop = CreateObject(GetHashKey('ng_proc_sodacan_01b'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.08, -0.070, 0.040, 301.0, 112.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_intdrink')
-  while not HasAnimDictLoaded('mp_player_intdrink') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
-  TaskPlayAnim(ped, 'mp_player_intdrink', 'loop_bottle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
+  ExecuteCommand('e soda')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
   Wait(2000)
   thirst = 100
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst)
  end)
 end)
 
 RegisterNetEvent('food:donut')
 AddEventHandler('food:donut', function()
- local donutprop = nil
- local donutrnd = math.random(1,2)
- if donutrnd == 1 then
-  donutprop = 'prop_donut_01'
- elseif donutrnd == 2 then
-  donutprop = 'prop_donut_02'
- end
-
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  local prop = CreateObject(GetHashKey(donutprop), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_inteat@burger')
-  while not HasAnimDictLoaded('mp_player_inteat@burger') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
-  TaskPlayAnim(ped, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
+  ExecuteCommand('e donut')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
   Wait(2500)
   local newHunger = 0
   Wait(10)
@@ -387,27 +344,18 @@ AddEventHandler('food:donut', function()
     newHunger = hunger+20
   end
   hunger = newHunger
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst)
   end)
 end)
 
 RegisterNetEvent('food:cheeseburger')
 AddEventHandler('food:cheeseburger', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  local prop = CreateObject(GetHashKey('prop_cs_burger_01'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_inteat@burger')
-  while not HasAnimDictLoaded('mp_player_inteat@burger') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
-  TaskPlayAnim(ped, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
+  ExecuteCommand('e burger')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
   Wait(2500)
   if hunger+80 >= 100 then
     newHunger = 100
@@ -415,27 +363,18 @@ AddEventHandler('food:cheeseburger', function()
     newHunger = hunger+80
   end
   hunger = newHunger
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst) 
   end)
 end)
 
 RegisterNetEvent('food:burger')
 AddEventHandler('food:burger', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  local prop = CreateObject(GetHashKey('prop_cs_burger_01'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_inteat@burger')
-  while not HasAnimDictLoaded('mp_player_inteat@burger') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
-  TaskPlayAnim(ped, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
+  ExecuteCommand('e burger')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
   Wait(2500)
   local newHunger = 0
   Wait(10)
@@ -445,27 +384,18 @@ AddEventHandler('food:burger', function()
     newHunger = hunger+50
   end
   hunger = newHunger
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst)
   end)
 end)
 
 RegisterNetEvent('food:hotdog')
 AddEventHandler('food:hotdog', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  local prop = CreateObject(GetHashKey('prop_cs_hotdog_01'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_inteat@burger')
-  while not HasAnimDictLoaded('mp_player_inteat@burger') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
-  TaskPlayAnim(ped, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
+  ExecuteCommand('e burger')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
   Wait(2500)
   local newHunger = 0
   Wait(10)
@@ -475,8 +405,7 @@ AddEventHandler('food:hotdog', function()
     newHunger = hunger+30
   end
   hunger = newHunger
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst) 
   end)
 end)
@@ -485,45 +414,28 @@ RegisterNetEvent('food:sandwich')
 AddEventHandler('food:sandwich', function()
  local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  local prop = CreateObject(GetHashKey('prop_sandwich_01'), x, y, z+0.2,  true,  true, true)
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_inteat@burger')
-  while not HasAnimDictLoaded('mp_player_inteat@burger') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
-  TaskPlayAnim(ped, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
+  ExecuteCommand('e burger')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "eating", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'eating', 0.5)
   Wait(2500)
   local newHunger = 0
   Wait(10)
   hunger = 100
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst) 
   end)
 end)
 
 RegisterNetEvent('food:drink')
 AddEventHandler('food:drink', function()
- local ped = PlayerPedId()
  Citizen.CreateThread(function()
-  local x,y,z = table.unpack(GetEntityCoords(ped))
-  prop = CreateObject(GetHashKey('prop_ld_flow_bottle'), x, y, z+0.2,  true,  true, true)     
-  AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 18905), 0.13, 0.003, 0.019, 301.0, 112.0, 0.0, true, true, false, true, 1, true)
-  RequestAnimDict('mp_player_intdrink')  
-  while not HasAnimDictLoaded('mp_player_intdrink') do
-   Wait(0)
-  end
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
-  TaskPlayAnim(ped, 'mp_player_intdrink', 'loop_bottle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
+  ExecuteCommand('e cup')
   Wait(2000)
-  TriggerEvent("InteractSound_CL:PlayOnOne", "drinking", 0.5)
+  TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'drinking', 0.5)
   thirst = 100
-  ClearPedSecondaryTask(ped)
-  DeleteObject(prop)
+  ExecuteCommand('e c')
   updateStatus(hunger, thirst) 
  end)
 end)

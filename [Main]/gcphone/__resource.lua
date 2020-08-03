@@ -68,7 +68,6 @@ files {
 
 client_script {
 	"config.lua",
-	"client/animation.lua",
 	"client/client.lua",
 
 	"client/photo.lua",
