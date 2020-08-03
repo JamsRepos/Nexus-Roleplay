@@ -36,9 +36,9 @@ AddEventHandler("phone:toggle", function()
    menuIsOpen = not menuIsOpen
    SendNUIMessage({show = menuIsOpen})
   if menuIsOpen == true then 
-    PhonePlayIn()
+    ExecuteCommand('e cellphone')
   else
-    PhonePlayOut()
+    ExecuteCommand('e c')
   end   
   end
  end 
@@ -102,7 +102,7 @@ function startFixeCall (fixeNumber)
     TriggerEvent('gcphone:autoCall', number, {
       useNumber = fixeNumber
     })
-    PhonePlayCall(true)
+    ExecuteCommand('e cellphone-call')
   end
 end
 
@@ -314,7 +314,7 @@ RegisterNetEvent("gcPhone:waitingCall")
 AddEventHandler("gcPhone:waitingCall", function(infoCall, initiator)
   SendNUIMessage({event = 'waitingCall', infoCall = infoCall, initiator = initiator})
   if initiator == true then
-    PhonePlayCall()
+    ExecuteCommand('e cellphone-call')
     if menuIsOpen == false then
       TooglePhone()
     end
@@ -332,7 +332,7 @@ AddEventHandler("gcPhone:acceptCall", function(infoCall, initiator)
   if menuIsOpen == false then 
     TooglePhone()
   end
-  PhonePlayCall()
+  ExecuteCommand('e cellphone-call')
   SendNUIMessage({event = 'acceptCall', infoCall = infoCall, initiator = initiator})
 end)
 
@@ -346,7 +346,7 @@ AddEventHandler("gcPhone:rejectCall", function(infoCall)
     --Citizen.InvokeNative(0xE036A705F989E049)
     --NetworkSetTalkerProximity(7.0)
   end
-  PhonePlayText()
+  ExecuteCommand('e cellphone')
   SendNUIMessage({event = 'rejectCall', infoCall = infoCall})
 end)
 
@@ -548,9 +548,9 @@ function TooglePhone()
   menuIsOpen = not menuIsOpen
   SendNUIMessage({show = menuIsOpen})
   if menuIsOpen == true then 
-    PhonePlayIn()
+    ExecuteCommand('e cellphone')
   else
-    PhonePlayOut()
+    ExecuteCommand('e c')
   end
 end
 
@@ -564,7 +564,7 @@ end)
 RegisterNUICallback('closePhone', function(data, cb)
   menuIsOpen = false
   SendNUIMessage({show = false})
-  PhonePlayOut()
+  ExecuteCommand('e c')
   cb()
 end)
 

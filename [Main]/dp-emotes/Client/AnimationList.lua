@@ -1763,6 +1763,22 @@ DP.PropEmotes = {
        EmoteMoving = true,
        EmoteLoop = true
    }},
+   ["cellphone"] = {"cellphone@", "cellphone_text_read_base", "Cellphone", AnimationOptions =
+   {
+       Prop = 'prop_amb_phone',
+       PropBone = 57005,
+       PropPlacement = {0.10, 0.0, -0.015, 87.0, -10.0, 90.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["cellphone-call"] = {"cellphone@first_person", "cellphone_call_listen_base", "Cellphone Call", AnimationOptions =
+   {
+       Prop = 'prop_amb_phone',
+       PropBone = 57005,
+       PropPlacement = {0.10, 0.0, -0.015, 87.0, -10.0, 90.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
    ["bouquet"] = {"impexp_int-0", "mp_m_waremech_01_dual-0", "Bouquet", AnimationOptions =
    {
        Prop = 'prop_snow_flower_02',
@@ -1854,7 +1870,7 @@ DP.PropEmotes = {
    {
        Prop = 'prop_fishing_rod_01',
        PropBone = 36029,
-       PropPlacement = {0.08, -0.06, 0.125, -120.0, -50.0, 20.0},
+       PropPlacement = {0.13, 0.15, 0.0, -100.0, 0.0, -20.0},
        -- EmoteLoop is used for emotes that should loop, its as simple as that.
        -- Then EmoteMoving is used for emotes that should only play on the upperbody.
        -- The code then checks both values and sets the MovementType to the correct one
