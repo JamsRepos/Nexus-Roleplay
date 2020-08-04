@@ -721,7 +721,7 @@ AddEventHandler('items:bulletproof_vest', function()
 		SetPedArmour(GetPlayerPed(-1), 100)
 	end)
 end)
-
+ 
 Citizen.CreateThread(function()
  while true do
  Wait(5)
