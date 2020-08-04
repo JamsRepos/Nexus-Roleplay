@@ -183,7 +183,7 @@ local items = {
  [5] = {name = 'Jerry Can', price = 500, amount = 1, id = 205},
  [7] = {name = 'Mobile Phone', price = 500, amount = 1, id = 104},
  [8] = {name = 'Radio', price = 250, amount = 1, id = 261},
- [9] = {name = 'GoPro', price = 10000, amount = 1, id = 300},
+ [9] = {name = 'GoPro', price = 700, amount = 1, id = 300},
  [10] = {name = 'Bottle of Water', price = 8, amount = 1, id = 13},
  [11] = {name = 'Cheese Burger', price = 16, amount = 1, id = 14},
 }
