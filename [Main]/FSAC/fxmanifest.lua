@@ -3,7 +3,7 @@ games { 'gta5' }
 
 author 'FSAC Development Team'
 description 'FiveM Anti-Cheat and Global Ban Management'
-version 'v0.2'
+version 'v0.3'
 
 client_scripts {
     'client/main.lua'
