@@ -151,7 +151,26 @@ AddEventHandler('dispatch:robberyPos', function(pos)
 				return
 			end
 		end
-	end
+  end
+  if (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
+    TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
+    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "A 911 call has been picked up on your radio scanner!")
+    local transG = 250
+    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+    SetBlipSprite(gunshotBlip,  459)
+    SetBlipColour(gunshotBlip,  4)
+    SetBlipAlpha(gunshotBlip,  transG)
+    SetBlipAsShortRange(gunshotBlip,  1)
+    while transG ~= 0 do
+     Wait(550)
+     transG = transG-1
+     SetBlipAlpha(gunshotBlip, transG)
+     if transG == 0 then
+      SetBlipSprite(gunshotBlip,  2)
+      return
+     end
+    end		   
+    end
 end)
 
 --== Hospital
@@ -215,7 +234,25 @@ AddEventHandler('dispatch:cdsPos', function(pos)
 				return
 			end
 		end
-	end
+  end
+  if (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
+    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "A 911 call has been picked up on your radio scanner!")
+    local transG = 250
+    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+    SetBlipSprite(gunshotBlip,  459)
+    SetBlipColour(gunshotBlip,  4)
+    SetBlipAlpha(gunshotBlip,  transG)
+    SetBlipAsShortRange(gunshotBlip,  1)
+    while transG ~= 0 do
+      Wait(550)
+      transG = transG-1
+      SetBlipAlpha(gunshotBlip, transG)
+      if transG == 0 then
+      SetBlipSprite(gunshotBlip,  2)
+      return
+      end
+    end		   
+    end
 end)
 
 --== CDS Reports
@@ -243,7 +280,25 @@ AddEventHandler('dispatch:poachingPos', function(pos)
 				return
 			end
 		end
-	end
+  end
+  if (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
+    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "A 911 call has been picked up on your radio scanner!")
+    local transG = 250
+    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+    SetBlipSprite(gunshotBlip,  459)
+    SetBlipColour(gunshotBlip,  4)
+    SetBlipAlpha(gunshotBlip,  transG)
+    SetBlipAsShortRange(gunshotBlip,  1)
+    while transG ~= 0 do
+     Wait(550)
+     transG = transG-1
+     SetBlipAlpha(gunshotBlip, transG)
+     if transG == 0 then
+      SetBlipSprite(gunshotBlip,  2)
+      return
+     end
+    end		   
+    end
 end)
 
 --== Melee Reports
@@ -267,6 +322,25 @@ AddEventHandler('dispatch:vehiclePos', function(pos)
    end
   end
  end
+ if (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
+  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
+  TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "A 911 call has been picked up on your radio scanner!")
+  local transG = 250
+  local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+  SetBlipSprite(gunshotBlip,  459)
+  SetBlipColour(gunshotBlip,  4)
+  SetBlipAlpha(gunshotBlip,  transG)
+  SetBlipAsShortRange(gunshotBlip,  1)
+  while transG ~= 0 do
+   Wait(550)
+   transG = transG-1
+   SetBlipAlpha(gunshotBlip, transG)
+   if transG == 0 then
+    SetBlipSprite(gunshotBlip,  2)
+    return
+   end
+  end		   
+  end
 end)
 --[[
 Citizen.CreateThread(function()
@@ -294,7 +368,7 @@ end)
 --== Gun Shots Reports
 RegisterNetEvent('dispatch:shotPos')
 AddEventHandler('dispatch:shotPos', function(pos)
-  if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
+  if (DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService) then
   TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
   local transG = 250
   local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
@@ -312,6 +386,25 @@ AddEventHandler('dispatch:shotPos', function(pos)
    end
   end		   
  end
+ if (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
+  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
+  TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "A 911 call has been picked up on your radio scanner!")
+  local transG = 250
+  local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+  SetBlipSprite(gunshotBlip,  459)
+  SetBlipColour(gunshotBlip,  4)
+  SetBlipAlpha(gunshotBlip,  transG)
+  SetBlipAsShortRange(gunshotBlip,  1)
+  while transG ~= 0 do
+   Wait(550)
+   transG = transG-1
+   SetBlipAlpha(gunshotBlip, transG)
+   if transG == 0 then
+    SetBlipSprite(gunshotBlip,  2)
+    return
+   end
+  end		   
+  end
 end)
 
 Citizen.CreateThread(function()
@@ -321,10 +414,10 @@ Citizen.CreateThread(function()
     if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 13.360, -1097.651, 29.834, true) > 5 then
       if GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 317205821 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 883325847 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 101631238 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 911657153 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= 1198879012 and GetSelectedPedWeapon(GetPlayerPed(-1)) ~= GetHashKey("WEAPON_BALL") then
         if not IsSuppressed() and NearestNPC() then
-       local suspectSex = getSuspectSex()
-       local suspectLocation = getSuspectLocation()
+        local suspectSex = getSuspectSex()
+        local suspectLocation = getSuspectLocation()
         TriggerEvent('nrp:dispatch:notify', '10-13', json.encode({{gunshotSex=suspectSex}}))
-      Wait(2500)
+        Wait(2500)
        end
       end
     end
