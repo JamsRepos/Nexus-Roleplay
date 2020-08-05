@@ -741,11 +741,12 @@ Citizen.CreateThread(function()
          FreezeEntityPosition(GetPlayerPed(-1), false)
          ClearPedTasksImmediately(GetPlayerPed(-1))
          if craftingketamine == true then
-            craftingketamine = false
             TriggerEvent("inventory:removeQty", 19, 1)
             TriggerEvent("inventory:removeQty", 20, 1) 
             TriggerEvent("inventory:addQty", 49, 1)
             TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You made 1 ounce of Ketamine.", length = 5000})
+            Citizen.Wait(1000)
+            craftingketamine = false
          end
         end
       end)
