@@ -317,7 +317,6 @@ AddEventHandler("carshop:bought",function(data, plate)
  SetEntityAsMissionEntity(spawned, true, true)
  SetVehicleIsConsideredByPlayer(spawned, true)
  TaskWarpPedIntoVehicle(GetPlayerPed(-1), spawned, -1)
- TriggerEvent('persistent-vehicles/register-vehicle', spawned)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(spawned))
 end)
 
