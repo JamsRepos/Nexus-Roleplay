@@ -45,24 +45,11 @@ end)
 RegisterNUICallback('selectrecipe', function(data, cb)
   EnableGui(false,false)
   cb('ok')
-    TriggerEvent("mythic_progbar:client:progress", {
-        name = "crafting_item",
-        duration = 10000,
-        label = "Crafting Item",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
-          TriggerEvent('crafting:trigger:'..data.id)
-          inGUI = false
-        end
+    exports['pogressBar']:drawBar(8000, 'Crafting Item', function()
+        TriggerEvent('crafting:trigger:'..data.id)
+        inGUI = false
     end)
+
 end)
 
 RegisterNUICallback('escape', function(data, cb)

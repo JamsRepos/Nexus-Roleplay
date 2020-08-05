@@ -155,8 +155,7 @@ function robNpc(targetPed)
   robbingNPC = true
   TaskPlayAnim(targetPed, "random@mugging3", "handsup_standing_base", 8.0, -8, -1, 12, 1, 0, 0, 0)
 
-  exports['pogressBar']:drawBar(10000, 'Holding Up Civilian', function(status)
-      if not status then
+  exports['pogressBar']:drawBar(10000, 'Holding Up Civilian', function()
         local random = math.random(1,8) 
         if random == 1 then    
          exports['NRP-notify']:DoHudText('inform', 'You Got Nothing')
@@ -196,7 +195,6 @@ function robNpc(targetPed)
          robbedRecently = false
          robbingNPC = false
       end)
-      end
   end)
 end
 

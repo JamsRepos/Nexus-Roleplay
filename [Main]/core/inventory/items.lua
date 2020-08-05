@@ -716,10 +716,12 @@ end)
 
 RegisterNetEvent('items:bulletproof_vest')
 AddEventHandler('items:bulletproof_vest', function()
-	AddArmourToPed(GetPlayerPed(-1), 100)
-	SetPedArmour(GetPlayerPed(-1), 100)
+	exports['pogressBar']:drawBar(2000, 'Applying Armor', function()
+		AddArmourToPed(GetPlayerPed(-1), 100)
+		SetPedArmour(GetPlayerPed(-1), 100)
+	end)
 end)
-
+ 
 Citizen.CreateThread(function()
  while true do
  Wait(5)
