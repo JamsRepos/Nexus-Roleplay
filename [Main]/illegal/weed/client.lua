@@ -848,28 +848,15 @@ Citizen.CreateThread(function()
       FreezeEntityPosition(GetPlayerPed(-1), true)
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
 
-      TriggerEvent("mythic_progbar:client:progress", {
-        name = "break_heroin",
-        duration = 10000,
-        label = "Breaking Down Heroin",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-           disableMovement = true,
-           disableCarMovement = true,
-           disableMouse = false,
-           disableCombat = true,
-        },
-      }, function(status)
-       if not status then
-         FreezeEntityPosition(GetPlayerPed(-1), false)
-         ClearPedTasksImmediately(GetPlayerPed(-1))
-         if craftingheroin == true then
-            craftingheroin = false
-            TriggerEvent("inventory:removeQty", 305, 1)
-            TriggerEvent("inventory:addQty", 31, 3)
-            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of heroin.", length = 5000})
-         end
+      exports['pogressBar']:drawBar(10000, 'Breaking Down Heroin', function()
+        FreezeEntityPosition(GetPlayerPed(-1), false)
+        ClearPedTasksImmediately(GetPlayerPed(-1))
+        if craftingheroin == true then
+           TriggerEvent("inventory:removeQty", 305, 1)
+           TriggerEvent("inventory:addQty", 31, 3)
+           TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of heroin.", length = 5000})
+           Citizen.Wait(1000)
+           craftingheroin = false
         end
       end)
 
@@ -916,39 +903,24 @@ Citizen.CreateThread(function()
       FreezeEntityPosition(GetPlayerPed(-1), true)
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
 
-      TriggerEvent("mythic_progbar:client:progress", {
-        name = "cocaine",
-        duration = 60000,
-        label = "Retreiving Cocaine",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-           disableMovement = true,
-           disableCarMovement = true,
-           disableMouse = false,
-           disableCombat = true,
-        },
-      }, function(status)
-       if not status then
-         FreezeEntityPosition(GetPlayerPed(-1), false)
-         ClearPedTasksImmediately(GetPlayerPed(-1))
-         if pickingcocaine == true then
-          if cocaine_cooldowntimer < 9 and cocainecount <= 1 then
-            pickingcocaine = false
-            cocainecount = cocainecount + 1
-            TriggerEvent("inventory:addQty", 107, 1)
-            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained cocaine!", length = 5000})
-            if cocainecount == 1 then
-              TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, 3600)
-            end
-          else
-            pickingcocaine = false
-            TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "I am out of stock right now. Come back in ".. cocaine_cooldowntimer .. " seconds.", length = 5000})
-          end
+      exports['pogressBar']:drawBar(60000, 'Retreiving Cocaine', function()
+        FreezeEntityPosition(GetPlayerPed(-1), false)
+        ClearPedTasksImmediately(GetPlayerPed(-1))
+        if pickingcocaine == true then
+         if cocaine_cooldowntimer < 9 and cocainecount <= 1 then
+           pickingcocaine = false
+           cocainecount = cocainecount + 1
+           TriggerEvent("inventory:addQty", 107, 1)
+           TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You obtained cocaine!", length = 5000})
+           if cocainecount == 1 then
+             TriggerServerEvent('timers:set', weed_cooldowntimer, ammonia_cooldowntimer, cyclopentyl_cooldowntimer, magnesium_cooldowntimer, methylamine_cooldowntimer, heroin_cooldowntimer, 3600)
+           end
+         else
+           pickingcocaine = false
+           TriggerEvent('NRP-notify:client:SendAlert', { type = 'error', text = "I am out of stock right now. Come back in ".. cocaine_cooldowntimer .. " seconds.", length = 5000})
          end
         end
       end)
-
     end
     end
    end
@@ -969,6 +941,8 @@ Citizen.CreateThread(function()
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
       FreezeEntityPosition(GetPlayerPed(-1), true)
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
+
+      
 
       TriggerEvent("mythic_progbar:client:progress", {
         name = "break_cocaine",
