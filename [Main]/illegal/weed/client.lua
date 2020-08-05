@@ -942,33 +942,16 @@ Citizen.CreateThread(function()
       FreezeEntityPosition(GetPlayerPed(-1), true)
       TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_ATM", 0, true)
 
-      
-
-      TriggerEvent("mythic_progbar:client:progress", {
-        name = "break_cocaine",
-        duration = 10000,
-        label = "Breaking Down Cocaine",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-           disableMovement = true,
-           disableCarMovement = true,
-           disableMouse = false,
-           disableCombat = true,
-        },
-      }, function(status)
-       if not status then
-         FreezeEntityPosition(GetPlayerPed(-1), false)
-         ClearPedTasksImmediately(GetPlayerPed(-1))
-         if craftingcocaine == true then
-            craftingcocaine = false
-            TriggerEvent("inventory:removeQty", 107, 1)
-            TriggerEvent("inventory:addQty", 109, 3)
-            TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of cocaine.", length = 5000})
-         end
+      exports['pogressBar']:drawBar(10000, 'Breaking Down Cocaine', function()
+        FreezeEntityPosition(GetPlayerPed(-1), false)
+        ClearPedTasksImmediately(GetPlayerPed(-1))
+        if craftingcocaine == true then
+           craftingcocaine = false
+           TriggerEvent("inventory:removeQty", 107, 1)
+           TriggerEvent("inventory:addQty", 109, 3)
+           TriggerEvent('NRP-notify:client:SendAlert', { type = 'success', text = "You crafted 3 ounces of cocaine.", length = 5000})
         end
       end)
-
     end
     end
    end
