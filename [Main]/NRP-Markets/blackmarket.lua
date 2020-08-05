@@ -49,6 +49,7 @@ local blackmarket_weapons2 = { ---Forum Drive Lamar //Moved
 [4] = {label = 'Machete', name = 'Item', price = 700, id = 210},
 [5] = {label = 'Hatchet', name = 'Item', price = 1000, id = 203},  
 [6] = {label = 'Blindfold', name = 'Item', price = 1000, id = 76},
+[7] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
 }
 
 local blackmarket_weapons9 = { --- Bobs Burgers
@@ -77,6 +78,7 @@ local blackmarket_weapons13 = { --- Drive Thru
 
 local blackmarket_weapons14 = {
 [1] = {label = 'Blank Plate', name = 'Item', price = 15000, id = 262},
+[2] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
 }
 
 local blackmarket_weapons16 = { --- Mechanics Laptop
@@ -84,6 +86,7 @@ local blackmarket_weapons16 = { --- Mechanics Laptop
 [2] = {label = 'Advanced Lockpick', name = 'Item', price = 2250, id = 21},
 [3] = {label = 'Pipe Wrench', name = 'Item', price = 700, id = 192},  
 [4] = {label = 'Blindfold', name = 'Item', price = 1000, id = 76},  
+[7] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
 }
 
 local blackmarket_weapons20 = { --- Pillbox Upper Meds
@@ -100,6 +103,7 @@ local blackmarket_weapons22 = { --- Ketamine //Moved
 [1] = {label = 'C4 Explosive', name = 'Item', price = 2000, id = 276},   
 [2] = {label = 'Hatchet', name = 'Item', price = 1000, id = 203},  
 [3] = {label = 'Blindfold', name = 'Item', price = 1000, id = 76},
+[4] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
 }
 
 Citizen.CreateThread(function()
