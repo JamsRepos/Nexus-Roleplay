@@ -45,11 +45,9 @@ end)
 RegisterNUICallback('selectrecipe', function(data, cb)
   EnableGui(false,false)
   cb('ok')
-    exports['pogressBar']:drawBar(8000, 'Crafting Item', function(status)
-      if not status then
+    exports['pogressBar']:drawBar(8000, 'Crafting Item', function()
         TriggerEvent('crafting:trigger:'..data.id)
         inGUI = false
-      end
     end)
 
 end)
