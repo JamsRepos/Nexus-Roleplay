@@ -719,6 +719,7 @@ AddEventHandler('items:bulletproof_vest', function()
 	exports['pogressBar']:drawBar(2000, 'Applying Armor', function()
 		AddArmourToPed(GetPlayerPed(-1), 100)
 		SetPedArmour(GetPlayerPed(-1), 100)
+		exports['NRP-notify']:DoHudText('success', 'Applied Body Armor')
 	end)
 end)
  
