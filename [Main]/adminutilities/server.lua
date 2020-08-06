@@ -219,6 +219,11 @@ TriggerEvent('core:addGroupCommand', 'devtp', "mod", function(source, args, user
  TriggerClientEvent('admin:teleport', source, {x = args[2], y = args[3], z = args[4]})
 end)
 
+TriggerEvent('core:addGroupCommand', 'tpm', "mod", function(source, args, user)
+ local source = tonumber(source)
+ TriggerClientEvent('admin:tpm', source)
+end)
+
 TriggerEvent('core:addGroupCommand', 'givemoney', "mod", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])

@@ -113,6 +113,32 @@ AddEventHandler('admin:teleport', function(pos)
  SetEntityCoords(GetPlayerPed(-1), pos.x, pos.y, pos.z)
 end)
 
+RegisterNetEvent('admin:tpm')
+AddEventHandler('admin:tpm', function()
+  local WaypointHandle = GetFirstBlipInfoId(8)
+
+  if DoesBlipExist(WaypointHandle) then
+    local waypointCoords = GetBlipInfoIdCoord(WaypointHandle)
+
+    for height = 1, 1000 do
+      SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords["x"], waypointCoords["y"], height + 0.0)
+
+      local foundGround, zPos = GetGroundZFor_3dCoord(waypointCoords["x"], waypointCoords["y"], height + 0.0)
+
+      if foundGround then
+        SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords["x"], waypointCoords["y"], height + 0.0)
+        break
+      end
+
+      Citizen.Wait(5)
+    end
+
+    exports['NRP-notify']:DoHudText('success', 'Woosh!')
+  else
+    exports['NRP-notify']:DoHudText('error', 'Please place your waypoint.')
+  end
+end)
+
 RegisterNetEvent('admin:kill')
 AddEventHandler('admin:kill', function()
  SetEntityHealth(GetPlayerPed(-1), 0)
