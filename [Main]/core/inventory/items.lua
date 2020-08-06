@@ -199,18 +199,29 @@ pickanim()
   end
 
   if DoesEntityExist(vehicle) then
-  	 RequestAnimDict('mp_common_heist')
-	TaskPlayAnim(GetPlayerPed(-1), "mp_common_heist", "use_terminal_loop", 8.0, -8, -1, 49, 0, 0, 0, 0)
-	Wait(3000)
+  	RequestAnimDict('mp_common_heist')
 	TaskPlayAnim(GetPlayerPed(-1), "mp_common_heist", "pick_door", 8.0, -8, -1, 49, 0, 0, 0, 0)
 	FreezeEntityPosition(GetPlayerPed(-1), true)
-	Citizen.CreateThread(function()
-	 Citizen.Wait(7000)
-	 FreezeEntityPosition(GetPlayerPed(-1), false)
-	 SetVehicleDoorsLocked(vehicle, 1)
-	 SetVehicleDoorsLockedForAllPlayers(vehicle, false)
-	 ClearPedTasksImmediately(GetPlayerPed(-1))
-	end)
+	local lockpicking = true
+	while lockpicking do
+		pickdoor = exports["skillbar"]:taskBar(2500,math.random(5,15))
+		if pickdoor == 100 then
+			pickdoor = exports["skillbar"]:taskBar(2500,math.random(5,15))
+			if pickdoor == 100 then
+				pickdoor = exports["skillbar"]:taskBar(2500,math.random(5,15))
+				if pickdoor == 100 then
+					pickdoor = exports["skillbar"]:taskBar(2500,math.random(5,15))
+					if pickdoor == 100 then
+						lockpicking = false
+						FreezeEntityPosition(GetPlayerPed(-1), false)
+						SetVehicleDoorsLocked(vehicle, 1)
+						SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+						ClearPedTasksImmediately(GetPlayerPed(-1))
+					end
+				end
+			end
+		end
+	end
   end
  end
 end)
