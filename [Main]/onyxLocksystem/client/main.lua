@@ -127,72 +127,29 @@ Citizen.CreateThread(function()
                     if IsControlJustReleased(0, 311) and not isSearching and not hasBeenSearched(plate) then -- K
                         if hasBeenSearched(plate) then
                             isSearching = true
-                            TriggerEvent("mythic_progbar:client:progress", {
-                                name = "searching_vehicle",
-                                duration = 5000,
-                                label = "Searching Vehicle",
-                                useWhileDead = false,
-                                canCancel = false,
-                                controlDisables = {
-                                    disableMovement = true,
-                                    disableCarMovement = true,
-                                    disableMouse = false,
-                                    disableCombat = true,
-                                },
-                            }, function(status)
-                                if not status then
-                                    isSearching = false
-                                    exports['NRP-notify']:DoHudText('error', 'You search the vehicle and find nothing')
-                                end
+                            exports['pogressBar']:drawBar(5000, 'Searching Vehicle', function()
+                                isSearching = false
+                                exports['NRP-notify']:DoHudText('error', 'You search the vehicle and find nothing')
                             end)
                         else
                             local rnd = math.random(1, 8)
                             if rnd == 4 then
                                 isSearching = true
-                                TriggerEvent("mythic_progbar:client:progress", {
-                                    name = "searching_vehicle2",
-                                    duration = 6000,
-                                    label = "Searching Vehicle",
-                                    useWhileDead = false,
-                                    canCancel = false,
-                                    controlDisables = {
-                                        disableMovement = true,
-                                        disableCarMovement = true,
-                                        disableMouse = false,
-                                        disableCombat = true,
-                                    },
-                                }, function(status)
-                                    if not status then
-                                        isSearching = false
-                                        exports['NRP-notify']:DoHudText('inform', "You found the keys for plate [" .. plate .. ']')
-                                        table.insert(vehicles, plate)
-                                        TriggerServerEvent('onyx:updateSearchedVehTable', plate)
-                                        table.insert(searchedVehicles, plate)
-                                    end
+                                exports['pogressBar']:drawBar(5000, 'Searching Vehicle', function() 
+                                    isSearching = false
+                                    exports['NRP-notify']:DoHudText('inform', "You found the keys for plate [" .. plate .. ']')
+                                    table.insert(vehicles, plate)
+                                    TriggerServerEvent('onyx:updateSearchedVehTable', plate)
+                                    table.insert(searchedVehicles, plate)
                                 end)
                             else
                                 isSearching = true
-                                TriggerEvent("mythic_progbar:client:progress", {
-                                    name = "searching_vehicle3",
-                                    duration = 6000,
-                                    label = "Searching Vehicle",
-                                    useWhileDead = false,
-                                    canCancel = false,
-                                    controlDisables = {
-                                        disableMovement = true,
-                                        disableCarMovement = true,
-                                        disableMouse = false,
-                                        disableCombat = true,
-                                    },
-                                }, function(status)
-                                    if not status then
-                                        isSearching = false
-                                        exports['NRP-notify']:DoHudText('error', 'You search the vehicle and find nothing')
-        
-                                        -- Update veh table so other players cant search the same vehicle
-                                        TriggerServerEvent('onyx:updateSearchedVehTable', plate)
-                                        table.insert(searchedVehicles, plate)
-                                    end
+                                exports['pogressBar']:drawBar(5000, 'Searching Vehicle', function() 
+                                    isSearching = false
+                                    exports['NRP-notify']:DoHudText('error', 'You search the vehicle and find nothing')
+                                    -- Update veh table so other players cant search the same vehicle
+                                    TriggerServerEvent('onyx:updateSearchedVehTable', plate)
+                                    table.insert(searchedVehicles, plate)
                                 end)
                             end
                         end
@@ -243,7 +200,7 @@ AddEventHandler('onyx:beginHotwire', function(plate)
     while not HasAnimDictLoaded("veh@std@ds@base") do
         Citizen.Wait(100)
 	end
-    local time = 12500 -- in ms
+    local time = 3000 -- in ms
 
     local vehPlate = plate
     isHotwiring = true
@@ -267,61 +224,29 @@ AddEventHandler('onyx:beginHotwire', function(plate)
         end
     end
 
-    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.3, true, true, true)
-    TriggerEvent("mythic_progbar:client:progress", {
-        name = "hotwiring_stage1",
-        duration = time,
-        label = "Hotwiring [Stage 1]",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
-            TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.6, true, true, true)
-            TriggerEvent("mythic_progbar:client:progress", {
-                name = "hotwiring_stage2",
-                duration = time,
-                label = "Hotwiring [Stage 2]",
-                useWhileDead = false,
-                canCancel = false,
-                controlDisables = {
-                    disableMovement = true,
-                    disableCarMovement = true,
-                    disableMouse = false,
-                    disableCombat = true,
-                },
-            }, function(status)
-                if not status then
-                    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.4, true, true, true)
-                    TriggerEvent("mythic_progbar:client:progress", {
-                        name = "hotwiring_stage3",
-                        duration = time,
-                        label = "Hotwiring [Stage 3]",
-                        useWhileDead = false,
-                        canCancel = false,
-                        controlDisables = {
-                            disableMovement = true,
-                            disableCarMovement = true,
-                            disableMouse = false,
-                            disableCombat = true,
-                        },
-                    }, function(status)
-                        if not status then
+
+    while isHotwiring do
+        TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.3, true, true, true)
+        local hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+        if hotwiring == 100 then
+            hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+            if hotwiring == 100 then
+                hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+                if hotwiring == 100 then
+                    hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+                    if hotwiring == 100 then
+                        hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+                        if hotwiring == 100 then
                             table.insert(vehicles, vehPlate)
                             StopAnimTask(PlayerPedId(), 'veh@std@ds@base', 'hotwire', 1.0)
                             isHotwiring = false
                             SetVehicleEngineOn(veh, true, true, false)
                         end
-                    end)
+                    end
                 end
-            end)
+            end
         end
-    end)
+    end
 end)
 
 RegisterNetEvent('onyx:beginAdvHotwire')
@@ -332,7 +257,7 @@ AddEventHandler('onyx:beginAdvHotwire', function(plate)
     while not HasAnimDictLoaded("veh@std@ds@base") do
         Citizen.Wait(100)
 	end
-    local time = 12500 -- in ms
+    local time = 3000 -- in ms
 
     local vehPlate = plate
     isHotwiring = true
@@ -356,61 +281,22 @@ AddEventHandler('onyx:beginAdvHotwire', function(plate)
         end
     end
 
-    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.3, true, true, true)
-    TriggerEvent("mythic_progbar:client:progress", {
-        name = "hotwiring_stage1",
-        duration = time,
-        label = "Hotwiring [Stage 1]",
-        useWhileDead = false,
-        canCancel = false,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-    }, function(status)
-        if not status then
-            TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.6, true, true, true)
-            TriggerEvent("mythic_progbar:client:progress", {
-                name = "hotwiring_stage2",
-                duration = time,
-                label = "Hotwiring [Stage 2]",
-                useWhileDead = false,
-                canCancel = false,
-                controlDisables = {
-                    disableMovement = true,
-                    disableCarMovement = true,
-                    disableMouse = false,
-                    disableCombat = true,
-                },
-            }, function(status)
-                if not status then
-                    TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.4, true, true, true)
-                    TriggerEvent("mythic_progbar:client:progress", {
-                        name = "hotwiring_stage3",
-                        duration = 0,
-                        label = "Hotwiring [Stage 3]",
-                        useWhileDead = false,
-                        canCancel = false,
-                        controlDisables = {
-                            disableMovement = true,
-                            disableCarMovement = true,
-                            disableMouse = false,
-                            disableCombat = true,
-                        },
-                    }, function(status)
-                        if not status then
-                            table.insert(vehicles, vehPlate)
-                            StopAnimTask(PlayerPedId(), 'veh@std@ds@base', 'hotwire', 1.0)
-                            isHotwiring = false
-                            SetVehicleEngineOn(veh, true, true, false)
-                        end
-                    end)
+    while isHotwiring do
+        TaskPlayAnim(PlayerPedId(), "veh@std@ds@base", "hotwire", 8.0, 8.0, -1, 1, 0.3, true, true, true)
+        local hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+        if hotwiring == 100 then
+            hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+            if hotwiring == 100 then
+                hotwiring = exports["skillbar"]:taskBar(2000,math.random(5,7))
+                if hotwiring == 100 then
+                    table.insert(vehicles, vehPlate)
+                    StopAnimTask(PlayerPedId(), 'veh@std@ds@base', 'hotwire', 1.0)
+                    isHotwiring = false
+                    SetVehicleEngineOn(veh, true, true, false)
                 end
-            end)
+            end
         end
-    end)
+    end
 end)
 
 local isRobbing = false
