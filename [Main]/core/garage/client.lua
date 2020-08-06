@@ -344,7 +344,8 @@ function StoreVehicle()
     local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
     TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
     if DoesEntityExist(vehicle) then 
-      SetEntityAsMissionEntity(vehicle, true, true)
+      SetVehicleHasBeenOwnedByPlayer(vehicle, false)
+      SetEntityAsMissionEntity(vehicle, false, false)
       DeleteVehicle(vehicle)
       exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
     else

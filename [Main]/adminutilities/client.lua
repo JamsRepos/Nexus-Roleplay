@@ -223,13 +223,15 @@ AddEventHandler('admin:dv', function()
   local pos = GetEntityCoords(ped)
   if IsPedSittingInAnyVehicle(ped) then 
    local vehicle = GetVehiclePedIsIn(ped, false)
-   SetEntityAsMissionEntity(vehicle, true, true)
+   SetVehicleHasBeenOwnedByPlayer(vehicle, false)
+   SetEntityAsMissionEntity(vehicle, false, false)
    DeleteVehicle(vehicle)
   else
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
    if DoesEntityExist(vehicle) then 
-    SetEntityAsMissionEntity(vehicle, true, true)
+    SetVehicleHasBeenOwnedByPlayer(vehicle, false)
+    SetEntityAsMissionEntity(vehicle, false, false)
     DeleteVehicle(vehicle)
    else 
     exports['NRP-notify']:DoHudText('error', 'No Vehicle Near You')
