@@ -223,9 +223,7 @@ AddEventHandler('admin:dv', function()
   local pos = GetEntityCoords(ped)
   if IsPedSittingInAnyVehicle(ped) then 
    local vehicle = GetVehiclePedIsIn(ped, false)
-   SetVehicleHasBeenOwnedByPlayer(vehicle, false)
-   SetEntityAsMissionEntity(vehicle, false, false)
-   DeleteVehicle(vehicle)
+   DeleteGivenVehicle(vehicle, 5)
   else
    local pos = GetEntityCoords(GetPlayerPed(-1), false)
    local vehicle = GetClosestVehicle(pos.x, pos.y, pos.z, 16.0, 0, 71)
