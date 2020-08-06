@@ -316,9 +316,7 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
-         SetVehicleHasBeenOwnedByPlayer(vehicle, false)
-         SetEntityAsMissionEntity(vehicle, false, false)
-         DeleteVehicle(vehicle)
+         DeleteGivenVehicle(vehicle, 5)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          WarMenu.OpenMenu('police_garage')
@@ -339,9 +337,7 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
-         SetVehicleHasBeenOwnedByPlayer(vehicle, false)
-         SetEntityAsMissionEntity(vehicle, false, false)
-         DeleteVehicle(vehicle)
+         DeleteGivenVehicle(vehicle, 5)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
          if  DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
@@ -366,8 +362,7 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
-         SetEntityAsMissionEntity(vehicle, true, true)
-         DeleteVehicle(vehicle)
+         DeleteGivenVehicle(vehicle, 5)
         else
          currentgarage = {x = v.x, y = v.y, z = v.z}
          if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 34 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
@@ -2263,3 +2258,35 @@ Citizen.CreateThread(function()
   end 
  end
 end)
+
+function DeleteGivenVehicle(veh, timeoutMax)
+  local timeout = 0 
+
+  SetVehicleHasBeenOwnedByPlayer(veh, false)
+  SetEntityAsMissionEntity(veh, true, true)
+  DeleteVehicle(veh)
+
+  if (DoesEntityExist(veh)) then
+    exports['NRP-notify']:DoHudText('error', 'Failed to store vehicle, trying again...')
+      -- Fallback if the vehicle doesn't get deleted
+      while (DoesEntityExist(veh) and timeout < timeoutMax) do 
+        DeleteVehicle(veh)
+
+        -- The vehicle has been banished from the face of the Earth!
+        if (not DoesEntityExist(veh)) then 
+          exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
+        end 
+
+        -- Increase the timeout counter and make the system wait
+        timeout = timeout + 1 
+        Citizen.Wait(500)
+
+        -- We've timed out and the vehicle still hasn't been deleted. 
+        if (DoesEntityExist(veh) and (timeout == timeoutMax - 1)) then
+          exports['NRP-notify']:DoHudText('error', 'Failed to store vehicle after ' .. timeoutMax .. ' retries.')
+        end 
+      end
+  else 
+    exports['NRP-notify']:DoHudText('success', 'Vehicle Stored & Repaired')
+  end 
+end
