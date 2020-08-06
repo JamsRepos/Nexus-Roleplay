@@ -316,7 +316,8 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
-         SetEntityAsMissionEntity(vehicle, true, true)
+         SetVehicleHasBeenOwnedByPlayer(vehicle, false)
+         SetEntityAsMissionEntity(vehicle, false, false)
          DeleteVehicle(vehicle)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
@@ -338,7 +339,8 @@ Citizen.CreateThread(function()
        if IsControlJustPressed(0, 38) then
         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
          local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
-         SetEntityAsMissionEntity(vehicle, true, true)
+         SetVehicleHasBeenOwnedByPlayer(vehicle, false)
+         SetEntityAsMissionEntity(vehicle, false, false)
          DeleteVehicle(vehicle)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
