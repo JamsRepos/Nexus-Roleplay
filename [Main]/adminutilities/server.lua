@@ -636,6 +636,8 @@ AddEventHandler("core:log", function(text, channel)
     webhook = "https://discordapp.com/api/webhooks/718874789133025370/Apl3CQUBQgKFLM8O1WZOWv5CwR-0YHLmmGItRqjYYUgYyTyjhf7Q4Aye9Uv6OgMDEFMG"
   elseif channel == "realestate" then
     webhook = "https://discordapp.com/api/webhooks/719396840755167293/loW-pTVKWppZwT8N4_hMoS2VIThOKLAGlLAM1UAWAlne_hSepoNMKdKu3Z0u_i1Sqt75"
+  elseif channel == "bad-weapon" then
+    webhook = "https://discordapp.com/api/webhooks/741302756035395604/FrTOrhnWbUEIeDxiceQSyXF9gR46Yg5dHsu7MhIGFOA6A78BryJ58KQ8csgZSjNB5yzd"
   end
   PerformHttpRequest(webhook, function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, content = mention.."```\n"..text.."\n[" .. date.day .. '/' .. date.month .. '/' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec .. "]```", avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
 end)

@@ -70,6 +70,43 @@
 -- * Tear Gas:                301           --
 ----------------------------------------------
 
+local disallowed_weapons = {
+      "weapon_snspistol_mk2",
+      "weapon_raypistol",
+      "weapon_raycarbine",
+      "weapon_assaultrifle_mk2",
+      "weapon_heavysniper_mk2",
+      "weapon_marksmanrifle_mk2",
+      "weapon_rpg",
+      "weapon_grenadelauncher",
+      "weapon_grenadelauncher_smoke",
+      "weapon_minigun",
+      "weapon_firework",
+      "weapon_railgun",
+      "weapon_hominglauncher",
+      "weapon_compactlauncher",
+      "weapon_rayminigun",
+      "weapon_grenade",
+      "weapon_stickybomb",
+      "weapon_proxmine",
+      "weapon_smg_mk2"
+    }
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(10)
+    for i, v in pairs(disallowed_weapons) do
+      local illegal_weapon = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey(v), false)
+      if illegal_weapon then
+        RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey(v))
+        TriggerEvent('weapons:updateback')
+        TriggerServerEvent("core:log", tostring("[DISALLOWED WEAPON] "..GetPlayerName(PlayerId()).."("..PlayerId()..") was caught with an illegal weapon: "..v), "bad-weapon")
+      end
+    end
+  end
+end)
+
+
 Citizen.CreateThread(function()
   while true do
     Wait(0)
