@@ -650,7 +650,7 @@
 	<Item>
       <modelName>POLICE7</modelName>
       <txdName>POLICE7</txdName>
-      <handlingId>POLICE</handlingId>
+      <handlingId>police2</handlingId>
       <gameName>POLICE</gameName>
       <vehicleMakeName />
       <expressionDictName>null</expressionDictName>
