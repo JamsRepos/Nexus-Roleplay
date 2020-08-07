@@ -160,7 +160,7 @@ function DisplayCharacterCreatorMenu(menu, firstTime)
       Wait(500)
       ExecuteCommand('clothes')
       Wait(500)
-      TriggerEvent('core:starttutorial', false)
+      --TriggerEvent('core:starttutorial', false)
     end
     isCreatingCharacter = false
   end
