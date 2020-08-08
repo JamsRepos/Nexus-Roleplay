@@ -638,10 +638,41 @@ RegisterNetEvent('vehstore:delete')
 AddEventHandler('vehstore:delete', function()
  local ped = GetPlayerPed(-1)
  local vehicle = GetVehiclePedIsIn(ped, false)
- SetEntityAsMissionEntity(vehicle, true, true)
- DeleteVehicle(vehicle)
- DeleteEntity(vehicle)
+ DeleteGivenVehicle(vehicle, 5)
 end)
+
+function DeleteGivenVehicle(veh, timeoutMax)
+  local timeout = 0 
+
+  SetVehicleHasBeenOwnedByPlayer(veh, false)
+  SetEntityAsMissionEntity(veh, true, true)
+  TriggerEvent('persistent-vehicles/forget-vehicle', veh)
+  DeleteVehicle(veh)
+
+  if (DoesEntityExist(veh)) then
+    exports['NRP-notify']:DoHudText('error', 'Failed to sell vehicle, trying again...')
+      -- Fallback if the vehicle doesn't get deleted
+      while (DoesEntityExist(veh) and timeout < timeoutMax) do 
+        DeleteVehicle(veh)
+
+        -- The vehicle has been banished from the face of the Earth!
+        if (not DoesEntityExist(veh)) then 
+          exports['NRP-notify']:DoHudText('success', 'Vehicle Sold')
+        end 
+
+        -- Increase the timeout counter and make the system wait
+        timeout = timeout + 1 
+        Citizen.Wait(500)
+
+        -- We've timed out and the vehicle still hasn't been deleted. 
+        if (DoesEntityExist(veh) and (timeout == timeoutMax - 1)) then
+          exports['NRP-notify']:DoHudText('error', 'Failed to sell vehicle after ' .. timeoutMax .. ' retries.')
+        end 
+      end
+  else 
+    exports['NRP-notify']:DoHudText('success', 'Vehicle Sold')
+  end 
+end
 
 function SetVehicleProperties(vehicle, props)
   SetVehicleModKit(vehicle,  0)

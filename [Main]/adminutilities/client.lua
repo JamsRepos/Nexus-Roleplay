@@ -30,6 +30,7 @@ AddEventHandler('admin:spawnVehicle', function(v)
   DecorRegister("_Max_Fuel_Level", 3);
   DecorSetInt(veh, "_Max_Fuel_Level", 100000)
   DecorSetInt(veh, "_Fuel_Level", 100000)
+  TriggerEvent('persistent-vehicles/register-vehicle', veh)
   exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(veh))
  end
 end)
@@ -266,12 +267,13 @@ function DeleteGivenVehicle(veh, timeoutMax)
 
   SetVehicleHasBeenOwnedByPlayer(veh, false)
   SetEntityAsMissionEntity(veh, true, true)
+  TriggerEvent('persistent-vehicles/forget-vehicle', veh)
   DeleteVehicle(veh)
 
   if (DoesEntityExist(veh)) then
     exports['NRP-notify']:DoHudText('error', 'Failed to delete vehicle, trying again...')
       -- Fallback if the vehicle doesn't get deleted
-      while (DoesEntityExist(veh) and timeout < timeoutMax) do 
+      while (DoesEntityExist(veh) and timeout < timeoutMax) do
         DeleteVehicle(veh)
 
         -- The vehicle has been banished from the face of the Earth!

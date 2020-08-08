@@ -217,11 +217,13 @@ end)
 TriggerEvent('core:addGroupCommand', 'devtp', "mod", function(source, args, user)
  local source = tonumber(source)
  TriggerClientEvent('admin:teleport', source, {x = args[2], y = args[3], z = args[4]})
+ TriggerEvent("core:log", tostring("[DEVTP] " .. GetPlayerName(source) .. "teleported to some co-ordinates."), "staff")
 end)
 
 TriggerEvent('core:addGroupCommand', 'tpm', "mod", function(source, args, user)
  local source = tonumber(source)
  TriggerClientEvent('admin:tpm', source)
+ TriggerEvent("core:log", tostring("[TPM] " .. GetPlayerName(source) .. "teleported to a waypoint."), "staff")
 end)
 
 TriggerEvent('core:addGroupCommand', 'givemoney', "mod", function(source, args, user)
