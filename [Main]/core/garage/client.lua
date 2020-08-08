@@ -360,6 +360,7 @@ function DeleteGivenVehicle(veh, timeoutMax)
 
   SetVehicleHasBeenOwnedByPlayer(veh, false)
   SetEntityAsMissionEntity(veh, true, true)
+  TriggerEvent('persistent-vehicles/forget-vehicle', veh)
   DeleteVehicle(veh)
 
   if (DoesEntityExist(veh)) then
@@ -415,6 +416,7 @@ function SpawnVehicle(data)
  TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
  SetVehicleEngineOn(vehicle, true)
  TriggerServerEvent("garage:out", data)
+ TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
  Citizen.Wait(800)
  netid = NetworkGetNetworkIdFromEntity(vehicle)
