@@ -85,18 +85,18 @@ function SpawnVehicle(vehicle2)
  SetNetworkIdCanMigrate(id, true)
  SetNetworkIdExistsOnAllMachines(id, true)
  SetVehicleDirtLevel(vehicle, 0)
- TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
- SetVehicleHasBeenOwnedByPlayer(vehicle, true)
  SetEntityAsMissionEntity(vehicle, true, true)
  SetVehicleMod(vehicle,16, 20)
  SetVehicleEngineOn(vehicle, true)
  SetVehicleLivery(vehicle, vehlivery)
  SetVehicleColours(vehicle, 100, 100)
  DecorRegister("_Fuel_Level", 3);
-  DecorRegister("_Max_Fuel_Level", 3);
-  DecorSetInt(vehicle, "_Max_Fuel_Level", 150000)
-  DecorSetInt(vehicle, "_Fuel_Level", 150000)
-  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+ DecorRegister("_Max_Fuel_Level", 3);
+ DecorSetInt(vehicle, "_Max_Fuel_Level", 150000)
+ DecorSetInt(vehicle, "_Fuel_Level", 150000)
+ TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
+ SetVehicleHasBeenOwnedByPlayer(vehicle, true)
+ exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
 end
 
 function OnDuty() 
