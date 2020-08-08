@@ -219,6 +219,7 @@ vehicles = {
    ["Super"] = {
       {name = "Adder", price = 700000, model = "Adder"},
       {name = "Bullet", price = 420000, model = "Bullet"},
+      {name = "Sultan RS", price = 220000, model = "sultanrs"},
       {name = "Cheetah", price = 450000, model = "Cheetah"},
       {name = "Entity XF", price = 675000, model = "EntityXF"},
       {name = "FMJ", price = 700000, model = "FMJ"},
