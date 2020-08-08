@@ -390,6 +390,11 @@ end
 AddEventHandler("clothing:togglemask", function()
  local ped = GetPlayerPed(-1)
  if mask.status then
+  RequestAnimDict('missfbi4')
+  while not HasAnimDictLoaded('missfbi4') do
+   Citizen.Wait(1)
+  end      			
+  TaskPlayAnim(GetPlayerPed(-1), 'missfbi4', 'takeoff_mask', 8.0, -1, 1500, 1, 0, 0, 0, 0)	
   SetPedComponentVariation(ped, 1, 0, 0, 2)
   print('Mask Off')
  else
