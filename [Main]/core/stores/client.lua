@@ -92,12 +92,10 @@ Citizen.CreateThread(function()
      if not v.license then
        if WarMenu.Button(v.name, "~g~$"..price) then
         TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-        TriggerServerEvent('bank:intoSharedBank', v.price, 18)
        end
      elseif v.license and hasLicense then      
        if WarMenu.Button(v.name, "~g~$"..price) then
         TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-        TriggerServerEvent('bank:intoSharedBank', v.price, 18)
        end
      end
     end
@@ -291,7 +289,6 @@ Citizen.CreateThread(function()
     local price = math.floor(v.price*getVat(2))
     if WarMenu.Button(v.name, "~g~$"..price) then
      TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-     TriggerServerEvent('bank:intoSharedBank', v.price, 12)
     end
    end
    WarMenu.Display()
@@ -333,7 +330,6 @@ Citizen.CreateThread(function()
      local price = math.floor(v.price*getVat(2))
      if WarMenu.Button(v.name, "~g~$"..price) then
       TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-      TriggerServerEvent('bank:intoSharedBank', v.price, 16)
      end
     end
     WarMenu.Display()
@@ -377,7 +373,6 @@ Citizen.CreateThread(function()
     local price = math.floor(v.price*getVat(2))
     if WarMenu.Button(v.name, "~g~$"..price) then
      TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-     TriggerServerEvent('bank:intoSharedBank', v.price, 14)
     end
    end
    WarMenu.Display()
@@ -410,7 +405,6 @@ Citizen.CreateThread(function()
     local price = math.floor(v.price*getVat(2))
     if WarMenu.Button(v.name, "~g~$"..price) then
      TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-     TriggerServerEvent('bank:intoSharedBank', v.price, 15)
     end
    end
    WarMenu.Display()
@@ -443,7 +437,6 @@ Citizen.CreateThread(function()
     local price = math.floor(v.price*getVat(2))
     if WarMenu.Button(v.name, "~g~$"..price) then
      TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-     TriggerServerEvent('bank:intoSharedBank', v.price, 19)
     end
    end
    WarMenu.Display()
@@ -476,7 +469,6 @@ Citizen.CreateThread(function()
     local price = math.floor(v.price*getVat(2))
     if WarMenu.Button(v.name, "~g~$"..price) then
      TriggerServerEvent('shops:purchase', v.name, price, v.amount, v.id)
-     TriggerServerEvent('bank:intoSharedBank', v.price, 20)
     end
    end
    WarMenu.Display()

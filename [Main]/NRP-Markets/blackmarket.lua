@@ -313,10 +313,8 @@ function fastfood()
     if WarMenu.Button(v.label, "~g~$"..v.price) then
      if v.name ~= 'Item' then 
       TriggerServerEvent('foodmarket:purchase', v.name, v.label, v.price)
-      TriggerServerEvent('bank:intoSharedBank', v.price, 17)
      else
       TriggerServerEvent('shops:purchase', v.name, v.price, 1, v.id)
-      TriggerServerEvent('bank:intoSharedBank', v.price, 17)
      end
     end 
    end

@@ -223,7 +223,6 @@ Citizen.CreateThread(function()
   	if IsControlJustPressed(0, 38) then
 		  TaskStartScenarioInPlace(GetPlayerPed(-1), 'PROP_HUMAN_ATM', false, true) Wait(3000) ClearPedTasksImmediately(GetPlayerPed(-1))
       TriggerServerEvent('shops:purchase', label, 8, 1, 105)
-      TriggerServerEvent('bank:intoSharedBank', 8, 10)
     end
    end ---- add shared banking to vending machines then somecan buy them
    end

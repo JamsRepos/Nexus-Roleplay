@@ -234,7 +234,6 @@ Citizen.CreateThread(function()
       local item = v.itemid
       TriggerServerEvent('fastfood:removestock', currentStore, item, 1, v.price)
       TriggerServerEvent('shops:purchase', v.stockname, v.price, 1, item)
-      TriggerServerEvent('bank:intoSharedBank', v.price, 2)
       TriggerServerEvent('fastfood:getstock', currentStore)
      end
     elseif v.amount <= 0 then

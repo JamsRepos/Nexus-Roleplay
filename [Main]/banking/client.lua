@@ -117,7 +117,7 @@ function nearBank()
     local distance = GetDistanceBetweenCoords(search.x, search.y, search.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
 		
     if distance <= 3 then
-      DrawText3Ds(search.x, search.y, search.z,"~g~[E]~w~ Bank \n ~m~[~g~H~m~]Shared Bank")
+      DrawText3Ds(search.x, search.y, search.z,"~g~[E]~w~ Bank")
 			return true
 		end
 	end

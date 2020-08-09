@@ -118,7 +118,6 @@ Citizen.CreateThread(function()
          grapesDelivered = 0
          -- Add code to give money and add to storage
          local pay = math.random(450, 1000)
-         --TriggerServerEvent('bank:intoSharedBank', pay*0.4, 9)
          RemoveJobBlip()
          TriggerServerEvent('jobs:paytheplayer', pay, 'Vineyard: Storage Payment')
          --Notify('You have been paid $'..pay.. ' for completing your rounds.')
