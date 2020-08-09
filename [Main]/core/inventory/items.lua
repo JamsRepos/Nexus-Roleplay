@@ -3,6 +3,9 @@ local IsDrunk = false
 local oxygenTank = false
 local oxygenCapacity = 0 
 
+local gasMask = false
+local filterDurability = 0
+
 local fov_max = 70.0
 local fov_min = 4.0 -- max zoom level (smaller fov is more zoom)
 local zoomspeed = 10.0 -- camera zoom speed
@@ -14,6 +17,8 @@ local fov = (fov_max+fov_min)*0.5
 local keybindEnabled = false -- When enabled, binocular are available by keybind
 local binocularKey = 47
 local storeBinoclarKey = 177
+
+
 
 RegisterNetEvent('items:beer')
 AddEventHandler('items:beer', function() 
@@ -709,6 +714,46 @@ end)
 
 local mask = nil
 local tank = nil
+
+RegisterNetEvent('items:gas_mask')
+AddEventHandler('items:gas_mask', function()
+	if not gasMask then
+
+		if oxygenTank then
+			oxygenTank = false
+			SetPedDiesInWater(GetPlayerPed(-1), true)
+			DeleteObject(tank)
+			DeleteObject(mask)
+			ClearPedSecondaryTask(GetPlayerPed(-1))
+			if oxygenCapacity == 100 then 
+				TriggerEvent("inventory:addQty", 41, 1)
+			end
+		end
+
+		gasMask = true
+		SetPedComponentVariation(GetPlayerPed(-1), 1, 46, 0, 0)
+		SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, true)
+
+	elseif gasMask then
+		gasMask = false
+		SetPedComponentVariation(GetPlayerPed(-1), 1, 0, 0, 2)
+		SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, false)
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+	Wait(1)
+		if gasMask then
+			drawUI(0.514, 1.201, 1.0, 1.0, 0.42, "~g~GAS MASK ON", 53, 194, 41, 255, false)
+		end
+		if exports['core']:GetItemQuantity(162) < 1 then
+			gasMask = false
+			SetPedComponentVariation(GetPlayerPed(-1), 1, 0, 0, 2)
+			SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, false)
+		end
+	end    
+end)
 
 RegisterNetEvent('items:oxygen_mask')
 AddEventHandler('items:oxygen_mask', function()
