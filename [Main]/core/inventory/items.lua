@@ -747,7 +747,7 @@ Citizen.CreateThread(function()
 		if gasMask then
 			drawUI(0.514, 1.201, 1.0, 1.0, 0.42, "~g~GAS MASK ON", 53, 194, 41, 255, false)
 		end
-		if exports['core']:GetItemQuantity(162) < 1 then
+		if (exports['core']:GetItemQuantity(162) < 1) and gasMask then
 			gasMask = false
 			SetPedComponentVariation(GetPlayerPed(-1), 1, 0, 0, 2)
 			SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, false)
