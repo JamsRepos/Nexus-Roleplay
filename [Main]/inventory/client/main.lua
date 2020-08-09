@@ -366,6 +366,8 @@ function use(item, meta)
        elseif item == 154 then 
         TriggerServerEvent('NRP-B-Cashstacks-1k')  
         removeQty(item,1)
+       elseif item == 162 then
+        TriggerEvent('items:gas_mask')
        elseif item == 176 then 
         TriggerServerEvent('NRP-B-Dirtystacks-10k')  
         removeQty(item,1)

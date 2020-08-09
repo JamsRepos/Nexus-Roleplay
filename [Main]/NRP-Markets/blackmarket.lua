@@ -79,6 +79,7 @@ local blackmarket_weapons13 = { --- Drive Thru
 local blackmarket_weapons14 = {
 [1] = {label = 'Blank Plate', name = 'Item', price = 15000, id = 262},
 [2] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
+[3] = {label = 'Gas Mask', name = 'Item', price = 5000, id = 162}, 
 }
 
 local blackmarket_weapons16 = { --- Mechanics Laptop
@@ -101,9 +102,10 @@ local blackmarket_weapons20 = { --- Pillbox Upper Meds
 
 local blackmarket_weapons22 = { --- Ketamine //Moved
 [1] = {label = 'C4 Explosive', name = 'Item', price = 2000, id = 276},   
-[2] = {label = 'Hatchet', name = 'Item', price = 1000, id = 203},  
-[3] = {label = 'Blindfold', name = 'Item', price = 1000, id = 76},
-[4] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
+[2] = {label = 'Gas Mask', name = 'Item', price = 5000, id = 162},   
+[3] = {label = 'Hatchet', name = 'Item', price = 1000, id = 203},  
+[4] = {label = 'Blindfold', name = 'Item', price = 1000, id = 76},
+[5] = {label = 'Radio Scanner', name = 'Item', price = 5000, id = 161},
 }
 
 Citizen.CreateThread(function()
