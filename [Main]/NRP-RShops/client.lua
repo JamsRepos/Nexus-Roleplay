@@ -30,7 +30,10 @@ Citizen.CreateThread(function()
    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), storeLoc.x, storeLoc.y, storeLoc.z, true) < 0.8) then
     DrawText3Ds(storeLoc.x, storeLoc.y, storeLoc.z,'~g~[E]~w~ Break Open Cash Register')
     if IsControlJustPressed(0, 38) and IsPedArmed(GetPlayerPed(-1), 7) then
-     TriggerServerEvent('robberies:start', 'Store', storeLoc)
+      local result = exports["pd-safe"]:createSafe({math.random(0,99),math.random(0,99),math.random(0,99)})
+      if result then
+        TriggerServerEvent('robberies:start', 'Store', storeLoc)
+      end
     end 
    end
   end
@@ -44,8 +47,8 @@ AddEventHandler('xzurvRobbery:started', function()
 
   TriggerEvent("mythic_progbar:client:progress", {
     name = "robbing_store",
-    duration = 240000,
-    label = "Robbing Store",
+    duration = 120000,
+    label = "Taking Money",
     useWhileDead = false,
     canCancel = true,
     controlDisables = {
