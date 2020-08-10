@@ -220,6 +220,7 @@ vehicles = {
       {name = "Adder", price = 700000, model = "Adder"},
       {name = "Bullet", price = 420000, model = "Bullet"},
       {name = "Sultan RS", price = 220000, model = "sultanrs"},
+      {name = "Ocelot Pariah", price = 300000, model = "pariah"},
       {name = "Cheetah", price = 450000, model = "Cheetah"},
       {name = "Entity XF", price = 675000, model = "EntityXF"},
       {name = "FMJ", price = 700000, model = "FMJ"},
