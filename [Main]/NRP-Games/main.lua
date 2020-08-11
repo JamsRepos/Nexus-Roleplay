@@ -63,7 +63,174 @@ RegisterCommand("suppressor", function()
 		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
 				TriggerEvent("inventory:removeQty", 170, 1)
 			end
-	    end
+		end
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_APPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_APPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+		
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL50")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL50")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_HEAVYPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_HEAVYPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_VINTAGEPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_VINTAGEPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MICROSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MICROSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_SMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_SMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+		
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MACHINEPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MACHINEPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTRIFLE")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTRIFLE")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_carbinerifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_carbinerifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_advancedrifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_advancedrifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_specialcarbine")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_specialcarbine")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
+
+		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_bullpuprifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem == 0 or suppressoritem > 0 then 
+		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+	      		TriggerEvent("inventory:addQty", 170, 1)
+	      	end
+	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_bullpuprifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
+			if suppressoritem > 0 then 
+		        GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
+				TriggerEvent("inventory:removeQty", 170, 1)
+			end
+		end
 end)
 
 RegisterCommand("strap", function()
