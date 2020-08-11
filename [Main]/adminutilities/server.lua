@@ -174,7 +174,7 @@ AddEventHandler('core:playerLoaded', function(Source, user)
   TriggerClientEvent('admin:setGroup', Source, user.getGroup())
 end)
 
-TriggerEvent('core:addGroupCommand', 'watch', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'watch', "support", function(source, args, user)
  local player = tonumber(args[2])
  TriggerEvent("core:getPlayerFromId", player, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET watched=@watch WHERE identifier=@id",{['@watch'] = 1, ['@id'] = GetPlayerIdentifier(player)})
@@ -183,7 +183,7 @@ TriggerEvent('core:addGroupCommand', 'watch', "mod", function(source, args, user
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'pvc', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'pvc', "admin", function(source, args, user)
   if args[2] then
    local player = tonumber(args[2])
    local source = tonumber(source)
@@ -194,7 +194,7 @@ TriggerEvent('core:addGroupCommand', 'pvc', "mod", function(source, args, user)
   end
  end)
 
- TriggerEvent('core:addGroupCommand', 'othervc', "mod", function(source, args, user)
+ TriggerEvent('core:addGroupCommand', 'othervc', "admin", function(source, args, user)
  if args[2] then
   local player = tonumber(args[2])
   local source = tonumber(source)
@@ -205,7 +205,7 @@ TriggerEvent('core:addGroupCommand', 'pvc', "mod", function(source, args, user)
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'unwatch', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'unwatch', "support", function(source, args, user)
  local player = tonumber(args[2])
  TriggerEvent("core:getPlayerFromId", player, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET watched=@watch WHERE identifier=@id",{['@watch'] = 0, ['@id'] = GetPlayerIdentifier(player)})
@@ -214,19 +214,19 @@ TriggerEvent('core:addGroupCommand', 'unwatch', "mod", function(source, args, us
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'devtp', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'devtp', "admin", function(source, args, user)
  local source = tonumber(source)
  TriggerClientEvent('admin:teleport', source, {x = args[2], y = args[3], z = args[4]})
  TriggerEvent("core:log", tostring("[DEVTP] " .. GetPlayerName(source) .. "teleported to some co-ordinates."), "staff")
 end)
 
-TriggerEvent('core:addGroupCommand', 'tpm', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'tpm', "admin", function(source, args, user)
  local source = tonumber(source)
  TriggerClientEvent('admin:tpm', source)
  TriggerEvent("core:log", tostring("[TPM] " .. GetPlayerName(source) .. "teleported to a waypoint."), "staff")
 end)
 
-TriggerEvent('core:addGroupCommand', 'givemoney', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'givemoney', "admin", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -236,7 +236,7 @@ TriggerEvent('core:addGroupCommand', 'givemoney', "mod", function(source, args, 
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'removemoney', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'removemoney', "admin", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -246,7 +246,7 @@ TriggerEvent('core:addGroupCommand', 'removemoney', "mod", function(source, args
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'givedirtymoney', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'givedirtymoney', "admin", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -256,7 +256,7 @@ TriggerEvent('core:addGroupCommand', 'givedirtymoney', "mod", function(source, a
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'removedirtymoney', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'removedirtymoney', "admin", function(source, args, user)
  local source = tonumber(source)
  local player = tonumber(args[2])
  local money = tonumber(args[3])
@@ -297,7 +297,7 @@ TriggerEvent('core:addGroupCommand', 'car', "admin", function(source, args, user
  TriggerEvent("core:log", tostring("[CARSPAWN] " .. GetPlayerName(source).. ' CAR: ' ..args[2]), "staff")
 end)
 
-TriggerEvent('core:addGroupCommand', 'clearchat', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'clearchat', "support", function(source, args, user)
  TriggerClientEvent('chat:clear', -1)
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
@@ -357,7 +357,7 @@ TriggerEvent('core:addGroupCommand', 'ac', "trainee", function(source, args, use
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'gc', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'gc', "admin", function(source, args, user)
  table.remove(args, 1)
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
@@ -387,14 +387,14 @@ TriggerEvent('core:addGroupCommand', 'toggleadmin', "trainee", function(source, 
 end)
 
 -- Announcing
-TriggerEvent('core:addGroupCommand', 'announce', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'announce', "support", function(source, args, user)
  table.remove(args, 1)
  TriggerClientEvent('chatMessage', -1, "ANNOUNCEMENT", {255, 0, 0}, " " .. table.concat(args, " "))
 end)
 
 -- Freezing
 local frozen = {}
-TriggerEvent('core:addGroupCommand', 'freeze', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'freeze', "support", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -416,7 +416,7 @@ TriggerEvent('core:addGroupCommand', 'freeze', "helper", function(source, args, 
 end)
 
 -- Bring
-TriggerEvent('core:addGroupCommand', 'bring', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'bring', "support", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -444,7 +444,7 @@ local function antimickyfemale()
   end
 end
 
-TriggerEvent('core:addGroupCommand', 'resetskin', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'resetskin', "admin", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -526,7 +526,7 @@ TriggerEvent('core:addGroupCommand', 'dv', "trainee", function(source, args, use
   TriggerClientEvent('admin:dv', source)
 end)
 
-TriggerEvent('core:addGroupCommand', 'cleararea', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'cleararea', "support", function(source, args, user)
  local source = tonumber(source)
   TriggerClientEvent('admin:cleararea', source)
 end)
@@ -549,7 +549,7 @@ TriggerEvent('core:addGroupCommand', 'lgtout', 'trainee', function(source, args,
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'slay', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'slay', "support", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
