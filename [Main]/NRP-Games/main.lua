@@ -23,7 +23,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL_MK2") and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL_MK2'), GetHashKey('COMPONENT_AT_PI_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 	        	RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL_MK2'), GetHashKey('COMPONENT_AT_PI_SUPP_02'))
-				  suppressor = false
       		end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL_MK2")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL_MK2'), GetHashKey('COMPONENT_AT_PI_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -45,7 +44,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -56,7 +54,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_COMBATPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_COMBATPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_COMBATPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -67,7 +64,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_APPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_APPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_APPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -79,7 +75,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL50")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_PISTOL50")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_PISTOL50'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -91,7 +86,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_HEAVYPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_HEAVYPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_HEAVYPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -103,7 +97,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_VINTAGEPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_VINTAGEPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_VINTAGEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -115,7 +108,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MICROSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MICROSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MICROSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -127,7 +119,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_SMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_SMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_SMG'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -139,7 +130,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -151,7 +141,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTSMG")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTSMG'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -163,7 +152,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MACHINEPISTOL")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_MACHINEPISTOL")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_MACHINEPISTOL'), GetHashKey('COMPONENT_AT_PI_SUPP')) then
 			if suppressoritem > 0 then 
@@ -175,7 +163,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTRIFLE")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("WEAPON_ASSAULTRIFLE")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('WEAPON_ASSAULTRIFLE'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -187,7 +174,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_carbinerifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_carbinerifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_carbinerifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem > 0 then 
@@ -199,7 +185,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_advancedrifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_advancedrifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_advancedrifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem > 0 then 
@@ -211,7 +196,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_specialcarbine")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_specialcarbine")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_specialcarbine'), GetHashKey('COMPONENT_AT_AR_SUPP_02')) then
 			if suppressoritem > 0 then 
@@ -223,7 +207,6 @@ RegisterCommand("suppressor", function()
 		if GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_bullpuprifle")  and HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem == 0 or suppressoritem > 0 then 
 		        RemoveWeaponComponentFromPed(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP'))
-	      		suppressor = false
 	      	end
 	    elseif GetSelectedPedWeapon(GetPlayerPed(-1)) == GetHashKey("weapon_bullpuprifle")  and not HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey('weapon_bullpuprifle'), GetHashKey('COMPONENT_AT_AR_SUPP')) then
 			if suppressoritem > 0 then 
@@ -235,7 +218,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Wait(1000)
+		Wait(10000)
 		if suppressor then
 			local suppressoritema = exports['core']:GetItemQuantity(170)
 			if suppressoritema < 1 then
