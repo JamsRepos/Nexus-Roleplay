@@ -28,6 +28,8 @@ Citizen.CreateThread(function()
         DisplayRadar(true)
       elseif DecorGetBool(GetPlayerPed(-1), "isOfficer") or DecorGetBool(GetPlayerPed(-1), "isParamedic") then
         DisplayRadar(true)
+      else
+        DisplayRadar(false)
       end
     else 
       DisplayRadar(false)

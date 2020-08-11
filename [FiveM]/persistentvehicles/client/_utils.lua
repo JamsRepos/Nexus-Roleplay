@@ -247,6 +247,7 @@ _Utils.CreateVehicle = function(model, pos, props)
 	SetEntityAsMissionEntity(vehicle, true, false)
 	SetVehicleHasBeenOwnedByPlayer(vehicle, true)
 	SetVehicleNeedsToBeHotwired(vehicle, false)
+	SetVehicleOnGroundProperly(vehicle)
 	SetModelAsNoLongerNeeded(model)
 	SetVehRadioStation(vehicle, 'OFF')
 
