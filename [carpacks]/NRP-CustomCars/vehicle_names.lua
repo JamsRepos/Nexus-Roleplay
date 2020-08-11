@@ -1,33 +1,37 @@
 Citizen.CreateThread(function()
-	-- POLICE2
-	AddTextEntry('0x9F05F101', 'Police2')
-	-- POLICE3
-	AddTextEntry('0x71FA16EA', 'Police3')
-	-- POLICE4
-	AddTextEntry('0x8A63C7B9', 'Police4')
-	-- POLICE5
-	AddTextEntry('0x9C32EB57', 'Police5')
-	-- POLICE6
-	AddTextEntry('0xB2FF98F0', 'Police6')
-	-- POLICE7
-	AddTextEntry('0xC4B53C5B', 'Police7')
-	-- POLICE8
-	AddTextEntry('0xD0AF544F', 'Police8')
-	-- FBI
-	AddTextEntry('0x432EA949', 'FBI')
-	-- FBI2
-	AddTextEntry('0x9DC66994', 'FBI2')
-	-- ZL1
-	AddTextEntry('0x15C4DF5E', 'Police Camaro')
-	-- fd1
-	AddTextEntry('0x9C32EB57', 'FD1') 		
-	-- fd2
-	AddTextEntry('0xB2FF98F0', 'FD2') 	
-	-- fd3
-	AddTextEntry('0xC4B53C5B', 'FD3')
-	-- fd4
-	AddTextEntry('0xD0AF544F', 'FD4')
-
-	
-	Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"), key, value)
+	AddTextEntry('lp770cop', 'Police Centenario')
+	AddTextEntry('police2', 'Police Charger')
+	AddTextEntry('police5', 'Police Explorer')
+	AddTextEntry('police7', 'Police Crown Victoria')
+	AddTextEntry('bearcat', 'CRT Bearcat')
+	AddTextEntry('f750', 'EMS Ambulance')
+	AddTextEntry('fd1', 'EMS Explorer')
+	AddTextEntry('fd2', 'EMS Tahoe')
+	AddTextEntry('fd3', 'EMS Crown Victoria')
+	AddTextEntry('fd4', 'EMS Taurus')
+	AddTextEntry('polmav', 'EMS Maverick')
+	AddTextEntry('rmodx6', 'BMW X5')
+	AddTextEntry('gt17', 'Ford GT')
+	AddTextEntry('GT86', 'Toyota GT-86')
+	AddTextEntry('720s', 'McClaren 720s')
+	AddTextEntry('lanex400', 'Mitsubishi Lancer')
+	AddTextEntry('a80', 'Toyota Supra')
+	AddTextEntry('2013rs7', 'Audi RS7')
+	AddTextEntry('na1', 'Honda NSX R')
+	AddTextEntry('contss18', 'Bentley Continental GT')
+	AddTextEntry('hcbr17', 'Honda CBR 1000RR')
+	AddTextEntry('FK8', 'Honda TypeR')
+	AddTextEntry('urus', 'Lamborghini Urus')
+	AddTextEntry('slingshot', 'Polaris Slingshot')
+	AddTextEntry('teslax', 'Tesla Model X')
+	AddTextEntry('f82', 'BMW M4 Liberty Walk')
+	AddTextEntry('mgt', 'Ford Mustang')
+	AddTextEntry('fd', 'Mazda RX7')
+	AddTextEntry('rrphantom', 'Rolls Royce Phantom')
+	AddTextEntry('subisti08', 'Subaru WRX STi')
+	AddTextEntry('golfp', 'Volkswagen Golf R')
+	AddTextEntry('m3e30', 'BMW M3 E30')
+	AddTextEntry('p911r', 'Porche 911 GT2RS')
+	AddTextEntry('e400', 'Mercedes E400')
+	AddTextEntry('mxpan', 'Mazda MX-5')
 end)
