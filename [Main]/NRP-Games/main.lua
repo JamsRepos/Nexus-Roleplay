@@ -218,7 +218,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Wait(10000)
+		Citizen.Wait(10000)
 		if suppressor then
 			local suppressoritema = exports['core']:GetItemQuantity(170)
 			if suppressoritema < 1 then
