@@ -522,6 +522,8 @@ function IsSuppressed()
   havesilence = HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey("WEAPON_COMBATPISTOL"), GetHashKey("COMPONENT_AT_PI_SUPP"))
  elseif currentWeaponHash == GetHashKey("WEAPON_APPISTOL") then
   havesilence = HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey("WEAPON_APPISTOL"), GetHashKey("COMPONENT_AT_PI_SUPP"))
+elseif currentWeaponHash == GetHashKey("weapon_machinepistol") then
+    havesilence = HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey("weapon_machinepistol"), GetHashKey("COMPONENT_AT_PI_SUPP"))
  elseif currentWeaponHash == GetHashKey("WEAPON_HEAVYPISTOL") then
   havesilence = HasPedGotWeaponComponent(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_AT_PI_SUPP"))
  elseif currentWeaponHash == GetHashKey("WEAPON_VINTAGEPISTOL") then
