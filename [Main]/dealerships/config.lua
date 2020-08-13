@@ -52,6 +52,6 @@ Config.cars = {
         label = "Honda EK9", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-20.87, -1110.7, 26.69-0.85), -- position - vector3(x,y,z)
         heading = 325,
-        price = 115000
+        price = 100000
     }
 }
