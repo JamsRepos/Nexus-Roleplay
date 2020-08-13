@@ -304,6 +304,7 @@ local function DriveInGarage()
 		AddMod(6,LSCMenu.categories,"GRILLE", "Grille", "Improved engine cooling.",true)
 		AddMod(7,LSCMenu.categories,"HOOD", "Hood", "Enhance car engine cooling.",true)
 		AddMod(8,LSCMenu.categories,"FENDERS", "Fenders", "Enhance body paneling with custom fenders.",true)
+		AddMod(9,LSCMenu.categories,"REAR FENDERS", "Rear Fenders", "Enhance body paneling with custom rear fenders.",true)
 		AddMod(10,LSCMenu.categories,"ROOF", "Roof", "Lower your center of gravity with lightweight roof panels.",true)
 		AddMod(12,LSCMenu.categories,"BRAKES", "Brakes", "Increase stopping power and eliminate brake fade.",true)
 		if GetVehicleHighGear(veh) ~= 1 then
@@ -810,6 +811,16 @@ AddEventHandler("LSC:buttonSelected2", function(name, button, canpurchase)
 				myveh.mods[9].mod = button.mod
 				SetVehicleMod(veh,9,button.mod)
 				SetVehicleMod(veh,8,button.mod)
+			else
+				myveh.mods[button.modtype].mod = button.mod
+				SetVehicleMod(veh,button.modtype,button.mod)
+			end
+		end
+	elseif mname == "rear fenders" then
+		if button.name == "Stock" or button.purchased or CanPurchase(price, canpurchase)then
+			if button.name == "Stock" then
+				myveh.mods[9].mod = button.mod
+				SetVehicleMod(veh,9,button.mod)
 			else
 				myveh.mods[button.modtype].mod = button.mod
 				SetVehicleMod(veh,button.modtype,button.mod)

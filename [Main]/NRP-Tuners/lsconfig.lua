@@ -733,6 +733,17 @@ LSC_Config.prices = {
 		{ name = "Roof 13", mod = 12, price = 550},
 	},
 	
+	------------Fenders---------
+	[9] = {
+		{ name = "Fenders 1", mod = 0, price = 250},
+		{ name = "Fenders 2", mod = 1, price = 275},
+		{ name = "Fenders 3", mod = 2, price = 300},
+		{ name = "Fenders 4", mod = 3, price = 325},
+		{ name = "Fenders 5", mod = 4, price = 350},
+		{ name = "Fenders 6", mod = 5, price = 375},
+		{ name = "Fenders 7", mod = 6, price = 400},
+	},
+
 ------------Fenders---------
 	[8] = {
 		{ name = "Fenders 1", mod = 0, price = 250},
