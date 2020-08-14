@@ -95,7 +95,7 @@ AddEventHandler('playerDropped', function()
                 elseif duration >= 3600 then
                     timetext = tostring(math.floor(duration / 3600).." hours, "..tostring(math.floor(math.fmod(duration, 3600)) / 60)).." minutes"
                 end
-                DiscordLog(header, "Steam Name: **"..timers[k][n].name.."**\n Shift Duration: **"..timetext.."**\n Start Date: **"..date.."**\n End Date: **"..os.date("%d/%m/%Y %X").."**", color, k)
+                DiscordLog(header, "Officer: **"..timers[k][n].name.."**\n Shift Duration: **"..timetext.."**\n Start Date: **"..date.."**\n End Date: **"..os.date("%d/%m/%Y %X").."**", color, k)
                 table.remove(timers[k], n)
                 return
             end
