@@ -75,7 +75,7 @@ AddEventHandler('rob:takedirtyMoney', function(amount, target)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   TriggerEvent('core:getPlayerFromId', target, function(targetUser)
    targetUser.removeDirtyMoney(cash)
-   if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
+   if user.getJob() == 1 or user.getJob() == 31 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
     user.removeDirtyMoney(user.getDirtyMoney())
    else
     user.addDirtyMoney(cash)
