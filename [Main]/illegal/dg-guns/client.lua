@@ -191,7 +191,6 @@ Citizen.CreateThread(function()
     --Pistol Mk2 (188) & Service Pistol (189)
     local haspistolmk2item = exports['core']:GetItemQuantity(188) >= 1 
     local hasservicepistolitem = exports['core']:GetItemQuantity(189) >= 1
-    local hasCRTpistolitem = exports['core']:GetItemQuantity(303) >= 1
     local haspistolmk2 = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), false)
     if haspistolmk2item and not haspistolmk2 then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 120, false, false)
@@ -200,13 +199,7 @@ Citizen.CreateThread(function()
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 200, false, false)
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
     end
-    if hasCRTpistolitem and not haspistolmk2 and not hasservicepistolitem then
-      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), 200, false, false)
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_SUPP_02"))
-    end
-    if not (haspistolmk2item or hasservicepistolitem or hasCRTpistolitem) and haspistolmk2 then
+    if not (haspistolmk2item or hasservicepistolitem) and haspistolmk2 then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"))
       RemoveWeaponComponentFromPed(GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_FLSH_02"))
       TriggerEvent('weapons:updateback')
@@ -598,13 +591,25 @@ Citizen.CreateThread(function()
     --Carbine Rifle (222)
     local hasCarbineRifleitem = exports['core']:GetItemQuantity(222) >= 1
     local hasCarbineRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), false)
+    local hasCRTRifleitem = exports['core']:GetItemQuantity(302) >= 1
+    local hasCRTRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), false)
     if hasCarbineRifleitem and not hasCarbineRifle then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), 120, false, false)
     end
-    if not hasCarbineRifleitem and hasCarbineRifle then
+    if hasCRTRifleitem and not hasCRTRifle then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), 120, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_CARBINERIFLE_CLIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_AR_FLSH"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_AR_SUPP"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"), GetHashKey("COMPONENT_AT_AR_AFGRIP"))
+    end
+    if not (hasCarbineRifleitem or hasCRTRifleitem) and hasCarbineRifle then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_CARBINERIFLE"))
       TriggerEvent('weapons:updateback')
     end
+
+
     ---------------
 
     --Advanced Rifle (223)
@@ -742,11 +747,18 @@ Citizen.CreateThread(function()
 
     --Heavy Pistol (234)
     local hasHeavyPistolitem = exports['core']:GetItemQuantity(234) >= 1
+    local hasCRTpistolitem = exports['core']:GetItemQuantity(303) >= 1
     local hasHeavyPistol = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), false)
     if hasHeavyPistolitem and not hasHeavyPistol then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), 120, false, false)
     end
-    if not hasHeavyPistolitem and hasHeavyPistol then
+    if hasCRTpistolitem and not haspistolmk2 and not hasservicepistolitem then
+      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), 200, false, false)
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_HEAVYPISTOL_CLIP_02"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
+      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_AT_PI_SUPP"))
+    end
+    if not (hasHeavyPistolitem or hasCRTpistolitem) and hasHeavyPistol then
       RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"))
       TriggerEvent('weapons:updateback')
     end
@@ -932,22 +944,7 @@ Citizen.CreateThread(function()
     end
 
 
-    --CRT RIFLE (302)
-    local hasCRTRifleitem = exports['core']:GetItemQuantity(302) >= 1
-    local hasCRTRifle = HasPedGotWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), false)
-    if hasCRTRifleitem and not hasCRTRifle then
-      GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), 120, false, false)
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_SPECIALCARBINE_MK2_CLIP_02"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_FLSH"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_SCOPE_MEDIUM_MK2"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_SUPP_02"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_AR_AFGRIP_02"))
-      GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"), GetHashKey("COMPONENT_AT_SC_BARREL_02"))
-    end
-    if not hasCRTRifleitem and hasCRTRifle then
-      RemoveWeaponFromPed(GetPlayerPed(-1), GetHashKey("WEAPON_SPECIALCARBINE_MK2"))
-      TriggerEvent('weapons:updateback')
-    end
+
 
 
 
