@@ -31,7 +31,7 @@ AddEventHandler('mechanic:repair', function(name, pay)
 end)
 
 local function policeCheck()
-  SetTimeout(60000, function()
+  SetTimeout(20000, function()
     Citizen.CreateThread(function()
      ems = 0
      cops = 0 
