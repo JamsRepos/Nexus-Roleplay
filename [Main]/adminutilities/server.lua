@@ -47,7 +47,7 @@ TriggerEvent('core:addGroupCommand', 'startserver', "admin", function(source, ar
  end
 end)
 ]]--
- TriggerEvent('core:addGroupCommand', 'giveitem', "admin", function(source, args, user)
+ TriggerEvent('core:addGroupCommand', 'giveitem', "mod", function(source, args, user)
   local player = tonumber(args[2])
   local item = tonumber(args[3])
   TriggerClientEvent("inventory:addQty", player, item, 1)
@@ -90,8 +90,8 @@ end)
     TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Incorrect player ID!")
    end
   end
-end)
-]]--
+end)]]--
+
 --[[TriggerEvent('core:addGroupCommand', 'unban', "mod", function(source, args, user)
   if args[2] then
     exports['GHMattiMySQL']:QueryAsync("DELETE FROM `bans` WHERE ban_id=@ban_id",{['@ban_id'] = args[2]})
@@ -99,11 +99,6 @@ end)
   end
  end)
 ]]--
-TriggerEvent('core:addGroupCommand', 'restart-server', "admin", function(source, args, user)
-   TriggerClientEvent('chatMessage', -1, "SYSTEM", {255, 0, 0}, "A server restart has been manually triggered by an administrator, this will occur in 30 seconds.")
-   Wait(30000)
-   --os.execute("bash /srv/daemon-data/4e8fd6e9-286d-42d1-a7e5-ca558b26095d/ServerStart.sh")
-end)
 
 RegisterServerEvent("admin:clientGetGroup")
 AddEventHandler("admin:clientGetGroup", function()
@@ -174,7 +169,7 @@ AddEventHandler('core:playerLoaded', function(Source, user)
   TriggerClientEvent('admin:setGroup', Source, user.getGroup())
 end)
 
-TriggerEvent('core:addGroupCommand', 'watch', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'watch', "trainee", function(source, args, user)
  local player = tonumber(args[2])
  TriggerEvent("core:getPlayerFromId", player, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET watched=@watch WHERE identifier=@id",{['@watch'] = 1, ['@id'] = GetPlayerIdentifier(player)})
@@ -205,7 +200,7 @@ TriggerEvent('core:addGroupCommand', 'pvc', "mod", function(source, args, user)
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'unwatch', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'unwatch', "trainee", function(source, args, user)
  local player = tonumber(args[2])
  TriggerEvent("core:getPlayerFromId", player, function(user)
   exports['GHMattiMySQL']:QueryAsync("UPDATE `users` SET watched=@watch WHERE identifier=@id",{['@watch'] = 0, ['@id'] = GetPlayerIdentifier(player)})
@@ -266,7 +261,7 @@ TriggerEvent('core:addGroupCommand', 'removedirtymoney', "mod", function(source,
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'flop', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'flop', "trainee", function(source, args, user)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
  local player = tonumber(args[2])
@@ -285,19 +280,19 @@ end)
  end)
 end)
 ]]--
-TriggerEvent('core:addGroupCommand', 'removeallweapons', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'removeallweapons', "helper", function(source, args, user)
  local player = tonumber(args[2])
  TriggerEvent("core:getPlayerFromId", player, function(user)
   user.removeAllWeapons()
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'car', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'car', "mod", function(source, args, user)
  TriggerClientEvent('admin:spawnVehicle', source, args[2])
  TriggerEvent("core:log", tostring("[CARSPAWN] " .. GetPlayerName(source).. ' CAR: ' ..args[2]), "staff")
 end)
 
-TriggerEvent('core:addGroupCommand', 'clearchat', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'clearchat', "trainee", function(source, args, user)
  TriggerClientEvent('chat:clear', -1)
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
@@ -357,7 +352,7 @@ TriggerEvent('core:addGroupCommand', 'ac', "trainee", function(source, args, use
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'gc', "mod", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'gc', "admin", function(source, args, user)
  table.remove(args, 1)
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
@@ -387,14 +382,14 @@ TriggerEvent('core:addGroupCommand', 'toggleadmin', "trainee", function(source, 
 end)
 
 -- Announcing
-TriggerEvent('core:addGroupCommand', 'announce', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'announce', "trainee", function(source, args, user)
  table.remove(args, 1)
  TriggerClientEvent('chatMessage', -1, "ANNOUNCEMENT", {255, 0, 0}, " " .. table.concat(args, " "))
 end)
 
 -- Freezing
 local frozen = {}
-TriggerEvent('core:addGroupCommand', 'freeze', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'freeze', "trainee", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -416,7 +411,7 @@ TriggerEvent('core:addGroupCommand', 'freeze', "helper", function(source, args, 
 end)
 
 -- Bring
-TriggerEvent('core:addGroupCommand', 'bring', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'bring', "trainee", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -501,7 +496,7 @@ TriggerEvent('core:addGroupCommand', 'deletechar', "admin", function(source, arg
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'breakbox', "admin", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'breakbox', "helper", function(source, args, user)
  if args[2] then
   local boxid = args[3]
   local source = tonumber(source)
@@ -526,7 +521,7 @@ TriggerEvent('core:addGroupCommand', 'dv', "trainee", function(source, args, use
   TriggerClientEvent('admin:dv', source)
 end)
 
-TriggerEvent('core:addGroupCommand', 'cleararea', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'cleararea', "trainee", function(source, args, user)
  local source = tonumber(source)
   TriggerClientEvent('admin:cleararea', source)
 end)
@@ -537,7 +532,7 @@ TriggerEvent('core:addCommand', 'die', function(source, args, user)
 end)
 
 -- Logging Out [Multiple Characters]
-TriggerEvent('core:addGroupCommand', 'lgtout', 'trainee', function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'lgtout', 'helper', function(source, args, user)
  if args[2] ~= nil then
   TriggerClientEvent('prison:switchcharacter', tonumber(args[2]))
   TriggerEvent('core:playerDropped', tonumber(args[2]))
@@ -549,7 +544,7 @@ TriggerEvent('core:addGroupCommand', 'lgtout', 'trainee', function(source, args,
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'slay', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'slay', "trainee", function(source, args, user)
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -671,7 +666,7 @@ AddEventHandler('spectate:requestSpectating', function()
   TriggerClientEvent('spectate:onSpectate', source, Spectating)
 end)
 
-TriggerEvent('core:addGroupCommand', 'spectate', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'spectate', "trainee", function(source, args, user)
  local target = -1
  if args[2] ~= nil then
   target = tonumber(args[2])
@@ -816,7 +811,7 @@ TriggerEvent('core:addGroupCommand', 'warn', "trainee", function(source, args, u
 end)
 
 -- Kicking
-TriggerEvent('core:addGroupCommand', 'kick', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'kick', "trainee", function(source, args, user)
  local source = tonumber(source) 
  if args[2] then
   if(GetPlayerName(tonumber(args[2])))then
@@ -837,7 +832,7 @@ end)
 
 -- Banning
 
-TriggerEvent('core:addGroupCommand', 'ban', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'ban', "trainee", function(source, args, user)
   local source = tonumber(source) 
   if args[2] then
    if(GetPlayerName(tonumber(args[2])))then
@@ -986,7 +981,7 @@ TriggerEvent('core:addGroupCommand', 'votekick', "trainee", function(source, arg
 end)
 
 -- Goto
-TriggerEvent('core:addGroupCommand', 'goto', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'goto', "trainee", function(source, args, user)
  if args[2] then 
   if(GetPlayerName(tonumber(args[2])))then
    local player = tonumber(args[2])
@@ -1007,7 +1002,7 @@ TriggerEvent('core:addGroupCommand', 'goto', "helper", function(source, args, us
  end
 end)
 
-TriggerEvent('core:addGroupCommand', 'back', "helper", function(source, args, user)
+TriggerEvent('core:addGroupCommand', 'back', "trainee", function(source, args, user)
  if lastlocation[source] then 
   pos = lastlocation[source]
   TriggerClientEvent('admin:teleport', source, pos)
