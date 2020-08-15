@@ -2,6 +2,7 @@ local inventory = {}
 local currentitem = 0
 local droppedItems = {}
 local droppedItemsProps = {}
+local picking_up = false
 
 --[[RegisterCommand('inv', function(source, args, rawCommand)
     WarMenu.OpenMenu('Inventory')
@@ -355,38 +356,27 @@ end
 
 Citizen.CreateThread(function()
  while true do
-  Wait(5)
-  local coords = GetEntityCoords(GetPlayerPed(-1))
-  for k,v in pairs(droppedItems) do
-   if(GetDistanceBetweenCoords(coords, v.pos.x, v.pos.y, v.pos.z-0.95, true) < 1.2) then
-    DrawText3Ds(v.pos.x, v.pos.y, v.pos.z-0.55,'~g~[E]~w~ Pick Up '..v.qty.."x "..v.name)
-    if IsControlJustPressed(0, 38) then
-     if v.qty + getQuantity() <= 120 then
-        TriggerServerEvent('inventory:pickup', k, v.item, v.qty, v.meta)
-        TriggerServerEvent("core:log", tostring("[PICKUP] "..GetPlayerName(PlayerId()).."("..PlayerId()..") picked up "..v.qty.."x "..v.name.."("..v.item..") off the ground."), "item")
-        TriggerEvent("mythic_progbar:client:progress", {
-            name = "pickingup_item",
-            duration = 3000,
-            label = "Picking Up",
-            useWhileDead = false,
-            canCancel = false,
-            controlDisables = {
-                disableMovement = true,
-                disableCarMovement = true,
-                disableMouse = false,
-                disableCombat = true,
-            },
-        }, function(status)
-            if not status then
-                TaskPlayAnim(GetPlayerPed(-1), "anim@mp_snowball", "pickup_snowball", 8.0, -1, -1, false, 1, 0, 0, 0)
-              inGUI = false
-            end
-        end)
-     else
-      exports['NRP-notify']:DoHudText('inform', 'Inventory Full') 
-     end 
+  Wait(0)
+    if not picking_up then
+        local coords = GetEntityCoords(GetPlayerPed(-1))
+        for k,v in pairs(droppedItems) do
+         if(GetDistanceBetweenCoords(coords, v.pos.x, v.pos.y, v.pos.z-0.95, true) < 1.2) then
+          DrawText3Ds(v.pos.x, v.pos.y, v.pos.z-0.55,'~g~[E]~w~ Pick Up '..v.qty.."x "..v.name)
+          if IsControlJustPressed(0, 38) then
+           if v.qty + getQuantity() <= 120 then
+              picking_up = true
+              TriggerServerEvent('inventory:pickup', k, v.item, v.qty, v.meta)
+              TriggerServerEvent("core:log", tostring("[PICKUP] "..GetPlayerName(PlayerId()).."("..PlayerId()..") picked up "..v.qty.."x "..v.name.."("..v.item..") off the ground."), "item")
+              TaskPlayAnim(GetPlayerPed(-1), 'anim@mp_snowball', 'pickup_snowball', 4.0, 3.0, 3000, 49, 1.0, 0, 0, 0)	
+              exports['pogressBar']:drawBar(3000, 'Picking Up', function()
+                  picking_up = false
+              end)
+           else
+            exports['NRP-notify']:DoHudText('inform', 'Inventory Full') 
+           end 
+          end
+         end
+        end
     end
-   end
-  end
  end
 end)
