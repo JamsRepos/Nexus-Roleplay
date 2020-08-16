@@ -47,7 +47,7 @@ AddEventHandler('xzurvRobbery:started', function()
 
   TriggerEvent("mythic_progbar:client:progress", {
     name = "robbing_store",
-    duration = 120000,
+    duration = 240000,
     label = "Taking Money",
     useWhileDead = false,
     canCancel = true,
