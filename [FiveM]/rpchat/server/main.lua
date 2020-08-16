@@ -124,6 +124,36 @@ RegisterCommand('mech', function(source, args, rawCommand)
     end)	
 end, false)	
 
+RegisterCommand('lsa', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        if user.getJob() == 13 then
+            local msg = rawCommand:sub(5)	
+            local name = user.getIdentity()	
+            fal = "Los Santos Attorneys"
+            TriggerEvent("core:log", tostring("[LSA ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            TriggerClientEvent('chat:addMessage', -1, {	
+                template = '<div style="padding: 0.5vw; background-color: rgba(120, 70, 12, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
+                args = { fal, msg }	
+            })	
+        end
+    end)	
+end, false)	
+
+RegisterCommand('d8', function(source, args, rawCommand)	
+    TriggerEvent("core:getPlayerFromId", source, function(user)	
+        if user.getFaction() == 30 then
+            local msg = rawCommand:sub(5)	
+            local name = user.getIdentity()	
+            fal = "Dynasty 8"
+            TriggerEvent("core:log", tostring("[D8 ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            TriggerClientEvent('chat:addMessage', -1, {	
+                template = '<div style="padding: 0.5vw; background-color: rgba(47, 189, 34, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
+                args = { fal, msg }	
+            })	
+        end
+    end)	
+end, false)	
+
 RegisterCommand('ems', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         if user.getJob() == 51 or user.getJob() == 52 or user.getJob() == 53 or user.getJob() == 54 or user.getJob() == 55 then
