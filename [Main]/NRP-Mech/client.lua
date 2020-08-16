@@ -944,6 +944,19 @@ end)
         end
       end
     end
+    if DecorGetInt(GetPlayerPed(-1), "Faction") == 20 then
+      if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 2210.88,2908.16,48.04, true) < 10.0) then
+        DrawMarker(27, 2210.88,2908.16,48.04-0.95, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 180, 0, 0, 2, 0, 0, 0, 0)
+        if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 2210.88,2908.16,48.04, true) < 1.5) then
+          DrawText3Ds(2210.88,2908.16,48.04,'~g~[E]~w~ Sign On/Off Duty')
+          if IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") ~= 3 then
+            TriggerServerEvent('xz-mech:onduty')
+          elseif IsControlJustPressed(0, 38) and DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
+            TriggerServerEvent('xz-mech:offduty')
+          end
+        end
+      end
+    end
   end
 end)
 

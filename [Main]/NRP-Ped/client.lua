@@ -32,7 +32,7 @@ local blips = {
   {title="Growery", colour=47, id=140, x = 346.615, y = 3405.761, z = 36.656},
   {title="Marcello Estate", colour=5, id=84, x = -1613.911, y = 78.271, z = 61.576},
   {title="GD Ranch", colour=38, id=84, x = 1311.068, y = 1104.588, z = 105.704},
-  {title="GSC Tuner Shop", colour=27, id=84, x = 1227.992, y = -1108.336, z = 38.660},
+  {title="GSC Tuner Shop", colour=27, id=84, x = 2218.03, y = 2905.29, z = 48.04},
 }
 
 Citizen.CreateThread(function()
