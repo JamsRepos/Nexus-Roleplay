@@ -109,13 +109,13 @@ RegisterCommand('lspd', function(source, args, rawCommand)
     end)	
 end, false)	
 
-RegisterCommand('bcso', function(source, args, rawCommand)	
+RegisterCommand('mech', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
-        if user.getJob() == 1 or user.getJob() == 32 or user.getJob() == 33 or user.getJob() == 34 or user.getJob() == 35 or user.getJob() == 36 or user.getJob() == 37 or user.getJob() == 90 or user.getJob() == 91 then
+        if user.getJob() == 3 or user.getJob() == 38 then
             local msg = rawCommand:sub(5)	
             local name = user.getIdentity()	
-            fal = "BCSO"
-            TriggerEvent("core:log", tostring("[BCSO ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
+            fal = "Mechanic"
+            TriggerEvent("core:log", tostring("[MECHANIC ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
             TriggerClientEvent('chat:addMessage', -1, {	
                 template = '<div style="padding: 0.5vw; background-color: rgba(120, 70, 12, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}<br> {1}</div>',	
                 args = { fal, msg }	
