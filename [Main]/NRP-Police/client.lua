@@ -801,13 +801,12 @@ RegisterCommand("crt", function(source, args, raw)
         end
         if exports['core']:GetItemQuantity(303) >= 1 then
           TriggerEvent("inventory:removeQty", 303, 1)
-          TriggerEvent("inventory:addQty", 189, 1)
-          GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02"))
-          GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_SUPP_02"))
-        elseif not (exports['core']:GetItemQuantity(189) >= 1) then
-          TriggerEvent("inventory:addQty", 189, 1)
-          GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02"))
-          GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_SUPP_02"))
+        end
+        if exports['core']:GetItemQuantity(170) >= 1 then
+          TriggerEvent("inventory:removeQty", 170, 1)
+        end
+        if exports['core']:GetItemQuantity(162) >= 1 then
+          TriggerEvent("inventory:removeQty", 162, 1)
         end
         ExecuteCommand('clothes')
       else
@@ -829,13 +828,10 @@ RegisterCommand("crt", function(source, args, raw)
 
             TriggerEvent("inventory:addQty", 301, 1)
             TriggerEvent("inventory:addQty", 302, 1)
+            TriggerEvent("inventory:addQty", 303, 1)
             TriggerEvent("inventory:addQty", 304, 1)
-            if exports['core']:GetItemQuantity(189) >= 1 then
-                GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_PISTOL_MK2_CLIP_02"))
-                GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_PISTOL_MK2"), GetHashKey("COMPONENT_AT_PI_SUPP_02"))
-            else
-                TriggerEvent("inventory:addQty", 303, 1)
-            end
+            TriggerEvent("inventory:addQty", 170, 1)
+            TriggerEvent("inventory:addQty", 162, 1)
         end
       end
     isCRT = not isCRT
