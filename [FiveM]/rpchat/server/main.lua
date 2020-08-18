@@ -112,7 +112,7 @@ end, false)
 RegisterCommand('mech', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         if user.getJob() == 3 or user.getJob() == 38 then
-            local msg = rawCommand:sub(5)	
+            local msg = rawCommand:sub(4)	
             local name = user.getIdentity()	
             fal = "Mechanic"
             TriggerEvent("core:log", tostring("[MECHANIC ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
@@ -127,7 +127,7 @@ end, false)
 RegisterCommand('lsa', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         if user.getJob() == 13 then
-            local msg = rawCommand:sub(5)	
+            local msg = rawCommand:sub(3)	
             local name = user.getIdentity()	
             fal = "Los Santos Attorneys"
             TriggerEvent("core:log", tostring("[LSA ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
@@ -142,7 +142,7 @@ end, false)
 RegisterCommand('d8', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         if user.getFaction() == 30 then
-            local msg = rawCommand:sub(5)	
+            local msg = rawCommand:sub(2)	
             local name = user.getIdentity()	
             fal = "Dynasty 8"
             TriggerEvent("core:log", tostring("[D8 ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
