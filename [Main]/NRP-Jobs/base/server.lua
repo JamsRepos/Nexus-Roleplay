@@ -1,11 +1,11 @@
 local Fish = {
- [1] = {name = 'Catfish', price = 100, item = 3},
- [2] = {name = 'Cod', price = 120, item = 4},
- [3] = {name = 'Salmon', price = 200, item = 5}
+ [1] = {name = 'Catfish', price = 80, item = 3},
+ [2] = {name = 'Cod', price = 110, item = 4},
+ [3] = {name = 'Salmon', price = 160, item = 5}
 }
 
 local Turtle = {
-  [1] = {name = 'Turtle', price = 1250, item = 292},
+  [1] = {name = 'Turtle', price = 800, item = 292},
  }
 
 RegisterServerEvent('jobs:sellfish')

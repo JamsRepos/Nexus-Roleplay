@@ -11,13 +11,13 @@ local isInAnimation = false
 local selling_fish = false
 
 local Fish = {
- [1] = {name = 'Catfish', price = 100, item = 3},
- [2] = {name = 'Catfish', price = 100, item = 3},
- [3] = {name = 'Catfish', price = 100, item = 3},
- [4] = {name = 'Catfish', price = 100, item = 3},
- [5] = {name = 'Cod', price = 120, item = 4},
- [6] = {name = 'Cod', price = 120, item = 4},
- [7] = {name = 'Salmon', price = 200, item = 5}
+ [1] = {name = 'Catfish', price = 80, item = 3},
+ [2] = {name = 'Catfish', price = 80, item = 3},
+ [3] = {name = 'Catfish', price = 80, item = 3},
+ [4] = {name = 'Catfish', price = 80, item = 3},
+ [5] = {name = 'Cod', price = 110, item = 4},
+ [6] = {name = 'Cod', price = 110, item = 4},
+ [7] = {name = 'Salmon', price = 160, item = 5}
 }
 
 local fishing_zones = {
@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
               TriggerEvent("inventory:removeQty", 5, salmon)
               local fishcount = catfish+cod+salmon
               local payout = catfish*100+cod*120+salmon*200
-              print(payout)
+              TriggerEvent("core:moneylog", source, 'Fish Sold: $'..payout)
               if payout > 0 then
                 TriggerServerEvent("fishing:sellfish", payout)
                 exports['NRP-notify']:DoHudText('success', 'You have sold '..fishcount..' fish for $'..payout)
