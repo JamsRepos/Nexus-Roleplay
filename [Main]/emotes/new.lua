@@ -47,7 +47,7 @@ AddEventHandler('anims:doHostage', function(otherPlayer)
  end 
 end)
 
-RegisterCommand("hostagePed", function(source, args, rawCommand)
+--[[RegisterCommand("hostagePed", function(source, args, rawCommand)
  loadAnim('missprologueig_4@hold_head_base')
  loadAnim('missprologueig_4@hold_head_base')
  local closestPed = getNPC()
@@ -64,7 +64,7 @@ RegisterCommand("hostagePed", function(source, args, rawCommand)
    TaskPlayAnim(GetPlayerPed(PlayerId()), 'missfinale_c2mcs_1', 'hold_head_loop_base_guard', 1.0, -1, -1, 50, 0, 0, 0, 0)
   end
  end
-end)
+end)]]
 
 Citizen.CreateThread(function()
  while true do
