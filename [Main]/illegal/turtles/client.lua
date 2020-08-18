@@ -86,7 +86,7 @@ Citizen.CreateThread(function()
   while true do
   Citizen.Wait(1)
   local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
-  if not poaching and rep >= 1500 then
+  if not poaching and rep >= 500 then
     for k,v in pairs(turtle_zones) do
       if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z, true) < v.markerdist) then
         if v.drawmarker then DrawMarker(27, v.x, v.y, v.z-0.95, 0, 0, 0, 0, 0, 0, 0.8,0.8,0.5, 252, 3, 107, 255, 0, 0, 2, 0, 0, 0, 0) end
@@ -151,7 +151,7 @@ end)
      Citizen.Wait(5)
      for _,v in pairs(get_the_bait) do
       local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
-      if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and rep >= 1500 and not collecting then
+      if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v.x, v.y, v.z) <= 1 and rep >= 500 and not collecting then
         DrawText3Ds(v.x, v.y, v.z,'~g~[E]~w~ Retreive')
        if IsControlJustPressed(0, 38) then
         collecting = true
