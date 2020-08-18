@@ -46,8 +46,8 @@ Citizen.CreateThread(function()
   local coords = GetEntityCoords(GetPlayerPed(-1))
   Wait(5)
    local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
-   if(GetDistanceBetweenCoords(coords, 905.441, -1688.000, 47.352, true) < 1.5) and rep >= 750 then
-    DrawText3Ds(905.441, -1688.000, 47.352,'~g~[E]~w~ Clean Dirty Cash')
+   if(GetDistanceBetweenCoords(coords, 705.51, -961.15, 30.4, true) < 1.5) and rep >= 750 then
+    DrawText3Ds(705.51, -961.15, 30.4,'~g~[E]~w~ Clean Dirty Cash')
     if IsControlJustPressed(0, 38) then
      TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
      FreezeEntityPosition(GetPlayerPed(-1), true)
@@ -85,8 +85,8 @@ Citizen.CreateThread(function()
   local coords = GetEntityCoords(GetPlayerPed(-1))
   Wait(5)
    local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
-   if(GetDistanceBetweenCoords(coords, -2040.926, -365.726, 44.107, true) < 1.5) and rep >= 1500 then
-    DrawText3Ds(-2040.926, -365.726, 44.107,'~g~[E]~w~ Clean Dirty Cash')
+   if(GetDistanceBetweenCoords(coords, 1151.327, 2338.397, 53.660, true) < 1.5) and rep >= 1500 then
+    DrawText3Ds(1151.327, 2338.397, 53.660,'~g~[E]~w~ Clean Dirty Cash')
     if IsControlJustPressed(0, 38) then
      TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
      FreezeEntityPosition(GetPlayerPed(-1), true)
@@ -118,6 +118,46 @@ Citizen.CreateThread(function()
    end
  end
 end)
+
+Citizen.CreateThread(function()
+    while true do
+     local coords = GetEntityCoords(GetPlayerPed(-1))
+     Wait(5)
+      local rep = DecorGetInt(GetPlayerPed(-1), "Reputation")
+      if(GetDistanceBetweenCoords(coords, 484.24, -3387.8, 6.07, true) < 1.5) and rep >= 1500 then
+       DrawText3Ds(484.24, -3387.8, 6.07,'~r~[E]~w~ Clean Dirty Cash')
+       if IsControlJustPressed(0, 38) then
+        TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_ATM", 0, true)
+        FreezeEntityPosition(GetPlayerPed(-1), true)
+   
+        exports['pogressBar']:drawBar(10000, 'Trading Cash', function()
+               local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
+               if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
+                   showLoadingPrompt("Enter Quantity", 3)
+                   DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
+                   while (UpdateOnscreenKeyboard() == 0) do
+                   DisableAllControlActions(0);
+                   Wait(0);
+                   end
+                   if (GetOnscreenKeyboardResult()) then
+                   local option = tonumber(GetOnscreenKeyboardResult())
+                   if(option ~= nil and option ~= 0) then
+                   amount = ""..option
+                   end
+                   end
+               end
+               if (amount ~= "xxsdrtghyuujhdjsjenenfjfjtjtjtj" and tonumber(amount) > 0) then
+                   TriggerServerEvent('illegal:washmoney4', amount)
+               end
+               stopLoadingPrompt()
+               FreezeEntityPosition(GetPlayerPed(-1), false)
+         end)
+   
+       end
+      end
+    end
+   end)
+
 --[[
 Citizen.CreateThread(function()
  while true do

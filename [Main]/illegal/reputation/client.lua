@@ -3,6 +3,7 @@ local chopshopBlip = nil
 local moonshineBlip = nil
 local weedBlip = nil
 local LaundretteBlip = nil
+local fiftyBlip = nil
 
 DecorRegister('Reputation', 3)
 
@@ -13,6 +14,22 @@ AddEventHandler("repuation:set", function(v)
  updateBlips(v)
 end)
 
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(1)
+    if not fiftyBlip then
+      fiftyBlip = AddBlipForCoord(484.24, -3387.8, 6.07)
+      SetBlipSprite (fiftyBlip, 108)
+      SetBlipDisplay(fiftyBlip, 4)
+      SetBlipScale  (fiftyBlip, 0.8)
+      SetBlipColour (fiftyBlip, 1)
+      SetBlipAsShortRange(fiftyBlip, true)
+      BeginTextCommandSetBlipName("STRING")
+      AddTextComponentString('Money Wash')
+      EndTextCommandSetBlipName(fiftyBlip)
+    end
+  end
+end)
 
 function updateBlips(rep)
  --[[if rep > 750 then 
@@ -41,6 +58,8 @@ function updateBlips(rep)
     EndTextCommandSetBlipName(moonshineBlip)
   end
  end
+
+
 
  --[[if rep > 410 then 
   if not weedBlip then

@@ -392,11 +392,11 @@ function spawnGunman()
   SetPedKeepTask(gun14, true)
   end
   if gun16 == nil then
-  RequestModel(GetHashKey('a_m_y_motox_01'))
-  while not HasModelLoaded(GetHashKey('a_m_y_motox_01')) do
+  RequestModel(GetHashKey('a_m_y_business_03'))
+  while not HasModelLoaded(GetHashKey('a_m_y_business_03')) do
       Wait(5)
   end
-  gun16 = CreatePed(2, GetHashKey('a_m_y_motox_01'), 1151.327, 2338.397, 53.660, 98.547, false, false)
+  gun16 = CreatePed(2, GetHashKey('a_m_y_business_03'), 1151.327, 2338.397, 53.660, 98.547, false, false)
   SetPedFleeAttributes(gun16, 0, 0)
   SetPedDiesWhenInjured(gun16, false)
   TaskStartScenarioInPlace(gun16, "WORLD_HUMAN_DRUG_DEALER", 0, true)
@@ -470,11 +470,11 @@ function spawnGunman()
   SetPedKeepTask(gun25, true)
   end
   if gun26 == nil then
-  RequestModel(GetHashKey('ig_cletus'))
-  while not HasModelLoaded(GetHashKey('ig_cletus')) do
+  RequestModel(GetHashKey('s_m_m_chemsec_01'))
+  while not HasModelLoaded(GetHashKey('s_m_m_chemsec_01')) do
       Wait(5)
   end
-  gun26 = CreatePed(2, GetHashKey('ig_cletus'), -3266.279, 1041.823, 13.110-0.90, 126.588, false, false)
+  gun26 = CreatePed(2, GetHashKey('s_m_m_chemsec_01'), 484.24, -3387.8, 6.07-0.90, 178.23, false, false)
   SetPedFleeAttributes(gun26, 0, 0)
   SetPedDiesWhenInjured(gun26, false)
   TaskStartScenarioInPlace(gun26, "WORLD_HUMAN_COP_IDLES", 0, true)
@@ -597,11 +597,11 @@ function spawnGunman2()
   end
 
   if moneywash2 == nil then
-    RequestModel(GetHashKey('a_m_y_hasjew_01'))
-    while not HasModelLoaded(GetHashKey('a_m_y_hasjew_01')) do
+    RequestModel(GetHashKey('cs_lestercrest'))
+    while not HasModelLoaded(GetHashKey('cs_lestercrest')) do
      Wait(5)
     end 
-    moneywash2 = CreatePed(2, GetHashKey('a_m_y_hasjew_01'), 905.441, -1688.000, 47.352, -280.197, false, false)
+    moneywash2 = CreatePed(2, GetHashKey('cs_lestercrest'), 705.51, -961.15, 30.4, 271.45, false, false)
     SetPedFleeAttributes(moneywash2, 0, 0)
     SetPedDiesWhenInjured(moneywash2, false)
     TaskStartScenarioInPlace(moneywash2, "WORLD_HUMAN_DRUG_DEALER_HARD", 0, true)

@@ -145,13 +145,13 @@ AddEventHandler('illegal:washmoney4', function(amount)
   local source = tonumber(source) 
  TriggerEvent('core:getPlayerFromId', source, function(user)
   local blackMoney = tonumber(amount)
-  local washedMoney = math.floor(blackMoney*0.99)
+  local washedMoney = math.floor(blackMoney*0.50)
   if blackMoney > 0 and user.getDirtyMoney() >= blackMoney then
    user.removeDirtyMoney(blackMoney)
    user.addMoney(washedMoney)
    TriggerEvent("core:moneylog", source, 'Dirty Money IN: $'..blackMoney)
    TriggerEvent("core:moneylog", source, 'Washed Money OUT: $'..washedMoney)
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = 'Pleasure doing business with you. I took 1% For My Troubles, Your Cut: $'.. washedMoney})
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'success', text = 'Pleasure doing business with you. I took 50% For My Troubles, Your Cut: $'.. washedMoney})
   else
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'error', text = 'You do not have enough dirty money.'})
   end
