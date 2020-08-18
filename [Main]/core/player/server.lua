@@ -26,7 +26,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
         PerformHttpRequest("http://proxycheck.io/v2/" .. ipIdentifier .. "?key=06rbj9-65d161-484056-y08c3d&vpn=1&days=2", function(err, text, headers)
             if tonumber(err) == 200 then
                 local tbl = json.decode(text)
-                if tbl["proxy"] == false then
+                if tbl["proxy"] == "no" then
                     deferrals.done()
                 else
                     deferrals.done("You are using a VPN. Please disable and try again.")
