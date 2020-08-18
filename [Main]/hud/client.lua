@@ -459,7 +459,7 @@ Citizen.CreateThread(function()
       WarMenu.OpenMenu('player_list2')  
     end
     if qCount > 0 then
-     if WarMenu.Button('Queued:', qCount) then
+     if WarMenu.Button('Queued', qCount) then
      end
     end
     WarMenu.Display()
