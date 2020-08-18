@@ -26,10 +26,10 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
         PerformHttpRequest("http://proxycheck.io/v2/" .. ipIdentifier .. "?key=06rbj9-65d161-484056-y08c3d&vpn=1&days=2", function(err, text, headers)
             if tonumber(err) == 200 then
                 local tbl = json.decode(text)
-                if tbl["proxy"] == "no" then
-                    deferrals.done()
+                if tbl["type"] == "VPN" then
+					deferrals.done("You are using a VPN. Please disable and try again.")
                 else
-                    deferrals.done("You are using a VPN. Please disable and try again.")
+                    deferrals.done()
                 end
             else
                 deferrals.done("There was an error in the API. Please go to our Discord for support.")
