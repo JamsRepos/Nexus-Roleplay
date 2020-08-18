@@ -1,7 +1,7 @@
 local poaching = false
 local collecting = false
 
-local turtle = {name = 'Turtle', price = 1250, item = 3}
+local turtle = {name = 'Turtle', price = 800, item = 3}
 
 local get_the_bait = {
   {x = 3611.800, y = 5026.807, z = 11.350},
