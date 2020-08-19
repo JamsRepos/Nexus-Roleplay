@@ -4,9 +4,9 @@ Config.allow_test_drive = true -- allow test driving
 Config.test_drive_time = 120 -- test drive time in seconds
 Config.currency = "$" -- currency to show in menu above car
 Config.buy_point = { pos = vector3(-17.91, -1109.85, 26.69-0.85), heading = 27.44 } -- location where to tp player with car after buying it
-Config.test_point = { pos = vector3(1214.433, 107.717, 81.865-0.85), heading = 134.58 } -- location where to tp player when test driving car
+Config.test_point = { pos = vector3(2755.021, -3687.447, 140.0-0.85), heading = 180.0 } -- location where to tp player when test driving car
 Config.return_point = { pos = vector3(-38.29, -1100.77, 26.42-0.85), heading = 86.05 }
-Config.track_area = vector3(1139.116, 100.855, 80.846)
+Config.track_area = vector3(2811.576, -3800.122, 167.239)
 Config.render_center = vector3(-42.439, -1098.578, 26.422)
 Config.render_distance = 50 -- distance from render_center from which the cars will be visible
 Config.cars = {
