@@ -1,3 +1,26 @@
+Citizen.CreateThread(function()
+  RequestIpl("xs_arena_banners_ipl") -- Exterior banners on Arena
+
+  local interiorID = GetInteriorAtCoords(2800.000, -3800.000, 100.000)
+
+	if (not IsInteriorReady(interiorID)) then
+		Wait(1)
+  end
+
+	EnableInteriorProp(interiorID, "Set_Crowd_A")
+	EnableInteriorProp(interiorID, "Set_Crowd_B")
+	EnableInteriorProp(interiorID, "Set_Crowd_C")
+  EnableInteriorProp(interiorID, "Set_Crowd_D")
+  EnableInteriorProp(interiorID, "Set_Pit_Fence_Oval")
+  EnableInteriorProp(interiorID, "Set_Team_Band_A")
+  EnableInteriorProp(interiorID, "Set_Team_Band_B")
+  EnableInteriorProp(interiorID, "Set_Team_Band_C")
+  EnableInteriorProp(interiorID, "Set_Team_Band_D")
+  EnableInteriorProp(interiorID, "set_lights_night")
+  EnableInteriorProp(interiorID, "set_nascar_01")
+  RefreshInterior(interiorID)
+end)
+
 local spawnedCars = {}
 local testdriving = false
 local gotrack = false
