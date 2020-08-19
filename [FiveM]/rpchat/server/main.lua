@@ -112,7 +112,7 @@ end, false)
 RegisterCommand('mech', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
         if user.getJob() == 3 or user.getJob() == 38 then
-            local msg = rawCommand:sub(4)	
+            local msg = rawCommand:sub(5)	
             local name = user.getIdentity()	
             fal = "Mechanic"
             TriggerEvent("core:log", tostring("[MECHANIC ANNOUNCEMENTS] " .. name.firstname .. " " .. name.lastname	 .. "(".. source ..") said: " .. msg), "twitter")	
