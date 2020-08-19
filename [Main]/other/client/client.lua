@@ -1,5 +1,6 @@
 local guiEnabled = false
 local myIdentity = {}
+local currentJob = nil
 
 -- Lock NPC Cars
 --[[
@@ -116,6 +117,26 @@ end)
 
 Citizen.CreateThread(function()
   while true do
+    if DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 31 or DecorGetInt(GetPlayerPed(-1), "Job") == 32 or DecorGetInt(GetPlayerPed(-1), "Job") == 33 or DecorGetInt(GetPlayerPed(-1), "Job") == 34 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
+      currentJob = "Police"
+    elseif DecorGetInt(GetPlayerPed(-1), "Job") == 2 or DecorGetInt(GetPlayerPed(-1), "Job") == 51 or DecorGetInt(GetPlayerPed(-1), "Job") == 52 or DecorGetInt(GetPlayerPed(-1), "Job") == 53 or DecorGetInt(GetPlayerPed(-1), "Job") == 54 or DecorGetInt(GetPlayerPed(-1), "Job") == 55 or DecorGetInt(GetPlayerPed(-1), "Job") == 90 or DecorGetInt(GetPlayerPed(-1), "Job") == 91 then
+      currentJob = "EMS"
+    elseif DecorGetInt(GetPlayerPed(-1), "Job") == 13 then
+      currentJob = "Lawyer"
+    elseif DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
+      currentJob = "Mechanic"
+    elseif DecorGetInt(GetPlayerPed(-1), "Faction") == 30 then
+      currentJob = "Dynasty8"
+    else
+      currentJob = "Civilian"
+    end
+
+		local players = {}
+		for _, player in ipairs(GetActivePlayers()) do
+			table.insert(players, player)
+		end
+    SetRichPresence('ID: ' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' ..' Players: ' .. #players .. '/40')
+    
     --This is the Application ID (Replace this with you own)
     SetDiscordAppId(699711717948653670)
     --Here you will have to put the image name for the "large" icon.
@@ -123,10 +144,10 @@ Citizen.CreateThread(function()
     --Here you can add hover text for the "large" icon.
     SetDiscordRichPresenceAssetText('Nexus Roleplay')
     --Here you will have to put the image name for the "small" icon.
-    SetDiscordRichPresenceAssetSmall('')
+    SetDiscordRichPresenceAssetSmall(currentJob:lower())
     --Here you can add hover text for the "small" icon.
-    SetDiscordRichPresenceAssetSmallText('')
+    SetDiscordRichPresenceAssetSmallText(currentJob)
     --It updates every one minute just in case.
-	Citizen.Wait(60000)
+	Citizen.Wait(15*1000)
   end
 end)
