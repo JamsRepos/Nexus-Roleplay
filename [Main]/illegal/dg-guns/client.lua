@@ -92,6 +92,60 @@ local disallowed_weapons = {
       "weapon_smg_mk2"
     }
 
+local CageObjs = {
+      "prop_gold_cont_01",
+      "p_cablecar_s",
+      "stt_prop_stunt_tube_l",
+      "stt_prop_stunt_track_dwuturn",
+    }
+
+    function ReqAndDelete(object, detach)
+      if DoesEntityExist(object) then
+        NetworkRequestControlOfEntity(object)
+        while not NetworkHasControlOfEntity(object) do
+          Citizen.Wait(1)
+        end
+        if detach then
+          DetachEntity(object, 0, false)
+        end
+        SetEntityCollision(object, false, false)
+        SetEntityAlpha(object, 0.0, true)
+        SetEntityAsMissionEntity(object, true, true)
+        SetEntityAsNoLongerNeeded(object)
+        DeleteEntity(object)
+      end
+    end
+    
+    
+    Citizen.CreateThread(function()
+        while true do 
+            Citizen.Wait(5000)
+            local handle, object = FindFirstObject()
+            local finished = false
+            repeat
+            if not isAdmin then
+                Wait(1)
+          if IsEntityAttached(object) and DoesEntityExist(object) then
+            if GetEntityModel(object) == GetHashKey("prop_acc_guitar_01") then
+              ReqAndDelete(object, true)
+            end
+          end
+                for i = 1, #CageObjs do
+                    if GetEntityModel(object) == GetHashKey(CageObjs[i]) then
+                        if not banned then
+                            banned = true
+                            ReqAndDelete(object, false)
+                        end
+                    end
+                end
+                finished, object = FindNextObject(handle)
+            end
+        until not finished
+        EndFindObject(handle)
+        end
+    end)
+
+
 Citizen.CreateThread(function()
   while true do
     Citizen.Wait(10)
