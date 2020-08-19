@@ -121,6 +121,12 @@ Citizen.CreateThread(function()
       currentJob = "Police"
     elseif DecorGetInt(GetPlayerPed(-1), "Job") == 2 or DecorGetInt(GetPlayerPed(-1), "Job") == 51 or DecorGetInt(GetPlayerPed(-1), "Job") == 52 or DecorGetInt(GetPlayerPed(-1), "Job") == 53 or DecorGetInt(GetPlayerPed(-1), "Job") == 54 or DecorGetInt(GetPlayerPed(-1), "Job") == 55 or DecorGetInt(GetPlayerPed(-1), "Job") == 90 or DecorGetInt(GetPlayerPed(-1), "Job") == 91 then
       currentJob = "EMS"
+    elseif DecorGetInt(GetPlayerPed(-1), "Job") == 13 then
+      currentJob = "Lawyer"
+    elseif DecorGetInt(GetPlayerPed(-1), "Job") == 3 then
+      currentJob = "Mechanic"
+    elseif DecorGetInt(GetPlayerPed(-1), "Faction") == 30 then
+      currentJob = "Dynasty8"
     else
       currentJob = "Civilian"
     end
