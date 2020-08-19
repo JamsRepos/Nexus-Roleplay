@@ -129,7 +129,7 @@ Citizen.CreateThread(function()
 		for _, player in ipairs(GetActivePlayers()) do
 			table.insert(players, player)
 		end
-    SetRichPresence('ID:' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' ..' Player Count: ' .. #players .. '/40')
+    SetRichPresence('ID: ' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' ..' Count: ' .. #players .. '/40')
     
     --This is the Application ID (Replace this with you own)
     SetDiscordAppId(699711717948653670)
