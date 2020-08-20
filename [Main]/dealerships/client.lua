@@ -1,4 +1,5 @@
 Citizen.CreateThread(function()
+  RequestIpl("xs_arena_interior") -- Interior of Arena
   RequestIpl("xs_arena_banners_ipl") -- Exterior banners on Arena
 
   local interiorID = GetInteriorAtCoords(2800.000, -3800.000, 100.000)
