@@ -37,6 +37,38 @@ AddEventHandler('items:gopro', function()
     end
 end)
 
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(2000)
+        if status and exports['core']:GetItemQuantity(300) < 1 then
+            status = false
+            SendNUIMessage({
+                type = "bodycam",
+                display = false
+            })
+            exports['NRP-notify']:DoCustomHudText('error', 'BodyCamera: Connection Lost')
+        end
+    end
+end)
+
+RegisterNetEvent('items:bodycam')
+AddEventHandler('items:bodycam', function()
+    status = not status
+    if status then
+        SendNUIMessage({
+            type = "bodycam",
+            display = true
+        })
+        exports['NRP-notify']:DoCustomHudText('success', 'BodyCamera: Live & Recording')
+    else
+        SendNUIMessage({
+            type = "bodycam",
+            display = false
+        })
+        exports['NRP-notify']:DoCustomHudText('error', 'BodyCamera: Shutting Down')
+    end
+end)
+
 RegisterNetEvent('items:blindfold')
 AddEventHandler('items:blindfold', function()
     if not IsPedInAnyVehicle(GetPlayerPed(-1), false) and not DecorGetBool(GetPlayerPed(-1), "Handsup") then

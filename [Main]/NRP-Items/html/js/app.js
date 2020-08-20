@@ -22,6 +22,15 @@ $(function(){
                     $('.container2').fadeOut();
                 }
 			}
+			if (item !== undefined && item.type === "bodycam") {
+                /* if the display is true, it will show */
+				if (item.display === true) {
+                    $('.container3').fadeIn();
+                     /* if the display is false, it will hide */
+				} else{
+                    $('.container3').fadeOut();
+                }
+			}
 		});
 	};
 });

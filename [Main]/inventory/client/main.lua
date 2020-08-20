@@ -495,6 +495,8 @@ function use(item, meta)
             end
         elseif item == 300 then
             TriggerEvent('items:gopro')
+        elseif item == 163 then
+            TriggerEvent('items:bodycam')
       end
     loadPlayerInventory()
 end
