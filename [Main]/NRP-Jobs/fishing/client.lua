@@ -77,9 +77,11 @@ Citizen.CreateThread(function()
               if payout > 0 then
                 TriggerServerEvent("fishing:sellfish", payout)
                 exports['NRP-notify']:DoHudText('success', 'You have sold '..fishcount..' fish for $'..payout)
+                Citizen.Wait(5000)
                 selling_fish = false
               else
                 exports['NRP-notify']:DoHudText('error', 'You do not have any fish to sell.')
+                Citizen.Wait(5000)
                 selling_fish = false
               end
             end
