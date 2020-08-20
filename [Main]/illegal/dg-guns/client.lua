@@ -805,7 +805,7 @@ Citizen.CreateThread(function()
     if hasHeavyPistolitem and not hasHeavyPistol then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), 120, false, false)
     end
-    if hasCRTpistolitem and not haspistolmk2 and not hasservicepistolitem then
+    if hasCRTpistolitem and not haspistolmk2 then
       GiveDelayedWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), 200, false, false)
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_HEAVYPISTOL_CLIP_02"))
       GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_HEAVYPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
