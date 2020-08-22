@@ -41,11 +41,13 @@ AddEventHandler("LSC:buttonSelected2", function(name, button, id)
  TriggerEvent('core:getPlayerFromId', source, function(user)
    if button.price then
     if (tonumber(user.getMoney()) >= tonumber(button.price)) then
-     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Upgrade/Modification Bought Cost: $".. button.price})
+	 TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Upgrade/Modification Bought Cost: $".. button.price})
+	 TriggerEvent("core:moneylog", source, 'Tunershop Payment: '..button.name..' bought for $'..button.price)
  	   TriggerClientEvent("LSC:buttonSelected2", source,name, button, true) 
 	   user.removeMoney(tonumber(button.price))
     elseif (tonumber(user.getBank()) >= tonumber(button.price)) then
-     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "[BANK] Upgrade/Modification Bought Cost: $".. button.price})
+	 TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "[BANK] Upgrade/Modification Bought Cost: $".. button.price})
+	 TriggerEvent("core:moneylog", source, 'Tunershop Payment: '..button.name..' bought for $'..button.price)
 	   TriggerClientEvent("LSC:buttonSelected2", source,name, button, true)
 	   user.removeBank(tonumber(button.price))
     else
