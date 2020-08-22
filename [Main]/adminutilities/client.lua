@@ -779,13 +779,21 @@ Citizen.CreateThread(function()
         if Weapon then
           DeathReason = DeathReason .. ' [' .. Weapon .. ']'
         end
-        TriggerServerEvent("core:log", tostring("[DEATH] " .. GetPlayerName(PlayerId()) .. "(" .. PlayerId() .. ")" .. " " .. DeathReason .. "."), "kill")
+        local pid = PlayerId()
+        local player_name = GetPlayerName(pid)
+
+        TriggerServerEvent('log:player_death', pid, DeathReason, player_name)
 			else
         --TriggerServerEvent('DiscordBot:PlayerDied', GetPlayerName(Killer) .. ' ' .. DeathReason .. ' ' .. GetPlayerName(PlayerId()) .. '.', Weapon)
         if Weapon then
           DeathReason = DeathReason .. ' [' .. Weapon .. ']'
         end
-        TriggerServerEvent("core:log", tostring("[KILL] " .. GetPlayerName(Killer) .. "(" .. Killer .. ")" .. " " .. DeathReason .. " " .. GetPlayerName(PlayerId()) .. "(" .. PlayerId() .. ")."), "kill")
+        local pid = PlayerId()
+        local player_name = GetPlayerName(pid)
+        local kid = Killer
+        local killer_name = GetPlayerName(kid)
+
+        TriggerServerEvent('log:player_killed', pid, player_name, kid, killer_name, DeathReason)
 			end
 			Killer = nil
 			DeathReason = nil

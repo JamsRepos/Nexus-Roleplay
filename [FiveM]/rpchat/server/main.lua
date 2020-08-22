@@ -16,7 +16,27 @@ RegisterCommand('me', function(source, args, user)
     TriggerEvent("core:getPlayerFromId", source, function(user)
         local name = user.getIdentity()
         fal = name.firstname .. " " .. name.lastname
-        TriggerEvent("core:log", tostring("[ME] " .. fal .. "(".. source ..") did: " .. table.concat(args, " ")), "chat")
+
+        local embed = {
+            {
+              ["color"] = 3661319,
+              ["title"] = "Action",
+              ["fields"] = {
+                {
+                  ["name"] = "Character",
+                  ["value"] = source.." | "..fal,
+                  ["inline"] = false
+                },
+                {
+                  ["name"] = "Action",
+                  ["value"] = table.concat(args, " "),
+                  ["inline"] = false
+                }
+              }
+            }
+          }
+          PerformHttpRequest("https://discordapp.com/api/webhooks/713848561867161660/T0JQQcKt596e22nwstqXPExcLQoASXP6gorYbK0z5_gJvDrOQuU42cD6YZ2Ai_9vuwvk", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
+
         TriggerClientEvent("sendProximityMessageMe", -1, source, fal, table.concat(args, " "))
     end)
 end)
@@ -86,7 +106,28 @@ RegisterCommand('tweet', function(source, args, rawCommand)
         local msg = rawCommand:sub(6)	
         local name = user.getIdentity()	
         fal = name.firstname .. " " .. name.lastname	
-        TriggerEvent("core:log", tostring("[TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")	
+        local embed = {
+            {
+              ["color"] = 249852,
+              ["title"] = "TWITTER",
+              ["footer"] = {
+                ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+              }, 
+              ["fields"] = {
+                {
+                  ["name"] = "Player",
+                  ["value"] = source.." | "..fal,
+                  ["inline"] = false
+                },
+                {
+                  ["name"] = "Tweet",
+                  ["value"] = msg,
+                  ["inline"] = false
+                }
+              }
+            }
+          }
+        PerformHttpRequest("https://discordapp.com/api/webhooks/718874789133025370/Apl3CQUBQgKFLM8O1WZOWv5CwR-0YHLmmGItRqjYYUgYyTyjhf7Q4Aye9Uv6OgMDEFMG", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})	
         TriggerClientEvent('chat:addMessage', -1, {	
             template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @{0}:<br> {1}</div>',	
             args = { fal, msg }	
@@ -174,7 +215,28 @@ RegisterCommand('anontweet', function(source, args, rawCommand)
         local msg = rawCommand:sub(11)	
         local name = user.getIdentity()	
         fal = name.firstname .. " " .. name.lastname	
-        TriggerEvent("core:log", tostring("[ANON TWITTER] " .. fal .. "(".. source ..") tweeted: " .. msg), "twitter")	
+        local embed = {
+            {
+              ["color"] = 3882301,
+              ["title"] = "ANONYMOUS TWITTER",
+              ["footer"] = {
+                ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+              }, 
+              ["fields"] = {
+                {
+                  ["name"] = "Player",
+                  ["value"] = source.." | "..fal,
+                  ["inline"] = false
+                },
+                {
+                  ["name"] = "Tweet",
+                  ["value"] = msg,
+                  ["inline"] = false
+                }
+              }
+            }
+          }
+        PerformHttpRequest("https://discordapp.com/api/webhooks/718874789133025370/Apl3CQUBQgKFLM8O1WZOWv5CwR-0YHLmmGItRqjYYUgYyTyjhf7Q4Aye9Uv6OgMDEFMG", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})	
         TriggerClientEvent('chat:addMessage', -1, {	
             template = '<div style="padding: 0.5vw; background-color: rgba(28, 160, 242, 0.6); border-radius: 3px;"><i class="fab fa-twitter"></i> @Anonymous:<br> {1}</div>',	
             args = { fal, msg }	

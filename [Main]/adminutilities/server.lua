@@ -306,7 +306,28 @@ end)
 TriggerEvent('core:addCommand', 'report', function(source, args, user)
  table.remove(args, 1)
  TriggerClientEvent('chatMessage', source, "REPORT", {255, 0, 0}, " (^2" .. GetPlayerName(source) .." | "..source.."^0) " .. table.concat(args, " "))
- TriggerEvent('core:log', "[REPORT] "..GetPlayerName(source).."("..source..") has submittied a report: "..table.concat(args, " "), "report")
+ local embed = {
+  {
+    ["color"] = 3661319,
+    ["title"] = "Report",
+    ["footer"] = {
+      ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+    }, 
+    ["fields"] = {
+      {
+        ["name"] = "Player",
+        ["value"] = source.." | "..GetPlayerName(source),
+        ["inline"] = false
+      },
+      {
+        ["name"] = "Reason",
+        ["value"] = table.concat(args, " "),
+        ["inline"] = false
+      }
+    }
+  }
+}
+PerformHttpRequest("https://discordapp.com/api/webhooks/713843936245841980/gSpwXzO-EC3EkWQVvXStoGyLWgktQn0qHvQFgg3-hSUGL2z2uVRFmdt0ucQqjeDqs69E", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
  TriggerEvent("core:getPlayers", function(pl)
   for k,v in pairs(pl) do
    TriggerEvent("core:getPlayerFromId", k, function(user)
@@ -643,7 +664,25 @@ RegisterServerEvent("core:moneylog")
 AddEventHandler("core:moneylog", function(source, text)
  TriggerEvent("core:getPlayerFromId", source, function(user)
   local fullname = user.getIdentity().fullname
-  PerformHttpRequest("https://discordapp.com/api/webhooks/713836428303401020/GEGZ47vplwxhs9QlTxKIY2X6v85PAxkMUyQIQ46MMVK6Qw8XzbK8gZcVm5XlyKEvT4xP", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, content = "```[Money Log] "..fullname.."("..source.."): "..text.."```\n", avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
+  local embed = {
+    {
+      ["color"] = 3661319,
+      ["title"] = "Money Log",
+      ["fields"] = {
+        {
+          ["name"] = "Character",
+          ["value"] = user.getCharacterID().." | "..fullname,
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Transaction",
+          ["value"] = text,
+          ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/713836428303401020/GEGZ47vplwxhs9QlTxKIY2X6v85PAxkMUyQIQ46MMVK6Qw8XzbK8gZcVm5XlyKEvT4xP", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
  end)
 end)
 
@@ -1011,17 +1050,140 @@ end)
 
 AddEventHandler('playerConnecting', function()
   local identifier = PlayerIdentifier('license', source)
-  TriggerEvent("core:log", tostring("[JOIN] "..GetPlayerName(source).."("..identifier..") joined."), "join")
+  local embed = {
+    {
+      ["color"] = 3661319,
+      ["title"] = "JOIN",
+      ["footer"] = {
+        ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+      }, 
+      ["fields"] = {
+        {
+          ["name"] = "Player",
+          ["value"] = GetPlayerName(source),
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Licence",
+          ["value"] = identifier,
+          ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/699702380358533161/HbdOJCbWn8DCR4qkHm61cFJFEXfgicBEatUibtjooBo45RTVMQO12gd65xkGhrq-npMh", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
 end)
  
 AddEventHandler('playerDropped', function(reason)
   local identifier = PlayerIdentifier('license', source)
-  TriggerEvent("core:log", tostring("[LEAVE] "..GetPlayerName(source).."("..identifier..") left: "..reason..""), "join")
+  local embed = {
+    {
+      ["color"] = 12062479,
+      ["title"] = "LEAVE",
+      ["footer"] = {
+        ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+      }, 
+      ["fields"] = {
+        {
+          ["name"] = "Player",
+          ["value"] = GetPlayerName(source),
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Licence",
+          ["value"] = identifier,
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Reason",
+          ["value"] = reason,
+          ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/699702380358533161/HbdOJCbWn8DCR4qkHm61cFJFEXfgicBEatUibtjooBo45RTVMQO12gd65xkGhrq-npMh", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
   TriggerEvent("core:playerDropped", source)
 end)
 
+RegisterServerEvent('log:player_death')
+AddEventHandler('log:player_death', function(pid, deathreason, player_name)
+  local embed = {
+    {
+      ["color"] = 3661319,
+      ["title"] = "DEATH",
+      ["footer"] = {
+        ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+      }, 
+      ["fields"] = {
+        {
+          ["name"] = "Player",
+          ["value"] = pid.." | "..player_name,
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Reason",
+          ["value"] = deathreason,
+          ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/713848433219338362/iDNdq8XG49TFI4ffhIp5EyeZzcwqaa9yV7_6WZCIH8jKiMnIUZLSbboISOHk4Tx44b4i", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
+end)
+
+RegisterServerEvent('log:player_killed')
+AddEventHandler('log:player_killed', function(pid, player_name, kid, killer_name, deathreason)
+  local embed = {
+    {
+      ["color"] = 3661319,
+      ["title"] = "KILL",
+      ["footer"] = {
+        ["text"] = os.date('%Y-%m-%d %H:%M:%S')
+      }, 
+      ["fields"] = {
+        {
+          ["name"] = "Player",
+          ["value"] = pid.." | "..player_name,
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Killer",
+          ["value"] = kid.." | "..killer_name,
+          ["inline"] = false
+        },
+        {
+            ["name"] = "Reason",
+            ["value"] = deathreason,
+            ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/713848433219338362/iDNdq8XG49TFI4ffhIp5EyeZzcwqaa9yV7_6WZCIH8jKiMnIUZLSbboISOHk4Tx44b4i", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
+end)
+
 AddEventHandler('chatMessage', function(source, name, message)
-  TriggerEvent("core:log", tostring("[CHAT] "..name.."("..source.."): "..message), "chat")
+
+  local embed = {
+    {
+      ["color"] = 3661319,
+      ["title"] = "Chat Message",
+      ["fields"] = {
+        {
+          ["name"] = "Character",
+          ["value"] = source.." | "..name,
+          ["inline"] = false
+        },
+        {
+          ["name"] = "Message",
+          ["value"] = message,
+          ["inline"] = false
+        }
+      }
+    }
+  }
+  PerformHttpRequest("https://discordapp.com/api/webhooks/713848561867161660/T0JQQcKt596e22nwstqXPExcLQoASXP6gorYbK0z5_gJvDrOQuU42cD6YZ2Ai_9vuwvk", function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, embeds = embed, avatar_url = SystemAvatar}), {['Content-Type'] = 'application/json'})
 end)
 
 function PlayerIdentifier(type, id)
