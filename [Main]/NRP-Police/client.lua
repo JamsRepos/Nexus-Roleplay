@@ -1451,8 +1451,13 @@ Citizen.CreateThread(function()
    local myped = GetPlayerPed(-1)
    AttachEntityToEntity(myped, ped, 4103, 11816, 0.48, 0.00, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
    playerStillDragged = true
+   if IsPedInAnyVehicle(myped) then
+    DetachEntity(GetPlayerPed(-1), true, false)
+    IsDragged = false
+    playerStillDragged = false
+   end
   else
-   if(playerStillDragged) then
+   if playerStillDragged then
     DetachEntity(GetPlayerPed(-1), true, false)
     playerStillDragged = false
    end
