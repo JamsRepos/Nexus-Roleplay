@@ -52,7 +52,7 @@ AddEventHandler('bmshops:purchase', function(label, price, qty, item)
      user.addQuantity(item,qty)
      user.removeDirtyMoney(price)
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Purchased "..qty.."x "..label, timeout=1000})
-     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price)
+     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price.." - "..label)
     else
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text =  'Inventory Full'})
     end
@@ -75,7 +75,7 @@ AddEventHandler('takewayshops:purchase', function(label, price, qty, item)
      user.addQuantity(item,qty)
      user.removeMoney(price)
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Purchased "..qty.."x "..label, timeout=1000})
-     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price)
+     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price.." - "..label)
     else
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text =  'Inventory Full'})
     end
@@ -97,7 +97,7 @@ AddEventHandler('shops:purchase', function(label, price, qty, item)
      user.addQuantity(item,qty)
      user.removeMoney(price)
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Purchased "..qty.."x "..label, timeout=1000})
-     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price)
+     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price.." - "..label)
     else
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text =  'Inventory Full'})
     end
@@ -109,7 +109,7 @@ AddEventHandler('shops:purchase', function(label, price, qty, item)
      user.addQuantity(item,qty)
      user.removeBank(price)
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Purchased "..qty.."x "..label, timeout=1000})
-     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price)
+     TriggerEvent("core:moneylog", source, 'Shop Payment: $'..price.." - "..label)
     else
      TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text =  'Inventory Full'})
     end

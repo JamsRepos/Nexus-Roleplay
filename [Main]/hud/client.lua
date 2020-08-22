@@ -456,7 +456,7 @@ Citizen.CreateThread(function()
     elseif WarMenu.Button("Mechanic ", mechanic) then
     elseif WarMenu.Button('EMS', ems) then  
     elseif WarMenu.Button('Player Count', #players..'/40') then
-      WarMenu.OpenMenu('player_list2')  
+      --WarMenu.OpenMenu('player_list2')  
     end
     if qCount > 0 then
      if WarMenu.Button('Queued', qCount) then
@@ -476,7 +476,7 @@ Citizen.CreateThread(function()
     if not WarMenu.IsMenuOpened('player_list') then
      players = {} 
      WarMenu.OpenMenu('player_list')
-     ExecuteCommand('me is looking into your soul')
+     --ExecuteCommand('me is looking into your soul')
      for _, player in ipairs(GetActivePlayers()) do
        table.insert( players, player )
      end
@@ -500,20 +500,24 @@ end)
 
 RegisterNetEvent('hud:updatepresence')
 AddEventHandler('hud:updatepresence', function(copss, emss, mechc)
- if copss == 0 then
-  cops = 'Unavailable'
- elseif copss > 0 then
-  cops = copss
+  if copss == 0 then
+    cops = 'Unavailable'
+  elseif copss > 0 and copss < 3 then
+    cops = "Weak"
+  elseif copss > 3 and copss < 5 then
+    cops = "Medium"
+  elseif copss > 5 then
+    cops = "Strong"
  end
  if emss == 0 then
   ems = 'Unavailable'
  elseif emss > 0 then
-  ems = emss
+  ems = "Available"
  end
  if mechc == 0 then
   mechanic = 'Unavailable'
  elseif mechc > 0 then 
-  mechanic = mechc
+  mechanic = "Available"
  end
 end)
 
