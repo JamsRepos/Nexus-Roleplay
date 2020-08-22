@@ -504,9 +504,9 @@ AddEventHandler('hud:updatepresence', function(copss, emss, mechc)
     cops = 'Unavailable'
   elseif copss > 0 and copss < 3 then
     cops = "Weak"
-  elseif copss > 3 and copss < 5 then
+  elseif copss >= 3 and copss < 5 then
     cops = "Medium"
-  elseif copss > 5 then
+  elseif copss >= 5 then
     cops = "Strong"
  end
  if emss == 0 then
