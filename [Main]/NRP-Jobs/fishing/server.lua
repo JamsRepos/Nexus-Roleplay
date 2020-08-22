@@ -5,3 +5,7 @@ AddEventHandler('fishing:sellfish', function(payout)
       end)
 end)
 
+RegisterServerEvent('fish:moneylog')
+AddEventHandler('fish:moneylog', function(text)
+    TriggerEvent("core:moneylog", source, text)
+end)

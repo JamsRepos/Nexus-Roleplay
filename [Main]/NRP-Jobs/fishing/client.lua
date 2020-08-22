@@ -73,10 +73,12 @@ Citizen.CreateThread(function()
               TriggerEvent("inventory:removeQty", 5, salmon)
               local fishcount = catfish+cod+salmon
               local payout = catfish*100+cod*120+salmon*200
-              TriggerEvent("core:moneylog", source, 'Fish Sold: $'..payout)
               if payout > 0 then
                 TriggerServerEvent("fishing:sellfish", payout)
                 exports['NRP-notify']:DoHudText('success', 'You have sold '..fishcount..' fish for $'..payout)
+                print(PlayerId())
+                TriggerServerEvent("fish:moneylog", 'Fish Payment: '..fishcount..' sold for $'..payout)
+                
                 Citizen.Wait(5000)
                 selling_fish = false
               else
