@@ -18,7 +18,6 @@ function GetRoles(user)
 	for _, id in ipairs(GetPlayerIdentifiers(user)) do
 		if string.match(id, "discord:") then
 			discordId = string.gsub(id, "discord:", "")
-			print("Found discord id: "..discordId)
 			break
 		end
 	end
@@ -46,7 +45,6 @@ function IsRolePresent(user, role)
 	for _, id in ipairs(GetPlayerIdentifiers(user)) do
 		if string.match(id, "discord:") then
 			discordId = string.gsub(id, "discord:", "")
-			print("Found discord id: "..discordId)
 			break
 		end
 	end
