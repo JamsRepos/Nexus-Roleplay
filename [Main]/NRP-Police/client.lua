@@ -1449,11 +1449,8 @@ Citizen.CreateThread(function()
   if IsDragged then
    local ped = GetPlayerPed(GetPlayerFromServerId(CopPed))
    local myped = GetPlayerPed(-1)
-   if ped == myped then
-    SetPedDropsWeapon(ped)
-    DisablePlayerFiring(ped, true)
-    DisableControlAction(0, 21, true) -- SPRINT
-   end
+   SetPedDropsWeapon(ped)
+   DisablePlayerFiring(ped, true)
    AttachEntityToEntity(myped, ped, 4103, 11816, 0.48, 0.00, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
    playerStillDragged = true
    if IsPedInAnyVehicle(ped) then
