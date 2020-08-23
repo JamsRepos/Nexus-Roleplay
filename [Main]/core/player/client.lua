@@ -37,6 +37,7 @@ AddEventHandler("core:setjob", function(jobid, jobbs)
     DecorRegister('Job', 3)
     DecorRegister('isParamedic', 2)
     DecorRegister('isOfficer', 2)
+    DecorRegister('isNews', 2)
 
     if jobid == 1 or jobid == 31 or jobid == 32 or jobid == 33 or jobid == 34 or jobid == 35 or jobid == 36 or jobid == 37 or jobid == 90 or jobid == 91 then
      DecorSetBool(GetPlayerPed(-1), "isParamedic", false)   
@@ -44,9 +45,14 @@ AddEventHandler("core:setjob", function(jobid, jobbs)
     elseif jobid == 2 or jobid == 50 or jobid == 51 or jobid == 52 or jobid == 53 or jobid == 54 or jobid == 55 or jobid == 56 or jobid == 57 then
      DecorSetBool(GetPlayerPed(-1), "isParamedic", true)   
      DecorSetBool(GetPlayerPed(-1), "isOfficer", false)
+    elseif jobid == 61 or jobid == 62 or jobid == 63 then
+        DecorSetBool(GetPlayerPed(-1), "isParamedic", false)   
+        DecorSetBool(GetPlayerPed(-1), "isOfficer", false)
+        DecorSetBool(GetPlayerPed(-1), "isNews", true)
     else
      DecorSetBool(GetPlayerPed(-1), "isParamedic", false)   
      DecorSetBool(GetPlayerPed(-1), "isOfficer", false)
+     DecorSetBool(GetPlayerPed(-1), "isNews", false)
      TriggerEvent("blips:remove")
     end
     DecorSetInt(GetPlayerPed(-1), 'Job', jobid)

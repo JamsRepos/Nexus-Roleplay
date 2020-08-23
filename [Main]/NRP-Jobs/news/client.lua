@@ -482,3 +482,47 @@ function DisplayNotification(string)
 	AddTextComponentString(string)
     DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
+
+
+--------------
+-- Vehicles --
+--------------
+Citizen.CreateThread(function()
+	while true do
+		local coords = GetEntityCoords(GetPlayerPed(-1))
+		Wait(1)
+		if DecorGetBool(GetPlayerPed(-1), "isNews") then
+			if(GetDistanceBetweenCoords(coords, -532.35, -890.91, 24.67, true) < 10.0) then
+				DrawMarker(27, -532.35, -890.91, 24.67-0.97, 0, 0, 0, 0, 0, 0, 1.6,1.6,0.5, 232, 210, 132, 155, 0, 0, 2, 0, 0, 0, 0)
+				if(GetDistanceBetweenCoords(coords, -532.35, -890.91, 24.67, true) < 1.5) then
+					if IsPedInAnyVehicle(GetPlayerPed(-1)) then
+						drawTxt('~m~[~g~E~m~] Put Away News Van')
+					else
+						drawTxt('~m~[~g~E~m~] Take Out News Van')
+					end
+					
+					if IsControlJustPressed(0, 38) then
+						if IsPedInAnyVehicle(GetPlayerPed(-1)) then
+							DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1), false))
+						else
+							vehiclehash = GetHashKey('newsvan')
+							RequestModel(vehiclehash)
+							Citizen.CreateThread(function() 
+								while not HasModelLoaded(vehiclehash) do  
+									Citizen.Wait(0)  
+								end
+								local spawned = CreateVehicle(vehiclehash, -532.35, -890.91, 24.67, 90, true, false)
+								TaskWarpPedIntoVehicle(GetPlayerPed(-1), spawned, -1)
+								SetVehicleEngineOn(spawned, true, true)
+								SetVehicleIsConsideredByPlayer(spawned, true)
+								DecorSetInt(spawned, "_Fuel_Level", 100000)
+								exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(spawned))
+							end)
+						end
+						
+					end
+				end
+			end
+		end
+	end
+end)
