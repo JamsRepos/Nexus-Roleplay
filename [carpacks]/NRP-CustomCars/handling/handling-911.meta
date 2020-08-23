@@ -13,7 +13,7 @@
 
 
     <Item type="CHandlingData">
-      <handlingName>P911R</handlingName>
+      <handlingName>PRUF</handlingName>
       <fMass value="1650.000000" />
       <fInitialDragCoeff value="3.500000" />
       <fPercentSubmerged value="85.000000" />
