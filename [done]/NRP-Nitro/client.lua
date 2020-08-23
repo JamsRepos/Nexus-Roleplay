@@ -1,5 +1,6 @@
 
 local callingcar = false
+local carout = false
 
 RegisterNetEvent("NitroConfirmation")
 AddEventHandler("NitroConfirmation", function(cb)
@@ -12,6 +13,10 @@ AddEventHandler("NitroConfirmation", function(cb)
             Citizen.Wait(0)
         end
 
+        if carout then
+            exports['NRP-notify']:DoHudText('error', 'You already have a car out.')
+            return
+        end
 
         if callingcar then
             exports['NRP-notify']:DoHudText('error', 'You already have a car on the way.')
@@ -31,6 +36,7 @@ AddEventHandler("NitroConfirmation", function(cb)
             exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(nitrocar))
             exports['NRP-notify']:DoHudText('success', 'Thank you for choosing Nitro Courtesy Cars!')
             callingcar = false
+            carout = true
             ExecuteCommand("e c")
         end)
     else
