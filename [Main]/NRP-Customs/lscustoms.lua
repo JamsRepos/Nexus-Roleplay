@@ -564,7 +564,7 @@ local function DriveOutOfGarage(pos)
 		pos = currentpos
 		TaskVehicleDriveToCoord(ped, veh, pos.outside.x, pos.outside.y, pos.outside.z, f(5), f(0.1), GetEntityModel(veh), 16777216, f(0.1), true)
 		pos = currentpos.driveout
-		plate = GetVehicleNumberPlateText(veh)
+		plate = exports['core']:TrimPlate(GetVehicleNumberPlateText(veh))
 		vehProps = GetVehProps(veh)
 		TriggerServerEvent("LSC:finished", plate, vehProps)
 		
