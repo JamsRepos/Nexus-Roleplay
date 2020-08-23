@@ -37,6 +37,10 @@ server_script 'fastfood/server.lua'
 -- Post OP
 client_script 'post_op/client.lua'
 
+-- Weazel News
+client_script 'news/client.lua'
+server_script 'news/server.lua'
+
 -- Maintenance
 client_script 'maintenance/client.lua'
 --vineyard
