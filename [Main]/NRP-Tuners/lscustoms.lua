@@ -6,6 +6,7 @@ local ownedCustoms = {}
 local currentStation = {}
 local myCharacterID = 0
 local garageID = 0
+local blips = false
 local repairprice = {
   [0] = 25, --Compact
   [1] = 10, --Sedan
@@ -1265,6 +1266,16 @@ function UnfakeVeh()
 	SetVehicleWindowTint(veh, myveh.windowtint)
 end
 
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(10)
+		if not blips then 
+			AddBlips()
+		end
+	end
+end)
+
+
 function AddBlips()
 	for i,pos in ipairs(garages) do
 		local blip = AddBlipForCoord(pos.inside.x,pos.inside.y,pos.inside.z)
@@ -1278,6 +1289,7 @@ function AddBlips()
 			SetBlipScale(blip, 0.8)
 		end
 	end
+	blips = true
 end
 
 RegisterNetEvent('lockGarage2')
