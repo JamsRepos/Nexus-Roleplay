@@ -1,6 +1,7 @@
 
 local callingcar = false
 local carout = false
+local nitrocar = nil
 
 RegisterNetEvent("NitroConfirmation")
 AddEventHandler("NitroConfirmation", function(cb)
@@ -34,7 +35,7 @@ AddEventHandler("NitroConfirmation", function(cb)
 
         exports['pogressBar']:drawBar(30000, 'Calling Courtesy Car', function()
             local x,y,z = table.unpack(GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 8.0, 0.5))
-            local nitrocar = CreateVehicle(car, x, y, z, 0.0, true, false)
+            nitrocar = CreateVehicle(car, x, y, z, 0.0, true, false)
             SetVehicleColours(nitrocar, 135, 135)
             SetVehicleNumberPlateText(nitrocar, "BOOSTER")
             DecorSetInt(nitrocar, "_Fuel_Level", 100000)
