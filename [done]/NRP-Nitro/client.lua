@@ -14,8 +14,13 @@ AddEventHandler("NitroConfirmation", function(cb)
         end
 
         if carout then
-            exports['NRP-notify']:DoHudText('error', 'You already have a car out.')
-            return
+            if IsPedInAnyVehicle(GetPlayerPed(-1)) then
+                DeleteGivenVehicle(nitrocar, 5)
+                carout = false
+            else
+                exports['NRP-notify']:DoHudText('error', 'You already have a car out. Use /nitro in the previous vehicle to delete it.')
+                return
+            end
         end
 
         if callingcar then
@@ -43,3 +48,36 @@ AddEventHandler("NitroConfirmation", function(cb)
         exports['NRP-notify']:DoHudText('error', 'You are not currently a Nitro Booster.')
     end
 end)
+
+function DeleteGivenVehicle(veh, timeoutMax)
+    local timeout = 0 
+  
+    SetVehicleHasBeenOwnedByPlayer(veh, false)
+    SetEntityAsMissionEntity(veh, true, true)
+    TriggerEvent('persistent-vehicles/forget-vehicle', veh)
+    DeleteVehicle(veh)
+  
+    if (DoesEntityExist(veh)) then
+      exports['NRP-notify']:DoHudText('error', 'Failed to collect vehicle, trying again...')
+        -- Fallback if the vehicle doesn't get deleted
+        while (DoesEntityExist(veh) and timeout < timeoutMax) do 
+          DeleteVehicle(veh)
+  
+          -- The vehicle has been banished from the face of the Earth!
+          if (not DoesEntityExist(veh)) then 
+            exports['NRP-notify']:DoHudText('success', 'Vehicle Collected')
+          end 
+  
+          -- Increase the timeout counter and make the system wait
+          timeout = timeout + 1 
+          Citizen.Wait(500)
+  
+          -- We've timed out and the vehicle still hasn't been deleted. 
+          if (DoesEntityExist(veh) and (timeout == timeoutMax - 1)) then
+            exports['NRP-notify']:DoHudText('error', 'Failed to collect vehicle after ' .. timeoutMax .. ' retries.')
+          end 
+        end
+    else 
+      exports['NRP-notify']:DoHudText('success', 'Vehicle Collected')
+    end 
+  end
