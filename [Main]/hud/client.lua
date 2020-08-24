@@ -333,18 +333,14 @@ Citizen.CreateThread(function()
     velBuffer[1] = GetEntityVelocity(car)    
  
 
-    if IsControlJustPressed(0, 29) and speed < 60 then 
-      if DecorGetBool(GetPlayerPed(-1), 'Seatbelt') == false then
-        exports['pogressBar']:drawBar(2500, 'Buckling Seatbelt', function()
-          DecorSetBool(GetPlayerPed(-1), 'Seatbelt', true)
-        end)
-      end
-    elseif IsControlJustPressed(0, 29) then
-      if DecorGetBool(GetPlayerPed(-1), 'Seatbelt') == true then
-        exports['pogressBar']:drawBar(2500, 'Unbuckling Seatbelt', function()
-          DecorSetBool(GetPlayerPed(-1), 'Seatbelt', false)
-        end)
-      end
+    if IsControlJustPressed(0, 29) and speed < 60 and DecorGetBool(GetPlayerPed(-1), 'Seatbelt') == false then 
+      exports['pogressBar']:drawBar(2500, 'Buckling Seatbelt', function()
+        DecorSetBool(GetPlayerPed(-1), 'Seatbelt', true)
+      end)
+    elseif IsControlJustPressed(0, 29) and DecorGetBool(GetPlayerPed(-1), 'Seatbelt') == true then
+      exports['pogressBar']:drawBar(2500, 'Unbuckling Seatbelt', function()
+        DecorSetBool(GetPlayerPed(-1), 'Seatbelt', false)
+      end)
     end
 
    elseif wasInCar then
