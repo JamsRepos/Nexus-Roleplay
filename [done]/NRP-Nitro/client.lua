@@ -17,8 +17,9 @@ AddEventHandler("NitroConfirmation", function(cb)
             if IsPedInAnyVehicle(GetPlayerPed(-1)) then
                 DeleteGivenVehicle(nitrocar, 5)
                 carout = false
+                return
             else
-                exports['NRP-notify']:DoHudText('error', 'You already have a car out. Use /nitro in the previous vehicle to delete it.')
+                exports['NRP-notify']:DoHudText('error', 'You already have a car out.\nUse /nitro in the previous vehicle to delete it.')
                 return
             end
         end
