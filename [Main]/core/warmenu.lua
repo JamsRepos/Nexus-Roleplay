@@ -636,9 +636,13 @@ end
 
 RegisterNetEvent('vehstore:delete')
 AddEventHandler('vehstore:delete', function()
- local ped = GetPlayerPed(-1)
- local vehicle = GetVehiclePedIsIn(ped, false)
- DeleteGivenVehicle(vehicle, 5)
+  local ped = GetPlayerPed(-1)
+  if IsPedSittingInAnyVehicle(ped) then 
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if GetPedInVehicleSeat(vehicle, -1) == ped then
+      DeleteGivenVehicle(vehicle, 5)
+    end
+  end
 end)
 
 function DeleteGivenVehicle(veh, timeoutMax)
