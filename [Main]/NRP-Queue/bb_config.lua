@@ -90,4 +90,4 @@ Config.NoDiscord = "We could not find a Discord Client running so we are giving 
 Config.NoSteam = "Error: Please ensure you have Steam running in the background. We use this to authenticate you to our server. If you already have Steam running, please restart your FiveM client."
 
 Config.Error = "Error: It seems you lost connection to our server at one point, please restart your FiveM client and try again."
-Config.HandshakingWith = "Please wait whilst we authenticate..."
+Config.HandshakingWith = "Please wait whilst we authenticate...\n\nIf you have been stuck here for a while, you will need to restart Steam and FiveM in order to fix this issue."
