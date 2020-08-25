@@ -1,5 +1,5 @@
 local stopRefueling = false
-local fuelPricePerGallon = 1
+local fuelPricePerGallon = 5
 local hasStation = false
 local ownedGasStations = {}
 local currentStation = {}
