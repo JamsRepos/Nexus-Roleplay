@@ -1,5 +1,6 @@
 local stopRefueling = false
 local fuelPricePerGallon = 1
+local hasStation = false
 local ownedGasStations = {}
 local currentStation = {}
 local myCharacterID = 0
@@ -307,8 +308,17 @@ Citizen.CreateThread(function()
     hold = false
    end
    DrawText3Ds(vehCoords.x, vehCoords.y, vehCoords.z,'\n~g~[K]~w~ Purchase Gas Station ~g~[~g~$200000]')
-   if IsControlJustPressed(0, 311) then 
-    TriggerServerEvent('fuel:purchase', currentID)
+   if IsControlJustPressed(0, 311) then
+    for _, item in pairs(ownedGasStations) do
+      if item.char_id == myCharacterID then
+        hasStation = true
+      end
+    end
+    if hasStation then
+      exports['NRP-notify']:DoHudText('error', 'You cannot purchase this as you already have a gas station.') 
+    else
+      TriggerServerEvent('fuel:purchase', currentID)
+    end
    end
   else 
    Citizen.Wait(2500)
