@@ -178,24 +178,24 @@ Citizen.CreateThread(function()
      WarMenu.CloseMenu()
     end
     WarMenu.Display()
-   elseif WarMenu.IsMenuOpened('buyFuel') then
-    if WarMenu.Button('1K Gallons', '~g~$500') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 500, 500)
+  elseif WarMenu.IsMenuOpened('buyFuel') then
+    if WarMenu.Button('1K Gallons', '~g~$6000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 1000, 6000)
      WarMenu.CloseMenu()
-    elseif WarMenu.Button('2.5K Gallons', '~g~$1250') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 1250, 1250)
+    elseif WarMenu.Button('2.5K Gallons', '~g~$15000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 2500, 15000)
      WarMenu.CloseMenu()
-    elseif WarMenu.Button('5K Gallons', '~g~$2500') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 2500, 2500)
+    elseif WarMenu.Button('5K Gallons', '~g~$30000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 5000, 30000)
      WarMenu.CloseMenu()
-    elseif WarMenu.Button('10K Gallons', '~g~$5000') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 5000, 5000)
+    elseif WarMenu.Button('10K Gallons', '~g~$60000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 10000, 60000)
      WarMenu.CloseMenu()
-    elseif WarMenu.Button('50K Gallons', '~g~$25000') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 25000, 25000)
+    elseif WarMenu.Button('50K Gallons', '~g~$300000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 50000, 300000)
      WarMenu.CloseMenu()
-    elseif WarMenu.Button('250K Gallons', '~g~$125000') then 
-     TriggerServerEvent('fuel:buyFuel', currentStation.id, 125000, 125000)
+    elseif WarMenu.Button('125K Gallons', '~g~$650000') then 
+     TriggerServerEvent('fuel:buyFuel', currentStation.id, 125000, 650000)
      WarMenu.CloseMenu()
     end
     WarMenu.Display()
