@@ -622,7 +622,7 @@ Citizen.CreateThread(function()
         Wait(45000)
         ClearPedTasksImmediately(GetPlayerPed(-1))
         exports['NRP-notify']:DoHudText('success', 'You Have Repaired The Electrical Component')
-        TriggerServerEvent('jobs:paytheplayer', math.random(250, 500), 'Maintenance Repair')
+        TriggerServerEvent('jobs:paytheplayer', math.random(400, 650), 'Maintenance Repair')
         newMission()
        else
         TriggerEvent('chatMessage', "^1You Require Your Job Vehicle")

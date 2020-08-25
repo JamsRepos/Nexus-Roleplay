@@ -169,7 +169,7 @@ end
 function PaymentNeeded()
 	local ped = GetPlayerPed(-1)
 	if IsPedInAnyVehicle(ped) and IsVehicleModel(GetVehiclePedIsIn(ped, false), GetHashKey("phantom")) and needspayment then
-		local lumberPay = math.random(3000,5000)
+		local lumberPay = math.random(6000,10000)
 		TriggerServerEvent('jobs:paytheplayer', lumberPay, 'Lumberjack Sale')
 		DeleteVehicle(GetVehiclePedIsIn(ped, false))
 		needspayment = false
