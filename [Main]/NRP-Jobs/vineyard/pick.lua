@@ -117,7 +117,7 @@ Citizen.CreateThread(function()
          DeleteVehicle(atvVehicle)
          grapesDelivered = 0
          -- Add code to give money and add to storage
-         local pay = math.random(450, 1000)
+         local pay = math.random(1250, 3000)
          RemoveJobBlip()
          TriggerServerEvent('jobs:paytheplayer', pay, 'Vineyard: Storage Payment')
          --Notify('You have been paid $'..pay.. ' for completing your rounds.')

@@ -80,7 +80,7 @@ end
    end
    WarMenu.Display()
 
- if DecorGetInt(GetPlayerPed(-1), "Reputation") >= 1500 then
+ if (DecorGetInt(GetPlayerPed(-1), "Reputation") >= 1500) or (DecorGetInt(GetPlayerPed(-1), "isOfficer")) then
   if(GetDistanceBetweenCoords(coords, 1164.630, -3191.682, -39.008, true) < 10.0) then
    DrawMarker(27, 1164.630, -3191.682, -39.008-0.98, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 255, 255, 0, 100, 0, 0, 2, 0, 0, 0, 0)
    if(GetDistanceBetweenCoords(coords, 1164.630, -3191.682, -39.008, true) < 1.5) then

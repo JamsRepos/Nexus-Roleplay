@@ -51,7 +51,7 @@ Citizen.CreateThread(function()
           onJob = false
           grapeReturn = false
           DeleteVehicle(deliveryVehicle)
-          local pay = math.random(1250, 2750)
+          local pay = math.random(2500, 5500)
           RemoveJobBlip()
           TriggerServerEvent('jobs:paytheplayer', pay, 'Vineyard: Delivery')
          else
