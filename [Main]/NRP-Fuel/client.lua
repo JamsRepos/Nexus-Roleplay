@@ -164,11 +164,10 @@ Citizen.CreateThread(function()
      WarMenu.OpenMenu('buyFuel')
     elseif WarMenu.Button('Fuel Price', '~g~$'..currentStation.price) then
      local newfuel = getResult()
-     if newfuel <= 10 or newfuel >= 5 then
+     if newfuel <= 10 and newfuel >= 5 then
       TriggerServerEvent('fuel:updatefuel', newfuel, currentStation.id) 
      else
       exports['NRP-notify']:DoHudText('error', 'You cannot set your fuel price lower than $5 or higher than $10.')
-
      end
      WarMenu.CloseMenu()
     elseif WarMenu.Button('Station Bank', '~g~$'..currentStation.bank) then
