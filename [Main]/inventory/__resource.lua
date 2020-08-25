@@ -347,3 +347,5 @@ files {
   "html/img/items/305.png",
   "html/img/items/306.png",
 }
+
+export 'closeInventory'

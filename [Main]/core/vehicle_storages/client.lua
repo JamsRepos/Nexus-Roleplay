@@ -58,6 +58,13 @@ end
 Citizen.CreateThread(function()
  while true do
    Wait(5)
+  if vehicle_plate then
+    local vehFront = VehicleInFront()
+    if vehFront == 0 then
+      exports['inventory']:closeInventory()
+      vehicle_plate = nil
+    end
+  end
   if IsControlJustPressed(0, 182) and not IsPedInAnyVehicle(GetPlayerPed(-1), false) then
    if IsControlJustPressed(1, 21) or IsControlJustPressed(1, 71) or IsControlJustPressed(1, 139) or IsControlJustPressed(1, 142) or IsControlJustPressed(1, 78) or IsControlJustPressed(1, 87) or IsControlJustPressed(1, 92) or IsControlJustPressed(1, 129) then
    else

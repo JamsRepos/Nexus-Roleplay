@@ -546,11 +546,10 @@ end
 
 function GetInstancedPlayers()
     local players = {}
-
     for _, player in ipairs(GetActivePlayers()) do
         for _,p in pairs(instance.participants) do
             instancePlayer = GetPlayerFromServerId(p)
-            if i == instancePlayer then
+            if player == instancePlayer then
               table.insert(players, player)
             end
         end

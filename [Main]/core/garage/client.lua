@@ -342,11 +342,15 @@ function StoreVehicle()
     damage = (maxvehhp - GetVehicleBodyHealth(vehicle))/100
     enginedamage = (maxvehhp - GetVehicleEngineHealth(vehicle))
     local price = round(repairprice[GetVehicleClass(veh)]*damage+enginedamage*2,0)
-    TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
-    if DoesEntityExist(vehicle) then 
-      DeleteGivenVehicle(vehicle, 5)
+    if GetPedInVehicleSeat(vehicle, -1) == GetPlayerPed(-1) then
+      TriggerServerEvent("garage:store", components, currentgarage.id, fuel, price)
+      if DoesEntityExist(vehicle) then 
+        DeleteGivenVehicle(vehicle, 5)
+      else
+        exports['NRP-notify']:DoHudText('error', 'You are not near a vehicle.')
+      end
     else
-      exports['NRP-notify']:DoHudText('error', 'You are not near a vehicle.')
+      exports['NRP-notify']:DoHudText('error', 'You must be the driver of the vehicle.')
     end
    else
     exports['NRP-notify']:DoHudText('error', 'Garage Full, You can buy more slots at the vehicle shop!')
