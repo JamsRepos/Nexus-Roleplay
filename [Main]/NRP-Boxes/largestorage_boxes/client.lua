@@ -12,6 +12,11 @@ end)
 RegisterCommand('pickup', function(source, args, rawCommand)
   local setting = args[1]
   local coords = GetEntityCoords(GetPlayerPed(-1))
+  local t, distance = GetClosestPlayer()
+  if(distance ~= -1 and distance < 5) then
+    exports['NRP-notify']:DoHudText('error', "Player near the storage, tell them to move back.")
+    return
+  end
   if setting == 'large' then
     for k,v in pairs(storage_boxes) do
      if(GetDistanceBetweenCoords(coords, v.location.x, v.location.y, v.location.z, true) < 1.6) then
@@ -226,4 +231,36 @@ function LoadModel(model)
   while not HasModelLoaded(model) do
     Citizen.Wait(10)
   end
+end
+
+function GetClosestPlayer()
+  local players = GetPlayers()
+  local closestDistance = -1
+  local closestPlayer = -1
+  local ply = GetPlayerPed(-1)
+  local plyCoords = GetEntityCoords(ply, 0)
+  
+  for index,value in ipairs(players) do
+      local target = GetPlayerPed(value)
+      if(target ~= ply) then
+          local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+          local distance = Vdist(targetCoords["x"], targetCoords["y"], targetCoords["z"], plyCoords["x"], plyCoords["y"], plyCoords["z"])
+          if(closestDistance == -1 or closestDistance > distance) then
+              closestPlayer = value
+              closestDistance = distance
+          end
+      end
+  end
+  
+  return closestPlayer, closestDistance
+end
+
+function GetPlayers()
+  local players = {}
+
+  for _, player in ipairs(GetActivePlayers()) do
+    table.insert(players, player)
+  end
+
+  return players
 end
