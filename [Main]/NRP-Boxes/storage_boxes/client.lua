@@ -158,7 +158,7 @@ RegisterNetEvent('storage_box:updateboxes')
 AddEventHandler('storage_box:updateboxes', function(boxes)
  storage_boxes = boxes
  -- Create new props
- for _,v in pairs(boxes) do 
+ for _,v in pairs(storage_boxes) do 
   if not storage_boxes_props[v.box_id] then 
    SpawnObject(v.box_id, v.location)
   end

@@ -57,28 +57,28 @@ AddEventHandler('storage_box2:addbox', function(x, y, z, pin)
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   exports['GHMattiMySQL']:QueryAsync('INSERT INTO `large_storage_boxes` (char_id, pin, location) VALUES (@charid, @pin, @location)',{['@charid'] = user.getCharacterID(), ['@pin'] = pin, ['@location'] = json.encode({x=x, y=y, z=z})})
-  storage_boxes = {}
+  storage_boxes2 = {}
   local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `large_storage_boxes`")
   for _,v in pairs(result) do
-   table.insert(storage_boxes, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
+   table.insert(storage_boxes2, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
   end
-  TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes)
+  TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes2)
  end)
 end)
  
 AddEventHandler('onResourceStart', function(resource)
  if resource == GetCurrentResourceName() then
-  storage_boxes = {}
+  storage_boxes2 = {}
   local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `large_storage_boxes`")
   for _,v in pairs(result) do
-   table.insert(storage_boxes, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
+   table.insert(storage_boxes2, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
   end
  end
 end)
  
 RegisterServerEvent('core:characterloaded')
 AddEventHandler('core:characterloaded', function()
- TriggerClientEvent('storage_box2:updateboxes', source, storage_boxes)
+ TriggerClientEvent('storage_box2:updateboxes', source, storage_boxes2)
 end)
  
 RegisterServerEvent('storage_box2:removebox')
@@ -86,12 +86,12 @@ AddEventHandler('storage_box2:removebox', function(boxid)
  local source = tonumber(source)
  exports['GHMattiMySQL']:QueryAsync("DELETE FROM `large_storage_boxes` WHERE id=@id", {['@id'] = boxid})
  exports['GHMattiMySQL']:QueryAsync("DELETE FROM `stored_inventorys` WHERE unique_id=@id", {['@id'] = "lbox-"..boxid})
- storage_boxes = {}
+ storage_boxes2 = {}
  local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `large_storage_boxes`")
  for _,v in pairs(result) do
-  table.insert(storage_boxes, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
+  table.insert(storage_boxes2, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
  end
- TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes)
+ TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes2)
  TriggerClientEvent("pNotify:SendNotification", source, {text = "Storage Box Removed"})
 end)
  
@@ -101,11 +101,11 @@ AddEventHandler('storage_box2:move', function(id, x, y, z)
  local source = tonumber(source)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   exports['GHMattiMySQL']:QueryAsync('UPDATE `large_storage_boxes` SET `location`= @qty WHERE `id` = @id',{['@id'] = id, ['@qty'] = json.encode({x=x, y=y, z=z})})
-  storage_boxes = {}
-  local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `storage_boxes2`")
+  storage_boxes2 = {}
+  local result = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `large_storage_boxes`")
   for _,v in pairs(result) do
-   table.insert(storage_boxes, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
+   table.insert(storage_boxes2, {box_id = v.id, pin = v.pin, location = json.decode(v.location)})
   end
-  TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes)
+  TriggerClientEvent('storage_box2:updateboxes', -1, storage_boxes2)
  end)
 end)

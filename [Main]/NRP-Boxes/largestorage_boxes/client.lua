@@ -156,7 +156,7 @@ RegisterNetEvent('storage_box2:updateboxes')
 AddEventHandler('storage_box2:updateboxes', function(boxes)
  storage_boxes = boxes
  -- Create new props
- for _,v in pairs(boxes) do 
+ for _,v in pairs(storage_boxes) do 
   if not storage_boxes_props[v.box_id] then 
    SpawnObject2(v.box_id, v.location)
   end
@@ -171,7 +171,7 @@ function SpawnObject2(id, coords)
  end
 
  local _, worldZ = GetGroundZFor_3dCoord(coords.x, coords.y, coords.z)
- local propsobj = CreateObjectNoOffset(prophash, coords.x, coords.y, worldZ, true, true, true)
+ local propsobj = CreateObjectNoOffset(prophash, coords.x, coords.y, worldZ, false, true, true)
  
  SetEntityHeading(propsobj, 0)
  SetEntityAsMissionEntity(propsobj)
