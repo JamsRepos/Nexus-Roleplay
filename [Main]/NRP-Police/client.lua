@@ -701,10 +701,10 @@ Citizen.CreateThread(function()
  while true do
   Wait(5)
   if WarMenu.IsMenuOpened('police_garage') then
-    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'Centenario', '2018 Charger', 'Explorer', 'Tahoe', 'Crownvick', 'Impala', 'Prison Bus', 'Motorbike', 'Riot Van'}, currentveh, selectedveh, function(veh)
+    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'Mustang', '2018 Charger', 'Explorer', 'Tahoe', 'Crownvick', 'Impala', 'Prison Bus', 'Motorbike', 'Riot Van'}, currentveh, selectedveh, function(veh)
       currentveh = veh
       selectedveh = currentveh
-      if currentveh == 1 then vehicle = 'lp770cop'
+      if currentveh == 1 then vehicle = '2015polstang'
       elseif currentveh == 2 then vehicle = 'police2'
       elseif currentveh == 3 then vehicle = 'police5'
       elseif currentveh == 4 then vehicle = 'police6'
