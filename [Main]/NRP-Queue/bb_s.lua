@@ -247,9 +247,9 @@ function GetMessage()
 	TriggerClientEvent("debug:queueCount", -1, #playersInfo)
 	
 	if #playersInfo > 1 then
-		SetConvar("Queue", "Queue Enabled | Count: " .. tostring(#playersInfo))
+		SetConvar("Queue", "Enabled | Count: " .. tostring(#playersInfo))
 	else
-		SetConvar("Queue", "Queue Enabled")
+		SetConvar("Queue", "Enabled")
 	end
 
     if not ColorsTimeout then
