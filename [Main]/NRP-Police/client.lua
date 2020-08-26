@@ -732,11 +732,12 @@ Citizen.CreateThread(function()
     end
   end
   elseif WarMenu.IsMenuOpened('police_unmarkedgarage') then
-    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'UC Charger', 'UC Explorer'}, currentveh, selectedveh, function(veh)
+    if selectedtype == 1 and WarMenu.ComboBox('Vehicle', {'UC Charger', 'UC Explorer', 'Škoda Superb'}, currentveh, selectedveh, function(veh)
       currentveh = veh
       selectedveh = currentveh
       if currentveh == 1 then vehicle = '14char'
       elseif currentveh == 2 then vehicle = 'exp'
+      elseif currentveh == 3 then vehicle = 'superbu'
       end
      end) then
    elseif WarMenu.Button('Confirm') then
@@ -745,13 +746,20 @@ Citizen.CreateThread(function()
      API_CreateVehicle(vehicle, pos.x, pos.y, pos.z)
       --TriggerServerEvent('bank:outofSharedBank', 1500, 7)
     else
-     SpawnVehicle(vehicle)
-    if vehicle == '14char' or vehicle == 'exp' then
-      Wait(1000)
-      local Veh = GetVehiclePedIsIn(GetPlayerPed(-1))
-      SetVehicleCustomPrimaryColour(Veh, 0, 0, 0)
-      SetVehicleCustomSecondaryColour(Veh, 0, 0, 0)
-    end
+      SpawnVehicle(vehicle)
+      print("Spawned Vehicle")
+      if vehicle == '14char' or vehicle == 'exp' then
+        Wait(1000)
+        local Veh = GetVehiclePedIsIn(GetPlayerPed(-1))
+        SetVehicleCustomPrimaryColour(Veh, 0, 0, 0)
+        SetVehicleCustomSecondaryColour(Veh, 0, 0, 0)
+      elseif  vehicle == 'superbu' then
+        Wait(1000)
+        local veh = GetVehiclePedIsIn(GetPlayerPed(-1))
+        SetVehicleWindowTint(veh, 7)
+        local index = math.random(0, 16)
+        SetVehicleColourCombination(veh, index)
+      end
       --TriggerServerEvent('bank:outofSharedBank', 1500, 7)
     end
   end
