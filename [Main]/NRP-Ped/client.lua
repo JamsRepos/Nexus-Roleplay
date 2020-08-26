@@ -30,7 +30,7 @@ local blips = {
   {title="Paleto Bay", colour=77, id=60, x = -446.265, y = 6012.102, z = 31.716},
   {title="Weed Farm", colour=2, id=140, x = 2224.324, y = 5577.014, z = 53.852},
   {title="Growery", colour=47, id=140, x = 346.615, y = 3405.761, z = 36.656},
-  {title="Marcello Estate", colour=5, id=84, x = -1613.911, y = 78.271, z = 61.576},
+  {title="Sunset Mafia Estate", colour=64, id=84, x = -1613.911, y = 78.271, z = 61.576},
   {title="GD Ranch", colour=38, id=84, x = 1311.068, y = 1104.588, z = 105.704},
   {title="GSC Tuner Shop", colour=27, id=84, x = 2218.03, y = 2905.29, z = 48.04},
 }
