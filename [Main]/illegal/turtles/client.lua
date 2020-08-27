@@ -1,6 +1,8 @@
 local poaching = false
 local collecting = false
 
+
+
 local turtle = {name = 'Turtle', price = 800, item = 3}
 
 local get_the_bait = {
@@ -37,6 +39,14 @@ function AttachEntityToPed(prop,bone_ID,x,y,z,RotX,RotY,RotZ)
   return obj
 end
 
+Citizen.CreateThread(function()
+  while true do
+    Wait(0)
+    if poaching then
+      DisableControlAction(0, 289)
+    end
+  end
+end)
 
 function PlayAnim(ped,base,sub,nr,time) 
   Citizen.CreateThread(function() 
