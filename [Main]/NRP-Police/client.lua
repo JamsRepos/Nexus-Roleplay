@@ -339,7 +339,7 @@ Citizen.CreateThread(function()
          DeleteGivenVehicle(vehicle, 5)
         else
          currentgarage = {id=v.id, x=v.x, y=v.y, z=v.z}
-         if  DecorGetInt(GetPlayerPed(-1), "Job") == 1 or DecorGetInt(GetPlayerPed(-1), "Job") == 35 or DecorGetInt(GetPlayerPed(-1), "Job") == 36 or DecorGetInt(GetPlayerPed(-1), "Job") == 37 then
+         if DecorGetInt(GetPlayerPed(-1), "Faction") == 13 then
           WarMenu.OpenMenu('police_unmarkedgarage')
          else 
           exports['NRP-notify']:DoHudText('success', 'You cannot take out a specialized vehicle.')
