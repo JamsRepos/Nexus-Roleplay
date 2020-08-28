@@ -619,7 +619,7 @@ AddEventHandler("core:log", function(text, channel)
   if date.sec < 10 then date.sec = '0' .. tostring(date.sec) end
 
   if channel == "evidence" and string.match(text, "from the evidence locker") then
-    mention = "<@&713167660086722660>"
+    mention = "<@&713175715994140753>"
   else
     mention = ""
   end
