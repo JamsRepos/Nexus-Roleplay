@@ -62,7 +62,7 @@ AddEventHandler('xzurvRobbery:started', function()
         if storeRobberyInProgress then
           ClearPedTasksImmediately(GetPlayerPed(-1))
           if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), storeLoc.x, storeLoc.y, storeLoc.z, true) < 6.0) then
-          TriggerServerEvent('robberies:end', 'Store', storeLoc, math.random(10000,15000))
+          TriggerServerEvent('robberies:end', 'Store', storeLoc, math.random(18000,23000))
           Wait(25000)
           end
         end
