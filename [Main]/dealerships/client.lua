@@ -1,27 +1,3 @@
-Citizen.CreateThread(function()
-  RequestIpl("xs_arena_interior") -- Interior of Arena
-  RequestIpl("xs_arena_banners_ipl") -- Exterior banners on Arena
-
-  local interiorID = GetInteriorAtCoords(2800.000, -3800.000, 100.000)
-
-	if (not IsInteriorReady(interiorID)) then
-		Wait(1)
-  end
-
-	EnableInteriorProp(interiorID, "Set_Crowd_A")
-	EnableInteriorProp(interiorID, "Set_Crowd_B")
-	EnableInteriorProp(interiorID, "Set_Crowd_C")
-  EnableInteriorProp(interiorID, "Set_Crowd_D")
-  EnableInteriorProp(interiorID, "Set_Pit_Fence_Oval")
-  EnableInteriorProp(interiorID, "Set_Team_Band_A")
-  EnableInteriorProp(interiorID, "Set_Team_Band_B")
-  EnableInteriorProp(interiorID, "Set_Team_Band_C")
-  EnableInteriorProp(interiorID, "Set_Team_Band_D")
-  EnableInteriorProp(interiorID, "set_lights_night")
-  EnableInteriorProp(interiorID, "set_nascar_01")
-  RefreshInterior(interiorID)
-end)
-
 local spawnedCars = {}
 local testdriving = false
 local gotrack = false
@@ -110,16 +86,20 @@ Citizen.CreateThread(function()
     if gotrack then
       Citizen.Wait(3000)
       if gotrack then
-        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.track_area, false) > 240 then
+        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.track_area, false) > 500 then
           DoScreenFadeOut(500)
           Wait(500)
           print(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), Config.track_area, false))
           DeleteEntity(vehicle)
+          Wait(500)
           vehicle = CreateVehicle(closest_car.model, Config.test_point.pos, Config.test_point.heading, true, true)
           SetVehicleNumberPlateText(vehicle, "DEALER")
           DecorSetInt(vehicle, "_Fuel_Level", 100000)
+          SetEntityCoords(GetPlayerPed(-1),Config.test_point.pos,0,0,0,false)
+          Wait(500)
           TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
           exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(vehicle))
+          Wait(500)
           DoScreenFadeIn(500)
         end
       end
