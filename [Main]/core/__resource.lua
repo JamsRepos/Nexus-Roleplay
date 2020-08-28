@@ -61,6 +61,10 @@ server_script 'stores/server.lua'
 client_script 'vehicle_storages/client.lua'
 server_script 'vehicle_storages/server.lua'
 
+-- Glove Storage
+client_script 'glove_storages/client.lua'
+server_script 'glove_storages/server.lua'
+
 -- VAT
 client_script 'vat/client.lua'
 server_script 'vat/server.lua'

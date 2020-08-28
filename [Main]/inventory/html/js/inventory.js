@@ -278,6 +278,12 @@ $(document).ready(function () {
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
+            } else if (type === "glove" && itemInventory === "second") {
+                disableInventory(500);
+                $.post("http://inventory/TakeFromGlove", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
             } else if (type === "lbox" && itemInventory === "second") {
                 disableInventory(500);
                 $.post("http://inventory/TakeFromLBox", JSON.stringify({
