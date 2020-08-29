@@ -82,6 +82,13 @@ AddEventHandler("core:deletecharacter",function(id)
  TriggerEvent("core:refreshcharacters", source)
 end)
 
+RegisterServerEvent('core:locationcharge')
+AddEventHandler('core:locationcharge', function()
+    TriggerEvent("core:getPlayerFromId", source, function(user)
+            user.removeBank(1000)
+    end)
+end)
+
 RegisterServerEvent("core:loadcharacter")
 AddEventHandler("core:loadcharacter", function(data)
  local source = tonumber(source)

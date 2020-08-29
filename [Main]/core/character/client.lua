@@ -82,7 +82,7 @@ Citizen.CreateThread(function()
       TriggerServerEvent('prison:checkTime')
       TriggerServerEvent("core:newcharacter")
       ExecuteCommand('refreshmotels')     
-     elseif WarMenu.Button('City: Alta Street') then
+     elseif WarMenu.Button('Alta Street - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -96,7 +96,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('City: Apartment Block') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Apartment Block - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -110,7 +111,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('City: Macdonald Street') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Macdonald Street - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -124,7 +126,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('Legion: Fleeca Bank') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Fleeca Bank - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -138,7 +141,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('Legion: Mission Row') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Mission Row - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -152,7 +156,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('Eastside: Grove Street') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Grove Street - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -166,7 +171,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('Beach: Gym') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Beach Gym - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -180,7 +186,8 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
-     elseif WarMenu.Button('Sandy: Apartment Block') then
+       TriggerServerEvent('core:locationcharge')
+     elseif WarMenu.Button('Sandy Apartments - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -194,6 +201,7 @@ Citizen.CreateThread(function()
        TriggerServerEvent('prison:checkTime')
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
+       TriggerServerEvent('core:locationcharge')
      end
      WarMenu.Display()
     end
