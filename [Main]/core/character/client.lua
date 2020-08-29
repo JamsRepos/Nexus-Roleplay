@@ -97,7 +97,7 @@ Citizen.CreateThread(function()
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
        TriggerServerEvent('core:locationcharge')
-     elseif WarMenu.Button('Apartment Block - $1000') then
+     elseif WarMenu.Button('City: Apartments - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -127,7 +127,7 @@ Citizen.CreateThread(function()
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
        TriggerServerEvent('core:locationcharge')
-     elseif WarMenu.Button('Fleeca Bank - $1000') then
+     elseif WarMenu.Button('Legion: Fleeca Bank - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
@@ -187,7 +187,7 @@ Citizen.CreateThread(function()
        TriggerServerEvent("core:newcharacter")
        ExecuteCommand('refreshmotels')
        TriggerServerEvent('core:locationcharge')
-     elseif WarMenu.Button('Sandy Apartments - $1000') then
+     elseif WarMenu.Button('Sandy: Apartments - $1000') then
        WarMenu.CloseMenu()
        DoScreenFadeOut(50)
        TriggerEvent("core:stopSkyCamera")
