@@ -217,7 +217,7 @@ Citizen.CreateThread(function()
          TriggerServerEvent("hotel:updateHotel", currentHotel.id)
          TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
         end
-       elseif DecorGetBool(GetPlayerPed(-1), "Faction") == 12 then 
+       elseif DecorGetInt(GetPlayerPed(-1), "Faction") == 5 then 
         drawTxt('~m~Press ~g~E~m~ To Force Entry To Hotel Room')
         if IsControlJustPressed(0, 38) then
         currentHotel = {pos = v, id = id, days = rentedHotels[id].days_left}

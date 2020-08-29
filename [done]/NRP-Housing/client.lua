@@ -401,7 +401,7 @@ function DrawText3Ds(x,y,z, text)
 end
 
 function hasHouseKey(id)
- if DecorGetInt(GetPlayerPed(-1), "Faction") == 12 then --DecorGetBool(GetPlayerPed(-1), "isOfficer") --- test xzurv
+ if DecorGetInt(GetPlayerPed(-1), "Faction") == 5 then --DecorGetBool(GetPlayerPed(-1), "isOfficer") --- test xzurv
   return true 
  else
   if ownedHouses[id].keys ~= 'No Keys' then 
