@@ -57,7 +57,7 @@ AddEventHandler('jobs:paytheplayer', function(p, method)
  local pay = p*exports['core']:getVat(3)
  TriggerEvent('core:getPlayerFromId', source, function(user)
   if pay < 10000 then
-   user.addBank(pay)
+   user.addMoney(pay)
    TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Payment Recieved: $"..pay})
    TriggerEvent("core:moneylog", source, 'Job Payment: $'..pay..' from doing: '..method)
   else
