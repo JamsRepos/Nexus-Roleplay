@@ -65,7 +65,7 @@ AddEventHandler("core:carlog", function(source, text)
 end)
 
 
-TriggerEvent('core:addGroupCommand', 'setmodel', "admin", function(source, args, user)
+--[[TriggerEvent('core:addGroupCommand', 'setmodel', "admin", function(source, args, user)
   if args[2] and args[3] then
    if(GetPlayerName(tonumber(args[2])))then
     local player = tonumber(args[2])
@@ -76,7 +76,7 @@ TriggerEvent('core:addGroupCommand', 'setmodel', "admin", function(source, args,
     TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Incorrect player ID!")
    end
   end
-end)
+end)]]--
 
 --[[TriggerEvent('core:addGroupCommand', 'nomike', "admin", function(source, args, user)
   if args[2] then
