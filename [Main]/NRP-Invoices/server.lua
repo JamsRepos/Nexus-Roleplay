@@ -85,7 +85,7 @@ TriggerEvent('core:addGroupCommand', 'rejectInvoice', "user", function(source, a
  end)
 end)
 
-TriggerEvent('core:addGroupCommand', 'payTow', "user", function(source, args, user)
+--[[TriggerEvent('core:addGroupCommand', 'payTow', "user", function(source, args, user)
  local targetSource = tonumber(args[2])
  local randomCash = math.random(1750,15000)
  TriggerEvent("core:getPlayerFromId", source, function(user)
@@ -94,4 +94,4 @@ TriggerEvent('core:addGroupCommand', 'payTow', "user", function(source, args, us
    TriggerClientEvent('chatMessage', targetSource, '^2Payment Of $'..randomCash..' Received From '..user.getIdentity().fullname)
   end)
  end)
-end)
+end)]]
