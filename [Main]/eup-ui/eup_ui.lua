@@ -3654,9 +3654,9 @@ menuPool:Add(mainMenu)
 
 menuPool:RefreshIndex()
 
-RegisterCommand('eup', function()
+--[[RegisterCommand('eup', function()
     mainMenu:Visible(not mainMenu:Visible())
-end, false)
+end, false)]]
 
 CreateThread(function()
     while true do
