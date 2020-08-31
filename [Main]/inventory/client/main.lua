@@ -141,7 +141,7 @@ RegisterNUICallback(
 RegisterNUICallback(
     "DropItem",
     function(data, cb)
-        if IsPedSittingInAnyVehicle(playerPed) then
+        if IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then
             return
         end
 

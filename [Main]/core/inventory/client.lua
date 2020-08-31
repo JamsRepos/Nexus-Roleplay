@@ -4,10 +4,10 @@ local droppedItems = {}
 local droppedItemsProps = {}
 local picking_up = false
 
---[[RegisterCommand('inv', function(source, args, rawCommand)
+RegisterCommand('inv', function(source, args, rawCommand)
     WarMenu.OpenMenu('Inventory')
 end)
-]]--
+
 RegisterCommand('id', function(source, args, rawCommand)
     TriggerServerEvent('player:showid')
 end)
@@ -361,8 +361,8 @@ Citizen.CreateThread(function()
         local coords = GetEntityCoords(GetPlayerPed(-1))
         for k,v in pairs(droppedItems) do
          if(GetDistanceBetweenCoords(coords, v.pos.x, v.pos.y, v.pos.z-0.95, true) < 1.2) then
-            DrawText3Ds(v.pos.x, v.pos.y, v.pos.z-0.55,'~g~[E]~w~ Pick Up '..v.qty.."x "..v.name)
-                    if IsControlJustPressed(0, 38) then
+            DrawText3Ds(v.pos.x, v.pos.y, v.pos.z-0.55,'~g~[P]~w~ Pick Up '..v.qty.."x "..v.name)
+                    if IsControlJustPressed(0, 199) then
                         picking_up = true
                         local pedids = GetPlayersInArea()
                         if (pedids and #pedids < 1) then
