@@ -301,8 +301,9 @@ local clothing_shops = {
   {x=618.093,   y=2759.629,  z=41.488, blip = true},
   {x=1190.550,  y=2713.441,  z=37.622, blip = true},
   {x=-1193.429, y=-772.262,  z=16.724, blip = true},
-  {x=-3172.496, y=1048.133,  z=20.463, blip = false},
-  {x=-1108.441, y=2708.923,  z=18.607, blip = false},
+  {x=-3172.496, y=1048.133,  z=20.463, blip = true},
+  {x=-1108.441, y=2708.923,  z=18.607, blip = true},
+  
 }
 
 incircle = false
