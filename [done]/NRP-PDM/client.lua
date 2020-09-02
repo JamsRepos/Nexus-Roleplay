@@ -67,7 +67,7 @@ Citizen.CreateThread(function()
     if sellconfirmation then
       DrawText3Ds(-45.357, -1082.406, 26.207,'~g~[E]~w~ Press again to confirm.')
     else
-      DrawText3Ds(-45.357, -1082.406, 26.207,'~g~[E]~w~ Sell Vehicle For 50% Of The Purchase Price')
+      DrawText3Ds(-45.357, -1082.406, 26.207,'~g~[E]~w~ Sell your vehicle for 50% of the purchase price.')
     end
     if IsControlJustPressed(0, 38) and sellconfirmation then
       local plate = exports['core']:TrimPlate(GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false)))
