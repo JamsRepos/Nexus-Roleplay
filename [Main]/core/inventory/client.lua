@@ -349,7 +349,7 @@ function DrawText3Ds(x,y,z, text)
 end
    
 
-
+--[[
 Citizen.CreateThread(function()
  while true do
   Wait(0)
@@ -384,6 +384,7 @@ Citizen.CreateThread(function()
         end
     end
 end)
+--]]
 
 function GetPlayersInArea()
     local peds
