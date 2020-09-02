@@ -62,7 +62,7 @@ function VehicleDelivery()
  end)
  stage = 1
  jobname = 'Vehicle'
- earnedmoney = math.random(2000, 4000)
+ earnedmoney = math.random(4000, 6000)
 end
 
 local loaded = false
