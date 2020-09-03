@@ -28,7 +28,7 @@ function BoatDelivery()
  end)
  stage = 1
  jobname = 'Boat'
- earnedmoney = math.random(4000, 6000)
+ earnedmoney = math.random(5000, 6000)
 end
 
 local loaded = false
