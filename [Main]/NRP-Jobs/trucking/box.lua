@@ -28,7 +28,7 @@ function BoxDelivery()
  end)
  stage = 1
  jobname = 'Box'
- earnedmoney = math.random(4000, 6000)
+ earnedmoney = math.random(5500, 6500)
 end
 
 local loaded = false
