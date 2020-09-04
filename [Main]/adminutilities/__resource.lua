@@ -12,6 +12,7 @@ dependency 'GHMattiMySQL'
 client_script {
     'client.lua',
     'weapons.lua',
+    'warmenu.lua',
 }
 
 -- Server Script

@@ -140,6 +140,49 @@ AddEventHandler('admin:tpm', function()
   end
 end)
 
+RegisterNetEvent('admin:tp')
+AddEventHandler('admin:tp', function()
+  WarMenu.OpenMenu('tpmenu')
+end)
+
+Citizen.CreateThread(function()
+  WarMenu.CreateLongMenu('tpmenu', 'Teleport')
+  while true do
+   Wait(1)
+    if WarMenu.IsMenuOpened('tpmenu') then
+      if WarMenu.Button('Pillbox Hospital') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), 294.772, -582.146, 43.177)
+      elseif WarMenu.Button('Legion Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), 213.127, -795.635, 30.861)
+      elseif WarMenu.Button('McDonald St Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), 341.045, -1710.395, 29.269)
+      elseif WarMenu.Button('Vinewood Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), -443.004, 185.287, 75.203)
+      elseif WarMenu.Button('Route 68 Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), 1232.479, 2708.326, 38.001)
+      elseif WarMenu.Button('Sandy Shores Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), 1737.713, 3719.113, 34.040)
+      elseif WarMenu.Button('Paleto Bay Garage') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), -294.409, 6123.857, 31.495)
+      elseif WarMenu.Button('Pier') then
+        WarMenu.CloseMenu()
+        SetPedCoordsKeepVehicle(PlayerPedId(), -1838.559, -1222.517, 13.017)
+     end
+     WarMenu.Display()
+    end
+  end
+end)
+
+
+
+
 RegisterNetEvent('admin:kill')
 AddEventHandler('admin:kill', function()
  SetEntityHealth(GetPlayerPed(-1), 0)

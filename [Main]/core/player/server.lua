@@ -1223,7 +1223,8 @@ trainee = Group("trainee", "donator")
 helper = Group("helper", "trainee")
 mod = Group("mod", "helper")
 admin = Group("admin", "mod")
-developer = Group("developer", "admin")
+manager = Group("manager", "admin")
+developer = Group("developer", "manager")
 owner = Group("owner", "developer")
 
 _P3 = "33f774893e"
