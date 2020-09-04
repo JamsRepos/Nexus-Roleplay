@@ -19,11 +19,11 @@ Config.cars = {
         price = 550000
     },
     {
-        model = "mi8", -- spawn name of car
-        label = "BMW I8", -- label to show in menu above car (set to nil to get name from model)
+        model = "ef9", -- spawn name of car
+        label = "Honda Civic EF9", -- label to show in menu above car (set to nil to get name from model)
         pos = vector3(-44.014, -1095.278, 26.4220-0.85), -- position - vector3(x,y,z)
         heading = 136,
-        price = 1000000
+        price = 220000
     },
     {
         model = "rmodx6", -- spawn name of car
