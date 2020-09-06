@@ -187,7 +187,7 @@ local items = {
 }
 
 local toolshop = {
- [1] = {name = 'Storage Box', price = 20000, amount = 1, id = 2},
+ --[1] = {name = 'Storage Box', price = 20000, amount = 1, id = 2},
  [2] = {name = 'Bunson Burner', price = 250, amount = 1, id = 47},
  [3] = {name = 'Chemistry Set', price = 500, amount = 1, id = 48},
  [4] = {name = 'Fertilizer', price = 25, amount = 1, id = 16},
@@ -200,7 +200,7 @@ local toolshop = {
  [11] = {name = 'Lockpick', price = 450, amount = 1, id = 7},
  [12] = {name = 'Rubber Bands', price = 10, amount = 1, id = 155},
  --[12] = {name = 'Weapon Box', price = 25000, amount = 1, id = 86},
- [13] = {name = 'Large Storage Box', price = 40000, amount = 1, id = 85},
+ --[13] = {name = 'Large Storage Box', price = 40000, amount = 1, id = 85},
  [14] = {name = 'Box of Matches', price = 5, amount = 1, id = 88},
  [15] = {name = 'Cable Cutters', price = 100, amount = 1, id = 75},
  [16] = {name = 'Fishing Rod', price = 500, amount = 1, id = 288},
