@@ -979,24 +979,6 @@ Citizen.CreateThread(function()
     local pos = GetEntityCoords(GetPlayerPed(-1))
     TriggerServerEvent('police:1020', pos.x, pos.y, pos.z)
     TriggerEvent('nrp:dispatch:notify', '10-20')
-   elseif WarMenu.Button('Revive') then
-    local t, distance = GetClosestPlayer()
-    if(distance ~= -1 and distance < 5) then
-    if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else
-     if currentEMS < 2 then
-      ProgressBar('Reviving', 55)
-      TaskStartScenarioInPlace(GetPlayerPed(-1), 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true) 
-      Citizen.Wait(13000)
-      ClearPedTasks(GetPlayerPed(-1))
-      TriggerServerEvent('ems:revive', GetPlayerServerId(t))
-      exports['NRP-notify']:DoHudText('inform',  "Revive Complete")
-     else
-      exports['NRP-notify']:DoHudText('error',  "Function Disabled due to current EMS Presence")
-     end
-   end
-    else
-      exports['NRP-notify']:DoHudText('inform',  "No Player Near")
-    end
    elseif WarMenu.Button('Examine') then
     local t, distance = GetClosestPlayer()
   if(distance ~= -1 and distance < 5) then
