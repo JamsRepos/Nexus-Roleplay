@@ -405,7 +405,7 @@ Citizen.CreateThread(function()
         minutes = stringsplit(raw_minutes, ".")[1]
         seconds = stringsplit(raw_seconds-(minutes*60), ".")[1]
         drawTxt("~g~Use your phone to call for an Ambulance or wait " .. minutes .. " minute(s) and " .. seconds .. " second(s) to take an airlift.")
-        timer = timer - 10
+        timer = timer - 17
         Citizen.Wait(0)
       end
 
