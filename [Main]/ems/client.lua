@@ -428,10 +428,11 @@ AddEventHandler('ems:count', function(cops, ems)
     if ems == 0 and cops == 0 then
       timer = 5 * 60 * 1000
     else
-    if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
+      if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
         timer = 5 * 60 * 1000
       else
         timer = 10 * 60 * 1000
+      end
     end
   end
 end)
