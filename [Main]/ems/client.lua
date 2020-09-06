@@ -405,7 +405,7 @@ Citizen.CreateThread(function()
         minutes = stringsplit(raw_minutes, ".")[1]
         seconds = stringsplit(raw_seconds-(minutes*60), ".")[1]
         drawTxt("~g~Use your phone to call for an Ambulance or wait " .. minutes .. " minute(s) and " .. seconds .. " second(s) to take an airlift.")
-        timer = timer - 15
+        timer = timer - 10
         Citizen.Wait(0)
       end
 
@@ -424,13 +424,16 @@ end)
 
 RegisterNetEvent('ems:count')
 AddEventHandler('ems:count', function(cops, ems)
- if not IsDead then
-  if ems == 0 and cops == 0 then
-   timer = 5 * 60 * 1000
-  else
-   timer = 10 * 60 * 1000
+  if not IsDead then
+    if ems == 0 and cops == 0 then
+      timer = 5 * 60 * 1000
+    else
+    if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
+        timer = 5 * 60 * 1000
+      else
+        timer = 10 * 60 * 1000
+    end
   end
- end
 end)
 
 ----------------------------------------------------------------------------------------------------------
