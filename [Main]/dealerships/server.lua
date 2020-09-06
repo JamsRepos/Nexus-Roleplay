@@ -71,11 +71,11 @@ AddEventHandler("importdealership:buy",function(data, price, model, carid)
  if model ~= 'CARNOTFOUND' then 
   local source = tonumber(source)
   TriggerEvent('core:getPlayerFromId', source, function(user)
-    if (tonumber(user.getMoney()) >= Config.cars[carid].price) then
+    if (tonumber(user.getMoney()) >= price) then
        addVehicle(source, data, price, model)
        user.removeMoney(price)
        TriggerEvent("core:moneylog", source, 'Vehicle Bought: $'..price.." > "..model)
-    elseif (tonumber(user.getBank()) >= Config.cars[carid].price) then
+    elseif (tonumber(user.getBank()) >= price) then
         addVehicle(source, data, price, model)
         user.removeBank(price)
         TriggerEvent("core:moneylog", source, 'Vehicle Bought: $'..price.." > "..model)
