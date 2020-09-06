@@ -972,9 +972,13 @@ Citizen.CreateThread(function()
      end 
     end
    elseif WarMenu.Button('Panic') then
-    local pos = GetEntityCoords(GetPlayerPed(-1))
-    TriggerServerEvent('police:triggerpanic', pos.x, pos.y, pos.z)
-    TriggerEvent('nrp:dispatch:notify', '10-33')
+    if DecorGetBool(GetPlayerPed(-1), "Handsup") == 1 or IsPedCuffed(GetPlayerPed(-1)) then
+      exports['NRP-notify']:DoHudText('error',  "You cannot reach your panic button.") 
+    else
+      local pos = GetEntityCoords(GetPlayerPed(-1))
+      TriggerServerEvent('police:triggerpanic', pos.x, pos.y, pos.z)
+      TriggerEvent('nrp:dispatch:notify', '10-33')
+    end
    elseif WarMenu.Button('10-20') then
     local pos = GetEntityCoords(GetPlayerPed(-1))
     TriggerServerEvent('police:1020', pos.x, pos.y, pos.z)
