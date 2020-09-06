@@ -22,6 +22,9 @@ window.addEventListener("message", function (event) {
         } else if (type === "home") {
             $(".info-div").show();
             $(".storage-div").show();
+        } else if (type === "vault") {
+            $(".info-div").show();
+            $(".storage-div").show();
         } else if (type === "office") {
             $(".info-div").show();
             $(".storage-div").show();
@@ -320,6 +323,12 @@ $(document).ready(function () {
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
+            } else if (type === "vault" && itemInventory === "second") {
+                disableInventory(500);
+                $.post("http://inventory/TakeFromVault", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
             } else if (type === "office" && itemInventory === "second") {
                 disableInventory(500);
                 $.post("http://inventory/TakeFromOffice", JSON.stringify({
@@ -368,6 +377,12 @@ $(document).ready(function () {
             } else if (type === "home" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://inventory/PutIntoHome", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "vault" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://inventory/PutIntoVault", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));

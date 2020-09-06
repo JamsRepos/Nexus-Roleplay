@@ -22,35 +22,45 @@ local ipllist = {
       telepos = {x = 346.535, y = -1011.702, z = -99.196},
       item_storage = {x = 351.958, y = -998.716, z = -99.196},
       weapon_storage = {x = 351.616, y = -998.791, z = -99.196},
+      vault_storage = {x = 345.323, y = -994.573, z = -99.196},
       storage = 250,
+      vault = 5,
     },
   ["ipl3"] = {
       position = {x = 263.86999, y = -998.78002, z = -99.010002},   -- low end apartment
       telepos = {x = 265.968, y = -1006.969, z = -100.884},
       item_storage = {x = 263.739, y = -995.882, z = -99.009},
       weapon_storage = {x = 262.552, y = -1002.781, z = -99.009},
+      vault_storage = {x = 0, y = 0, z = 0},
       storage = 150,
+      vault = 0,
     },
   ["ipl4"] = {
       position = {x = -169.852, y = 487.648, z = 137.443},   -- White interior good view
       telepos = {x = -174.2545, y = 497.3608, z = 137.666},
       item_storage = {x = -176.295, y = 492.351, z = 130.044},
       weapon_storage = {x = -168.360, y = 493.855, z = 137.654},
+      vault_storage = {x = -172.712, y = 500.593, z = 130.039},
       storage = 400,
+      vault = 5,
     },
   ["ipl5"] = {
       position = {x = 334.588, y = 431.330, z = 149.171},   -- White interior
       telepos = {x = 341.601, y = 437.529, z = 149.394},
       item_storage = {x = 340.018, y = 431.200, z = 149.381},
       weapon_storage = {x = 337.739, y = 437.002, z = 141.771},
+      vault_storage = {x = 345.289, y = 436.952, z = 141.767},
       storage = 100,
+      vault = 5,
     },
   ["ipl6"] = {
       position = {x = 372.207, y = 411.395, z = 145.700},   -- Red interior
       telepos = {x = 373.561, y = 423.298, z = 145.908},
       item_storage = {x = 379.267, y = 429.895, z = 138.300},
       weapon_storage = {x = 377.414, y = 428.991, z = 138.300},
-      storage = 500
+      vault_storage = {x = 371.311, y = 426.865, z = 138.300},
+      storage = 500,
+      vault = 5,
     },
   --[[["ipl7"] = {
       storage = 100,
@@ -64,7 +74,9 @@ local ipllist = {
       telepos = {x = -786.8663, y = 315.7642, z = 217.6385},
       item_storage = {x = -796.568, y = 328.423, z = 217.038},
       weapon_storage = {x = -795.93, y = 327.25, z = 217.04}, 
+      vault_storage = {x = -789.743, y = 336.265, z = 216.838},
       storage = 750,
+      vault = 10,
       ipl = 'apa_v_mp_h_06_a'
     },
 }
@@ -429,6 +441,7 @@ Citizen.CreateThread(function()
     if currentHouse.rent_due == 0 and WarMenu.Button('Enter House')  then
      TriggerServerEvent("housing:createInstance", currentHouse)
      TriggerServerEvent("housing:updateHouse", currentHouse.id)
+     TriggerEvent('housing:vault:isOwner', true)
      inhouse = true
      WarMenu.CloseMenu()
      TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'door', 0.5)
@@ -638,6 +651,7 @@ Citizen.CreateThread(function()
      instance.houseid = 0
      TriggerServerEvent("housing:removeFromInstance", currentHouse)
      TriggerServerEvent("housing:updateHouse", 0)
+     TriggerEvent("housing:vault:isOwner", false)
      renderExitMarker = false
      inhouse = false
      currentHouse = nil
