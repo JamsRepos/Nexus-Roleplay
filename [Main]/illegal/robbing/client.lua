@@ -254,7 +254,7 @@ Citizen.CreateThread(function()
                 local t, distance = GetClosestPlayer()
                 if(distance ~= -1 and distance < 2) then
                    if DecorGetBool(GetPlayerPed(t), "Handsup") == 1 then
-                        if currentPolice >= 0 then
+                        if currentPolice >= 2 then
                             local pedids = GetPlayersInArea()
                             if (pedids and #pedids > 1) then
                                 exports['NRP-notify']:DoHudText('error', 'Another player near, tell them to move back.')
