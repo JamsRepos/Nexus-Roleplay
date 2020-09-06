@@ -8,7 +8,7 @@ AddEventHandler("fakeids:create",function(newname, newjob, newdob, newgender)
     exports['GHMattiMySQL']:QueryAsync('INSERT INTO `fakeids` (char_id, newname, newjob, newdob, gender) VALUES (@char_id, @newname, @newjob, @newdob, @gender)',{['@char_id'] = user.getCharacterID(), ['@newname'] = newname, ['@newjob'] = newjob, ['@newdob'] = newdob, ['@gender'] = newgender})
     TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "New Fake Identity Purchased and Registered"}) 
   else
-   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Funds in Bank"}) 
+   TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = "Insufficient Cash in Pockets"}) 
   end
  end)
 end)
