@@ -407,7 +407,7 @@ local ems = 'Unavailable'
 local mechanic = 'Unavailable'
 local qCount = 0
 
-RegisterCommand("mechanic", function(source, rawCommand)   -- Modify the "mechanic" value to change activation command.
+--[[RegisterCommand("mechanic", function(source, rawCommand)   -- Modify the "mechanic" value to change activation command.
   if mechanic == 'Unavailable' then
     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then  
      TriggerServerEvent("mechanic:repair")
@@ -418,7 +418,7 @@ RegisterCommand("mechanic", function(source, rawCommand)   -- Modify the "mechan
   else 
     exports['NRP-notify']:DoHudText('error', 'There is a civilian mechanic awake, call them from your favourites!') 
   end	
-end, false)
+end, false)]]--
 
 RegisterCommand("tow", function(source,rawCommand)												--Change "tow" value to change activation command.
   if mechanic == 'Unavailable' then
