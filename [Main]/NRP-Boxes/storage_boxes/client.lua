@@ -4,7 +4,7 @@ local box_inventory = {}
 local box_id = nil
 
 function DrawText3Ds(x,y,z)
-  local text = "~g~[E]~w~ Open"
+  local text = "~g~[E]~w~ Open\n~g~[R]~w~ Sell Storage Box"
   local onScreen,_x,_y=World3dToScreen2d(x,y,z)
   local px,py,pz=table.unpack(GetGameplayCamCoords())
   
@@ -61,34 +61,37 @@ Citizen.CreateThread(function()
   Wait(5)
   local coords = GetEntityCoords(GetPlayerPed(-1))
   for k,v in pairs(storage_boxes) do
-   if(GetDistanceBetweenCoords(coords, v.location.x, v.location.y, v.location.z-0.95, true) < 1.2) then
-    DrawText3Ds(v.location.x, v.location.y, v.location.z+0.15)
-    if IsControlJustPressed(0, 38) then
-     box_id = v.box_id
-     print('[DEV INFO] Storage Box ID: '..box_id)
-     local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
-     if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
-      showLoadingPrompt('Enter Pass Code [NUMBERS ONLY]', 3)
-      DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
-      TriggerEvent('NRP-notify:client:SendAlert', { type = 'inform', text = "Please ensure the passcode is numbers only.", length = 10000})
-      while (UpdateOnscreenKeyboard() == 0) do
-       DisableAllControlActions(0);
-       Wait(0);
+    if(GetDistanceBetweenCoords(coords, v.location.x, v.location.y, v.location.z-0.95, true) < 1.2) then
+      DrawText3Ds(v.location.x, v.location.y, v.location.z+0.15)
+      if IsControlJustPressed(0, 38) then
+        box_id = v.box_id
+        print('[DEV INFO] Storage Box ID: '..box_id)
+        local amount = "xxsdrtghyuujhdjsjenenfjfjtjtjtj"
+          if(amount == "xxsdrtghyuujhdjsjenenfjfjtjtjtj") then
+              showLoadingPrompt('Enter Pass Code [NUMBERS ONLY]', 3)
+              DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
+              TriggerEvent('NRP-notify:client:SendAlert', { type = 'inform', text = "Please ensure the passcode is numbers only.", length = 10000})
+              while (UpdateOnscreenKeyboard() == 0) do
+                DisableAllControlActions(0);
+                Wait(0);
+              end
+            if (GetOnscreenKeyboardResult()) then
+            local option = tonumber(GetOnscreenKeyboardResult())
+              if(option ~= nil and option ~= 0) then
+                amount = option
+              end
+            end
+          end
+        stopLoadingPrompt()
+        if amount == v.pin then
+          TriggerServerEvent("storage_box:getInventory", box_id)
+        else
+          exports['NRP-notify']:DoHudText('inform', "Wrong Pass Code")
+        end
+      elseif IsControlJustPressed(0, 45) then
+        TriggerServerEvent('storage_box:is_owner', v.box_id)
+        Citizen.Wait(5000)
       end
-      if (GetOnscreenKeyboardResult()) then
-       local option = tonumber(GetOnscreenKeyboardResult())
-       if(option ~= nil and option ~= 0) then
-        amount = option
-       end
-      end
-     end
-     stopLoadingPrompt()
-     if amount == v.pin then
-      TriggerServerEvent("storage_box:getInventory", box_id)
-     else
-      exports['NRP-notify']:DoHudText('inform', "Wrong Pass Code")
-     end
-    end
    end
   end
  end

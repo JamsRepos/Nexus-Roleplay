@@ -94,6 +94,27 @@ AddEventHandler('storage_box:removebox', function(boxid)
  TriggerClientEvent('storage_box:updateboxes', -1, storage_boxes)
  TriggerClientEvent("pNotify:SendNotification", source, {text = "Storage Box Removed"})
 end)
+
+RegisterServerEvent('storage_box:is_owner')
+AddEventHandler('storage_box:is_owner', function(bid) 
+    local src = source
+    TriggerEvent('core:getPlayerFromId', source, function(user)
+        local characterid = nil
+        local character_id = user.getCharacterID()
+        local dbox = exports['GHMattiMySQL']:QueryResult("SELECT * FROM `storage_boxes` WHERE char_id = "..character_id.." AND id = "..bid)
+        for k, v in pairs(dbox) do
+            characterid = v.char_id
+        end
+        if character_id == characterid then
+            TriggerEvent('storage_box:removebox', bid)
+            TriggerClientEvent('NRP-notify:client:SendAlert', src, { type = 'inform', text = "Box sold for $20,000"})
+            TriggerEvent("core:moneylog", src, 'Storage Box sold for $20,000')
+            user.addBank(20000)
+        else
+            TriggerClientEvent('NRP-notify:client:SendAlert', src, { type = 'inform', text = "You don't own this box"})
+        end
+    end)
+end)
  
 -- Adding Boxes And Stuff
 RegisterServerEvent('storage_box:move')
