@@ -6,6 +6,7 @@ local goPostalVehicle = nil
 local currentJobPay = 0
 local PackageObject = nil
 local currentPackages = 0
+local van_stock = 0
 local locations = {
 	["Grapeseed"] = {
 		['Max'] = 22,
@@ -165,6 +166,13 @@ Citizen.CreateThread(function()
 	  PackageObject = nil 
 	  TriggerServerEvent('jobs:paytheplayer', currentJobPay, 'Post Ops: Delivery')
 	  newShift()
+	  van_stock = van_stock-1
+	  if van_stock == 0 then
+		RemoveJobBlip()
+		onJob = false
+		exports['NRP-notify']:DoHudText('inform', "Run Finished. Go back and restock.")  
+		end
+
 	 end
     end
    end
@@ -221,7 +229,8 @@ function restockVan()
      carryingPackage.status = false
      restockObjectLocation[carryingPackage.id] = {}
      restockObject[carryingPackage.id] = nil
-     restockPackages = restockPackages-1
+	 restockPackages = restockPackages-1
+	 van_stock = van_stock+1
      if restockPackages == 0 then 
       restockVan = false
       newShift()
@@ -280,11 +289,13 @@ end
 Citizen.CreateThread(function()
 	while true do
 	  Citizen.Wait(5000)
-	  if goPostalVehicle ~= nil and (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(goPostalVehicle), true) > 100) then
+	  if goPostalVehicle ~= nil and (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(goPostalVehicle), true) > 50) then
 		SetEntityAsMissionEntity(goPostalVehicle, false, false)
 		DeleteVehicle(goPostalVehicle)
 		goPostalVehicle = nil
-		Notify("Your work vehicle was removed because you were too far away.")
+		RemoveJobBlip()
+		onJob = false
+		exports['NRP-notify']:DoHudText('error', 'Your work vehicle was removed because you were too far away.')
 	  end
 	end
   end)
