@@ -38,7 +38,7 @@ local cars = {
     --{name="Lamborghini Aventador",model="lp700",price=950000},
     --{name="Corvette C8",model="c8",price=600000},
     {name="BMW z4 Alchemist",model="z4alchemist",price=350000},
-    {name="Bentley Bentayga",model="bentaygam",price=625000},
+    {name="Bentley Bentayga",model="bentaygam",price=500000},
 }
 
 local chosen = {}
