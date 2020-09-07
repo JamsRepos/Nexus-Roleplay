@@ -277,6 +277,18 @@ function SpawnGoPostal(x,y,z,h)
  exports["onyxLocksystem"]:givePlayerKeys(GetVehicleNumberPlateText(goPostalVehicle))
 end
 
+Citizen.CreateThread(function()
+	while true do
+	  Citizen.Wait(5000)
+	  if goPostalVehicle ~= nil and (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(goPostalVehicle), true) > 100) then
+		SetEntityAsMissionEntity(goPostalVehicle, false, false)
+		DeleteVehicle(goPostalVehicle)
+		goPostalVehicle = nil
+		Notify("Your work vehicle was removed because you were too far away.")
+	  end
+	end
+  end)
+
 function DrawText3Ds(x,y,z, text)
 	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
 	local px,py,pz=table.unpack(GetGameplayCamCoords())
