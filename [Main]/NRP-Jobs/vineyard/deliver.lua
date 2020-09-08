@@ -20,14 +20,18 @@ Citizen.CreateThread(function()
           if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1909.432, 2071.818, 140.388, true) < 1.5) then
            if DoesEntityExist(deliveryVehicle) then drawTxt('~w~Press ~g~[E]~w~ To End Work') else drawTxt('~w~Press ~g~[E]~w~ To Start Work') end
            if IsControlJustPressed(0, 38) then 
-            if DoesEntityExist(deliveryVehicle) then 
-             onJob = false
-             DeleteVehicle(deliveryVehicle)
+            if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
+                exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the vineyard wants you working for them.")
             else
-             newDelLocs()
-             SpawnDelivery(-1891.097, 2046.453, 140.855, 71.426)
-             onJob = true
-         end
+                if DoesEntityExist(deliveryVehicle) then 
+                    onJob = false
+                    DeleteVehicle(deliveryVehicle)
+                else
+                    newDelLocs()
+                    SpawnDelivery(-1891.097, 2046.453, 140.855, 71.426)
+                    onJob = true
+                end
+            end
         end
        end
       end

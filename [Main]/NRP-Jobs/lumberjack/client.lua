@@ -18,7 +18,11 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -552.879, 5348.669, 73.843, true) < 1.5) then
      drawTxt('~g~[E]~w~ To Speak To Your Boss')
      if IsControlJustPressed(0, 38) then
-      WarMenu.OpenMenu('lumberjack_boss')
+      if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
+        exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the boss wants you working for them.")
+      else
+        WarMenu.OpenMenu('lumberjack_boss')
+      end
      end
     end
    end
