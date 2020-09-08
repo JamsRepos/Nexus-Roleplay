@@ -41,5 +41,6 @@ files({
     'client/html/sounds/belt.ogg',
     'client/html/sounds/fuel.ogg',
     'client/html/sounds/pager.ogg',
+    'client/html/sounds/tamperspray.ogg',
     
 })
