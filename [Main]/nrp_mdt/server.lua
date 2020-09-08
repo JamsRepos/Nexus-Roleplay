@@ -63,7 +63,7 @@ AddEventHandler('mdt:deleteWarrant', function(id)
     for i,v in pairs(deletedwarrant) do
         DiscordLog("Name: **"..v.name.."**\n Description: **"..v.description.."**\n Vehicles: **"..v.knownVehicles.."**\n Issued by: **"..v.issued.."**".."\n Deleted: **"..os.date("%d/%m/%Y %X").."**".."\n Deleted by: **"..user.getIdentity().fullname.."**\n Charges: **"..v.charges.."**", 15158332, "**Deleted Warrant**")
     end
-    exports['GHMattiMySQL']:QueryAsync('DELETE FROM mdt_warrants WHERE `id`=@id',{['@id'] = id}) 
+    exports['GHMattiMySQL']:QueryAsync('UPDATE mdt_warrants SET `expired`=1 WHERE `id`=@id',{['@id'] = id}) 
   TriggerClientEvent("pNotify:SendNotification", source, {text= "Warrant Deleted", timeout = 4000})  
   TriggerEvent('mdt:refreshWarrants')
  end)
