@@ -152,40 +152,46 @@ AddEventHandler('dispatch:robberyPos', function(pos)
 			end
 		end
   end
-  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-    Wait(550)
-    transG = transG-1
-    SetBlipAlpha(gunshotBlip, transG)
-    if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
+  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
     end
-    end		   
-  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-     Wait(550)
-     transG = transG-1
-     SetBlipAlpha(gunshotBlip, transG)
-     if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-     end
-    end		   
+  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
+    end 
   end
 end)
 
@@ -251,40 +257,46 @@ AddEventHandler('dispatch:cdsPos', function(pos)
 			end
 		end
   end
-  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-    Wait(550)
-    transG = transG-1
-    SetBlipAlpha(gunshotBlip, transG)
-    if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-    end
-    end		   
-  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-     Wait(550)
-     transG = transG-1
-     SetBlipAlpha(gunshotBlip, transG)
-     if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-     end
-    end		   
+  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+          if transG == 0 then
+            SetBlipSprite(gunshotBlip,  2)
+            return
+          end
+      end
+    end   
+  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end 
+    end 
   end
 end)
 
@@ -314,40 +326,46 @@ AddEventHandler('dispatch:poachingPos', function(pos)
 			end
 		end
   end
-  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-    Wait(550)
-    transG = transG-1
-    SetBlipAlpha(gunshotBlip, transG)
-    if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
+  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
     end
-    end		   
-  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-     Wait(550)
-     transG = transG-1
-     SetBlipAlpha(gunshotBlip, transG)
-     if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-     end
-    end		   
+  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
+    end
   end
 end)
 
@@ -372,43 +390,49 @@ AddEventHandler('dispatch:vehiclePos', function(pos)
    end
   end
  end
- if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
-  TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-  local transG = 250
-  local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-  SetBlipSprite(gunshotBlip,  459)
-  SetBlipColour(gunshotBlip,  4)
-  SetBlipAlpha(gunshotBlip,  transG)
-  SetBlipAsShortRange(gunshotBlip,  1)
-  while transG ~= 0 do
-  Wait(550)
-  transG = transG-1
-  SetBlipAlpha(gunshotBlip, transG)
-  if transG == 0 then
-    SetBlipSprite(gunshotBlip,  2)
-    return
+ if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then
+  local chance = math.random(1, 100)
+  if chance < 20 then
+    TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
+    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+    local transG = 250
+    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+    SetBlipSprite(gunshotBlip,  459)
+    SetBlipColour(gunshotBlip,  4)
+    SetBlipAlpha(gunshotBlip,  transG)
+    SetBlipAsShortRange(gunshotBlip,  1)
+    while transG ~= 0 do
+      Wait(550)
+      transG = transG-1
+      SetBlipAlpha(gunshotBlip, transG)
+      if transG == 0 then
+        SetBlipSprite(gunshotBlip,  2)
+        return
+      end
+    end
   end
-  end		   
-elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
-  TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-  local transG = 250
-  local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-  SetBlipSprite(gunshotBlip,  459)
-  SetBlipColour(gunshotBlip,  4)
-  SetBlipAlpha(gunshotBlip,  transG)
-  SetBlipAsShortRange(gunshotBlip,  1)
-  while transG ~= 0 do
-   Wait(550)
-   transG = transG-1
-   SetBlipAlpha(gunshotBlip, transG)
-   if transG == 0 then
-    SetBlipSprite(gunshotBlip,  2)
-    return
-   end
-  end		   
-end
+  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
+    local chance = math.random(1, 100)
+    if chance < 20 then
+      TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
+    end		   
+  end
 end)
 --[[
 Citizen.CreateThread(function()
@@ -454,42 +478,50 @@ AddEventHandler('dispatch:shotPos', function(pos)
    end
   end		   
  end
-  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-    TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-    Wait(550)
-    transG = transG-1
-    SetBlipAlpha(gunshotBlip, transG)
-    if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
+  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then
+    local chance = math.random(1, 100)
+    print(chance)
+    if chance < 20 then
+      TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
     end
-    end		   
-  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-    TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-     Wait(550)
-     transG = transG-1
-     SetBlipAlpha(gunshotBlip, transG)
-     if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-     end
-    end		   
+  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then
+    local chance = math.random(1, 100)
+    print(chance)
+    if chance < 20 then
+      TriggerServerEvent('InteractSound_SV:PlayOnSource', 'Firearmdis', 0.05)
+      TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
+      local transG = 250
+      local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
+      SetBlipSprite(gunshotBlip,  459)
+      SetBlipColour(gunshotBlip,  4)
+      SetBlipAlpha(gunshotBlip,  transG)
+      SetBlipAsShortRange(gunshotBlip,  1)
+      while transG ~= 0 do
+        Wait(550)
+        transG = transG-1
+        SetBlipAlpha(gunshotBlip, transG)
+        if transG == 0 then
+          SetBlipSprite(gunshotBlip,  2)
+          return
+        end
+      end
+    end
   end
 end)
 
