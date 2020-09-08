@@ -60,20 +60,16 @@ Citizen.CreateThread(function()
           DrawMarker(27, -1928.722, 2060.512, 140.837-0.98, 0,0,0,0,0,0,1.0,1.0,1.0,255,165,0,165,0,0,0,0)
           if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1928.722, 2060.512, 140.837, true) < 1.5) then
            if DoesEntityExist(atvVehicle) then drawTxt('~w~Press ~g~[E]~w~ To End Work') else drawTxt('~w~Press ~g~[E]~w~ To Start Work') end
-            if IsControlJustPressed(0, 38) then 
-              if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
-                exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the vineyard wants you working for them.")
-              else
-                if DoesEntityExist(atvVehicle) then 
-                  onJob = false
-                  DeleteVehicle(atvVehicle)
-                else
-                  newLocs()
-                  SpawnATV(-1903.995, 2056.484, 140.724, 45.708)
-                  onJob = true
-                  grapesDelivered = 0
-                end
-              end
+           if IsControlJustPressed(0, 38) then 
+            if DoesEntityExist(atvVehicle) then 
+             onJob = false
+             DeleteVehicle(atvVehicle)
+            else
+             newLocs()
+             SpawnATV(-1903.995, 2056.484, 140.724, 45.708)
+             onJob = true
+             grapesDelivered = 0
+         end
         end
        end
       end

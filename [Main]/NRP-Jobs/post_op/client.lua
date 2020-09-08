@@ -132,22 +132,17 @@ Citizen.CreateThread(function()
    	DrawMarker(27, -402.732, 6172.939, 31.532-0.98, 0,0,0,0,0,0,1.0,1.0,1.0,255,255,0,165,0,0,0,0)
    	if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -402.732, 6172.939, 31.532, true) < 1.5) then
    	 if DoesEntityExist(goPostalVehicle) then DrawText3Ds(-402.732, 6172.939, 31.532+0.50,'~g~[E]~w~ To End Work') else DrawText3Ds(-402.732, 6172.939, 31.532+0.50,'~g~[E]~w~ To Start Work') end
-   	 if IsControlJustPressed(0, 38) then
-		if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
-			exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the postal service wants you working for them.")
-		else
-			if DoesEntityExist(goPostalVehicle) then 
-				onJob = false
-			 DeleteVehicle(goPostalVehicle)
-			 RemoveJobBlip()
-		   else
-				local freespot, v = getParkingPosition(vehicleSpawnLocations)
-		  if freespot then SpawnGoPostal(v.x, v.y, v.z, v.h) end
-			  exports['NRP-notify']:DoHudText('inform', "Go Round The Back of The Warehouse To Fill Your Truck")  
-			end
-	   end
-		end
-
+   	 if IsControlJustPressed(0, 38) then 
+   	  if DoesEntityExist(goPostalVehicle) then 
+   	   onJob = false
+	   DeleteVehicle(goPostalVehicle)
+	   RemoveJobBlip()
+   	  else
+   	   local freespot, v = getParkingPosition(vehicleSpawnLocations)
+		if freespot then SpawnGoPostal(v.x, v.y, v.z, v.h) end
+		exports['NRP-notify']:DoHudText('inform', "Go Round The Back of The Warehouse To Fill Your Truck")  
+      end
+     end
 	end
    end
    if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -441.282, 6142.714, 31.478, true) < 40) and IsVehicleModel(GetVehiclePedIsIn(GetPlayerPed(-1), true), GetHashKey("boxville4")) and DoesEntityExist(goPostalVehicle) then

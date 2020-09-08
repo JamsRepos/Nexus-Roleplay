@@ -8,11 +8,7 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 1200.460, -1276.810, 35.369, true) < 1.2) then
       DrawText3Ds(1200.460, -1276.810, 35.369,'~g~[E]~w~ Get a Trucking Shift') 
      if IsControlJustPressed(0, 38) then
-      if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
-        exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the boss wants you working for them.")
-      else
-        WarMenu.OpenMenu('trucking_jobs')
-      end
+      WarMenu.OpenMenu('trucking_jobs')
      end
     end
    end

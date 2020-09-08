@@ -559,9 +559,9 @@ Citizen.CreateThread(function()
       DrawText3Ds(v.x, v.y, v.z+0.95,'~g~[E]~w~ Fast Food Jobs')
      end 
      if IsControlPressed(0, 38) then
-        jobCenter = v.id
-        TriggerServerEvent('core:checkjob')
-        WarMenu.OpenMenu('job_center')
+      jobCenter = v.id
+      TriggerServerEvent('core:checkjob')
+      WarMenu.OpenMenu('job_center')
      end
     end
    end

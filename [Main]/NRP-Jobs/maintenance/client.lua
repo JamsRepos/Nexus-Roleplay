@@ -645,21 +645,17 @@ Citizen.CreateThread(function()
     if(GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 732.549, 131.619, 80.755, true) < 1.1) then
      DrawText3Ds(732.549, 131.619, 80.755,'~g~[E]~w~ Toggle Duty')
      if IsControlJustPressed(0, 38) then
-      if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
-        exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the boss wants you working for them.")
-      else
-        dutyStatus = not dutyStatus
-        if dutyStatus then 
-          setClothingDuty()
-          spawnDutyVehicle()
-          newMission()
-        elseif not dutyStatus then
-          SetEntityAsMissionEntity(dutyVehicle, false, false)
-          DeleteEntity(dutyVehicle)
-          RemoveJobBlip()
-          ExecuteCommand('clothes')
-          onJob = false 
-      end
+      dutyStatus = not dutyStatus
+      if dutyStatus then 
+       setClothingDuty()
+       spawnDutyVehicle()
+       newMission()
+      elseif not dutyStatus then
+       SetEntityAsMissionEntity(dutyVehicle, false, false)
+       DeleteEntity(dutyVehicle)
+       RemoveJobBlip()
+       ExecuteCommand('clothes')
+       onJob = false 
       end
      end
     end
