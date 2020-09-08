@@ -19,7 +19,7 @@ Citizen.CreateThread(function()
    drawUI(0.514, 1.275, 1.0, 1.0, 0.45, MissionInformation, 89, 194, 255, 255, false)
    -- Main Menu
    if WarMenu.IsMenuOpened('ems_toolkit') then
-    if WarMenu.ComboBox('Revive', {"Player", "NPC"}, currentOption, selectedOption, function(option)
+    if WarMenu.ComboBox('Revive', {"Player"}, currentOption, selectedOption, function(option)
       currentOption = option selectedOption = option
      end) then
      if selectedOption == 1 then
