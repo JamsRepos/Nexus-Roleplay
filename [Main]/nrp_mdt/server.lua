@@ -26,7 +26,7 @@ AddEventHandler('onResourceStart', function(resource)
    chargeList = '<div class="newCharge" onclick="addCharge(`'..v.name..'`, '..v.jail..', '..v.fine..')"><p>'..v.name..'<font style="float: right; color: #595959">'..v.jail..' Months | $'..v.fine..' Fine</font></p></div>'..chargeList
   end
   -- Warrant Shit
-  local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants`")    
+  local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants` WHERE `expired`=0")    
   for i,v in pairs(warrants) do
    warrantList = '<div class="warrant" onclick="viewWarrant(`'..v.name..'`,`'..v.description..'`,`'..v.knownVehicles..'`,`'..v.charges..'`, `'..v.issued..'`,'..v.id..', `'..v.formatted_date..'`)"><h4>'..v.name..'</h4></div>'..warrantList
   end
@@ -59,7 +59,7 @@ RegisterServerEvent('mdt:deleteWarrant')
 AddEventHandler('mdt:deleteWarrant', function(id)
  local source = tonumber(source)
  TriggerEvent("core:getPlayerFromId", source, function(user)
-    local deletedwarrant = exports['GHMattiMySQL']:QueryResult("SELECT * FROM mdt_warrants WHERE `id`=@id",{['@id'] = id})
+    local deletedwarrant = exports['GHMattiMySQL']:QueryResult("SELECT * FROM mdt_warrants WHERE `id`=@id AND `expired`=0",{['@id'] = id})
     for i,v in pairs(deletedwarrant) do
         DiscordLog("Name: **"..v.name.."**\n Description: **"..v.description.."**\n Vehicles: **"..v.knownVehicles.."**\n Issued by: **"..v.issued.."**".."\n Deleted: **"..os.date("%d/%m/%Y %X").."**".."\n Deleted by: **"..user.getIdentity().fullname.."**\n Charges: **"..v.charges.."**", 15158332, "**Deleted Warrant**")
     end
@@ -73,7 +73,7 @@ RegisterServerEvent('mdt:refreshWarrants')
 AddEventHandler('mdt:refreshWarrants', function()
  warrantList = ''
  weaponBrass = ''
- local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants`")    
+ local warrants = exports['GHMattiMySQL']:QueryResult("SELECT *, DATE_FORMAT(timestamp, '%T, %d/%m/%y') formatted_date FROM `mdt_warrants` WHERE `expired`=0")    
  for i,v in pairs(warrants) do
   warrantList = '<div class="warrant" onclick="viewWarrant(`'..v.name..'`,`'..v.description..'`,`'..v.knownVehicles..'`,`'..v.charges..'`, `'..v.issued..'`,'..v.id..', `'..v.formatted_date..'`)"><h4>'..v.name..'</h4></div>'..warrantList
  end
