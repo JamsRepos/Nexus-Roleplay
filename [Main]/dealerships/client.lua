@@ -52,7 +52,6 @@ Citizen.CreateThread(function()
                     v.model = chosen_cars[k].model
                     v.label = chosen_cars[k].name
                     v.price = chosen_cars[k].price
-                    print(chosen_cars[k].model)
                     spawnedCars[k]="spawning"
                     RequestModel(chosen_cars[k].model)
                     while not HasModelLoaded(chosen_cars[k].model) do
