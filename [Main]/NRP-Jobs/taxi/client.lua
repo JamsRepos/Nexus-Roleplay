@@ -320,12 +320,16 @@ Citizen.CreateThread(function()
    DrawMarker(27, 895.376, -179.315, 73.710, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 2.0, 252, 252, 58, 200, 0, 0, 2, 0, 0, 0, 0)
    if(GetDistanceBetweenCoords(coords, 895.376, -179.315, 73.710, true) < 1.3) then
    	drawTxt('~m~Press ~g~E~m~ To Get Taxi')
-    if IsControlJustReleased(0, 38) then
-	 SpawnJobVehicle('taxi', 904.363, -183.962, 73.993)
-	 Wait(3000)
-	 exports['NRP-notify']:DoHudText('inform', "For Local Taxi Missions Press <font color='yellow'>Delete<font color='white'> To Start")
-	 Wait(3000)
-	 exports['NRP-notify']:DoHudText('inform', "For Player Taxi Missions Press <font color='yellow'>K<font color='white'> To Start Meter And <font color='yellow'>L<font color='white'> To Reset")
+	if IsControlJustReleased(0, 38) then
+		if DecorGetInt(GetPlayerPed(-1), "Reputation") > 1000 then
+			exports['NRP-notify']:DoHudText('error', "You're a known criminal, i don't think the boss wants you working for them.")
+		else
+			SpawnJobVehicle('taxi', 904.363, -183.962, 73.993)
+			Wait(3000)
+			exports['NRP-notify']:DoHudText('inform', "For Local Taxi Missions Press <font color='yellow'>Delete<font color='white'> To Start")
+			Wait(3000)
+			exports['NRP-notify']:DoHudText('inform', "For Player Taxi Missions Press <font color='yellow'>K<font color='white'> To Start Meter And <font color='yellow'>L<font color='white'> To Reset")
+		end
     end
    end
   end
