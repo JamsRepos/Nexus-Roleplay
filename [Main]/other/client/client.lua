@@ -46,14 +46,6 @@ Citizen.CreateThread(function()
   end
 end)
 --]]
-Citizen.CreateThread(function()
-  while true do
-  Citizen.Wait(0)
-  local playerPed = GetPlayerPed(-1)
-  local playerLocalisation = GetEntityCoords(playerPed)
-  ClearAreaOfCops(playerLocalisation.x, playerLocalisation.y, playerLocalisation.z, 1000.0)
-  end
-end)
 
 function loadAnimDict( dict )
   while ( not HasAnimDictLoaded( dict ) ) do
