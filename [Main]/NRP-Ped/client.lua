@@ -369,6 +369,8 @@ local rempoints = {
   {x = 981.376, y = -3169.650, z = 5.901, radius = 200.0}, -- Go Karting
   {x = 152.846, y = -1004.446, z = -99.000, radius = 10.0, peds = true}, -- Motel Interior
   {x = -34.419, y = -1101.921, z = 26.422, radius = 5.0}, -- PDM
+  {x = 0, y = 0, z = 0, radius = 10.0}, -- Weird Glitch Place
+  {x = 0, y = 0, z = 0, radius = 10.0, peds = true}, -- Weird Glitch Place
 }
 
 Citizen.CreateThread(function()
