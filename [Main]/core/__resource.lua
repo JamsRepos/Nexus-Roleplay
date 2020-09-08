@@ -13,7 +13,8 @@ client_script 'character/client.lua'
 client_script 'character/skycam.lua'
 server_script 'character/server.lua'
 
-server_script 'server/restart.lua'
+client_script 'server/client.lua'
+server_script 'server/server.lua'
 
 -- Vehicle Dealerships
 --server_script 'imports/server.lua'
