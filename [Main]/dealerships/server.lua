@@ -15,7 +15,7 @@ local cars = {
     {name="Honda Civic Type-R",model="fk8",price=275000},
     {name="Volkswagen Golf",model="golfp",price=400000},
     {name="Honda CBR 1000RR",model="hcbr17",price=250000},
-    {name="Mitsubishi Lancer Evolution X",model="lanex400",price=300000},
+    --{name="Mitsubishi Lancer Evolution X",model="lanex400",price=300000},
     {name="BMW M3",model="m3e30",price=275000},
     {name="Ford Mustang GT",model="mgt",price=400000},
     {name="Honda Civic EK9",model="EK9",price=275000},
