@@ -86,11 +86,15 @@ AddEventHandler('bounty:syncMissionClient', function(missionData)
 end)
 
 function main()
+	radius = nil
+	blip = nil
+	enemies = {}
 	TriggerServerEvent('bounty:updatetable', true)
 	inUse = true
 	rand = math.random(1,#Config.locations)
 	location = Config.locations[rand]
 	SetNewWaypoint(location.addBlip.x,location.addBlip.y)
+	print(location.addBlip.x.." "..location.addBlip.y.." "..location.addBlip.z)
 	addBlip(location.addBlip.x,location.addBlip.y,location.addBlip.z)
 	exports['NRP-notify']:DoHudText('inform', 'Go to the search area')
 	local player = GetPlayerPed(-1)
@@ -286,7 +290,7 @@ function addBlip(x,y,z)
 	SetBlipColour(radius, 1)
 	SetBlipAlpha (radius, 128)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString('Mission area')
+	AddTextComponentString('Bounty Area')
 	EndTextCommandSetBlipName(blip)
 end
 
