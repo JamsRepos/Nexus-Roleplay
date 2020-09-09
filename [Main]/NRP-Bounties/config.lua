@@ -1,7 +1,7 @@
 Config = {}
 Config.getCoords = false -- useful for getting adding locations, only enable this if you're getting coords - (/mycoords in chat)
 
-Config.amountCop = 0 -- change this to increase/decrease the amount of police needed to start the mission with difficulty 1 
+Config.amountCop = 50 -- change this to increase/decrease the amount of police needed to start the mission with difficulty 1 
 Config.hideBlip = true -- change this if you want the starting location to have a blip - (true/false)
 Config.cleanDead = false -- change this if you want the peds to be deleted once they die - (true/false)
 Config.printRemaining = true -- change this to show the amount of remaining enemies - (true/false)

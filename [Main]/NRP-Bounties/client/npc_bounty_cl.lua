@@ -59,7 +59,7 @@ Citizen.CreateThread(function()
 		if not inUse then
 			if dist <= 3 then
 				sleep = 5
-				DrawText3Ds(coords.x, coords.y, coords.z, 'Press [ E ] to decipher intel')
+				DrawText3Ds(coords.x, coords.y, coords.z, 'Press [E] to decipher intel')
 				--DrawMarker(1, coords.x, coords.y, coords.z-1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.5, 2.5, 0.2, 0, 255, 100, 100, false, true, 2, false, false, false, false)
 				if IsControlJustPressed(1, 51) then
 					decipherAnim()
@@ -188,7 +188,7 @@ function success(x,y,z,h)
 			local disttocoord = #(vector3(x,y,z)-vector3(playercoords.x, playercoords.y, playercoords.z))
 			if disttocoord <= 3 then
 				sleep = 5
-				DrawText3Ds(x,y,z, 'Press [ E ] to search the crates')
+				DrawText3Ds(x,y,z, 'Press [E] to search the crates')
 				if IsControlJustPressed(1, 51) then
 					crate = true
 					TaskTurnPedToFaceEntity(player, box2, 5500)
@@ -202,7 +202,12 @@ function success(x,y,z,h)
 					FreezeEntityPosition(GetPlayerPed(-1), false)
 					DeleteEntity(box2)
 					exports['NRP-notify']:DoHudText('success', 'Received Dog Tags')
-					TriggerServerEvent('bounty:GiveItem', location.crate.x, location.crate.y, location.crate.z, location.crate.h)
+					local chance = math.random(1, 100)
+					if chance < 20 then
+						TriggerServerEvent('bounty:GiveItem:elite', location.crate.x, location.crate.y, location.crate.z, location.crate.h)
+					else
+						TriggerServerEvent('bounty:GiveItem', location.crate.x, location.crate.y, location.crate.z, location.crate.h)
+					end
 					Citizen.Wait(2000)
 					Config.locations[rand]['active'] = false
 					TriggerServerEvent('bounty:syncMission', locations)
@@ -221,11 +226,29 @@ Citizen.CreateThread(function()
 		local player = GetPlayerPed(-1)
 		local playercoords = GetEntityCoords(player)
 		local disttocoord = #(vector3(2475.588, -384.1472, 94.39928)-vector3(playercoords.x, playercoords.y, playercoords.z))
+
 		if disttocoord < 3 then
-			DrawText3Ds(2475.588, -384.1472, 94.39928, 'Press [ E ] to deliver the Dog Tags')
+			DrawText3Ds(2475.588, -384.1472, 94.39928, 'Press [E] to deliver the Dog Tags')
 			if IsControlJustPressed(1, 51) then
-				TriggerServerEvent('bounty:delivery')
+				Citizen.Wait(100)
+				SuccessLimit = 0.175
+				local dogtags = (exports['core']:GetItemQuantity(308))--*5000
+				local elitedogtags = (exports['core']:GetItemQuantity(309))--*10000
+	
+				TriggerEvent("inventory:removeQty", 308, dogtags)
+				TriggerEvent("inventory:removeQty", 309, elitedogtags)
+				local tagcount = dogtags+elitedogtags
+				local payout = dogtags*5000 + elitedogtags*10000
+				if payout > 0 then
+				TriggerServerEvent("bounty:selltags", payout)
+				exports['NRP-notify']:DoHudText('success', 'You have sold '..tagcount..' dog tags for $'..payout)
+				TriggerServerEvent("bounty:moneylog", 'Dog Tags: '..tagcount..' sold for $'..payout)
+				
 				Citizen.Wait(2000)
+				else
+				exports['NRP-notify']:DoHudText('error', 'You do not have any dog tags to sell.')
+				Citizen.Wait(2000)
+				end
 			end
 		else
 			sleep = 1500
