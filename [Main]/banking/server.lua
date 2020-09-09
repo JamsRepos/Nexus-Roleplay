@@ -1,3 +1,5 @@
+local coughing = {}
+
 RegisterServerEvent('bank:deposit')
 AddEventHandler('bank:deposit', function(amount)
   local source = tonumber(source)
@@ -171,3 +173,45 @@ AddEventHandler('drug:addmoney', function(pay)
   --TriggerClientEvent('NRP-notify:client:SendAlert', source, { type = 'inform', text = 'Drug Payment: $'..pay})
  end)
 end)
+
+RegisterServerEvent('atm:robbed')
+AddEventHandler('atm:robbed', function()
+  local chance = math.random(1, 2)
+  TriggerClientEvent('atm:robbed', source, chance)
+  TriggerClientEvent('atm:counters', -1)
+end)
+
+RegisterServerEvent('atm:coughStart')
+AddEventHandler('atm:coughStart', function()
+    table.insert(coughing, source)
+end)
+
+RegisterServerEvent('atm:coughEnd')
+AddEventHandler('atm:coughEnd', function()
+  for k, v in pairs(coughing) do
+    if v == source then
+      table.remove(coughing, k)
+    end
+  end
+end)
+
+RegisterServerEvent('atm:getDirtyMoney')
+AddEventHandler('atm:getDirtyMoney', function(paid)
+  local payout = paid
+  TriggerEvent('core:getPlayerFromId', source, function(user)
+    user.addDirtyMoney(payout)
+  end)
+end)
+
+Citizen.CreateThread(function()
+  while true do
+    Wait(20000)
+    while coughing == nil do
+      Wait(150)
+    end
+    for k, v in pairs(coughing) do
+      TriggerClientEvent('atm:cough', v, v)
+    end
+  end
+end)
+
