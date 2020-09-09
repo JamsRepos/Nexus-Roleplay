@@ -16,10 +16,30 @@ local rand
 local coords = vector3(2901.794, 4501.059, 48.329)
 local currentPolice = 0
 local currentEMS = 0
+local sellPed = nil
 
 local Objects = {
 	{ ["x"] = 2901.794, ["y"] = 4501.059, ["z"] = 48.329, ["h"] = 150.0, ["model"] = "prop_laptop_lester" }
 }
+
+Citizen.CreateThread(function()
+	spawnHospitalWorkers()
+end)
+   
+function spawnHospitalWorkers()
+	if sellPed == nil then
+	 RequestModel(GetHashKey('a_m_o_acult_02'))
+	 while not HasModelLoaded(GetHashKey('a_m_o_acult_02')) do
+	  Wait(1)
+	 end
+   
+	 sellPed = CreatePed(2, GetHashKey('a_m_o_acult_02'), -1130.455, 4944.908, 220.481-0.95, 200.0, false, false)
+	 SetPedFleeAttributes(sellPed, 0, 0)
+	 SetPedDiesWhenInjured(sellPed, false)
+	 TaskStartScenarioInPlace(sellPed, "WORLD_HUMAN_STAND_IMPATIENT_UPRIGHT", 0, true)
+	 SetPedKeepTask(sellPed, true)
+	end
+end
 
 Citizen.CreateThread(function()
 	for i = 1, #Objects, 1 do
@@ -245,10 +265,10 @@ Citizen.CreateThread(function()
 		sleep = 5
 		local player = GetPlayerPed(-1)
 		local playercoords = GetEntityCoords(player)
-		local disttocoord = #(vector3(2475.588, -384.1472, 94.39928)-vector3(playercoords.x, playercoords.y, playercoords.z))
+		local disttocoord = #(vector3(-1130.455, 4944.908, 220.481)-vector3(playercoords.x, playercoords.y, playercoords.z))
 
-		if disttocoord < 3 then
-			DrawText3Ds(2475.588, -384.1472, 94.39928, 'Press [E] to deliver the Dog Tags')
+		if disttocoord < 2 then
+			DrawText3Ds(-1130.455, 4944.908, 220.481, 'Press [E] to deliver the Dog Tags')
 			if IsControlJustPressed(1, 51) then
 				Citizen.Wait(100)
 				SuccessLimit = 0.175
