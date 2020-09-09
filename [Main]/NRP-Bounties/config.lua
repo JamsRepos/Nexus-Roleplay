@@ -4,7 +4,6 @@ Config.hideBlip = true -- change this if you want the starting location to have 
 Config.cleanDead = false -- change this if you want the peds to be deleted once they die - (true/false)
 Config.printRemaining = true -- change this to show the amount of remaining enemies - (true/false)
 Config.removeArea = false -- change this if you want the red circle to disappear once you're at the location - (true/false)
-Config.useDirtyMoney = true -- change this if you want to receive dirty money for selling dog tags - (true/false)
 Config.waypoint = true -- change this to set a waypoint to the spawn location once you're close enough - (true/false)
 Config.blipSprite = 90 -- if hideBlip is false then change this to your preferred sprite - (list of sprites: https://wiki.gtanet.work/index.php?title=Blips)
 Config.enemies = 10 -- change this to the amount of enemies you want to spawn at a location. If this is 20 then 2-4 players are recommended. Tested with 10 - (10-20 enemies recommended)
@@ -31,9 +30,6 @@ Config.difficulty2_2 = "WEAPON_ASSAULTRIFLE"
 Config.difficulty2_3 = "WEAPON_CARBINERIFLE_MK2"
 Config.difficulty2_4 = "WEAPON_ASSAULTSHOTGUN"
 Config.difficulty2_5 = "WEAPON_PUMPSHOTGUN"
-
--- Amount of money you get for selling Dog Tags
-Config.reward = 2000
 
 Config.locations = {
 	[1] = { 
