@@ -919,7 +919,7 @@ Citizen.CreateThread(function()
     if Search == 1 then if(distance ~= -1 and distance < 3) then if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then ExecuteCommand('me Sniffs') TriggerServerEvent('police:k9targetCheckInventory', GetPlayerServerId(t)) else ProgressBar('Searching Pockets', 35) ExecuteCommand('me searching someones pockets') Citizen.Wait(3500) TriggerServerEvent('rob:getPlayerInventory', GetPlayerServerId(t)) WarMenu.CloseMenu('police_toolkit') end else exports['NRP-notify']:DoHudText('inform',  "No Player Near") end 
   end
     if Search == 2 then if(distance ~= -1 and distance < 5) then if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else ProgressBar('Searching Wallet', 25) ExecuteCommand('me searching someones wallet') Citizen.Wait(2500) TriggerServerEvent('rob:getPlayerCash', GetPlayerServerId(t)) WarMenu.CloseMenu('police_toolkit') end else exports['NRP-notify']:DoHudText('inform',  "No Player Near") end end
-   elseif WarMenu.ComboBox('Test', {'GSR','BAC','TACHO','BLACKLIGHT'}, currentItemIndex7, Test, function(currentIndex7)
+   elseif WarMenu.ComboBox('Test', {'GSR','BAC','TACHO'}, currentItemIndex7, Test, function(currentIndex7)
     currentItemIndex7 = currentIndex7 Test = currentIndex7
     end) then
     local t, distance = GetClosestPlayer()
@@ -956,37 +956,20 @@ Citizen.CreateThread(function()
        end
     end
     if Test == 3 then 
-      if(distance ~= -1 and distance < 5) then 
-        if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else
-          local tachoTime = DecorGetInt(GetPlayerPed(t), "Tacho")
-          ProgressBar('Checking Tacho', 35)
-          Citizen.Wait(5000)
-          if tachoTime >= 15 then 
-            TriggerEvent('chatMessage', '^5Tacho Meter: ^1'..tachoTime.."^5 Minutes | Suspect Is Over The Legal Limit")
-          else 
-            TriggerEvent('chatMessage', '^5Tacho Meter: ^3'..tachoTime.."^5 Minutes | Suspect Is Within The Legal Limit")
-          end
-        end
+     if(distance ~= -1 and distance < 5) then 
+      if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else
+      local tachoTime = DecorGetInt(GetPlayerPed(t), "Tacho")
+      ProgressBar('Checking Tacho', 35)
+      Citizen.Wait(5000)
+      if tachoTime >= 15 then 
+       TriggerEvent('chatMessage', '^5Tacho Meter: ^1'..tachoTime.."^5 Minutes | Suspect Is Over The Legal Limit")
       else 
-        exports['NRP-notify']:DoHudText('inform',  "No Player Near")  
-      end 
+       TriggerEvent('chatMessage', '^5Tacho Meter: ^3'..tachoTime.."^5 Minutes | Suspect Is Within The Legal Limit")
+      end
     end
-    if Test == 4 then 
-      if(distance ~= -1 and distance < 5) then 
-        if GetEntityModel(GetPlayerPed(-1)) == 1126154828 then exports['NRP-notify']:DoHudText('error',  "Your a Dog , How you plan on doing that?!")  else
-          local sprayed = DecorGetBool(GetPlayerPed(t), "UV")
-          exports['pogressBar']:drawBar(3000, 'Scanning Forensic Data', function()
-            if sprayed then 
-              exports['NRP-notify']:DoHudText('error', "Suspect tested positive")  
-            else 
-              exports['NRP-notify']:DoHudText('success', "Suspect tested negative") 
-            end
-          end)
-
-        end
-      else 
-        exports['NRP-notify']:DoHudText('inform',  "No Player Near")  
-      end 
+     else 
+      exports['NRP-notify']:DoHudText('inform',  "No Player Near")  
+     end 
     end
    elseif WarMenu.Button('Panic') then
     if DecorGetBool(GetPlayerPed(-1), "Handsup") == 1 or IsPedCuffed(GetPlayerPed(-1)) then

@@ -26,7 +26,7 @@ AddEventHandler('nrp:dispatch:notify', function(alertType, additionalInformation
     local job = false
     
     if DecorGetBool(GetPlayerPed(-1), "isOfficer") then
-        job = false
+        job = true
     elseif DecorGetBool(GetPlayerPed(-1), "isParamedic") then
         job = true
     end
@@ -36,7 +36,6 @@ AddEventHandler('nrp:dispatch:notify', function(alertType, additionalInformation
     end
 
     if not job then
-        print("poo2")
         if additionalInformation ~= nil then
           data = {dispatchCode = alertType, street = playerStreetsLocation, extra = additionalInformation}
         else
@@ -685,78 +684,3 @@ function GetTheStreet()
     end
 
 end
-
-
-
-
-
-
-
-
---== CDS Reports
-RegisterNetEvent("dispatch:atm")
-AddEventHandler("dispatch:atm", function()
-  print("poo")
- local suspectSex = getSuspectSex()
-  TriggerEvent('nrp:dispatch:notify', '10-31', json.encode({{drugsaleSex=suspectSex}}))
- if DecorGetBool(GetPlayerPed(-1), "isOfficer") and isInService then
-  TriggerServerEvent('InteractSound_SV:PlayOnSource', 'VTheft', 0.05)
-end
-end)
-
-RegisterNetEvent('dispatch:atmPos')
-AddEventHandler('dispatch:atmPos', function(pos)
-  if isInService then
-    print("POOOOOO")
-		local transG = 250
-		local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-		SetBlipSprite(gunshotBlip,  1)
-		SetBlipColour(gunshotBlip,  46)
-		SetBlipAlpha(gunshotBlip,  transG)
-		SetBlipAsShortRange(gunshotBlip,  1)
-		while transG ~= 0 do
-			Wait(250)
-			transG = transG - 1
-			SetBlipAlpha(gunshotBlip,  transG)
-			if transG == 0 then
-				SetBlipSprite(gunshotBlip,  2)
-				return
-			end
-		end
-  end
-  if (exports['core']:GetItemQuantity(161) > 0) and (exports['core']:GetItemQuantity(261) > 0) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-    Wait(550)
-    transG = transG-1
-    SetBlipAlpha(gunshotBlip, transG)
-    if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-    end
-    end		   
-  elseif (exports['core']:GetItemQuantity(161) > 0) and (IsPedInAnyVehicle(GetPlayerPed(-1), false)) then 
-    TriggerEvent('chatMessage', "RADIO CHATTER ", {255, 0, 0}, "An emergency signal has been picked up on your radio scanner!")
-    local transG = 250
-    local gunshotBlip = AddBlipForCoord(pos.x, pos.y, pos.z)
-    SetBlipSprite(gunshotBlip,  459)
-    SetBlipColour(gunshotBlip,  4)
-    SetBlipAlpha(gunshotBlip,  transG)
-    SetBlipAsShortRange(gunshotBlip,  1)
-    while transG ~= 0 do
-     Wait(550)
-     transG = transG-1
-     SetBlipAlpha(gunshotBlip, transG)
-     if transG == 0 then
-      SetBlipSprite(gunshotBlip,  2)
-      return
-     end
-    end		   
-  end
-end)
