@@ -13,9 +13,29 @@ local inUse = false
 local location = nil
 local rand
 
-local coords = vector3(1276.191, -1710.02, 54.7715)
+local coords = vector3(2901.794, 4501.059, 48.329)
 local currentPolice = 0
 local currentEMS = 0
+
+local Objects = {
+	{ ["x"] = 2901.794, ["y"] = 4501.059, ["z"] = 48.329, ["h"] = 150.0, ["model"] = "prop_laptop_lester" }
+}
+
+Citizen.CreateThread(function()
+	for i = 1, #Objects, 1 do
+		while not HasModelLoaded(GetHashKey(Objects[i]["model"])) do
+			RequestModel(GetHashKey(Objects[i]["model"]))
+  
+			Citizen.Wait(5)
+		end
+  
+		Objects[i]["objectId"] = CreateObject(GetHashKey(Objects[i]["model"]), Objects[i]["x"], Objects[i]["y"], Objects[i]["z"], false)
+
+		SetEntityHeading(Objects[i]["objectId"], Objects[i]["h"])
+		FreezeEntityPosition(Objects[i]["objectId"], true)
+		SetEntityAsMissionEntity(Objects[i]["objectId"], true, true)
+	end
+end)
 
 RegisterNetEvent('hud:updatepresence')
 AddEventHandler('hud:updatepresence', function(copss, emss)
@@ -422,16 +442,6 @@ function DrawText2D(text,font,centre,x,y,scale,r,g,b,a)
 	SetTextEntry("STRING")
 	AddTextComponentString(text)
 	DrawText(x,y)
-end
-
--- (Optional) Shows your coords, useful if you want to add new locations.
-
-if Config.getCoords then
-	RegisterCommand("mycoords", function()
-		local player = GetPlayerPed(-1)
-	    local x,y,z = table.unpack(GetEntityCoords(player))
-	    print("X: "..x.." Y: "..y.." Z: "..z)
-	end)
 end
 
 -- More optional stuff
