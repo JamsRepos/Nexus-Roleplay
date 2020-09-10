@@ -5,6 +5,7 @@ ui_page "html/ui.html"
 client_scripts {
   "client/main.lua",
   "client/trunk.lua",
+  "client/glovebox.lua",
   "client/large_boxes.lua",
   "client/small_boxes.lua",
   "client/armoury.lua",
@@ -21,7 +22,8 @@ client_scripts {
   "client/player.lua",
   "client/office.lua",
   "config.lua",
-  "client/turtle.lua"
+  "client/turtle.lua",
+  "client/glovebox.lua"
 }
 
 server_scripts {
