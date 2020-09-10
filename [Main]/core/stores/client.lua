@@ -72,9 +72,9 @@ Citizen.CreateThread(function()
   local coords = GetEntityCoords(GetPlayerPed(-1))
   for k,v in pairs(weapon_stores) do
    if GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 50 then
-    DrawMarker(27, v.x, v.y, v.z, 0, 0, 0, 0, 0, 0, 1.0,1.0,0.5, 226,49,49, 200, 0, 0, 2, 0, 0, 0, 0)
+    DrawMarker(2, v.x, v.y, v.z+0.45, 0, 0, 0, 0, 0, 0, 0.3, 0.3, 0.5, 200, 0, 0, 165, 0, 0, 0, 0)
     if GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 1.3 then
-     drawTxt('~m~Press ~g~E~m~ To Shop For Weapons')
+      DrawText3Ds(v.x, v.y, v.z+0.5,'~g~[E]~w~ Shop For Weapons')
      if IsControlJustPressed(0, 38) then
       TriggerServerEvent('gun:checkLicense')
       WarMenu.OpenMenu('weaponstore')
@@ -207,6 +207,7 @@ local toolshop = {
  [17] = {name = 'Fishing Bait x30', price = 15, amount = 30, id = 289},
  [18] = {name = 'Electrical Wire', price = 100, amount = 1, id = 55},
  [19] = {name = 'Cleaning Kit x5', price = 400, amount = 5, id = 11},
+ --[20] = {name = 'Repair Kit', price = 500, amount = 1, id = ?},
  }
  
 local pharmacy = {
