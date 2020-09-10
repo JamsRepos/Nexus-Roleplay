@@ -22,7 +22,8 @@ client_scripts {
   "client/player.lua",
   "client/office.lua",
   "config.lua",
-  "client/turtle.lua"
+  "client/turtle.lua",
+  "client/glovebox.lua"
 }
 
 server_scripts {

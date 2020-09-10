@@ -6,30 +6,30 @@ local totalAmount = 0
 local itemsTaken = {}
 
 local maxCapacity = {
-    [0] = {["item"] = 20, ["weapons"] = 1}, --Compact
-    [1] = {["item"] = 30, ["weapons"] = 2}, --Sedan
-    [2] = {["item"] = 50, ["weapons"] = 3}, --SUV
-    [3] = {["item"] = 30, ["weapons"] = 2}, --Coupes
-    [4] = {["item"] = 25, ["weapons"] = 1}, --Muscle
-    [5] = {["item"] = 20, ["weapons"] = 1}, --Sports Classics
-    [6] = {["item"] = 20, ["weapons"] = 1}, --Sports
-    [7] = {["item"] = 15, ["weapons"] = 1}, --Super
-    [8] = {["item"] = 5, ["weapons"] = 1}, --Motorcycles
-    [9] = {["item"] = 40, ["weapons"] = 1}, --Off-road
-    [10] = {["item"] = 100, ["weapons"] = 8}, --Industrial
-    [11] = {["item"] = 25, ["weapons"] = 1}, --Utility
-    [12] = {["item"] = 75, ["weapons"] = 4}, --Vans
+    [0] = {["item"] = 5, ["weapons"] = 1}, --Compact
+    [1] = {["item"] = 5, ["weapons"] = 2}, --Sedan
+    [2] = {["item"] = 5, ["weapons"] = 3}, --SUV
+    [3] = {["item"] = 5, ["weapons"] = 2}, --Coupes
+    [4] = {["item"] = 5, ["weapons"] = 1}, --Muscle
+    [5] = {["item"] = 5, ["weapons"] = 1}, --Sports Classics
+    [6] = {["item"] = 5, ["weapons"] = 1}, --Sports
+    [7] = {["item"] = 5, ["weapons"] = 1}, --Super
+    [8] = {["item"] = 0, ["weapons"] = 1}, --Motorcycles
+    [9] = {["item"] = 5, ["weapons"] = 1}, --Off-road
+    [10] = {["item"] = 5, ["weapons"] = 8}, --Industrial
+    [11] = {["item"] = 5, ["weapons"] = 1}, --Utility
+    [12] = {["item"] = 5, ["weapons"] = 4}, --Vans
     [14] = {["item"] = 0, ["weapons"] = 1}, --Boats
     [15] = {["item"] = 0, ["weapons"] = 1}, --Helicopters
     [16] = {["item"] = 0, ["weapons"] = 1}, --Planes
-    [17] = {["item"] = 40, ["weapons"] = 1}, --Service
-    [18] = {["item"] = 40, ["weapons"] = 2}, --Emergency
-    [20] = {["item"] = 100, ["weapons"] = 5}, --Commercial
+    [17] = {["item"] = 5, ["weapons"] = 1}, --Service
+    [18] = {["item"] = 5, ["weapons"] = 2}, --Emergency
+    [20] = {["item"] = 5, ["weapons"] = 5}, --Commercial
   }
 
 RegisterNetEvent('glove_inventory:settype')
 AddEventHandler('glove_inventory:settype', function(vehtype)
- vehicleType = vehtype
+    vehicleType = vehtype
 end)
 
 RegisterNetEvent('glove_inventory:updateitems')

@@ -36,6 +36,9 @@ window.addEventListener("message", function (event) {
         } else if (type === "player") {
             $(".info-div").show();
             $(".storage-div").show();
+        } else if (type === "glove") {
+            $(".info-div").show();
+            $(".storage-div").show();
         } else if (type === "trash") {
             $(".info-div").show();
             $("#noSecondInventoryMessage").html("Drag Items Here To Delete");
@@ -362,6 +365,12 @@ $(document).ready(function () {
             } else if (type === "lbox" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://inventory/PutIntoLBox", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "glove" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://inventory/PutIntoGlove", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));

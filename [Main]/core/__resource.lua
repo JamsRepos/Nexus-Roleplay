@@ -69,6 +69,10 @@ server_script 'glove_storages/server.lua'
 client_script 'vat/client.lua'
 server_script 'vat/server.lua'
 
+-- Glovebox
+client_script 'glove_storages/client.lua'
+server_script 'glove_storages/server.lua'
+
 -- Server Password
 --client_script 'verification/client.lua'
 --server_script 'verification/server.lua'
