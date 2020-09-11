@@ -234,27 +234,7 @@ end)
 
 RegisterNetEvent('items:repair')
 AddEventHandler('items:repair', function()
-  local ped = GetPlayerPed(-1)
-  local coords = GetEntityCoords(ped)
-  if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
-    local vehicle = nil
-    if IsPedInAnyVehicle(ped, false) then
-      vehicle = GetVehiclePedIsIn(ped, false)
-    else
-      vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
-    end
-    if DoesEntityExist(vehicle) then
-      TaskStartScenarioInPlace(ped, "PROP_HUMAN_BUM_BIN", 0, true)
-      Citizen.CreateThread(function()
-        Citizen.Wait(15000)
-        SetVehicleEngineHealth(vehicle, GetEntityMaxHealth(vehicle)/2)
-        SetVehicleUndriveable(vehicle, false)
-        SetVehicleBodyHealth(vehicle, GetEntityMaxHealth(vehicle)/4)
-        ClearPedTasksImmediately(ped)
-        exports['NRP-notify']:DoHudText('inform', "Vehicle Repaired")
-      end)
-    end
-  end
+	TriggerEvent('NRP-Mech:Repair')
 end)
 
 RegisterNetEvent('event:repair')
