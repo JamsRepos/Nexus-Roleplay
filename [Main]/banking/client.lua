@@ -99,7 +99,7 @@ end)
 
 RegisterNetEvent('atm:counters')
 AddEventHandler('atm:counters', function()
-  atm_counter = 10000
+  atm_counter = 600000
   uv_counter = 10000
 end)
 
