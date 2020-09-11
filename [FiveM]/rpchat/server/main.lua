@@ -84,7 +84,7 @@ TriggerEvent('core:addGroupCommand', 'freezechat', "helper", function(source, ar
    end)
 end)
 
---[[RegisterCommand('ooc', function(source, args, rawCommand)
+RegisterCommand('ooc', function(source, args, rawCommand)
     TriggerEvent("core:getPlayerFromId", source, function(user)
         if frozen then
             TriggerClientEvent('chatMessage', source, "FREEZE", {255, 0, 0}, " OOC is currently frozen, please use local OOC.")
@@ -99,7 +99,7 @@ end)
             })
         end
     end)
-end, false)]]--
+end, false)
 
 RegisterCommand('tweet', function(source, args, rawCommand)	
     TriggerEvent("core:getPlayerFromId", source, function(user)	
