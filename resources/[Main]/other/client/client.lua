@@ -130,15 +130,15 @@ Citizen.CreateThread(function()
     SetRichPresence('ID: ' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' ..' Players: ' .. #players .. '/40')
     
     --This is the Application ID (Replace this with you own)
-    SetDiscordAppId(699711717948653670)
+    SetDiscordAppId(793156878082506782)
     --Here you will have to put the image name for the "large" icon.
     SetDiscordRichPresenceAsset('logo')
     --Here you can add hover text for the "large" icon.
     SetDiscordRichPresenceAssetText('Nexus Roleplay')
     --Here you will have to put the image name for the "small" icon.
-    SetDiscordRichPresenceAssetSmall(currentJob:lower())
+    --SetDiscordRichPresenceAssetSmall(currentJob:lower())
     --Here you can add hover text for the "small" icon.
-    SetDiscordRichPresenceAssetSmallText(currentJob)
+    --SetDiscordRichPresenceAssetSmallText(currentJob)
     --It updates every one minute just in case.
 	Citizen.Wait(15*1000)
   end
