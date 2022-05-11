@@ -1,0 +1,20 @@
+{
+  "name": "NexusRoleplay",
+  "assets": {},
+  "createdAt": "2022-05-11T16:17:46.639Z",
+  "serverUpdateChannel": "recommended",
+  "systemResources": [
+    "basic-gamemode",
+    "map-skater",
+    "chat",
+    "playernames",
+    "mapmanager",
+    "spawnmanager",
+    "sessionmanager",
+    "baseevents",
+    "hardcap",
+    "webpack",
+    "yarn"
+  ],
+  "variables": {}
+}
