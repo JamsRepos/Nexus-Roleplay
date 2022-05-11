@@ -1,4 +1,5 @@
-/.fxdk
+/.fxdk/
+/.fxdk/paths-state.json
 /cache/
 /resources/\[local\]/
 /db/
