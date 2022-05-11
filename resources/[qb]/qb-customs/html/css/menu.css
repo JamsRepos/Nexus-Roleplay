@@ -20,7 +20,7 @@
 
     width: 47vh;
     max-height: 78vh;
-    
+
     border-radius: 1.2vh;
 }
 
@@ -32,7 +32,7 @@
     font-size: 18pt;
     font-weight: 400;
     color: rgb(236, 240, 241);
-    background-color: #dc143c;
+    background-color: #074225;
     border-radius: .6vh;
     margin: 1vh;
     padding: .5vh .5vh .5vh .5vh;
@@ -60,7 +60,7 @@
 {
     margin: 0px;
     padding: 0px;
-    
+
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     font-size: 14pt;
@@ -107,7 +107,7 @@
     font-size: 12pt;
     font-weight: 400;
     color: #171717;
-    
+
     background-color: #ededed;
 
     width: 47vh;
@@ -124,5 +124,5 @@
     margin-top: 1vh;
     border-bottom-left-radius: 1vh;
     border-bottom-right-radius: 1vh;
-    background-color: #dc143c;
+    background-color: #074225;
 }

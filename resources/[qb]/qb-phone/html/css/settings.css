@@ -44,7 +44,7 @@
 }
 
 .settings-app-tab:hover {
-    background-color: #dc143c;
+    background-color: #074225;
     transition: .5s ease;
 }
 
@@ -137,7 +137,7 @@
 }
 
 .background-option:hover {
-    background-color: #dc143c;
+    background-color: #074225;
     transition: .5s ease;
 }
 
@@ -204,7 +204,7 @@
 }
 
 .background-button:hover {
-    border-top: .3vh solid #dc143c;
+    border-top: .3vh solid #074225;
 }
 
 .background-custom {
@@ -270,7 +270,7 @@
 
 .custom-background-button:hover {
     font-weight: bolder;
-    color: #DC143C;
+    color: #074225;
 }
 
 
@@ -355,7 +355,7 @@
 }
 
 .profilepicture-button:hover {
-    border-top: .3vh solid #dc143c;
+    border-top: .3vh solid #074225;
 }
 
 .profilepicture-custom {
@@ -419,7 +419,7 @@
 
 .custom-profilepicture-button:hover {
     font-weight: bolder;
-    color: #DC143C;
+    color: #074225;
 }
 
 /* The switch - the box around the slider */
