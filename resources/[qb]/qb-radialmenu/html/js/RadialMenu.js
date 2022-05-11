@@ -438,14 +438,37 @@ RadialMenu.prototype.appendSectorPath = function (startAngleDeg, endAngleDeg, sv
         g.setAttribute('data-index', index);
 
         if (item.title) {
-            var text = self.createText(centerPoint.x, centerPoint.y, item.title);
-            if (item.icon) {
-                text.setAttribute('transform', 'translate(0,8)');
-            } else {
-                text.setAttribute('transform', 'translate(0,2)');
-            }
 
-            g.appendChild(text);
+            if (item.title.length > 16 && item.title.includes(' ')){
+
+                var [Start, ...End] = item.title.split(' ');
+                End = End.join(' ');
+
+                var text = self.createText(centerPoint.x, centerPoint.y - 2.5, Start);
+                var text2 = self.createText(centerPoint.x, centerPoint.y + 1, End);
+
+                if (item.icon) {
+                    text.setAttribute('transform', 'translate(0,8)');
+                    text2.setAttribute('transform', 'translate(0,8)');
+                } else {
+                    text.setAttribute('transform', 'translate(0,2)');
+                    text2.setAttribute('transform', 'translate(0,2)');
+                }
+
+                g.appendChild(text);
+                g.appendChild(text2);
+            }
+            else{
+                var text = self.createText(centerPoint.x, centerPoint.y, item.title);
+
+                if (item.icon) {
+                    text.setAttribute('transform', 'translate(0,8)');
+                } else {
+                    text.setAttribute('transform', 'translate(0,2)');
+                }
+
+                g.appendChild(text);
+            }
         }
 
         if (item.icon) {

@@ -19,7 +19,7 @@ $(document).ready(function(){
 function createMenu(items) {
     QBRadialMenu = new RadialMenu({
         parent      : document.body,
-        size        : 375,
+        size        : 425,
         menuItems   : items,
         onClick     : function(item) {
             if (item.shouldClose) {
