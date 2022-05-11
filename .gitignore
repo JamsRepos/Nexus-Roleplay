@@ -1,5 +1,5 @@
-/.fxdk/
+/.fxdk
 /cache/
 /resources/\[local\]/
 /db/
-fxproject.json
+/fxproject.json
