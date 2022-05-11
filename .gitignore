@@ -4,3 +4,5 @@
 /resources/\[local\]/
 /db/
 /fxproject.json
+/configs/*.*
+.fxdk/paths-state.json
