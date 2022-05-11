@@ -51,7 +51,7 @@ body {
     position: absolute;
     left: 66.8vh;
     bottom: 48vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 13px;
     width: 45vh;
     overflow: hidden;
@@ -90,7 +90,7 @@ body {
     text-align: center;
     line-height: 2.9vh;
     color: white;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 12px;
     font-weight: bold;
 }
@@ -120,7 +120,7 @@ input.vehicle-sell-price::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ 
     text-align: center;
     line-height: 2.9vh;
     color: white;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 12px;
     font-weight: bold;
 }
@@ -162,7 +162,7 @@ input.vehicle-sell-price::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ 
 #biz-name {
     width: 65%;
     text-align: center;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 1.3em;
     font-weight: bold;
 
@@ -181,7 +181,7 @@ ul {
 }
 
 .errors {
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     background-color: crimson;
     width: 80%;
     border-radius: 3px;
@@ -202,7 +202,7 @@ ul {
 }
 
 .form-field {
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 14px;
     padding-bottom: 2px;
     border-bottom: solid;
@@ -222,7 +222,7 @@ ul {
 
     outline: none;
     background: none;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     transition: background-color 0.1s ease-in-out;
     overflow:hidden;
     display:inline-block;
@@ -239,7 +239,7 @@ ul {
 }
 
 table {
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 12px;
     
     border: solid;
@@ -263,7 +263,7 @@ table {
     position: absolute;
     left: 87vh;
     bottom: 35.8vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 12px;
 }
 
@@ -271,7 +271,7 @@ table {
     position: absolute;
     left: 66.8vh;
     top: 21.5vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 14px;
 }
 
@@ -279,7 +279,7 @@ table {
     position: absolute;
     left: 66.8vh;
     top: 28vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 14px;
 }
 
@@ -287,7 +287,7 @@ table {
     position: absolute;
     left: 66.8vh;
     top: 34.2vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
     font-size: 14px;
 }
 
@@ -295,5 +295,5 @@ table {
     position: absolute;
     left: 66.8vh;
     top: 40.5vh;
-    font-family: 'Poppins';
+    font-family: 'Radio Canada';
 }

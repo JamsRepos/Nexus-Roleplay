@@ -23,7 +23,7 @@
     height: 100%;
     text-align: center;
     line-height: 5vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     transition: .075s linear;
 }
 
@@ -108,7 +108,7 @@
     left: 5.5vh;
     top: 1.7vh;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.2vh;
 }
 
@@ -117,7 +117,7 @@
     left: 5.5vh;
     bottom: 1.7vh;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.3vh;
 }
 
@@ -156,7 +156,7 @@
     color: rgb(255 255 255);
     text-align: center;
     line-height: 5vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.8vh;
     border-bottom: .1vh solid rgba(0, 0, 0, 0.26);
 }
@@ -168,7 +168,7 @@
     width: 12vh;
     height: 5vh;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.5vh;
     border-radius: .3vh;
     top: 6vh;
@@ -256,7 +256,7 @@
     color: rgb(255 255 255);
     text-align: center;
     line-height: 5vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.8vh;
     border-bottom: .1vh solid rgba(0, 0, 0, 0.26);
 }
@@ -271,7 +271,7 @@
     top: 7.5vh;
     border: none;
     outline: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.8vh;
     text-indent: 1vh;
     color: black;
@@ -322,7 +322,7 @@
     text-overflow: ellipsis;
     position: absolute;
     padding: 1.2vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.5vh;
     color: white;
 }
@@ -399,7 +399,7 @@
     top: 0;
     left: 0;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.3vh;
     margin: 1vh;
 }
@@ -409,7 +409,7 @@
     bottom: 0;
     left: 0;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     font-size: 1.2vh;
     margin: 1vh;
 }

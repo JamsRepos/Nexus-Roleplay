@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@100&display=swap');
 
 body {
     margin: 0;
@@ -52,7 +52,7 @@ body {
 .app-titel {
     position: relative;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 0.1vh;
@@ -88,7 +88,7 @@ body {
 
 .app-button > p {
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.8vh;
@@ -121,7 +121,7 @@ body {
 
 input[type="number"] {
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.2vh;
@@ -133,7 +133,7 @@ input[type="number"] {
 
 .food-alert-setting > p {
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.9vh;

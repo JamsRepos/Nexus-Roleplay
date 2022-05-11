@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@200&display=swap');
 
 .container {
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -33,19 +33,19 @@
   font-weight: bold;
   color: #ededed;
   padding: 1.3vh;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   font-size: 2.5vh;
 }
 #status-tab-label {
   position: absolute;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   right: 3vh;
   font-weight: bold;
 }
 
 .info-beam-title {
   position: absolute;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   font-size: 1.3vh;
   letter-spacing: 0.1vh;
   left: 2.7vh;
@@ -56,7 +56,7 @@
 
 .info-beam-title-players {
   position: absolute;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   font-size: 1.3vh;
   letter-spacing: 0.1vh;
   left: 2.4vh;
@@ -67,7 +67,7 @@
 
 .info-beam-status {
   position: absolute;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Radio Canada', sans-serif;
   right: 3vh;
   float: left;
   text-align: left;

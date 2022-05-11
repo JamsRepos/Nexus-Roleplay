@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@200&display=swap');
 
 .container {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
 }
 
 .spawn-locations {
@@ -58,7 +58,7 @@
     text-align: center;
     line-height: 4.5vh;
     font-size: 1.6vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -79,7 +79,7 @@
 }
 
 .loclabel > p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     letter-spacing: 1px;
     font-weight: bold;
     position: relative;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@200&display=swap');
 
 p {
 	margin: 0 !important;
@@ -90,7 +90,7 @@ body {
 	text-align: left;
 	font-size: 1.1vh;
 	line-height: 1.8vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .inv-options {
@@ -149,7 +149,7 @@ body {
 	color: white;
 	text-align: center;
 	font-size: 1.25vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	outline: none;
 }
 
@@ -168,7 +168,7 @@ body {
 .ammo-info-header {
 	width: 100%;
 	color: white;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	background-color: rgba(0, 0, 0, 0.192);
 	font-size: 1.vh;
 	padding: .4vh;
@@ -178,7 +178,7 @@ body {
 .ammo-info {
 	position: relative;
 	color: white;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-weight: 200;
 	font-size: 1.vh;
 	margin-left: .8vh;
@@ -200,7 +200,7 @@ body {
 	font-size: 1.2vh;
 	font-weight: 900;
 	background-color: rgba(220, 20, 60, 0.6);
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .inv-option-item {
@@ -230,7 +230,7 @@ body {
 	font-size: 1.2vh;
 	transition: background-color .1s linear;
 	font-weight: 900;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .btn-combine>p {
@@ -239,7 +239,7 @@ body {
 	line-height: 48px;
 	text-transform: uppercase;
 	font-size: 1.1vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	background-color: rgb(0 0 0 / 20%);
 }
 
@@ -272,7 +272,7 @@ body {
 	padding: 3px;
 	text-align: center;
 	letter-spacing: 1px;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .item-slot-quality {
@@ -327,7 +327,7 @@ body {
 	color: white;
 	font-size: 16px;
 	font-style: italic;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-weight: bold;
 	letter-spacing: 0.2vh;
 	bottom: 0px;
@@ -339,7 +339,7 @@ body {
 	color: white;
 	font-size: 12px;
 	font-weight: 900;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	letter-spacing: 0.2vh;
 	float: left;
 }
@@ -349,7 +349,7 @@ body {
 	color: white;
 	font-size: 16px;
 	font-style: italic;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-weight: bold;
 	letter-spacing: 0.2vh;
 	bottom: 0px;
@@ -361,7 +361,7 @@ body {
 	color: white;
 	font-size: 12px;
 	font-weight: 900;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	letter-spacing: 0.2vh;
 	float: left;
 }
@@ -375,7 +375,7 @@ body {
 .player-inv-weight>p {
 	color: white;
 	font-size: 12px;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .other-inv-info {
@@ -385,7 +385,7 @@ body {
 }
 
 .ply-iteminfo-container {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	display: none;
 	position: absolute;
 	bottom: 3%;
@@ -400,7 +400,7 @@ body {
 .item-info-title {
 	text-transform: uppercase;
 	font-weight: 900;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-size: 1.3vh;
 	color: white;
 	padding-top: 1px;
@@ -408,7 +408,7 @@ body {
 
 .item-info-line {
 	position: absolute;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	width: 100%;
 	background-color: white;
 	height: 0vh;
@@ -417,7 +417,7 @@ body {
 .item-info-description {
 	text-transform: uppercase;
 	font-size: 1vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	color: white;
 	padding-top: .5vh;
 }
@@ -462,7 +462,7 @@ body {
 
 #itembox-action>p {
 	font-size: 10px;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 #itembox-label {
@@ -510,7 +510,7 @@ body {
 	color: white;
 	padding: 3px;
 	font-size: 10px;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 #requiredItem-label {
@@ -550,7 +550,7 @@ body {
 	text-align: left;
 	font-size: 1.1vh;
 	line-height: 1.8vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .z-hotbar-item-slot {
@@ -595,7 +595,7 @@ body {
 	font-size: 11.5px;
 	text-align: center;
 	text-transform: lowercase;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-variant: small-caps;
 }
 
@@ -663,7 +663,7 @@ body {
 	bottom: 0;
 	right: 0;
 	margin: .3vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .ammo-box-amount {
@@ -705,7 +705,7 @@ body {
 	margin: 5vh;
 	font-size: 3vh;
 	color: rgb(255, 255, 255);
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .weapon-attachments-container-description {
@@ -714,7 +714,7 @@ body {
 	top: 5vh;
 	font-size: 1.7vh;
 	color: rgba(255, 255, 255, 0.8);
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .weapon-attachments-container-details {
@@ -723,7 +723,7 @@ body {
 	top: 9vh;
 	font-size: 1.4vh;
 	color: rgba(255, 255, 255, 0.8);
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .weapon-attachments-container-detail-durability {
@@ -763,7 +763,7 @@ body {
 	left: 0;
 	margin: 5vh;
 	color: rgba(255, 255, 255, 0.8);
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-size: 1.4vh
 }
 
@@ -798,7 +798,7 @@ body {
 	text-align: center;
 	text-transform: uppercase;
 	line-height: 1.9vh;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	font-weight: 100;
 }
 
@@ -900,7 +900,7 @@ body {
 	text-align: center;
 	line-height: 6vh;
 	color: white;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 	transition: .05s linear;
 }
 
