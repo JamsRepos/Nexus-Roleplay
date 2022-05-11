@@ -1,7 +1,350 @@
 {
-  "name": "NexusRoleplay",
-  "assets": {},
-  "createdAt": "2022-05-11T16:17:46.639Z",
+  "assets": {
+    "resources\\test": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[voice]\\pma-voice": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[voice]\\qb-radio": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\bob74_ipl": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\connectqueue": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\dpemotes": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\interact-sound": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\LegacyFuel": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\menuv": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\mhacking": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\oxmysql": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\PolyZone": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\progressbar": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\safecracker": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[standalone]\\screenshot-basic": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-adminmenu": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-ambulancejob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-anticheat": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-apartments": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-atms": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-banking": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-bankrobbery": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-busjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-cityhall": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-clothing": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-commandbinding": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-core": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-crypto": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-customs": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-diving": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-doorlock": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-drugs": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-fitbit": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-garages": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-garbagejob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-hotdogjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-houserobbery": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-houses": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-hud": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-input": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-interior": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-inventory": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-jewelery": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-keyminigame": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-lapraces": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-loading": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-lockpick": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-management": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-mechanicjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-menu": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-multicharacter": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-newsjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-pawnshop": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-phone": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-policejob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-prison": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-radialmenu": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-recyclejob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-scoreboard": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-scrapyard": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-shops": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-skillbar": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-smallresources": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-spawn": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-storerobbery": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-streetraces": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-target": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-taxijob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-towjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-traphouse": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-truckerjob": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-truckrobbery": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-tunerchip": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-vehiclefailure": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-vehiclekeys": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-vehiclesales": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-vehicleshop": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-vineyard": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-weapons": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-weathersync": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[qb]\\qb-weed": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[defaultmaps]\\[prison_map]\\prison_canteen": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[defaultmaps]\\[prison_map]\\prison_main": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[defaultmaps]\\[prison_map]\\prison_meeting": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[defaultmaps]\\dealer_map": {
+      "enabled": true,
+      "restartOnChange": true
+    },
+    "resources\\[defaultmaps]\\hospital_map": {
+      "enabled": true,
+      "restartOnChange": true
+    }
+  },
   "serverUpdateChannel": "recommended",
   "systemResources": [
     "basic-gamemode",
@@ -16,5 +359,12 @@
     "webpack",
     "yarn"
   ],
-  "variables": {}
+  "name": "NexusRoleplay",
+  "createdAt": "2022-05-11T16:17:46.639Z",
+  "variables": {
+    "mysql_connection_string": {
+      "setter": "set",
+      "value": "mysql://thenexus_nrpuser:WwkdpCDZUTKP@89.34.96.142/thenexus_nrp_dev?charset=utf8mb4"
+    }
+  }
 }
