@@ -1,6 +1,6 @@
-#   ____  ____   _____               
-#  / __ \|  _ \ / ____|              
-# | |  | | |_) | |     ___  _ __ ___ 
+#   ____  ____   _____
+#  / __ \|  _ \ / ____|
+# | |  | | |_) | |     ___  _ __ ___
 # | |  | |  _ <| |    / _ \| '__/ _ \
 # | |__| | |_) | |___| (_) | | |  __/
 #  \___\_\____/ \_____\___/|_|  \___|
@@ -10,7 +10,7 @@ endpoint_add_tcp "0.0.0.0:30120"
 endpoint_add_udp "0.0.0.0:30120"
 
 # Database connection string
-set mysql_connection_string "mysql://thenexus_nrpuser:}g?}@_ePYC8^@89.34.96.142/thenexus_nrp_dev?charset=utf8mb4"
+set mysql_connection_string "mysql://thenexus_nrpuser:WwkdpCDZUTKP@89.34.96.142/thenexus_nrp_dev?charset=utf8mb4"
 
 # Voice config
 setr voice_useNativeAudio true
@@ -58,7 +58,7 @@ sets tags "default, deployer, qbcore, qb-core"
 
 # A valid locale identifier for your server's primary language.
 # For example "en-US", "fr-CA", "nl-NL", "de-DE", "en-GB", "pt-BR"
-sets locale "root-AQ"
+sets locale "en-US"
 # please DO replace root-AQ on the line ABOVE with a real language! :)
 
 # Set an optional server info and connecting banner image url.
@@ -67,26 +67,26 @@ sets locale "root-AQ"
 #sets banner_connecting "https://url.to/image.png"
 
 # Set your server's hostname. This is not usually shown anywhere in listings.
-sv_hostname "Nexus Roleplay built with QBCore Framework by JericoFx & Kakarot & Hamy"
+sv_hostname "Something amazing, I guess."
 
 # Set your server's Project Name
-sets sv_projectName "[QBCore Framework] Nexus Roleplay"
+sets sv_projectName "Nexus Roleplay"
 
 # Set your server's Project Description
-sets sv_projectDesc "An advanced FiveM RP framework including jobs, gangs, housing & more!"
+sets sv_projectDesc "A place where NexusNation rejects reside."
 
 # Nested configs!
 #exec server_internal.cfg
 
 # Loading a server icon (96x96 PNG file)
-load_server_icon myLogo.png
+load_server_icon logo.png
 
 # convars which can be used in scripts
 set temp_convar "hey world!"
 
 # Remove the `#` from the below line if you do not want your server to be listed in the server browser.
 # Do not edit it if you *do* want your server listed.
-#sv_master1 ""
+sv_master1 ""
 
 ## Permissions ##
 
@@ -103,6 +103,11 @@ add_principal qbcore.admin qbcore.mod # Allow admins access to mod commands
 #add_principal identifier.{{principalMasterIdentifier}} qbcore.god <- doesn't exist yet, change the generated one below to qbcore.god
 add_principal identifier.fivem:157644 group.admin #LubricantJam
 add_principal identifier.discord:78435584216936448 group.admin #LubricantJam
+add_principal identifier.fivem:936878 group.admin #Credlar
+add_principal identifier.discord:297182648378458122 group.admin #Credlar
+add_principal identifier.fivem:1003641 group.admin #Moist
+add_principal identifier.discord:128894042296680448 group.admin #Moist
+add_principal identifier.discord:301805463081713664 group.admin #Tiggs
 
 # enable OneSync (required for server-side state awareness)
 set onesync on
@@ -115,7 +120,7 @@ sv_maxclients 48
 
 # Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)
 # -> replace "" with the key
-set steam_webApiKey "none"
+set steam_webApiKey "4D8F581D1A5426748709379C528EB421"
 
 # License key for your server (https://keymaster.fivem.net)
 sv_licenseKey "8vtm6bxgkoio5jx3e034ttsaznrsfcm5"
