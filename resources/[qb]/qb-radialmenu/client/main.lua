@@ -202,7 +202,7 @@ end
 RegisterCommand('radialmenu', function()
     if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
         setRadialState(true, true)
-        SetCursorLocation(0.5, 0.5)
+        SetCursorLocation(0.5, 0.83)
     end
 end)
 
