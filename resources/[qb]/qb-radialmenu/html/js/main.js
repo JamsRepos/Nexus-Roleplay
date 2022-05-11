@@ -25,7 +25,7 @@ function createMenu(items) {
             if (item.shouldClose) {
                 QBRadialMenu.close(true);
             }
-            
+
             if (item.items == null && item.shouldClose != null) {
                 $.post('https://qb-radialmenu/selectItem', JSON.stringify({
                     itemData: item
@@ -45,6 +45,6 @@ $(document).on('keydown', function(e) {
 });
 
 // Close on any key up, hold/release support incase user changes keybind on the fivem side
-$(document).on('keyup', function(e) {
-    QBRadialMenu.close();
-});
+// $(document).on('keyup', function(e) {
+//     QBRadialMenu.close();
+// });

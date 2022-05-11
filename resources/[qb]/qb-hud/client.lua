@@ -549,7 +549,7 @@ RegisterCommand('+engine', function()
     SetVehicleEngineOn(vehicle, not GetIsVehicleEngineRunning(vehicle), false, true)
 end)
 
-RegisterKeyMapping('+engine', 'Toggle Engine', 'keyboard', 'G')
+RegisterKeyMapping('+engine', 'Toggle Engine', 'keyboard', 'K')
 
 local function IsWhitelistedWeaponArmed(weapon)
     if weapon then
@@ -1081,9 +1081,9 @@ CreateThread(function()
             if heading ~= lastHeading then
 			    if IsPedInAnyVehicle(player) then
                     local crossroads = getCrossroads(player)
-                    SendNUIMessage ({ 
-                        action = 'update', 
-                        value = heading 
+                    SendNUIMessage ({
+                        action = 'update',
+                        value = heading
                     })
                     updateBaseplateHud({
                         show,
@@ -1096,9 +1096,9 @@ CreateThread(function()
                     })
 			    else
                     if Menu.isOutCompassChecked then
-                        SendNUIMessage ({ 
-                            action = 'update', 
-                            value = heading 
+                        SendNUIMessage ({
+                            action = 'update',
+                            value = heading
                         })
                         SendNUIMessage ({
                             action = 'baseplate',
