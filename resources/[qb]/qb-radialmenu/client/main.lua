@@ -186,6 +186,61 @@ local function setRadialState(bool, sendMessage, delay)
     end
 
     SetNuiFocus(bool, bool)
+    SetNuiFocusKeepInput(true)
+
+
+    Citizen.CreateThread(function()
+        while true do
+            if IsControlJustPressed(0, Config.OpenPhone) then
+                if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
+                    setRadialState(true, true)
+                    SetCursorLocation(0.5, 0.83)
+                end
+            end
+            if inRadialMenu then
+                DisableControlAction(0, 24, true) -- Attack
+                DisableControlAction(0, 257, true) -- Attack 2
+                DisableControlAction(0, 25, true) -- Aim
+                DisableControlAction(0, 263, true) -- Melee Attack 1
+
+                -- DisableControlAction(0, 45, true) -- Reload
+                -- DisableControlAction(0, 21, true) -- left shift
+                -- DisableControlAction(0, 22, true) -- Jump
+                -- DisableControlAction(0, 44, true) -- Cover
+                -- DisableControlAction(0, 37, true) -- Select Weapon
+
+                DisableControlAction(0, 288,  true) -- Disable phone
+                DisableControlAction(0, 245,  true) -- Disable chat
+                DisableControlAction(0, 289, true) -- Inventory
+                DisableControlAction(0, 170, true) -- Animations
+                DisableControlAction(0, 167, true) -- Job
+                -- DisableControlAction(0, 244, true) -- Ragdoll
+                -- DisableControlAction(0, 303, true) -- Car lock
+
+                DisableControlAction(0, 1, true) -- disable horizontal camera
+                DisableControlAction(0, 2, true) -- disable vertical camera
+                DisableControlAction(0, 29, true) -- B ile işaret
+                DisableControlAction(0, 81, true) -- B ile işaret
+                DisableControlAction(0, 26, true) -- Disable looking behind
+                DisableControlAction(0, 73, true) -- Disable clearing animation
+                DisableControlAction(2, 199, true) -- Disable pause screen
+
+                -- DisableControlAction(0, 71, true) -- Disable driving forward in vehicle
+                -- DisableControlAction(0, 72, true) -- Disable reversing in vehicle
+
+                -- DisableControlAction(2, 36, true) -- Disable going stealth
+
+                DisableControlAction(0, 47, true)  -- Disable weapon
+                DisableControlAction(0, 264, true) -- Disable melee
+                DisableControlAction(0, 257, true) -- Disable melee
+                DisableControlAction(0, 140, true) -- Disable melee
+                DisableControlAction(0, 141, true) -- Disable melee
+                DisableControlAction(0, 142, true) -- Disable melee
+            end
+            Citizen.Wait(3)
+        end
+    end)
+
     if sendMessage then
         SendNUIMessage({
             action = "ui",
