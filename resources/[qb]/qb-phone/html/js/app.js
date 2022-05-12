@@ -690,7 +690,11 @@ $(document).ready(function(){
 });
 
 $(document).on('click', function(element){
-    QB.Phone.Functions.RestrictOnClick(element.target.tagName);
+
+    if (element.target.className == 'emojionearea-editor')
+        QB.Phone.Functions.RestrictOnClick('INPUT');
+    else
+        QB.Phone.Functions.RestrictOnClick(element.target.tagName);
 });
 
 QB.Phone.Functions.RestrictOnClick = function(Type) {
