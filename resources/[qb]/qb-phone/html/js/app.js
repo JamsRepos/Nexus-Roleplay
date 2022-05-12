@@ -32,6 +32,7 @@ OpenedChatData = {
 
 var CanOpenApp = true;
 var up = false
+var InputRestricted = false;
 
 function IsAppJobBlocked(joblist, myjob) {
     var retval = false;
@@ -686,4 +687,29 @@ $(document).ready(function(){
                 break;
         }
     })
+});
+
+$(document).on('click', function(element){
+    QB.Phone.Functions.RestrictOnClick(element.target.tagName);
+});
+
+QB.Phone.Functions.RestrictOnClick = function(Type) {
+
+    console.log("Type: " + Type);
+
+    if((Type == 'INPUT' || Type == 'TEXTAREA') && !InputRestricted){
+        $.post('https://qb-phone/RestrictInput');
+        InputRestricted = true;
+    }
+    else if(!(Type == 'INPUT' || Type == 'TEXTAREA') && InputRestricted){
+        $.post('https://qb-phone/UnRestrictInput');
+        InputRestricted = false;
+    }
+}
+
+$(document).on('submit', function(element){
+    if(InputRestricted){
+        $.post('https://qb-phone/UnRestrictInput');
+        InputRestricted = false;
+    }
 });

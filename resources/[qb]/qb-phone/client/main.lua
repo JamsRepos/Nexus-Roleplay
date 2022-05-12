@@ -1461,6 +1461,14 @@ RegisterCommand('ping', function(source, args)
     end
 end)
 
+RegisterNUICallback('RestrictInput', function()
+    SetNuiFocusKeepInput(false)
+end)
+
+RegisterNUICallback('UnRestrictInput', function()
+    SetNuiFocusKeepInput(true)
+end)
+
 -- Handler Events
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
