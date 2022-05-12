@@ -58,13 +58,13 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
 
     if not isFxDK() then
         if not license then
-        deferrals.done(Lang:t('error.no_valid_license'))    
+        deferrals.done(Lang:t('error.no_valid_license'))
         elseif isBanned then
             deferrals.done(Reason)
         elseif isLicenseAlreadyInUse and QBCore.Config.Server.CheckDuplicateLicense then
             deferrals.done(Lang:t('error.duplicate_license'))
         elseif isWhitelist and not whitelisted then
-        deferrals.done(Lang:t('error.not_whitelisted'))    
+        deferrals.done(Lang:t('error.not_whitelisted'))
         else
             deferrals.done()
             if QBCore.Config.Server.UseConnectQueue then
@@ -260,5 +260,9 @@ QBCore.Functions.CreateCallback('QBCore:HasItem', function(source, cb, items, am
 end)
 
 function isFxDK()
-    return GetConvarInt("sv_fxdkMode", false)
+    if GetConvarInt("sv_fxdkMode", 0) > 0 then
+        return true
+    else
+        return false
+    end
 end
