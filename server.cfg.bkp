@@ -24,7 +24,7 @@ setr voice_syncData 1
 setr qb_locale "en"
 
 # QBCore UseTarget
-setr UseTarget false
+setr UseTarget true
 
 # These resources will start by default.
 ensure mapmanager
@@ -76,7 +76,7 @@ sets sv_projectName "Nexus Roleplay"
 sets sv_projectDesc "A place where NexusNation rejects reside."
 
 # Nested configs!
-#exec server_internal.cfg
+exec configs/auth.cfg
 
 # Loading a server icon (96x96 PNG file)
 load_server_icon logo.png
@@ -97,17 +97,13 @@ add_ace resource.qb-core command allow # Allow qb-core to execute commands
 add_ace qbcore.god command allow # Allow all commands
 
 # Inheritance
-add_principal qbcore.god group.admin # Error proof
-add_principal qbcore.god qbcore.admin # Allow gods access to admin commands
-add_principal qbcore.admin qbcore.mod # Allow admins access to mod commands
-#add_principal identifier.{{principalMasterIdentifier}} qbcore.god <- doesn't exist yet, change the generated one below to qbcore.god
-add_principal identifier.fivem:157644 group.admin #LubricantJam
-add_principal identifier.discord:78435584216936448 group.admin #LubricantJam
-add_principal identifier.fivem:936878 group.admin #Credlar
-add_principal identifier.discord:297182648378458122 group.admin #Credlar
-add_principal identifier.fivem:1003641 group.admin #Moist
-add_principal identifier.discord:128894042296680448 group.admin #Moist
-add_principal identifier.discord:301805463081713664 group.admin #Tiggs
+add_principal identifier.fivem:157644 qbcore.god #LubricantJam
+add_principal identifier.discord:78435584216936448 qbcore.god #LubricantJam
+add_principal identifier.fivem:936878 qbcore.god #Credlar
+add_principal identifier.discord:297182648378458122 qbcore.god #Credlar
+add_principal identifier.fivem:1003641 qbcore.god #Moist
+add_principal identifier.discord:128894042296680448 qbcore.god #Moist
+add_principal identifier.discord:301805463081713664 qbcore.god #Tiggs
 
 # enable OneSync (required for server-side state awareness)
 set onesync on
@@ -117,10 +113,3 @@ set sv_enforceGameBuild 2372
 
 # Server player slot limit (see https://fivem.net/server-hosting for limits)
 sv_maxclients 48
-
-# Steam Web API key, if you want to use Steam authentication (https://steamcommunity.com/dev/apikey)
-# -> replace "" with the key
-set steam_webApiKey "4D8F581D1A5426748709379C528EB421"
-
-# License key for your server (https://keymaster.fivem.net)
-sv_licenseKey "8vtm6bxgkoio5jx3e034ttsaznrsfcm5"
