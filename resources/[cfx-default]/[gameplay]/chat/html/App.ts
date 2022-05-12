@@ -94,7 +94,7 @@ export default Vue.extend({
     window.removeEventListener("message", this.listener);
   },
   mounted() {
-    post("http://chat/loaded", JSON.stringify({}));
+    post("http://nrp-chat/loaded", JSON.stringify({}));
 
     this.listener = (event: MessageEvent) => {
       const item: any = event.data || (<any>event).detail; //'detail' is for debugging via browsers
@@ -431,7 +431,7 @@ export default Vue.extend({
     send() {
       if (this.message !== "") {
         post(
-          "http://chat/chatResult",
+          "http://nrp-chat/chatResult",
           JSON.stringify({
             message: this.message,
             mode: this.modes[this.modeIdxGet].name
@@ -451,7 +451,7 @@ export default Vue.extend({
       }, 50);
 
       if (canceled) {
-        post("http://chat/chatResult", JSON.stringify({ canceled }));
+        post("http://nrp-chat/chatResult", JSON.stringify({ canceled }));
       }
       this.message = "";
       this.showInput = false;
