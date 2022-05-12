@@ -43,6 +43,10 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
         end
     end
 
+    if isFxDK() then
+        license = 'license:AAAAAAAAAAAAAAAA'
+    end
+
     -- Mandatory wait
     Wait(2500)
 
@@ -56,24 +60,22 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
 
     deferrals.update(string.format(Lang:t('info.join_server'), name))
 
-    if not isFxDK() then
-        if not license then
+    if not license then
         deferrals.done(Lang:t('error.no_valid_license'))
-        elseif isBanned then
-            deferrals.done(Reason)
-        elseif isLicenseAlreadyInUse and QBCore.Config.Server.CheckDuplicateLicense then
-            deferrals.done(Lang:t('error.duplicate_license'))
-        elseif isWhitelist and not whitelisted then
+    elseif isBanned then
+        deferrals.done(Reason)
+    elseif isLicenseAlreadyInUse and QBCore.Config.Server.CheckDuplicateLicense then
+        deferrals.done(Lang:t('error.duplicate_license'))
+    elseif isWhitelist and not whitelisted then
         deferrals.done(Lang:t('error.not_whitelisted'))
-        else
-            deferrals.done()
-            if QBCore.Config.Server.UseConnectQueue then
-                Wait(1000)
-                TriggerEvent('connectqueue:playerConnect', name, setKickReason, deferrals)
-            end
+    else
+        deferrals.done()
+        if QBCore.Config.Server.UseConnectQueue then
+            Wait(1000)
+            TriggerEvent('connectqueue:playerConnect', name, setKickReason, deferrals)
         end
-        -- Add any additional defferals you may need!
     end
+    -- Add any additional defferals you may need!
 end
 
 AddEventHandler('playerConnecting', onPlayerConnecting)
