@@ -4,43 +4,38 @@ Config = {}
 Config.JerryCanCost = 100
 Config.RefillCost = 50 -- If it is missing half of it capacity, this amount will be divided in half, and so on.
 
+-- Display Refuel Info For 3 Seconds After Done
+Config.WaitTimeAfterRefuel = 3000
+
 -- Fuel decor - No need to change this, just leave it.
 Config.FuelDecor = "_FUEL_LEVEL"
 
 -- What keys are disabled while you're fueling.
 Config.DisableKeys = {0, 22, 23, 24, 29, 30, 31, 37, 44, 56, 82, 140, 166, 167, 168, 170, 288, 289, 311, 323}
 
+-- Want to use the HUD? Turn this to true.
+Config.EnableHUD = false
+
 -- Configure blips here. Turn both to false to disable blips all together.
-Config.ShowNearestGasStationOnly = true
-Config.ShowAllGasStations = false
+Config.ShowNearestGasStationOnly = false
+Config.ShowAllGasStations = true
 
 -- Modify the fuel-cost here, using a multiplier value. Setting the value to 2.0 would cause a doubled increase.
 Config.CostMultiplier = 1.0
 
--- Configure the strings as you wish here.
 Config.Strings = {
 	ExitVehicle = "Exit the vehicle to refuel",
 	EToRefuel = "Press ~g~E ~w~to refuel vehicle",
 	JerryCanEmpty = "Jerry can is empty",
 	FullTank = "Tank is full",
-	PurchaseJerryCan = "Press ~g~E ~w~to purchase a jerry can for ~g~$" .. Config.JerryCanCost,
+	PurchaseJerryCan = "You purchased a jerry can for $" .. Config.JerryCanCost,
 	CancelFuelingPump = "Press ~g~E ~w~to cancel the fueling",
 	CancelFuelingJerryCan = "Press ~g~E ~w~to cancel the fueling",
 	NotEnoughCash = "Not enough cash",
-	RefillJerryCan = "Press ~g~E ~w~ to refill the jerry can for ",
-	NotEnoughCashJerryCan = "Not enough cash to refill jerry can",
-	JerryCanFull = "Jerry can is full",
+	RefillJerryCan = "You refilled the jerry can for ",
+	NotEnoughCashJerryCan = "You do not have enough money to buy a jerry can.",
+	JerryCanFull = "Your jerry can is full",
 	TotalCost = "Cost",
-}
-
-Config.PumpModels = {
-	[-2007231801] = true,
-	[1339433404] = true,
-	[1694452750] = true,
-	[1933174915] = true,
-	[-462817101] = true,
-	[-469694731] = true,
-	[-164877493] = true
 }
 
 -- Blacklist certain vehicles. Use names or hashes. https://wiki.gtanet.work/index.php?title=Vehicle_Models
@@ -121,6 +116,5 @@ Config.GasStations = {
 	vector3(176.631, -1562.025, 29.263),
 	vector3(176.631, -1562.025, 29.263),
 	vector3(-319.292, -1471.715, 30.549),
-	vector3(-66.48, -2532.57, 6.14),
 	vector3(1784.324, 3330.55, 41.253)
 }
