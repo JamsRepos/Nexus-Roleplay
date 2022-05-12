@@ -230,7 +230,6 @@ $(document).on('click', '.phone-application', function(e){
                     QB.Phone.Functions.Close();
                 }
 
-                
             }
         }
     } else {
@@ -555,6 +554,8 @@ $(document).ready(function(){
                 QB.Phone.Data.IsOpen = true;
                 QB.Phone.Data.PlayerData = event.data.PlayerData;
                 break;
+            case "close":
+                QB.Phone.Functions.Close();
             case "LoadPhoneData":
                 QB.Phone.Functions.LoadPhoneData(event.data);
                 break;

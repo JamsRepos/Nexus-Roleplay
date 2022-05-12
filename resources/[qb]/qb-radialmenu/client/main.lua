@@ -248,7 +248,9 @@ local function setRadialState(bool, sendMessage, delay)
             items = FinalMenuItems
         })
     end
-    if delay then Wait(500) end
+    if bool then
+        if delay then Wait(500) end
+    end
     inRadialMenu = bool
 end
 
@@ -258,6 +260,8 @@ RegisterCommand('radialmenu', function()
     if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
         setRadialState(true, true)
         SetCursorLocation(0.5, 0.83)
+    elseif inRadialMenu then
+        setRadialState(false, true)
     end
 end)
 

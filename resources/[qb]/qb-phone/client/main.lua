@@ -360,6 +360,13 @@ local function OpenPhone()
     end)
 end
 
+local function ClosePhone()
+    SetNuiFocus(false, false)
+    SendNUIMessage({
+        action = "close",
+    })
+end
+
 local function GenerateCallId(caller, target)
     local CallId = math.ceil(((tonumber(caller) + tonumber(target)) / 100 * 1))
     return CallId
@@ -512,11 +519,15 @@ end
 
 RegisterCommand('phone', function()
     PlayerData = QBCore.Functions.GetPlayerData()
-    if not PhoneData.isOpen and LocalPlayer.state.isLoggedIn then
-        if not PlayerData.metadata['ishandcuffed'] and not PlayerData.metadata['inlaststand'] and not PlayerData.metadata['isdead'] and not IsPauseMenuActive() then
-            OpenPhone()
+    if LocalPlayer.state.isLoggedIn then
+        if not PhoneData.isOpen then
+            if not PlayerData.metadata['ishandcuffed'] and not PlayerData.metadata['inlaststand'] and not PlayerData.metadata['isdead'] and not IsPauseMenuActive() then
+                OpenPhone()
+            else
+                QBCore.Functions.Notify("Action not available at the moment..", "error")
+            end
         else
-            QBCore.Functions.Notify("Action not available at the moment..", "error")
+            ClosePhone()
         end
     end
 end)
