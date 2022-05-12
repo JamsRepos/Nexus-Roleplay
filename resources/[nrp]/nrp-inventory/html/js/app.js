@@ -672,7 +672,7 @@ function handleDragDrop() {
                         .html(
                             itemData.amount +
                             " " +
-                            
+
                             " "
                         );
                     $(".ui-draggable-dragging").find(".item-slot-key").remove();
@@ -694,7 +694,7 @@ function handleDragDrop() {
                         .html(
                             itemData.amount +
                             " " +
-                            
+
                             " "
                         );
                     if ($(this).parent().attr("data-inventory") == "hotbar") {
@@ -732,7 +732,7 @@ function handleDragDrop() {
                         .html(
                             dragAmount +
                             " " +
-                            
+
                             " "
                         );
                     $(".ui-draggable-dragging").find(".item-slot-key").remove();
@@ -750,7 +750,7 @@ function handleDragDrop() {
                     .html(
                         itemData.amount +
                         " " +
-                        
+
                         " "
                     );
                 InventoryError($(this).parent(), $(this).attr("data-slot"));
