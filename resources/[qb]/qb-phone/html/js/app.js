@@ -698,10 +698,7 @@ $(document).on('click', function(element){
 });
 
 QB.Phone.Functions.RestrictOnClick = function(Type) {
-
-    console.log("Type: " + Type);
-
-    if((Type == 'INPUT' || Type == 'TEXTAREA') && !InputRestricted){
+    if(Type == 'INPUT' || Type == 'TEXTAREA'){
         $.post('https://qb-phone/RestrictInput');
         InputRestricted = true;
     }
