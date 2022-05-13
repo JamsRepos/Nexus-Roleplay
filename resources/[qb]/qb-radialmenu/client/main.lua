@@ -191,12 +191,6 @@ local function setRadialState(bool, sendMessage, delay)
 
     Citizen.CreateThread(function()
         while true do
-            if IsControlJustPressed(0, Config.OpenPhone) then
-                if ((IsDowned() and IsPoliceOrEMS()) or not IsDowned()) and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() and not inRadialMenu then
-                    setRadialState(true, true)
-                    SetCursorLocation(0.5, 0.83)
-                end
-            end
             if inRadialMenu then
                 DisableControlAction(0, 24, true) -- Attack
                 DisableControlAction(0, 257, true) -- Attack 2
