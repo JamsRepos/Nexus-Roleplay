@@ -174,7 +174,7 @@ AddEventHandler('fuel:requestJerryCanPurchase', function()
 	if currentCash >= Config.JerryCanCost then
 		local ped = PlayerPedId()
 		if not HasPedGotWeapon(ped, 883325847) then
-			QBCore.Functions.Notify(Config.Strings.PurchaseJerryCan)
+			QBCore.Functions.Notify(Config.Strings.PurchaseJerryCan, "success")
 			TriggerServerEvent('QBCore:Server:AddItem', "weapon_petrolcan", 1)
 			TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["weapon_petrolcan"], "add")
 			TriggerServerEvent('fuel:pay', Config.JerryCanCost, GetPlayerServerId(PlayerId()))
@@ -183,18 +183,18 @@ AddEventHandler('fuel:requestJerryCanPurchase', function()
 
 			if refillCost > 0 then
 				if currentCash >= refillCost then
-					QBCore.Functions.Notify(Config.Strings.RefillJerryCan .. "$" .. refillCost)
+					QBCore.Functions.Notify(Config.Strings.RefillJerryCan .. "$" .. refillCost, "success")
 					TriggerServerEvent('fuel:pay', refillCost, GetPlayerServerId(PlayerId()))
 					SetPedAmmo(ped, 883325847, 4500)
 				else
-					QBCore.Functions.Notify(Config.Strings.NotEnoughCashJerryCan)
+					QBCore.Functions.Notify(Config.Strings.NotEnoughCashJerryCan, "error")
 				end
 			else
-				QBCore.Functions.Notify(Config.Strings.JerryCanFull)
+				QBCore.Functions.Notify(Config.Strings.JerryCanFull, "error")
 			end
 		end
 	else
-		QBCore.Functions.Notify(Config.Strings.NotEnoughCash)
+		QBCore.Functions.Notify(Config.Strings.NotEnoughCash, "error")
 	end
 end)
 
