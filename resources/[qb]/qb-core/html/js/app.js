@@ -46,6 +46,7 @@ const app = Vue.createApp({
         caption,
         classes,
         icon,
+        html: true,
       });
     };
     onMounted(() => {
