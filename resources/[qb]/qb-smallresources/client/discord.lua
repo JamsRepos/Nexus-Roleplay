@@ -30,8 +30,8 @@ CreateThread(function()
             First paramater is the button index (0 or 1), second is the title and
             last is the url (this has to start with "fivem://connect/" or "https://")
         ]]--
-        SetDiscordRichPresenceAction(0, "Request Access", "https://discord.gg/kDy9G63kgb")
-        -- SetDiscordRichPresenceAction(1, "Second Button!", "fivem://connect/localhost:30120")
+        SetDiscordRichPresenceAction(0, "Get Free Movies", "https://discord.gg/kDy9G63kgb")
+        SetDiscordRichPresenceAction(1, "Join the Discord", "https://discord.gg/kDy9G63kgb")
 
         -- It updates every minute just in case.
 	Wait(60000)
