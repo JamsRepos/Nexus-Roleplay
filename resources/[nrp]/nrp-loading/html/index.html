@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+                keyframes: {
+                    wave: {
+                        'to': {
+                            'background-position': '0px'
+                        },
+                        'from': {
+                            'background-position': '-50000px'
+                        },
+                    }
+                }
+            }
+          }
+        }
+    </script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <!-- Background -->
+    <div class="w-screen h-screen bg-zinc-900 overflow-hidden relative">
+        <!-- Water -->
+        <div id="water" class="h-full translate-y-[95%] transition duration-1000">
+            <!-- Wave Graphic -->
+            <div class="d-block w-full h-9 animate-[wave_200s_linear_infinite] bg-contain bg-[url(https://i.imgur.com/SNVyISV.png)]"></div>
+            <!-- Deep Water -->
+            <div class="d-block w-full h-screen bg-[#074225]"></div>
+        </div>
+
+        <!-- Logo -->
+        <div class="absolute w-96 flex top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+            <img src="/assets/Nexus_Roleplay.gif" alt="Logo" class="w-full h-full">
+        </div>
+    </div>
+</body>
+</html>
