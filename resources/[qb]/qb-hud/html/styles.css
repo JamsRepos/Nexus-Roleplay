@@ -3,28 +3,28 @@
 
 /* Menu */
 div#openmenu { display: none; position: absolute; width: 50%; top: 45%; left: 50%; transform: translate(-50%,-50%); }
-.brand-logo { width: 25%; } /* when using an svg all you need to change is the width and it will resize it */
+.brand-logo { width: 15%; } /* when using an svg all you need to change is the width and it will resize it */
 
 /* Menu tab & panel styles */
 .text-tabcolor { color: rgb(255, 255, 255)!important; }
-.bg-active-tab { background: rgb(23 23 23)!important; }
-.bg-panel { background: rgb(30 30 30)!important; }
-.q-tab-panels { border-top-right-radius: 12px!important; border-bottom-right-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
-.q-splitter__panel.q-splitter__before { border-top-left-radius: 12px!important; border-bottom-left-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
-.q-tabs--vertical.q-tabs--not-scrollable .q-tabs__content { border-top-left-radius: 12px!important; border-bottom-left-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
+.bg-active-tab { background: rgb(0 0 0 / 80%)!important; }
+.bg-panel { background: rgb(0 0 0 / 80%)!important; }
+.q-tab-panels { border-top-right-radius: 0px!important; border-bottom-right-radius: 0px!important; } /* change all 0px for a different border radius (rounds edges of the menu) */
+.q-splitter__panel.q-splitter__before { border-top-left-radius: 0px!important; border-bottom-left-radius: 0px!important; } /* change all 0px for a different border radius (rounds edges of the menu) */
+.q-tabs--vertical.q-tabs--not-scrollable .q-tabs__content { border-top-left-radius: 0px!important; border-bottom-left-radius: 0px!important; } /* change all 0px for a different border radius (rounds edges of the menu) */
 
 /* Menu text styles */
 .text-h6 { color: rgb(255, 255, 255)!important; }
-.text-h7 { color: rgba(255, 255, 255, 0.8)!important; }
+.text-h7 { color: rgb(255, 255, 255)!important; }
 
 /* Menu buttons & checkboxes & toggle switch icons styles */
-.text-textbutton { color: rgb(0, 0, 0)!important; }
-.bg-bgbutton { background: rgb(220 20 60)!important; }
+.text-textbutton { color: rgb(255, 255, 255)!important; }
+.bg-bgbutton { background: #074225!important; }
 .q-checkbox__inner { color: rgb(255 255 255 / 70%)!important; }
-.text-checkbox { color: rgb(220 20 60)!important; }
-.q-checkbox__svg { color: rgb(0, 0, 0)!important; }
-.q-checkbox__inner--truthy .q-checkbox__bg { box-shadow: 0px 0px 3px 3px rgb(220 20 60 / 15%)!important; } /* if you want the checkboxes to have a glow/shadow */
-.text-toggleicons { color: rgb(0, 0, 0)!important; }
+.text-checkbox { color: #074225!important; }
+.q-checkbox__svg { color: rgb(255, 255, 255)!important; }
+.q-checkbox__inner--truthy .q-checkbox__bg { box-shadow: 0px 0px 3px 3px rgba(20, 220, 97, 0.15)!important; } /* if you want the checkboxes to have a glow/shadow */
+.text-toggleicons { color: rgb(255, 255, 255)!important; }
 
 /* Menu misc */
 hr { opacity: 0.1!important; } /* horizontal line that seperates sections */
@@ -130,21 +130,21 @@ altitude:after {
 speed {
   transform: rotate(150deg);
   font-size: 2.4vh;
-  position: fixed; 
-  color: #fff; 
+  position: fixed;
+  color: #fff;
   text-align: center;
   font-weight: 600;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7); 
+  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
 }
 
 altitude {
   transform: rotate(135deg);
   font-size: 2.4vh;
-  position: fixed; 
-  color: #fff; 
+  position: fixed;
+  color: #fff;
   text-align: center;
   font-weight: 600;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7); 
+  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
 }
 
 .border {
