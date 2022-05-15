@@ -20,7 +20,7 @@ local function spawnOccasionsVehicles(vehicles)
                 while not HasModelLoaded(model) do
                     Wait(0)
                 end
-                occasionVehicles[Zone][i] = { 
+                occasionVehicles[Zone][i] = {
                     car   = CreateVehicle(model, oSlot[i].x, oSlot[i].y, oSlot[i].z, false, false),
                     loc   = vector3(oSlot[i].x, oSlot[i].y, oSlot[i].z),
                     price = vehicles[i].price,
@@ -67,7 +67,7 @@ local function despawnOccasionsVehicles()
     for i = 1, #oSlot, 1 do
         local loc = oSlot[i]
         local oldVehicle = GetClosestVehicle(loc.x, loc.y, loc.z, 1.3, 0, 70)
-        
+
         if oldVehicle then
             QBCore.Functions.DeleteVehicle(oldVehicle)
         end
@@ -250,7 +250,7 @@ RegisterNetEvent('qb-occasions:client:BuyFinished', function(vehdata)
     DoScreenFadeIn(250)
     CurrentVehicle = {}
 end)
- 
+
 RegisterNetEvent('qb-occasions:client:SellBackCar', function()
     local ped = PlayerPedId()
     if IsPedInAnyVehicle(ped, false) then
@@ -308,7 +308,7 @@ RegisterNetEvent('qb-vehiclesales:client:SellVehicle', function()
     local VehiclePlate = QBCore.Functions.GetPlate(GetVehiclePedIsIn(PlayerPedId()))
     QBCore.Functions.TriggerCallback('qb-garage:server:checkVehicleOwner', function(owned, balance)
         if owned then
-            if balance < 1 then 
+            if balance < 1 then
                 QBCore.Functions.TriggerCallback('qb-occasions:server:getVehicles', function(vehicles)
                     if vehicles == nil or #vehicles < #Config.Zones[Zone].VehicleSpots then
                         openSellContract(true)
@@ -376,7 +376,7 @@ end)
 -- Threads
 
 CreateThread(function()
-    for _, cars in pairs(Config.Zones) do 
+    for _, cars in pairs(Config.Zones) do
         local OccasionBlip = AddBlipForCoord(cars.SellVehicle.x, cars.SellVehicle.y, cars.SellVehicle.z)
         SetBlipSprite (OccasionBlip, 326)
         SetBlipDisplay(OccasionBlip, 4)
@@ -414,10 +414,10 @@ CreateThread(function()
                 local VehicleZones = BoxZone:Create(vector3(v.x, v.y, v.z), 4.3, 3.6, {
                     name="VehicleSpot".._..k,
                     debugPoly = false,
-                    minZ = v.z-2, 
-                    maxZ = v.z+2, 
+                    minZ = v.z-2,
+                    maxZ = v.z+2,
                 })
-        
+
                 VehicleZones:onPlayerInOut(function(isPointInside)
                     if isPointInside and IsCarSpawned(k) then
                         exports['qb-core']:DrawText('[E] View Contract', 'left')

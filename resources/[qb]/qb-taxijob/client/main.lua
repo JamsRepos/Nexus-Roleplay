@@ -207,7 +207,7 @@ local function EnumerateEntitiesWithinDistance(entities, isPlayerEntities, coord
 end
 
 local function GetVehiclesInArea(coords, maxDistance) -- Vehicle inspection in designated area
-	return EnumerateEntitiesWithinDistance(GetGamePool('CVehicle'), false, coords, maxDistance) 
+	return EnumerateEntitiesWithinDistance(GetGamePool('CVehicle'), false, coords, maxDistance)
 end
 
 local function IsSpawnPointClear(coords, maxDistance) -- Check the spawn point to see if it's empty or not:

@@ -22,7 +22,7 @@ local function MenuGarage(type, garage, indexgarage)
     if type == "house" then
         header = Lang:t("menu.header."..type.."_car", {value = garage.label})
         leave = Lang:t("menu.leave.car")
-    else 
+    else
         header = Lang:t("menu.header."..type.."_"..garage.vehicle, {value = garage.label})
         leave = Lang:t("menu.leave."..garage.vehicle)
     end
@@ -65,7 +65,7 @@ end
 local function DestroyZone(type, index)
     if garageZones[type.."_"..index] then
         garageZones[type.."_"..index].zonecombo:destroy()
-        garageZones[type.."_"..index].zone:destroy()            
+        garageZones[type.."_"..index].zone:destroy()
     end
 end
 
@@ -78,31 +78,31 @@ local function CreateZone(type, garage, index)
 
     if type == 'in' then
         size = 4
-        coords = vector3(garage.putVehicle.x, garage.putVehicle.y, garage.putVehicle.z) 
+        coords = vector3(garage.putVehicle.x, garage.putVehicle.y, garage.putVehicle.z)
         heading = garage.spawnPoint.w
         minz = coords.z - 1.0
         maxz = coords.z + 2.0
     elseif type == 'out' then
         size = 2
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z) 
+        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
         heading = garage.spawnPoint.w
         minz = coords.z - 1.0
         maxz = coords.z + 2.0
     elseif type == 'marker' then
         size = 60
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z) 
+        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
         heading = garage.spawnPoint.w
         minz = coords.z - 7.5
         maxz = coords.z + 7.0
     elseif type == 'hmarker' then
         size = 20
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z) 
+        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
         heading = 0
         minz = coords.z - 4.0
         maxz = coords.z + 2.0
     elseif type == 'house' then
         size = 2
-        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z) 
+        coords = vector3(garage.takeVehicle.x, garage.takeVehicle.y, garage.takeVehicle.z)
         heading = 0
         minz = coords.z - 1.0
         maxz = coords.z + 2.0
@@ -263,7 +263,7 @@ RegisterNetEvent("qb-garages:client:VehicleList", function(data)
     if type == "house" then
         header = Lang:t("menu.header."..type.."_car", {value = garage.label})
         leave = Lang:t("menu.leave.car")
-    else 
+    else
         header = Lang:t("menu.header."..type.."_"..garage.vehicle, {value = garage.label})
         leave = Lang:t("menu.leave."..garage.vehicle)
     end
@@ -342,7 +342,7 @@ RegisterNetEvent('qb-garages:client:takeOutGarage', function(data)
     local spawn = false
 
     if type == "depot" then         --If depot, check if vehicle is not already spawned on the map
-        local VehExists = DoesEntityExist(OutsideVehicles[vehicle.plate])        
+        local VehExists = DoesEntityExist(OutsideVehicles[vehicle.plate])
         if not VehExists then
             spawn = true
         else
@@ -365,15 +365,15 @@ RegisterNetEvent('qb-garages:client:takeOutGarage', function(data)
             location = garage.spawnPoint
             heading = garage.spawnPoint.w
         end
-    
+
         QBCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
             QBCore.Functions.TriggerCallback('qb-garage:server:GetVehicleProperties', function(properties)
-    
+
                 if vehicle.plate then
                     OutsideVehicles[vehicle.plate] = veh
                     TriggerServerEvent('qb-garages:server:UpdateOutsideVehicles', OutsideVehicles)
                 end
-    
+
                 QBCore.Functions.SetVehicleProperties(veh, properties)
                 SetVehicleNumberPlateText(veh, vehicle.plate)
                 SetEntityHeading(veh, heading)
@@ -391,7 +391,7 @@ RegisterNetEvent('qb-garages:client:takeOutGarage', function(data)
                     InputIn = true
                 end
             end, vehicle.plate)
-    
+
         end, location, true)
     end
 end)

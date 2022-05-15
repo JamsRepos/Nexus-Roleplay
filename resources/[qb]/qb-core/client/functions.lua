@@ -370,9 +370,14 @@ function QBCore.Functions.SpawnVehicle(model, cb, coords, isnetworked, teleportI
     SetModelAsNoLongerNeeded(model)
     if teleportInto then TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1) end
     if cb then cb(veh) end
+    Citizen.CreateThread(function()
+        Citizen.Wait(1000)
+        TriggerEvent('persistent-vehicles/register-vehicle', veh)
+    end)
 end
 
 function QBCore.Functions.DeleteVehicle(vehicle)
+    TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
     SetEntityAsMissionEntity(vehicle, true, true)
     DeleteVehicle(vehicle)
 end
@@ -838,6 +843,8 @@ function QBCore.Functions.SetVehicleProperties(vehicle, props)
         if props.liveryRoof then
             SetVehicleRoofLivery(vehicle, props.liveryRoof)
         end
+
+        TriggerEvent('persistent-vehicles/update-vehicle', vehicle)
     end
 end
 

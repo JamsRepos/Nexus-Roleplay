@@ -126,22 +126,24 @@ RegisterNetEvent('QBCore:Command:SpawnVehicle', function(vehName)
     while not HasModelLoaded(hash) do
         Wait(0)
     end
-        
-     if IsPedInAnyVehicle(ped) then 
+
+     if IsPedInAnyVehicle(ped) then
         DeleteVehicle(veh)
     end
-        
+
     local vehicle = CreateVehicle(hash, GetEntityCoords(ped), GetEntityHeading(ped), true, false)
     TaskWarpPedIntoVehicle(ped, vehicle, -1)
     SetVehicleFuelLevel(vehicle, 100.0)
     SetModelAsNoLongerNeeded(hash)
     TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(vehicle))
+    TriggerEvent('persistent-vehicles/register-vehicle', vehicle)
 end)
 
 RegisterNetEvent('QBCore:Command:DeleteVehicle', function()
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsUsing(ped)
     if veh ~= 0 then
+        TriggerEvent('persistent-vehicles/forget-vehicle', veh)
         SetEntityAsMissionEntity(veh, true, true)
         DeleteVehicle(veh)
     else
@@ -149,6 +151,7 @@ RegisterNetEvent('QBCore:Command:DeleteVehicle', function()
         local vehicles = GetGamePool('CVehicle')
         for k, v in pairs(vehicles) do
             if #(pcoords - GetEntityCoords(v)) <= 5.0 then
+                TriggerEvent('persistent-vehicles/forget-vehicle', v)
                 SetEntityAsMissionEntity(v, true, true)
                 DeleteVehicle(v)
             end
