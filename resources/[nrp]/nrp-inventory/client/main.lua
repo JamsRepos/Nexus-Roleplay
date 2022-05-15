@@ -665,7 +665,7 @@ RegisterCommand('hotbar', function()
     end
 end)
 
-RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'z')
+RegisterKeyMapping('hotbar', 'Toggles keybind slots', 'keyboard', 'GRAVE')
 
 for i = 1, 6 do
     RegisterCommand('slot' .. i,function()
