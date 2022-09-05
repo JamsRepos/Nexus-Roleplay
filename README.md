@@ -1,3 +1,2 @@
 # Nexus-Roleplay
-
-All contents of this repository are specifically for use on internal servers only. Any distribution of these contents is strictly forbidden.
+Old deprecated code for the Nexus Roleplay Server. This code does not reflect current abilities and is merely for portfolio purposes.
